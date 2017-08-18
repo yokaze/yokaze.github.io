@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>yokaze.github.io</title>
+    <link>https://yokaze.github.io/</link>
+    <description>Recent content on yokaze.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Fri, 18 Aug 2017 18:30:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>boost::multi_array の添字演算子について</title>
+      <link>https://yokaze.github.io/2017-08-18/</link>
+      <pubDate>Fri, 18 Aug 2017 18:30:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017-08-18/</guid>
+      <description>boost::multi_array が添え字の境界チェックをしているのかよく分からなかったので、調べてみた。 リファレンスには次のように書かれている。 By default, the array access methods operator() and operator[] perform range checking. If</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://yokaze.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 2001 00:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/about/</guid>
+      <description>Rue Yokaze アセンブラから JavaScript までなんでもやります。 https://twitter.com/chrofieyue https://github.com/yokaze https://www.flickr.com/photos/chrofieyue</description>
+    </item>
+    
+    <item>
+      <title>ソフトウェア</title>
+      <link>https://yokaze.github.io/software/</link>
+      <pubDate>Mon, 01 Jan 2001 00:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/software/</guid>
+      <description>各種自作ソフトを公開します。鋭意作成中。 python-multi-array https://github.com/yokaze/python-multi-array python から boost::multi_array を使うためのライブラリです。 Python と C++ 拡張ライブラリの間で多次元配列を簡単に受け渡しできます</description>
+    </item>
+    
+  </channel>
+</rss>
