@@ -13,12 +13,12 @@
     
     
     <item>
-      <title>boost::multi_array の添字演算子について</title>
+      <title>Boost.MultiArray の添字演算子について</title>
       <link>https://yokaze.github.io/2017-08-18/</link>
       <pubDate>Fri, 18 Aug 2017 18:30:00 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2017-08-18/</guid>
-      <description>boost::multi_array が添え字の境界チェックをしているのかよく分からなかったので、調べてみた。 リファレンスには次のように書かれている。 By default, the array access methods operator() and operator[] perform range checking. If</description>
+      <description>Boost.MultiArray が添え字の境界チェックをしているのかよく分からなかったので、調べてみた。 リファレンスには次のように書かれている。 By default, the array access methods operator() and operator[] perform range checking. If</description>
     </item>
     
   </channel>
