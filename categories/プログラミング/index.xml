@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Fri, 18 Aug 2017 18:30:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 08 Sep 2017 20:07:56 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>pep8 で E501 line too long を無視する方法</title>
+      <link>https://yokaze.github.io/2017-09-08/</link>
+      <pubDate>Fri, 08 Sep 2017 20:07:56 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017-09-08/</guid>
+      <description>Python の標準コーディング規約 &amp;ldquo;PEP 8&amp;rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pep8 --ignore=&amp;quot;E501&amp;quot; と入力す</description>
+    </item>
+    
+    <item>
+      <title>ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法</title>
+      <link>https://yokaze.github.io/2017-09-07/</link>
+      <pubDate>Thu, 07 Sep 2017 18:27:23 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017-09-07/</guid>
+      <description>bind, baseURL オプションを指定して hugo server を起動する。 $ hugo server --bind=&amp;quot;0.0.0.0&amp;quot; --baseURL=&amp;quot;http://[HOSTNAME]/&amp;quot; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドするためのもので、hugo を</description>
+    </item>
     
     <item>
       <title>Boost.MultiArray の添字演算子について</title>

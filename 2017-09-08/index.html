@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://yokaze.github.io/software/">
+<link rel="canonical" href="https://yokaze.github.io/2017-09-08/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>ソフトウェア - yokaze.github.io</title>
+    <title>pep8 で E501 line too long を無視する方法 - yokaze.github.io</title>
     
-<meta name="description" content="各種自作ソフトを公開します。鋭意作成中。 python-multi-array https://github.com/yokaze/python-multi-array python から boost::multi_array を使うためのライブラリです。 Python と C&#43;&#43; 拡張ライブラリの間で多次元配列を簡単に受け渡しできます">
+<meta name="description" content="Python の標準コーディング規約 &amp;ldquo;PEP 8&amp;rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pep8 --ignore=&amp;quot;E501&amp;quot; と入力す">
 
-<meta property="og:title" content="ソフトウェア - yokaze.github.io">
+<meta property="og:title" content="pep8 で E501 line too long を無視する方法 - yokaze.github.io">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/software/">
+<meta property="og:url" content="https://yokaze.github.io/2017-09-08/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="各種自作ソフトを公開します。鋭意作成中。 python-multi-array https://github.com/yokaze/python-multi-array python から boost::multi_array を使うためのライブラリです。 Python と C&#43;&#43; 拡張ライブラリの間で多次元配列を簡単に受け渡しできます">
+<meta property="og:description" content="Python の標準コーディング規約 &amp;ldquo;PEP 8&amp;rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pep8 --ignore=&amp;quot;E501&amp;quot; と入力す">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/software/">
-<meta name="twitter:title" content="ソフトウェア - yokaze.github.io">
-<meta name="twitter:description" content="各種自作ソフトを公開します。鋭意作成中。 python-multi-array https://github.com/yokaze/python-multi-array python から boost::multi_array を使うためのライブラリです。 Python と C&#43;&#43; 拡張ライブラリの間で多次元配列を簡単に受け渡しできます">
+<meta name="twitter:url" content="https://yokaze.github.io/2017-09-08/">
+<meta name="twitter:title" content="pep8 で E501 line too long を無視する方法 - yokaze.github.io">
+<meta name="twitter:description" content="Python の標準コーディング規約 &amp;ldquo;PEP 8&amp;rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pep8 --ignore=&amp;quot;E501&amp;quot; と入力す">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://yokaze.github.io/"
     },
-    "headline": "ソフトウェア - yokaze.github.io",
+    "headline": "pep8 で E501 line too long を無視する方法 - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
       "url": "https://yokaze.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2001-01-01T00:00:00JST",
-    "dateModified": "2001-01-01T00:00:00JST",
+    "datePublished": "2017-09-08T20:07:56JST",
+    "dateModified": "2017-09-08T20:07:56JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "各種自作ソフトを公開します。鋭意作成中。 python-multi-array https://github.com/yokaze/python-multi-array python から boost::multi_array を使うためのライブラリです。 Python と C++ 拡張ライブラリの間で多次元配列を簡単に受け渡しできます"
+    "description": "Python の標準コーディング規約 &ldquo;PEP 8&rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pep8 --ignore=&quot;E501&quot; と入力す"
   }
 </script>
 
@@ -135,39 +135,68 @@ ga('send', 'pageview');
       <ol class="breadcrumb">
         <li><a href="https://yokaze.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
         
-        <li class="active">ソフトウェア</li>
+        <li class="active">pep8 で E501 line too long を無視する方法</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2001-01-01T00:00:00JST">Jan 1, 2001</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-09-08T20:07:56JST">Sep 8, 2017</time></li>
       
       
     </ul>
 
-    <h1 class="title">ソフトウェア</h1>
+    <h1 class="title">pep8 で E501 line too long を無視する方法</h1>
   </header>
 
   
 
   <div class="article-body">
 
-<p>各種自作ソフトを公開します。鋭意作成中。</p>
+<p>Python の標準コーディング規約 &ldquo;PEP 8&rdquo; には一行あたりの文字数制限があります。<br />
+一行最大79文字と、ちょっと厳しい。</p>
 
-<h2 id="python-multi-array">python-multi-array</h2>
+<p>これを無視するには、<code>pep8 --ignore=&quot;E501&quot;</code> と入力するとよいみたいです。</p>
 
-<p><a href="https://github.com/yokaze/python-multi-array">https://github.com/yokaze/python-multi-array</a></p>
+<pre><code class="language-shell">$ pep8 .
+./events/factory/_convert_result.py:25:80: E501 line too long (88 &gt; 79 characters)
+./events/factory/_convert_result.py:31:80: E501 line too long (95 &gt; 79 characters)
+./events/factory/_meta_event_factory.py:76:80: E501 line too long (82 &gt; 79 characters)
+./events/factory/_meta_event_factory.py:82:80: E501 line too long (80 &gt; 79 characters)
+./events/meta/_key_signature_event.py:33:80: E501 line too long (83 &gt; 79 characters)
+./events/meta/_text_meta_event.py:13:1: E302 expected 2 blank lines, found 1
+</code></pre>
 
-<p>python から boost::multi_array を使うためのライブラリです。
-Python と C++ 拡張ライブラリの間で多次元配列を簡単に受け渡しできます。</p>
+<p>ヘルプの記述は以下の通り。</p>
 
-<h2 id="crest-python">crest-python</h2>
+<pre><code class="language-shell">$ pep8 --help
+...
+--ignore=errors      skip errors and warnings (e.g. E4,W) (default:
+                     E121,E123,E126,E226,E24,E704)
+...
+</code></pre>
 
-<p><a href="https://github.com/yokaze/crest-python">https://github.com/yokaze/crest-python</a></p>
+<p>使ってみた。</p>
 
-<p>Python で MIDI ファイルを編集するためのライブラリです。</p>
+<pre><code class="language-shell">$ pep8 . --ignore=&quot;E501&quot;
+./events/meta/_text_meta_event.py:13:1: E302 expected 2 blank lines, found 1
+</code></pre>
+
+<p>確認が足りなかったのか、一件残ってしまった。</p>
+
+<h2 id="参考資料">参考資料</h2>
+
+<ul>
+<li><p>PEP 8 &ndash; Style Guide for Python Code<br />
+<a href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a></p></li>
+
+<li><p>pep8 - Python style guide checker<br />
+<a href="https://pypi.python.org/pypi/pep8">https://pypi.python.org/pypi/pep8</a></p></li>
+
+<li><p>Crest MIDI Library for Python （本記事で使用したソースコード）<br />
+<a href="https://github.com/yokaze/crest-python">https://github.com/yokaze/crest-python</a></p></li>
+</ul>
 </div>
  
   <br />
@@ -175,6 +204,19 @@ Python と C++ 拡張ライブラリの間で多次元配列を簡単に受け�
   <footer class="article-footer">
     
     
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">CATEGORIES</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/">プログラミング</a></li>
+          
+        </ul>
+      </div>
+    </section>
     
     
     
