@@ -13,12 +13,12 @@
     
     
     <item>
-      <title>pep8 で E501 line too long を無視する方法</title>
+      <title>pycodestyle で E501 line too long を無視する方法</title>
       <link>https://yokaze.github.io/2017-09-08/</link>
       <pubDate>Fri, 08 Sep 2017 20:07:56 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2017-09-08/</guid>
-      <description>Python の標準コーディング規約 &amp;ldquo;PEP 8&amp;rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pep8 --ignore=&amp;quot;E501&amp;quot; と入力す</description>
+      <description>Python の標準コーディング規約 &amp;ldquo;PEP 8&amp;rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pycodesty</description>
     </item>
     
     <item>

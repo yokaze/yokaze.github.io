@@ -14,23 +14,23 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>pep8 で E501 line too long を無視する方法 - yokaze.github.io</title>
+    <title>pycodestyle で E501 line too long を無視する方法 - yokaze.github.io</title>
     
-<meta name="description" content="Python の標準コーディング規約 &amp;ldquo;PEP 8&amp;rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pep8 --ignore=&amp;quot;E501&amp;quot; と入力す">
+<meta name="description" content="Python の標準コーディング規約 &amp;ldquo;PEP 8&amp;rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pycodesty">
 
-<meta property="og:title" content="pep8 で E501 line too long を無視する方法 - yokaze.github.io">
+<meta property="og:title" content="pycodestyle で E501 line too long を無視する方法 - yokaze.github.io">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://yokaze.github.io/2017-09-08/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="Python の標準コーディング規約 &amp;ldquo;PEP 8&amp;rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pep8 --ignore=&amp;quot;E501&amp;quot; と入力す">
+<meta property="og:description" content="Python の標準コーディング規約 &amp;ldquo;PEP 8&amp;rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pycodesty">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
 <meta name="twitter:url" content="https://yokaze.github.io/2017-09-08/">
-<meta name="twitter:title" content="pep8 で E501 line too long を無視する方法 - yokaze.github.io">
-<meta name="twitter:description" content="Python の標準コーディング規約 &amp;ldquo;PEP 8&amp;rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pep8 --ignore=&amp;quot;E501&amp;quot; と入力す">
+<meta name="twitter:title" content="pycodestyle で E501 line too long を無視する方法 - yokaze.github.io">
+<meta name="twitter:description" content="Python の標準コーディング規約 &amp;ldquo;PEP 8&amp;rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pycodesty">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -42,7 +42,7 @@
       "@type": "WebPage",
       "@id":"https://yokaze.github.io/"
     },
-    "headline": "pep8 で E501 line too long を無視する方法 - yokaze.github.io",
+    "headline": "pycodestyle で E501 line too long を無視する方法 - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
       "url": "https://yokaze.github.io/images/default.png",
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "Python の標準コーディング規約 &ldquo;PEP 8&rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pep8 --ignore=&quot;E501&quot; と入力す"
+    "description": "Python の標準コーディング規約 &ldquo;PEP 8&rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pycodesty"
   }
 </script>
 
@@ -135,7 +135,7 @@ ga('send', 'pageview');
       <ol class="breadcrumb">
         <li><a href="https://yokaze.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
         
-        <li class="active">pep8 で E501 line too long を無視する方法</li>
+        <li class="active">pycodestyle で E501 line too long を無視する方法</li>
       </ol>
     </nav>
 
@@ -147,7 +147,7 @@ ga('send', 'pageview');
       
     </ul>
 
-    <h1 class="title">pep8 で E501 line too long を無視する方法</h1>
+    <h1 class="title">pycodestyle で E501 line too long を無視する方法</h1>
   </header>
 
   
@@ -157,9 +157,9 @@ ga('send', 'pageview');
 <p>Python の標準コーディング規約 &ldquo;PEP 8&rdquo; には一行あたりの文字数制限があります。<br />
 一行最大79文字と、ちょっと厳しい。</p>
 
-<p>これを無視するには、<code>pep8 --ignore=&quot;E501&quot;</code> と入力するとよいみたいです。</p>
+<p>これを無視するには、<code>pycodestyle --ignore=&quot;E501&quot;</code> と入力するとよいみたいです。</p>
 
-<pre><code class="language-shell">$ pep8 .
+<pre><code class="language-shell">$ pycodestyle .
 ./events/factory/_convert_result.py:25:80: E501 line too long (88 &gt; 79 characters)
 ./events/factory/_convert_result.py:31:80: E501 line too long (95 &gt; 79 characters)
 ./events/factory/_meta_event_factory.py:76:80: E501 line too long (82 &gt; 79 characters)
@@ -170,7 +170,7 @@ ga('send', 'pageview');
 
 <p>ヘルプの記述は以下の通り。</p>
 
-<pre><code class="language-shell">$ pep8 --help
+<pre><code class="language-shell">$ pycodestyle --help
 ...
 --ignore=errors      skip errors and warnings (e.g. E4,W) (default:
                      E121,E123,E126,E226,E24,E704)
@@ -179,11 +179,15 @@ ga('send', 'pageview');
 
 <p>使ってみた。</p>
 
-<pre><code class="language-shell">$ pep8 . --ignore=&quot;E501&quot;
+<pre><code class="language-shell">$ pycodestyle . --ignore=&quot;E501&quot;
 ./events/meta/_text_meta_event.py:13:1: E302 expected 2 blank lines, found 1
 </code></pre>
 
 <p>確認が足りなかったのか、一件残ってしまった。</p>
+
+<h2 id="追記">追記</h2>
+
+<p>なんと pep8 コマンドは pycodestyle に変わったらしいです。。</p>
 
 <h2 id="参考資料">参考資料</h2>
 
@@ -193,6 +197,12 @@ ga('send', 'pageview');
 
 <li><p>pep8 - Python style guide checker<br />
 <a href="https://pypi.python.org/pypi/pep8">https://pypi.python.org/pypi/pep8</a></p></li>
+
+<li><p>pycodestyle (formerly called pep8) - Python style guide checker<br />
+<a href="https://github.com/PyCQA/pycodestyle">https://github.com/PyCQA/pycodestyle</a></p></li>
+
+<li><p>pep8 が pycodestyle に変わった話<br />
+<a href="http://qiita.com/tell-k/items/da52229749a7242b4440">http://qiita.com/tell-k/items/da52229749a7242b4440</a></p></li>
 
 <li><p>Crest MIDI Library for Python （本記事で使用したソースコード）<br />
 <a href="https://github.com/yokaze/crest-python">https://github.com/yokaze/crest-python</a></p></li>
@@ -239,7 +249,7 @@ ga('send', 'pageview');
     </div>
     <div class="list-group">
       
-      <a href="https://yokaze.github.io/2017-09-08/" class="list-group-item">pep8 で E501 line too long を無視する方法</a>
+      <a href="https://yokaze.github.io/2017-09-08/" class="list-group-item">pycodestyle で E501 line too long を無視する方法</a>
       
       <a href="https://yokaze.github.io/2017-09-07/" class="list-group-item">ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法</a>
       
