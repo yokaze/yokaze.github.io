@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>C&#43;&#43; on yokaze.github.io</title>
-    <link>https://yokaze.github.io/tags/c&#43;&#43;/</link>
-    <description>Recent content in C&#43;&#43; on yokaze.github.io</description>
+    <title>2017 on yokaze.github.io</title>
+    <link>https://yokaze.github.io/2017/</link>
+    <description>Recent content in 2017 on yokaze.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
     <lastBuildDate>Mon, 11 Sep 2017 21:57:00 +0900</lastBuildDate>
     
-	<atom:link href="https://yokaze.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://yokaze.github.io/2017/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,6 +19,24 @@
       
       <guid>https://yokaze.github.io/2017/09/11/</guid>
       <description>boost::extents は、boost::multi_array の各次元の有効なインデックス範囲を指定するためのオブジェクトです。 #include &amp;lt;boost/multi_array.hpp&amp;gt; int main() { boost::multi_array&amp;lt;float, 2&amp;gt; arr(boost::extents[10][20]); return 0; } また、ex</description>
+    </item>
+    
+    <item>
+      <title>pycodestyle で E501 line too long を無視する方法</title>
+      <link>https://yokaze.github.io/2017/09/08/</link>
+      <pubDate>Fri, 08 Sep 2017 20:07:56 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017/09/08/</guid>
+      <description>Python の標準コーディング規約 &amp;ldquo;PEP 8&amp;rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pycodesty</description>
+    </item>
+    
+    <item>
+      <title>ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法</title>
+      <link>https://yokaze.github.io/2017/09/07/</link>
+      <pubDate>Thu, 07 Sep 2017 18:27:23 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017/09/07/</guid>
+      <description>bind, baseURL オプションを指定して hugo server を起動する。 $ hugo server --bind=&amp;quot;0.0.0.0&amp;quot; --baseURL=&amp;quot;http://[HOSTNAME]/&amp;quot; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドするためのもので、hugo を</description>
     </item>
     
     <item>

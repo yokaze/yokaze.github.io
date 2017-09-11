@@ -14,10 +14,10 @@
     
     <item>
       <title>ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法</title>
-      <link>https://yokaze.github.io/2017-09-07/</link>
+      <link>https://yokaze.github.io/2017/09/07/</link>
       <pubDate>Thu, 07 Sep 2017 18:27:23 +0900</pubDate>
       
-      <guid>https://yokaze.github.io/2017-09-07/</guid>
+      <guid>https://yokaze.github.io/2017/09/07/</guid>
       <description>bind, baseURL オプションを指定して hugo server を起動する。 $ hugo server --bind=&amp;quot;0.0.0.0&amp;quot; --baseURL=&amp;quot;http://[HOSTNAME]/&amp;quot; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドするためのもので、hugo を</description>
     </item>
     
