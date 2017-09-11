@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.26" />
+
+
+
+<link rel="canonical" href="https://yokaze.github.io/2017-09-11/">
+
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
+    <title>boost::extents の解説 - yokaze.github.io</title>
+    
+<meta name="description" content="boost::extents は、boost::multi_array の各次元の有効なインデックス範囲を指定するためのオブジェクトです。 #include &amp;lt;boost/multi_array.hpp&amp;gt; int main() { boost::multi_array&amp;lt;float, 2&amp;gt; arr(boost::extents[10][20]); return 0; } また、ex">
+
+<meta property="og:title" content="boost::extents の解説 - yokaze.github.io">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yokaze.github.io/2017-09-11/">
+<meta property="og:image" content="https://yokaze.github.io/images/default.png">
+<meta property="og:site_name" content="yokaze.github.io">
+<meta property="og:description" content="boost::extents は、boost::multi_array の各次元の有効なインデックス範囲を指定するためのオブジェクトです。 #include &amp;lt;boost/multi_array.hpp&amp;gt; int main() { boost::multi_array&amp;lt;float, 2&amp;gt; arr(boost::extents[10][20]); return 0; } また、ex">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="yokaze.github.io">
+<meta name="twitter:url" content="https://yokaze.github.io/2017-09-11/">
+<meta name="twitter:title" content="boost::extents の解説 - yokaze.github.io">
+<meta name="twitter:description" content="boost::extents は、boost::multi_array の各次元の有効なインデックス範囲を指定するためのオブジェクトです。 #include &amp;lt;boost/multi_array.hpp&amp;gt; int main() { boost::multi_array&amp;lt;float, 2&amp;gt; arr(boost::extents[10][20]); return 0; } また、ex">
+<meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"https://yokaze.github.io/"
+    },
+    "headline": "boost::extents の解説 - yokaze.github.io",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://yokaze.github.io/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "2017-09-11T21:57:00JST",
+    "dateModified": "2017-09-11T21:57:00JST",
+    "author": {
+      "@type": "Person",
+      "name": "yokaze.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "yokaze.github.io",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://yokaze.github.io/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "boost::extents は、boost::multi_array の各次元の有効なインデックス範囲を指定するためのオブジェクトです。 #include &lt;boost/multi_array.hpp&gt; int main() { boost::multi_array&lt;float, 2&gt; arr(boost::extents[10][20]); return 0; } また、ex"
+  }
+</script>
+
+
+    <link href="https://yokaze.github.io/css/styles.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body>
+    
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-83271338-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+    
+
+    <header class="l-header">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
+          </div>
+
+          
+          <div id="navbar" class="collapse navbar-collapse">
+            
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/about/">About</a></li>
+              
+              
+              
+              <li><a href="/software/">Software</a></li>
+              
+              
+            </ul>
+            
+          </div>
+          
+
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        
+<div class="row">
+  <div class="col-md-8">
+
+    <nav class="p-crumb">
+      <ol class="breadcrumb">
+        <li><a href="https://yokaze.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        
+        <li class="active">boost::extents の解説</li>
+      </ol>
+    </nav>
+
+    <article class="single">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-09-11T21:57:00JST">Sep 11, 2017</time></li>
+      
+      
+    </ul>
+
+    <h1 class="title">boost::extents の解説</h1>
+  </header>
+
+  
+
+  <div class="article-body">
+
+<p><code>boost::extents</code> は、<code>boost::multi_array</code> の各次元の有効なインデックス範囲を指定するためのオブジェクトです。</p>
+
+<pre><code class="language-cpp">#include &lt;boost/multi_array.hpp&gt;
+
+int main()
+{
+    boost::multi_array&lt;float, 2&gt; arr(boost::extents[10][20]);
+    return 0;
+}
+</code></pre>
+
+<p>また、<code>extent_range</code> オブジェクトを使うことで最小の添字を指定することができます。<br />
+<code>boost::multi_array</code> では、各次元の添字の範囲は整数の区間で表現されます。</p>
+
+<pre><code class="language-cpp">#include &lt;boost/multi_array.hpp&gt;
+
+int main()
+{
+    using boost::multi_array_types::extent_range;
+    boost::multi_array&lt;float, 2&gt; arr(boost::extents[extent_range(2, 5)][10]);
+
+    for (size_t i = 0; i &lt; 2; ++i)
+    {
+        //  各次元の始点と要素数を表示
+        printf(&quot;[%zu] %zu, %zu\n&quot;, i, arr.index_bases()[i], arr.shape()[i]);
+    }
+
+    //  不正なアクセス
+    printf(&quot;%f\n&quot;, arr[0][0]);
+    return 0;
+}
+</code></pre>
+
+<pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
+$ clang sample.cpp -o sample -I /usr/local/include/ -lc++
+$ ./sample
+[0] 2, 3
+[1] 0, 10
+Assertion failed: (idx - index_bases[0] &gt;= 0), function access, file /usr/local/include/boost/multi_array/base.hpp, line 135.
+Abort trap: 6
+</code></pre>
+
+<p>※ Boost.MultiArray ではデフォルトで添字の範囲チェックが行われます。<br />
+<a href="https://yokaze.github.io/2017-08-18/">Boost.MultiArray の添字演算子について</a></p>
+
+<h2 id="boost-extents-の実装">boost::extents の実装</h2>
+
+<p><code>boost::extents</code> は、<code>&lt;boost/multi_array/base.hpp&gt;</code> で <code>boost::detail::multi_array::extent_gen&lt;0&gt;</code> 型のグローバルオブジェクトとして定義されています。</p>
+
+<pre><code class="language-cpp">//  説明に必要な部分のみ抜粋
+namespace boost {
+    namespace multi_array_types {
+        typedef detail::multi_array::extent_gen&lt;0&gt; extent_gen;
+    }
+    multi_array_types::extent_gen extents;
+}
+</code></pre>
+
+<div style="word-break: break-all;">
+<a href="https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/base.hpp">
+https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/base.hpp
+</a>
+</div>
+
+<p><code>extent_gen</code> は以下の実装になっています。</p>
+
+<pre><code class="language-cpp">//  説明に必要な部分のみ抜粋
+namespace boost::detail::multi_array {
+
+template &lt;size_t NumRanges&gt;
+class extent_gen {
+public:
+     typedef boost::detail::multi_array::index index;
+     typedef boost::detail::multi_array::size_type size_type;
+     typedef extent_range&lt;index, size_type&gt; range;
+
+private:
+     typedef typename range_list_generator&lt;range, NumRanges&gt;::type range_list;
+
+public:
+    //  N 次元の範囲全てを保持するフィールド。
+    //  実体は boost::array&lt;extent_range, size_t&gt; 。
+    //
+    //  range_list_generator::type はテンプレートの特殊化により NumRanges = 0 の場合に
+    //  boost::array&lt;extent_range, 1&gt; を返すようになっている。
+    range_list ranges_;
+
+    extent_gen() { }
+    extent_gen(const extent_gen&lt;NumRanges - 1&gt;&amp; rhs,
+               const range&amp; a_range)
+    {
+        std::copy(rhs.ranges_.begin(), rhs.ranges_.end(), ranges_.begin());
+        *ranges_.rbegin() = a_range;
+    }
+
+    //  extent_gen&lt;N&gt; から extent_gen&lt;N + 1&gt; を返す演算子。
+    //  boost::extents[10] -&gt; boost::extents[10][extent_range(10, 20)] に相当。
+    extent_gen&lt;NumRanges + 1&gt;
+    operator[](const range&amp; a_range)
+    {
+        return extent_gen&lt;NumRanges + 1&gt;(*this, a_range);    
+    }
+
+    //  extent_gen&lt;N&gt; から extent_gen&lt;N + 1&gt; を返す演算子。
+    //  boost::extents[10] -&gt; boost::extents[10][20] に相当。
+    //  index の実体は ptrdiff_t
+    extent_gen&lt;NumRanges + 1&gt;
+    operator[](index idx)
+    {
+        return extent_gen&lt;NumRanges + 1&gt;(*this, range(0, idx));    
+    }    
+};
+
+}
+</code></pre>
+
+<div style="word-break: break-all;">
+<a href="https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/extent_gen.hpp">
+https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/extent_gen.hpp
+</a>
+</div>
+
+<p><code>extent_range</code> は次元ごとの添字の範囲を表現します。
+<code>extent_gen&lt;N&gt;::range</code> は</p>
+
+<pre><code class="language-cpp">extent_gen&lt;N&gt;::range =
+boost::detail::multi_array::extent_range&lt;
+    boost::detail::multi_array::index,
+    boost::detail::multi_array::size_type
+&gt;
+
+boost::detail::multi_array::index = ptrdiff_t
+boost::detail::multi_array::size_type = size_t
+</code></pre>
+
+<div style="word-break: break-all;">
+<a href="https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/types.hpp">
+https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/types.hpp
+</a>
+</div>
+
+<p>と展開されるため、<code>extent_range</code> のテンプレートパラメータは <code>extent_range&lt;ptrdiff_t, size_t&gt;</code> となります。
+したがって、<code>extent_range</code> のメモリ配置は次のとおり <code>std::pair&lt;ptrdiff_t, ptrdiff_t&gt;</code> と同じです。</p>
+
+<p><code>extent_range</code> には 3 つのコンストラクタと 3 つのメンバ関数があります。</p>
+
+<pre><code class="language-cpp">namespace boost::detail::multi_array {
+
+template&lt;typename Extent, typename SizeType&gt;
+class extent_range : private std::pair&lt;Extent, Extent&gt; {
+    typedef std::pair&lt;Extent, Extent&gt; super_type;
+
+public:
+    typedef Extent index;
+    typedef SizeType size_type;
+
+    extent_range() : super_type(0, 0) { }
+
+    extent_range(index finish) :
+    super_type(0, finish) { }
+
+    extent_range(index start, index finish) :
+    super_type(start, finish) { }
+
+    index start() const { return super_type::first; }
+    index finish() const { return super_type::second; }
+    size_type size() const { return super_type::second - super_type::first; }    
+};
+
+}
+</code></pre>
+
+<div style="word-break: break-all;">
+<a href="https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/extent_range.hpp">
+https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/extent_range.hpp
+</a>
+</div>
+
+<h2 id="boost-multi-array-コンストラクタでの使用">boost::multi_array コンストラクタでの使用</h2>
+
+<p><code>multi_array</code>, <code>multi_array_ref</code>, <code>const_multi_array_ref</code> のコンストラクタでは、
+<code>extent_gen&lt;N&gt;::ranges_</code> フィールドに直接アクセスすることで配列の範囲を取得しています。</p>
+
+<p>以下は、<code>const_multi_array_ref</code> のコンストラクタのひとつです。</p>
+
+<pre><code class="language-cpp">namespace boost {
+
+class const_multi_array_ref :
+public detail::multi_array::multi_array_impl_base&lt;T, NumDims&gt;
+{
+public:
+    //  ベースポインタと extent_gen から多次元配列のインターフェースを作成します。
+    explicit const_multi_array_ref(
+        TPtr base,
+        const detail::multi_array::extent_gen&lt;NumDims&gt;&amp; ranges) :
+    base_(base),
+    storage_(c_storage_order())
+    {
+        init_from_extent_gen(ranges);
+    }
+
+private:
+    void init_from_extent_gen(
+        const detail::multi_array::extent_gen&lt;NumDims&gt;&amp; ranges)
+    {
+        typedef boost::array&lt;index,　NumDims&gt; extent_list;
+
+        //  各次元の原点を取得
+        std::transform(
+            ranges.ranges_.begin(),
+            ranges.ranges_.end(),
+            index_base_list_.begin(),
+            boost::mem_fun_ref(&amp;extent_range::start)
+        );
+
+        //  各次元の大きさを取得
+        extent_list extents;
+        std::transform(
+            ranges.ranges_.begin(),
+            ranges.ranges_.end(),
+            extents.begin(),
+            boost::mem_fun_ref(&amp;extent_range::size)
+        );
+
+        init_multi_array_ref(extents.begin());
+    }
+};
+
+}
+</code></pre>
+
+<div style="word-break: break-all;">
+<a href="https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/multi_array_ref.hpp">
+https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/multi_array_ref.hpp
+</a>
+</div>
+
+<h2 id="参考資料">参考資料</h2>
+
+<ul>
+<li><p>Boost.org multi_array module<br />
+<a href="https://github.com/boostorg/multi_array">https://github.com/boostorg/multi_array</a></p></li>
+
+<li><p>Boost.MultiArray 使い方とチュートリアル（翻訳）<br />
+<a href="https://yokaze.github.io/boost-translation-ja/MultiArray/user.html">https://yokaze.github.io/boost-translation-ja/MultiArray/user.html</a></p></li>
+</ul>
+</div>
+ 
+  <br />
+
+  <footer class="article-footer">
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">CATEGORIES</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/">プログラミング</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">TAGS</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://yokaze.github.io/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
+          
+          <li><a href="https://yokaze.github.io/tags/boost/">boost</a></li>
+          
+          <li><a href="https://yokaze.github.io/tags/multi_array/">multi_array</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+  </footer>
+
+</article>
+
+
+    
+  </div>
+
+  <div class="col-md-4">
+    
+<aside class="l-sidebar">
+
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">LATESTS</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://yokaze.github.io/2017-09-11/" class="list-group-item">boost::extents の解説</a>
+      
+      <a href="https://yokaze.github.io/2017-09-08/" class="list-group-item">pycodestyle で E501 line too long を無視する方法</a>
+      
+      <a href="https://yokaze.github.io/2017-09-07/" class="list-group-item">ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法</a>
+      
+      <a href="https://yokaze.github.io/2017-08-18/" class="list-group-item">Boost.MultiArray の添字演算子について</a>
+      
+      <a href="https://yokaze.github.io/about/" class="list-group-item">About</a>
+      
+      <a href="https://yokaze.github.io/software/" class="list-group-item">ソフトウェア</a>
+      
+      <a href="https://yokaze.github.io/tags/boost/" class="list-group-item">Boost</a>
+      
+      <a href="https://yokaze.github.io/tags/c&#43;&#43;/" class="list-group-item">C&#43;&#43;</a>
+      
+      <a href="https://yokaze.github.io/categories/" class="list-group-item">Categories</a>
+      
+      <a href="https://yokaze.github.io/tags/hugo/" class="list-group-item">Hugo</a>
+      
+    </div>
+  </section>
+
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">CATEGORY</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
+      
+    </div>
+  </section>
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">TAG</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://yokaze.github.io/tags/boost" class="list-group-item">boost</a>
+      
+      <a href="https://yokaze.github.io/tags/c&#43;&#43;" class="list-group-item">c&#43;&#43;</a>
+      
+      <a href="https://yokaze.github.io/tags/multi_array" class="list-group-item">multi_array</a>
+      
+      <a href="https://yokaze.github.io/tags/hugo" class="list-group-item">hugo</a>
+      
+    </div>
+  </section>
+  
+
+</aside>
+
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="container">
+        <p>&copy; Rue Yokaze</p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
