@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.26" />
+
+
+
+<link rel="canonical" href="https://yokaze.github.io/2017/09/13/">
+
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
+    <title>boost::indices の解説 - yokaze.github.io</title>
+    
+<meta name="description" content="前回 の続きです。 boost::indices は、boost::multi_array の部分ビューを作るためのオブジェクトです。 部分ビューでは、元の配列の一部を仮想的な">
+
+<meta property="og:title" content="boost::indices の解説 - yokaze.github.io">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yokaze.github.io/2017/09/13/">
+<meta property="og:image" content="https://yokaze.github.io/images/default.png">
+<meta property="og:site_name" content="yokaze.github.io">
+<meta property="og:description" content="前回 の続きです。 boost::indices は、boost::multi_array の部分ビューを作るためのオブジェクトです。 部分ビューでは、元の配列の一部を仮想的な">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="yokaze.github.io">
+<meta name="twitter:url" content="https://yokaze.github.io/2017/09/13/">
+<meta name="twitter:title" content="boost::indices の解説 - yokaze.github.io">
+<meta name="twitter:description" content="前回 の続きです。 boost::indices は、boost::multi_array の部分ビューを作るためのオブジェクトです。 部分ビューでは、元の配列の一部を仮想的な">
+<meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"https://yokaze.github.io/"
+    },
+    "headline": "boost::indices の解説 - yokaze.github.io",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://yokaze.github.io/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "2017-09-13T23:00:13JST",
+    "dateModified": "2017-09-13T23:00:13JST",
+    "author": {
+      "@type": "Person",
+      "name": "yokaze.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "yokaze.github.io",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://yokaze.github.io/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "前回 の続きです。 boost::indices は、boost::multi_array の部分ビューを作るためのオブジェクトです。 部分ビューでは、元の配列の一部を仮想的な"
+  }
+</script>
+
+
+    <link href="https://yokaze.github.io/css/styles.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body>
+    
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-83271338-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+    
+
+    <header class="l-header">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
+          </div>
+
+          
+          <div id="navbar" class="collapse navbar-collapse">
+            
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/about/">About</a></li>
+              
+              
+              
+              <li><a href="/software/">Software</a></li>
+              
+              
+            </ul>
+            
+          </div>
+          
+
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        
+<div class="row">
+  <div class="col-md-8">
+
+    <nav class="p-crumb">
+      <ol class="breadcrumb">
+        <li><a href="https://yokaze.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2017/" itemprop="url"><span itemprop="title">2017</span></a></li>
+        
+        <li class="active">boost::indices の解説</li>
+      </ol>
+    </nav>
+
+    <article class="single">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-09-13T23:00:13JST">Sep 13, 2017</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
+      
+    </ul>
+
+    <h1 class="title">boost::indices の解説</h1>
+  </header>
+
+  
+
+  <div class="article-body">
+
+<p><a href="/2017/09/11/">前回</a> の続きです。</p>
+
+<p><code>boost::indices</code> は、<code>boost::multi_array</code> の部分ビューを作るためのオブジェクトです。</p>
+
+<p>部分ビューでは、元の配列の一部を仮想的な配列とみなしてアクセスすることができます。
+また、ストライドを指定して2刻みでアクセスしたり、一部の次元を縮退させてビューの次元数を減らすこともできます。</p>
+
+<pre><code class="language-cpp">#include &lt;boost/multi_array.hpp&gt;
+
+int main()
+{
+    //  3 次元配列を作成
+    using boost::detail::multi_array::multi_array_view;
+    using boost::multi_array_types::index_range;
+    boost::multi_array&lt;float, 3&gt; arr(boost::extents[3][4][5]);
+    for (size_t i = 0; i &lt; 3; ++i)
+    {
+        for (size_t j = 0; j &lt; 4; ++j)
+        {
+            for (size_t k = 0; k &lt; 5; ++k)
+            {
+                arr[i][j][k] = i * 100 + j * 10 + k;
+            }
+        }
+    }
+
+    //  以下の範囲で部分ビューを作成
+    //  i: 1
+    //  j: [0, 1, 2, 3]
+    //  k: [0, 1, 2, 3, 4]
+    multi_array_view&lt;float, 2&gt; sub =
+        arr[boost::indices[1][index_range(0, 4)][index_range(0, 5)]];
+    for (size_t j = 0; j &lt; 4; ++j)
+    {
+        for (size_t k = 0; k &lt; 5; ++k)
+        {
+            //  最初の次元は縮退しているため、2次元配列となる
+            printf(&quot;%.1f\t&quot;, sub[j][k]);
+        }
+        printf(&quot;\n&quot;);
+    }
+}
+</code></pre>
+
+<pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
+$ clang sample.cpp -o sample -I /usr/local/include/ -lc++
+$ ./sample
+100.0	101.0	102.0	103.0	104.0
+110.0	111.0	112.0	113.0	114.0
+120.0	121.0	122.0	123.0	124.0
+130.0	131.0	132.0	133.0	134.0
+</code></pre>
+
+<p>部分ビューを作るには、<code>boost::indices</code> に続けてすべての次元の範囲を指定します。</p>
+
+<p>定数を指定すると、次元は縮退し、ビューから取り除かれます。また、<code>index_range</code> のデフォルトコンストラクタを使うと元の配列の範囲を維持できます。</p>
+
+<pre><code class="language-cpp">//  i = 1, j = 2, k = [0, 1, 2, 3, 4]
+multi_array_view&lt;float, 1&gt; sub1 =
+    arr[boost::indices[1][2][index_range()]];
+
+//  i = 1, j = [2], k = [0, 1, 2, 3, 4]
+//  sub1 と同じ領域ですが、第2次元が縮退していないため2次元配列 (1x5) となります。
+multi_array_view&lt;float, 2&gt; sub2 =
+    arr[boost::indices[1][index_range(2, 3)][index_range()]];
+
+//  元の配列と同じ大きさの部分ビューを作成
+multi_array_view&lt;float, 3&gt; sub3 =
+    arr[boost::indices[index_range()][index_range()][index_range()]];
+</code></pre>
+
+<p>各次元の範囲は、メソッドチェーンや不等式で表現することもできます。</p>
+
+<pre><code class="language-cpp">#include &lt;boost/multi_array.hpp&gt;
+
+int main()
+{
+    //  上と同じ方法で配列を作成
+
+    //  i: 1
+    //  j: [1, 2]
+    //  k: [0, 2]
+    index_range r2 = (ptrdiff_t(1) &lt;= index_range() &lt; ptrdiff_t(3));
+    index_range r3 = index_range().start(0).finish(4).stride(2);
+    multi_array_view&lt;float, 2&gt; sub = arr[boost::indices[2][r2][r3]];
+    for (size_t j = 0; j &lt; sub.shape()[0]; ++j)
+    {
+        for (size_t k = 0; k &lt; sub.shape()[1]; ++k)
+        {
+            printf(&quot;%.1f\t&quot;, sub[j][k]);
+        }
+        printf(&quot;\n&quot;);
+    }
+}
+</code></pre>
+
+<pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
+$ clang sample.cpp -o sample -I /usr/local/include/ -lc++
+$ ./sample
+210.0	212.0
+220.0	222.0
+</code></pre>
+
+<h2 id="boost-indices-の実装">boost::indices の実装</h2>
+
+<p><code>boost::indices</code> は、<code>&lt;boost/multi_array/base.hpp&gt;</code> で <code>boost::detail::multi_array::index_gen&lt;0, 0&gt;</code> 型のグローバルオブジェクトとして定義されています。</p>
+
+<pre><code class="language-cpp">//  説明に必要な部分のみ抜粋
+namespace boost {
+    namespace multi_array_types {
+        typedef detail::multi_array::index_gen&lt;0, 0&gt; index_gen;
+    }
+    multi_array_types::index_gen indices;
+}
+</code></pre>
+
+<div style="word-break: break-all;">
+<a href="https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/base.hpp">
+https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/base.hpp
+</a>
+</div>
+
+<p><code>index_gen</code> の実装は以下のようになっています。</p>
+
+<pre><code class="language-cpp">//  説明に必要な部分のみ抜粋
+namespace boost::detail::multi_array {
+
+//
+//  NumRanges は入力配列の次元数、NumDims はビューの次元数です。
+//  したがって、次元の縮退がある場合は NumRanges &gt; NumDims となります。
+//
+template &lt;int NumRanges, int NumDims&gt;
+struct index_gen {
+private:
+    typedef boost::detail::multi_array::index index;
+    typedef boost::detail::multi_array::size_type size_type;
+    typedef index_range&lt;index, size_type&gt; range;
+
+public:
+    typedef typename range_list_generator&lt;range,NumRanges&gt;::type range_list;
+
+    //  N 次元のインデックス全てを保持する public フィールド。
+    //  実体は boost::array&lt;index_range, size_t&gt; 。
+    //
+    //  range_list_generator::type はテンプレートの特殊化により NumRanges = 0 の場合に
+    //  boost::array&lt;extent_range, 1&gt; を返すようになっている。
+    range_list ranges_;
+
+    index_gen() { }
+
+    //  index_gen&lt;N, M&gt; から index_gen&lt;N + 1, M + 1&gt; を返す演算子。
+    //  boost::indices[index_range()] -&gt;
+    //      boost::indices[index_range()][index_range()] に相当。
+    index_gen&lt;NumRanges + 1, NumDims + 1&gt;
+    operator[](const range&amp; r) const
+    {
+        index_gen&lt;NumRanges + 1, NumDims + 1&gt; tmp;
+        std::copy(ranges_.begin(), ranges_.end(), tmp.ranges_.begin());
+        *tmp.ranges_.rbegin() = r;
+        return tmp;
+    }
+
+    //  index_gen&lt;N, M&gt; から index_gen&lt;N + 1, M&gt; を返す演算子。
+    //  boost::indices[index_range()] -&gt;
+    //      boost::indices[index_range()][10] に相当。
+    //
+    //  この演算子は追加する次元を縮退させます。
+    index_gen&lt;NumRanges + 1, NumDims&gt;
+    operator[](index idx) const
+    {
+        index_gen&lt;NumRanges + 1, NumDims&gt; tmp;
+        std::copy(ranges_.begin(), ranges_.end(), tmp.ranges_.begin());
+        *tmp.ranges_.rbegin() = range(idx);
+        return tmp;
+    }
+};
+
+}
+</code></pre>
+
+<div style="word-break: break-all;">
+<a href="https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/index_gen.hpp">
+https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/index_gen.hpp
+</a>
+</div>
+
+<p><code>index_gen</code> は <code>index_range</code> の配列を持っており、各次元のスライスを表現します。
+このオブジェクトのテンプレート型引数は <code>index_range&lt;ptrdiff_t, size_t&gt;</code> です。</p>
+
+<p><code>index_range</code> の定義は以下のとおりです。
+プロパティとして、<code>start</code>, <code>finish</code>, <code>stride</code> および、縮退した次元をあらわす <code>is_degenerate</code> があります。</p>
+
+<pre><code class="language-cpp">//  説明に必要な部分のみ抜粋
+namespace boost::detail::multi_array {
+
+template &lt;typename Index, typename SizeType&gt;
+class index_range {
+public:
+    typedef Index index;
+    typedef SizeType size_type;
+
+public:
+    //  次元上のすべての要素。
+    index_range();
+
+    //  index == pos となる要素。
+    explicit index_range(index pos);
+
+    //  start &lt;= index &lt; finish となる要素。
+    //  ストライドを指定することができます。
+    explicit index_range(index start, index finish, index stride = 1);
+
+    //  メソッドチェーンによる表記。
+    index_range&amp; start(index s);
+    index_range&amp; finish(index f);
+    index_range&amp; stride(index s);
+
+    index start() const { return start_; }
+    index finish() const { return finish_; }
+    index stride() const { return stride_; }
+    bool is_degenerate() const { return degenerate_; }
+
+    //  その他、いくつかの補助関数があります。
+    //  詳細はソースコードを参照してください。
+
+public:
+    index start_, finish_, stride_;
+    bool degenerate_;
+};
+
+//  以下は比較演算子の実装です。
+template &lt;typename Index, typename SizeType&gt;
+inline index_range&lt;Index, SizeType&gt;
+operator&lt;=(Index s, const index_range&lt;Index, SizeType&gt;&amp; r);
+
+template &lt;typename Index, typename SizeType&gt;
+inline index_range&lt;Index, SizeType&gt;
+operator&lt;(Index s, const index_range&lt;Index, SizeType&gt;&amp; r);
+
+template &lt;typename Index, typename SizeType&gt;
+inline index_range&lt;Index, SizeType&gt;
+operator&lt;(const index_range&lt;Index, SizeType&gt;&amp; r, Index f);
+
+template &lt;typename Index, typename SizeType&gt;
+inline index_range&lt;Index, SizeType&gt;
+operator&lt;=(const index_range&lt;Index, SizeType&gt;&amp; r, Index f);
+
+}
+</code></pre>
+
+<div style="word-break: break-all;">
+<a href="https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/index_range.hpp">
+https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/index_range.hpp
+</a>
+</div>
+
+<h2 id="ソースコードのライセンス">ソースコードのライセンス</h2>
+
+<pre><code class="language-cpp">// Copyright 2002 The Trustees of Indiana University.
+
+// Use, modification and distribution is subject to the Boost Software
+// License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
+
+//  Boost.MultiArray Library
+//  Authors: Ronald Garcia
+//           Jeremy Siek
+//           Andrew Lumsdaine
+//  See http://www.boost.org/libs/multi_array for documentation.
+</code></pre>
+
+<h2 id="参考資料">参考資料</h2>
+
+<ul>
+<li><p>Boost.org multi_array module<br />
+<a href="https://github.com/boostorg/multi_array">https://github.com/boostorg/multi_array</a></p></li>
+
+<li><p>Boost.MultiArray 使い方とチュートリアル（翻訳）<br />
+<a href="https://yokaze.github.io/boost-translation-ja/MultiArray/user.html">https://yokaze.github.io/boost-translation-ja/MultiArray/user.html</a></p></li>
+</ul>
+</div>
+ 
+  <br />
+
+  <footer class="article-footer">
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">CATEGORIES</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/">プログラミング</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">TAGS</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://yokaze.github.io/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
+          
+          <li><a href="https://yokaze.github.io/tags/boost/">boost</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+  </footer>
+
+</article>
+
+
+    
+  </div>
+
+  <div class="col-md-4">
+    
+<aside class="l-sidebar">
+
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">LATESTS</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://yokaze.github.io/2017/09/13/" class="list-group-item">boost::indices の解説</a>
+      
+      <a href="https://yokaze.github.io/2017/09/11/" class="list-group-item">boost::extents の解説</a>
+      
+      <a href="https://yokaze.github.io/2017/09/08/" class="list-group-item">pycodestyle で E501 line too long を無視する方法</a>
+      
+      <a href="https://yokaze.github.io/2017/09/07/" class="list-group-item">ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法</a>
+      
+      <a href="https://yokaze.github.io/2017/08/18/" class="list-group-item">Boost.MultiArray の添字演算子について</a>
+      
+      <a href="https://yokaze.github.io/about/" class="list-group-item">About</a>
+      
+      <a href="https://yokaze.github.io/software/" class="list-group-item">ソフトウェア</a>
+      
+      <a href="https://yokaze.github.io/2017/" class="list-group-item">2017</a>
+      
+      <a href="https://yokaze.github.io/tags/boost/" class="list-group-item">Boost</a>
+      
+      <a href="https://yokaze.github.io/tags/c&#43;&#43;/" class="list-group-item">C&#43;&#43;</a>
+      
+    </div>
+  </section>
+
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">CATEGORY</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
+      
+    </div>
+  </section>
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">TAG</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://yokaze.github.io/tags/boost" class="list-group-item">boost</a>
+      
+      <a href="https://yokaze.github.io/tags/c&#43;&#43;" class="list-group-item">c&#43;&#43;</a>
+      
+      <a href="https://yokaze.github.io/tags/hugo" class="list-group-item">hugo</a>
+      
+      <a href="https://yokaze.github.io/tags/python" class="list-group-item">python</a>
+      
+    </div>
+  </section>
+  
+
+</aside>
+
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="container">
+        <p>&copy; Rue Yokaze</p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

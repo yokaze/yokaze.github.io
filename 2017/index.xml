@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Mon, 11 Sep 2017 21:57:00 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 13 Sep 2017 23:00:13 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/2017/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>boost::indices の解説</title>
+      <link>https://yokaze.github.io/2017/09/13/</link>
+      <pubDate>Wed, 13 Sep 2017 23:00:13 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017/09/13/</guid>
+      <description>前回 の続きです。 boost::indices は、boost::multi_array の部分ビューを作るためのオブジェクトです。 部分ビューでは、元の配列の一部を仮想的な</description>
+    </item>
     
     <item>
       <title>boost::extents の解説</title>
