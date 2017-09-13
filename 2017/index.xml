@@ -31,7 +31,7 @@
     </item>
     
     <item>
-      <title>pycodestyle で E501 line too long を無視する方法</title>
+      <title>pycodestyle (pep8) で E501 line too long を無視する方法</title>
       <link>https://yokaze.github.io/2017/09/08/</link>
       <pubDate>Fri, 08 Sep 2017 20:07:56 +0900</pubDate>
       
