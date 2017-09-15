@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Wed, 13 Sep 2017 23:00:13 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 15 Sep 2017 18:34:38 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Homebrew で python3 用の Boost.Python をインストールする</title>
+      <link>https://yokaze.github.io/2017/09/15/</link>
+      <pubDate>Fri, 15 Sep 2017 18:34:38 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017/09/15/</guid>
+      <description>$ brew install boost-python --with-python3 なのだが、すこしハマりどころがある。 brew install boost-python のオプション brew install にはオプションを指定できる場合がある。 boost-python の場合は --with-python3 オプションが使える。 brew</description>
+    </item>
     
     <item>
       <title>boost::indices の解説</title>
