@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>機械学習 on yokaze.github.io</title>
+    <link>https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/</link>
+    <description>Recent content in 機械学習 on yokaze.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>&amp;copy; Rue Yokaze</copyright>
+    <lastBuildDate>Sun, 17 Sep 2017 10:32:57 +0900</lastBuildDate>
+    
+	<atom:link href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>mac に SciPy がプリインストールされているか調べる</title>
+      <link>https://yokaze.github.io/2017/09/17/</link>
+      <pubDate>Sun, 17 Sep 2017 10:32:57 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017/09/17/</guid>
+      <description>手元の環境 (macOS 10.12 Sierra) に入っている SciPy がプリインストールされたものか、自分でインストールしたものか分からなくなったので調査しました。 まずは sys.path から。 ス</description>
+    </item>
+    
+  </channel>
+</rss>
