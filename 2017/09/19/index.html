@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://yokaze.github.io/2017/09/08/">
+<link rel="canonical" href="https://yokaze.github.io/2017/09/19/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>pycodestyle (pep8) で E501 line too long を無視する方法 - yokaze.github.io</title>
+    <title>Python でインストール済みモジュールをデバッグする - yokaze.github.io</title>
     
-<meta name="description" content="Python の標準コーディング規約 &amp;ldquo;PEP 8&amp;rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pycodesty">
+<meta name="description" content="pdb, pip などのインストール済みモジュールを直接デバッグする方法。 モジュールの動作を細かく調べたい時に役立ちます。 $ # 強引に書くとおこられる $ python3 -m">
 
-<meta property="og:title" content="pycodestyle (pep8) で E501 line too long を無視する方法 - yokaze.github.io">
+<meta property="og:title" content="Python でインストール済みモジュールをデバッグする - yokaze.github.io">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2017/09/08/">
+<meta property="og:url" content="https://yokaze.github.io/2017/09/19/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="Python の標準コーディング規約 &amp;ldquo;PEP 8&amp;rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pycodesty">
+<meta property="og:description" content="pdb, pip などのインストール済みモジュールを直接デバッグする方法。 モジュールの動作を細かく調べたい時に役立ちます。 $ # 強引に書くとおこられる $ python3 -m">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2017/09/08/">
-<meta name="twitter:title" content="pycodestyle (pep8) で E501 line too long を無視する方法 - yokaze.github.io">
-<meta name="twitter:description" content="Python の標準コーディング規約 &amp;ldquo;PEP 8&amp;rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pycodesty">
+<meta name="twitter:url" content="https://yokaze.github.io/2017/09/19/">
+<meta name="twitter:title" content="Python でインストール済みモジュールをデバッグする - yokaze.github.io">
+<meta name="twitter:description" content="pdb, pip などのインストール済みモジュールを直接デバッグする方法。 モジュールの動作を細かく調べたい時に役立ちます。 $ # 強引に書くとおこられる $ python3 -m">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://yokaze.github.io/"
     },
-    "headline": "pycodestyle (pep8) で E501 line too long を無視する方法 - yokaze.github.io",
+    "headline": "Python でインストール済みモジュールをデバッグする - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
       "url": "https://yokaze.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2017-09-08T20:07:56JST",
-    "dateModified": "2017-09-08T20:07:56JST",
+    "datePublished": "2017-09-19T21:30:00JST",
+    "dateModified": "2017-09-19T21:30:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "Python の標準コーディング規約 &ldquo;PEP 8&rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pycodesty"
+    "description": "pdb, pip などのインストール済みモジュールを直接デバッグする方法。 モジュールの動作を細かく調べたい時に役立ちます。 $ # 強引に書くとおこられる $ python3 -m"
   }
 </script>
 
@@ -137,77 +137,117 @@ ga('send', 'pageview');
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2017/" itemprop="url"><span itemprop="title">2017</span></a></li>
         
-        <li class="active">pycodestyle (pep8) で E501 line too long を無視する方法</li>
+        <li class="active">Python でインストール済みモジュールをデバッグする</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-09-08T20:07:56JST">Sep 8, 2017</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-09-19T21:30:00JST">Sep 19, 2017</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
       
     </ul>
 
-    <h1 class="title">pycodestyle (pep8) で E501 line too long を無視する方法</h1>
+    <h1 class="title">Python でインストール済みモジュールをデバッグする</h1>
   </header>
 
   
 
   <div class="article-body">
 
-<p>Python の標準コーディング規約 &ldquo;PEP 8&rdquo; には一行あたりの文字数制限があります。<br />
-一行最大79文字と、ちょっと厳しい。</p>
+<p><code>pdb</code>, <code>pip</code> などのインストール済みモジュールを直接デバッグする方法。<br />
+モジュールの動作を細かく調べたい時に役立ちます。</p>
 
-<p>これを無視するには、<code>pycodestyle --ignore=&quot;E501&quot;</code> と入力するとよいみたいです。</p>
-
-<pre><code class="language-shell">$ pycodestyle .
-./events/factory/_convert_result.py:25:80: E501 line too long (88 &gt; 79 characters)
-./events/factory/_convert_result.py:31:80: E501 line too long (95 &gt; 79 characters)
-./events/factory/_meta_event_factory.py:76:80: E501 line too long (82 &gt; 79 characters)
-./events/factory/_meta_event_factory.py:82:80: E501 line too long (80 &gt; 79 characters)
-./events/meta/_key_signature_event.py:33:80: E501 line too long (83 &gt; 79 characters)
-./events/meta/_text_meta_event.py:13:1: E302 expected 2 blank lines, found 1
+<pre><code class="language-shell">$ # 強引に書くとおこられる
+$ python3 -m pdb -m pip
+Traceback (most recent call last):
+  （中略）
+getopt.GetoptError: option -m not recognized
 </code></pre>
 
-<p>ヘルプの記述は以下の通り。</p>
+<h2 id="m-オプションの意味">-m オプションの意味</h2>
 
-<pre><code class="language-shell">$ pycodestyle --help
-...
---ignore=errors      skip errors and warnings (e.g. E4,W) (default:
-                     E121,E123,E126,E226,E24,E704)
-...
+<p><code>python -m</code> は、該当のモジュールを <code>sys.path</code> から探し、見つかったファイルをスクリプトとして直接実行するコマンドです。<br />
+<span style="word-break: break-all;">
+<a href="https://docs.python.jp/3/using/cmdline.html#cmdoption-m">https://docs.python.jp/3/using/cmdline.html#cmdoption-m</a>
+</span></p>
+
+<p>したがって、次のコードはすべて同じ動作になります。</p>
+
+<pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
+$ pip3 freeze
+$ python3 -m pip freeze
+$ python3 /usr/local/lib/python3.6/site-packages/pip/__init__.py freeze
 </code></pre>
 
-<p>使ってみた。</p>
+<p>モジュールのファイルを探してきて <code>-m pdb</code> するとよさそうです。</p>
 
-<pre><code class="language-shell">$ pycodestyle . --ignore=&quot;E501&quot;
-./events/meta/_text_meta_event.py:13:1: E302 expected 2 blank lines, found 1
+<h2 id="モジュールの探し方">モジュールの探し方</h2>
+
+<p><code>pip</code> などでインストールしたモジュールであれば <code>pip show</code> が使えます。</p>
+
+<pre><code class="language-shell">$ pip3 show pip
+Name: pip
+Version: 9.0.1
+Summary: The PyPA recommended tool for installing Python packages.
+Home-page: https://pip.pypa.io/
+Author: The pip developers
+Author-email: python-virtualenv@groups.google.com
+License: MIT
+Location: /usr/local/lib/python3.6/site-packages
+Requires:
 </code></pre>
 
-<p>確認が足りなかったのか、一件残ってしまった。</p>
+<p>また、モジュールの <code>__file__</code> 属性を調べることもできます。</p>
 
-<h2 id="追記">追記</h2>
+<pre><code class="language-shell">$ python3
+&gt;&gt;&gt; import pip
+&gt;&gt;&gt; pip.__file__
+'/usr/local/lib/python3.6/site-packages/pip/__init__.py'
+</code></pre>
 
-<p>なんと pep8 コマンドは pycodestyle に変わったらしいです。。</p>
+<p>モジュールのインストールパスの詳細は次の記事をご参照ください。<br />
+<a href="https://yokaze.github.io/2017/09/17/">https://yokaze.github.io/2017/09/17/</a></p>
+
+<h2 id="インストール済みモジュールをデバッグする">インストール済みモジュールをデバッグする</h2>
+
+<p>スクリプトファイルは <code>python -m pdb</code> でデバッグできるので、パスが分かればインストール済みモジュールをデバッグすることもできます。</p>
+
+<pre><code class="language-shell">$ python3 -m pdb /usr/local/lib/python3.6/site-packages/pip/__init__.py freeze
+</code></pre>
+
+<p><a href="https://github.com/inducer/pudb">PuDB</a> などの高機能デバッガを使うとしあわせになれるかもしれません。</p>
+
+<pre><code class="language-shell">$ # pudb をインストール
+$ pip3 install pudb
+$
+$ # pdb のかわりに pudb をつかう
+$ python3 -m pudb /usr/local/lib/python3.6/site-packages/pip/__init__.py freeze
+</code></pre>
 
 <h2 id="参考資料">参考資料</h2>
 
 <ul>
-<li><p>PEP 8 &ndash; Style Guide for Python Code<br />
-<a href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a></p></li>
+<li><p>コマンドラインと環境<br />
+<span style="word-break: break-all;">
+<a href="https://docs.python.jp/3/using/cmdline.html">https://docs.python.jp/3/using/cmdline.html</a>
+</span></p></li>
 
-<li><p>pep8 - Python style guide checker<br />
-<a href="https://pypi.python.org/pypi/pep8">https://pypi.python.org/pypi/pep8</a></p></li>
+<li><p>pdb &mdash; Python デバッガ<br />
+<span style="word-break: break-all;">
+<a href="https://docs.python.jp/3/library/pdb.html">https://docs.python.jp/3/library/pdb.html</a>
+</span></p></li>
 
-<li><p>pycodestyle (formerly called pep8) - Python style guide checker<br />
-<a href="https://github.com/PyCQA/pycodestyle">https://github.com/PyCQA/pycodestyle</a></p></li>
+<li><p>Full-screen console debugger for Python<br />
+<span style="word-break: break-all;">
+<a href="https://github.com/inducer/pudb">https://github.com/inducer/pudb</a>
+</span></p></li>
 
-<li><p>pep8 が pycodestyle に変わった話<br />
-<a href="http://qiita.com/tell-k/items/da52229749a7242b4440">http://qiita.com/tell-k/items/da52229749a7242b4440</a></p></li>
-
-<li><p>Crest MIDI Library for Python （本記事で使用したソースコード）<br />
-<a href="https://github.com/yokaze/crest-python">https://github.com/yokaze/crest-python</a></p></li>
+<li><p>mac に SciPy がプリインストールされているか調べる<br />
+<span style="word-break: break-all;">
+<a href="https://yokaze.github.io/2017/09/17/">https://yokaze.github.io/2017/09/17/</a>
+</span></p></li>
 </ul>
 </div>
  

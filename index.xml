@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Sun, 17 Sep 2017 10:32:57 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 19 Sep 2017 21:30:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python でインストール済みモジュールをデバッグする</title>
+      <link>https://yokaze.github.io/2017/09/19/</link>
+      <pubDate>Tue, 19 Sep 2017 21:30:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017/09/19/</guid>
+      <description>pdb, pip などのインストール済みモジュールを直接デバッグする方法。 モジュールの動作を細かく調べたい時に役立ちます。 $ # 強引に書くとおこられる $ python3 -m</description>
+    </item>
     
     <item>
       <title>mac に SciPy がプリインストールされているか調べる</title>
