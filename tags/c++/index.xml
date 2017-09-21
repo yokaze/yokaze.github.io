@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Fri, 15 Sep 2017 18:34:38 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 21 Sep 2017 18:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>clang でマクロの再定義を警告する</title>
+      <link>https://yokaze.github.io/2017/09/21/</link>
+      <pubDate>Thu, 21 Sep 2017 18:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017/09/21/</guid>
+      <description>clang でマクロの再定義を警告するには、-Wmacro-redefined オプションを指定します。 #define MY_DEFINE 111 #define MY_DEFINE 222 int main(void) { return 0; } $ # macOS Sierra (10.12) + Homebrew $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9:</description>
+    </item>
     
     <item>
       <title>Homebrew で python3 用の Boost.Python をインストールする</title>

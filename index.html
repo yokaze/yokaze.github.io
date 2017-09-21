@@ -84,6 +84,25 @@ ga('send', 'pageview');
       <li><article class="li">
   <header>
     <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-09-21T18:00:00JST">Sep 21, 2017</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
+      
+    </ul>
+    <h2 class="title"><a href="https://yokaze.github.io/2017/09/21/">clang でマクロの再定義を警告する</a></h2>
+  </header>
+
+  
+  <div class="summary">clang でマクロの再定義を警告するには、-Wmacro-redefined オプションを指定します。 #define MY_DEFINE 111 #define MY_DEFINE 222 int main(void) { return 0; } $ # macOS Sierra (10.12) + Homebrew $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9:</div>
+
+  <footer>
+    <a href="https://yokaze.github.io/2017/09/21/" title="clang でマクロの再定義を警告する">Read More…</a>
+  </footer>
+</article>
+</li>
+      
+      <li><article class="li">
+  <header>
+    <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-09-19T21:30:00JST">Sep 19, 2017</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
       
@@ -252,28 +271,23 @@ ga('send', 'pageview');
 </article>
 </li>
       
-      <li><article class="li">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2001-01-01T00:00:00JST">Jan 1, 2001</time></li>
-      
-      
-    </ul>
-    <h2 class="title"><a href="https://yokaze.github.io/software/">ソフトウェア</a></h2>
-  </header>
-
-  
-  <div class="summary">各種自作ソフトを公開します。鋭意作成中。 python-multi-array https://github.com/yokaze/python-multi-array python から boost::multi_array を使うためのライブラリです。 Python と C++ 拡張ライブラリの間で多次元配列を簡単に受け渡しできます</div>
-
-  <footer>
-    <a href="https://yokaze.github.io/software/" title="ソフトウェア">Read More…</a>
-  </footer>
-</article>
-</li>
-      
     </ul>
 
     
+<nav>
+  <ul class="pager">
+
+    
+    <li class="disabled"><a href="#">Previous</a></li>
+    
+
+    
+    <li><a href="/page/2/">Next</a></li>
+    
+
+  </ul>
+</nav>
+
 
 
   </div>
@@ -286,6 +300,8 @@ ga('send', 'pageview');
       <div class="panel-title">LATESTS</div>
     </div>
     <div class="list-group">
+      
+      <a href="https://yokaze.github.io/2017/09/21/" class="list-group-item">clang でマクロの再定義を警告する</a>
       
       <a href="https://yokaze.github.io/2017/09/19/" class="list-group-item">Python でインストール済みモジュールをデバッグする</a>
       
@@ -304,8 +320,6 @@ ga('send', 'pageview');
       <a href="https://yokaze.github.io/2017/08/18/" class="list-group-item">Boost.MultiArray の添字演算子について</a>
       
       <a href="https://yokaze.github.io/about/" class="list-group-item">About</a>
-      
-      <a href="https://yokaze.github.io/software/" class="list-group-item">ソフトウェア</a>
       
     </div>
   </section>
@@ -330,9 +344,9 @@ ga('send', 'pageview');
     </div>
     <div class="list-group">
       
-      <a href="https://yokaze.github.io/tags/boost" class="list-group-item">boost</a>
-      
       <a href="https://yokaze.github.io/tags/c&#43;&#43;" class="list-group-item">c&#43;&#43;</a>
+      
+      <a href="https://yokaze.github.io/tags/boost" class="list-group-item">boost</a>
       
       <a href="https://yokaze.github.io/tags/python" class="list-group-item">python</a>
       
