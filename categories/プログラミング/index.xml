@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Thu, 21 Sep 2017 18:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 23 Sep 2017 10:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>mac で PIL (Python Imaging Library) を使う</title>
+      <link>https://yokaze.github.io/2017/09/23/</link>
+      <pubDate>Sat, 23 Sep 2017 10:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017/09/23/</guid>
+      <description>Ubuntu 環境にはデフォルトで入っていることが多い PIL (Pillow) ですが、mac にはプリインストールされないため別途インストールが必要です。 $ # macOS Sierra (10.12) + Homebrew $ python Python</description>
+    </item>
     
     <item>
       <title>clang でマクロの再定義を警告する (-Wmacro-redefined)</title>
