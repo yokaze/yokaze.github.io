@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://yokaze.github.io/2017/09/17/">
+<link rel="canonical" href="https://yokaze.github.io/2017/09/27/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>mac に SciPy がプリインストールされているか調べる - yokaze.github.io</title>
+    <title>mac に最新の NumPy (SciPy) をインストールする - yokaze.github.io</title>
     
-<meta name="description" content="手元の環境 (macOS 10.12 Sierra) に入っている SciPy がプリインストールされたものか、自分でインストールしたものか分からなくなったので調査しました。 まずは sys.path から。 ス">
+<meta name="description" content="mac にプリインストールされている NumPy, SciPy, matplotlib を上書きすることなく、最新のライブラリを使う方法を紹介します。 インストール済みの NumPy のバージョンを確認する">
 
-<meta property="og:title" content="mac に SciPy がプリインストールされているか調べる - yokaze.github.io">
+<meta property="og:title" content="mac に最新の NumPy (SciPy) をインストールする - yokaze.github.io">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2017/09/17/">
+<meta property="og:url" content="https://yokaze.github.io/2017/09/27/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="手元の環境 (macOS 10.12 Sierra) に入っている SciPy がプリインストールされたものか、自分でインストールしたものか分からなくなったので調査しました。 まずは sys.path から。 ス">
+<meta property="og:description" content="mac にプリインストールされている NumPy, SciPy, matplotlib を上書きすることなく、最新のライブラリを使う方法を紹介します。 インストール済みの NumPy のバージョンを確認する">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2017/09/17/">
-<meta name="twitter:title" content="mac に SciPy がプリインストールされているか調べる - yokaze.github.io">
-<meta name="twitter:description" content="手元の環境 (macOS 10.12 Sierra) に入っている SciPy がプリインストールされたものか、自分でインストールしたものか分からなくなったので調査しました。 まずは sys.path から。 ス">
+<meta name="twitter:url" content="https://yokaze.github.io/2017/09/27/">
+<meta name="twitter:title" content="mac に最新の NumPy (SciPy) をインストールする - yokaze.github.io">
+<meta name="twitter:description" content="mac にプリインストールされている NumPy, SciPy, matplotlib を上書きすることなく、最新のライブラリを使う方法を紹介します。 インストール済みの NumPy のバージョンを確認する">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://yokaze.github.io/"
     },
-    "headline": "mac に SciPy がプリインストールされているか調べる - yokaze.github.io",
+    "headline": "mac に最新の NumPy (SciPy) をインストールする - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
       "url": "https://yokaze.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2017-09-17T10:32:57JST",
-    "dateModified": "2017-09-17T10:32:57JST",
+    "datePublished": "2017-09-27T19:27:42JST",
+    "dateModified": "2017-09-27T19:27:42JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "手元の環境 (macOS 10.12 Sierra) に入っている SciPy がプリインストールされたものか、自分でインストールしたものか分からなくなったので調査しました。 まずは sys.path から。 ス"
+    "description": "mac にプリインストールされている NumPy, SciPy, matplotlib を上書きすることなく、最新のライブラリを使う方法を紹介します。 インストール済みの NumPy のバージョンを確認する"
   }
 </script>
 
@@ -137,38 +137,117 @@ ga('send', 'pageview');
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2017/" itemprop="url"><span itemprop="title">2017</span></a></li>
         
-        <li class="active">mac に SciPy がプリインストールされているか調べる</li>
+        <li class="active">mac に最新の NumPy (SciPy) をインストールする</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-09-17T10:32:57JST">Sep 17, 2017</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-09-27T19:27:42JST">Sep 27, 2017</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
       
     </ul>
 
-    <h1 class="title">mac に SciPy がプリインストールされているか調べる</h1>
+    <h1 class="title">mac に最新の NumPy (SciPy) をインストールする</h1>
   </header>
 
   
 
   <div class="article-body">
 
-<p>手元の環境 (macOS 10.12 Sierra) に入っている SciPy がプリインストールされたものか、自分でインストールしたものか分からなくなったので調査しました。</p>
+<p>mac にプリインストールされている NumPy, SciPy, matplotlib を上書きすることなく、最新のライブラリを使う方法を紹介します。</p>
 
-<p>まずは <code>sys.path</code> から。
-スクリプト（または対話シェル）で <code>import</code> 文を使うと、<code>sys.path</code> に含まれるフォルダを先頭から順に検索していきます。</p>
+<h2 id="インストール済みの-numpy-のバージョンを確認する">インストール済みの NumPy のバージョンを確認する</h2>
+
+<p><code>pip list --outdated</code> コマンドでプリインストールされているライブラリのバージョンを調べます。</p>
 
 <pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
-$ python
+$ pip list --outdated | grep -e numpy -e scipy -e matplotlib
+matplotlib (1.3.1) - Latest: 2.0.2 [wheel]
+numpy (1.8.0rc1) - Latest: 1.13.1 [wheel]
+scipy (0.13.0b1) - Latest: 0.19.1 [wheel]
+</code></pre>
+
+<p>NumPy は 1.8.0rc1 がインストールされていますが、1.13.1 が pip でインストールできる最新のバージョンです。</p>
+
+<p>これらのライブラリは <code>Extras</code> ディレクトリにプリインストールされています。</p>
+
+<pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
+$ pip show numpy
+Name: numpy
+Version: 1.8.0rc1
+Summary: NumPy: array processing for numbers, strings, records, and objects.
+Home-page: http://www.numpy.org
+Author: NumPy Developers
+Author-email: numpy-discussion@scipy.org
+License: BSD
+Location: /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python
+Requires:
+</code></pre>
+
+<p>参考：mac に SciPy がプリインストールされているか調べる<br />
+<span style="word-break: break-all;">
+<a href="http://yokaze.github.io/2017/09/17/">http://yokaze.github.io/2017/09/17/</a>
+</span></p>
+
+<h2 id="最新の-numpy-をインストールする">最新の NumPy をインストールする</h2>
+
+<p><code>pip install -I --user</code> コマンドを使い、NumPy の最新バージョンをユーザーディレクトリにインストールします。
+この方法を使うと、システム側のコンポーネントを上書きせずにすみます。</p>
+
+<pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
+$
+$ # --user だけではインストールできないようです
+$ pip install numpy --user
+Requirement already satisfied: numpy in /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python
+$
+$ # 再インストール (-I) を指定します
+$ pip install numpy -I --user
+Collecting numpy
+Installing collected packages: numpy
+Successfully installed numpy-1.13.1
+$
+$ # NumPy の最新版がインストールされたことを確認します
+$ pip show numpy
+Name: numpy
+Version: 1.13.1
+Summary: NumPy: array processing for numbers, strings, records, and objects.
+Home-page: http://www.numpy.org
+Author: NumPy Developers
+Author-email: numpy-discussion@python.org
+License: BSD
+Location: /Users/[USERNAME]/Library/Python/2.7/lib/python/site-packages
+Requires:
+</code></pre>
+
+<p>SciPy, matplotlib も同じ方法でインストールできます。</p>
+
+<pre><code class="language-shell">$ pip install scipy -I --user
+$ pip install matplotlib -I --user
+</code></pre>
+
+<h2 id="動作検証">動作検証</h2>
+
+<p>Python を起動し、NumPy を読み込みます。</p>
+
+<pre><code class="language-shell">$ python
 Python 2.7.10 (default, Feb  7 2017, 00:08:15)
 [GCC 4.2.1 Compatible Apple LLVM 8.0.0 (clang-800.0.34)] on darwin
 Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import numpy
+&gt;&gt;&gt; numpy.__file__
+'/Users/[USERNAME]/Library/Python/2.7/lib/python/site-packages/numpy/__init__.pyc'
+</code></pre>
+
+<p>無事、ユーザーディレクトリにインストールしたバージョンが読み込まれました。</p>
+
+<p>同じ名前のパッケージが複数存在する場合、パッケージの優先順位は <code>sys.path</code> で決まります。
+ユーザーの <code>site-packages</code> ディレクトリは <code>Extras</code> より優先されるため、手動でインストールした NumPy が読み込まれます。</p>
+
+<pre><code class="language-shell">$ python
 &gt;&gt;&gt; import sys
 &gt;&gt;&gt; for x in sys.path: print &quot;'%s'&quot; % x
-...
 ''
 '/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python27.zip'
 '/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7'
@@ -178,128 +257,82 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 '/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-tk'
 '/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-old'
 '/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload'
+'/Users/[USERNAME]/Library/Python/2.7/lib/python/site-packages'
 '/Library/Python/2.7/site-packages'
 '/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python'
 '/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/PyObjC'
 </code></pre>
 
-<p>リストは 4 つのカテゴリーに分かれています。</p>
+<p>なお、<code>sudo -H</code> を使うとシステム側に存在する NumPy のバージョンが表示されます。
+<code>pip list</code>, <code>pip show</code> の表示内容はインストール履歴ではなく利用可能なパッケージです。</p>
 
-<ol>
-<li><p><code>''</code><br />
-カレントディレクトリ。ユーザーが定義したモジュールは最優先で読み込まれます。</p></li>
-
-<li><p><code>Python.framework/Versions/2.7/lib</code><br />
-Python の標準モジュールがインストールされているディレクトリです。</p></li>
-
-<li><p><code>site-packages</code><br />
-ユーザーがインストールしたパッケージを置くためのディレクトリです。</p></li>
-
-<li><p><code>Python.framework/Versions/2.7/Extras/lib</code><br />
-macOS 独自のディレクトリで、Apple がプリインストールしたパッケージが置かれています。</p></li>
-</ol>
-
-<h2 id="numpy-scipy-matplotlib-のインストールパス">NumPy, SciPy, matplotlib のインストールパス</h2>
-
-<p>すべて Apple の拡張ディレクトリに置かれています。</p>
-
-<pre><code class="language-shell">$ python
-&gt;&gt;&gt; import numpy, scipy, matplotlib
-&gt;&gt;&gt; numpy.__file__
-'/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/numpy/__init__.pyc'
-&gt;&gt;&gt; scipy.__file__
-'/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/scipy/__init__.pyc'
-&gt;&gt;&gt; matplotlib.__file__
-'/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/matplotlib/__init__.pyc'
+<pre><code class="language-shell">$ sudo -H pip show numpy
+Name: numpy
+Version: 1.8.0rc1
+Summary: NumPy: array processing for numbers, strings, records, and objects.
+Home-page: http://www.numpy.org
+Author: NumPy Developers
+Author-email: numpy-discussion@scipy.org
+License: BSD
+Location: /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python
+Requires:
 </code></pre>
 
-<p>自分でインストールしたパッケージは <code>site-packages</code> 以下に置かれます。</p>
+<h2 id="アンインストール">アンインストール</h2>
 
-<pre><code class="language-shell">$ python
-&gt;&gt;&gt; import pycodestyle
-&gt;&gt;&gt; pycodestyle.__file__
-'/Library/Python/2.7/site-packages/pycodestyle.pyc'
+<p>ユーザーディレクトリにインストールしたバージョンをアンインストールする方法です。</p>
+
+<pre><code class="language-shell">$ # pip show で検知されるバージョンをアンインストールします
+$ pip uninstall numpy
+Uninstalling numpy-1.13.1:
+/Users/[USERNAME]/Library/Python/2.7/bin/f2py
+  （中略）
+/Users/[USERNAME]/Library/Python/2.7/lib/python/site-packages/numpy/version.pyc
+Proceed (y/n)? y
+Successfully uninstalled numpy-1.13.1
+$
+$ # システム側のみの状態に戻ります
+$ pip show numpy
+Name: numpy
+Version: 1.8.0rc1
+Summary: NumPy: array processing for numbers, strings, records, and objects.
+Home-page: http://www.numpy.org
+Author: NumPy Developers
+Author-email: numpy-discussion@scipy.org
+License: BSD
+Location: /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python
+Requires:
 </code></pre>
 
-<p>したがって、macOS Sierra には NumPy, SciPy, matplotlib が標準でインストールされる、ということになります。</p>
+<p>この状態で、さらにシステム側の NumPy をアンインストールしようとすると失敗します。（sudo すると多分消えるので注意！！）</p>
 
-<h2 id="おまけ-サイト固有のパスを読み込まずに-python-を起動する">おまけ：サイト固有のパスを読み込まずに Python を起動する</h2>
-
-<pre><code class="language-shell">$ python -S
-Python 2.7.10 (default, Feb  7 2017, 00:08:15)
-[GCC 4.2.1 Compatible Apple LLVM 8.0.0 (clang-800.0.34)] on darwin
-&gt;&gt;&gt; import sys
-&gt;&gt;&gt; for x in sys.path: print &quot;'%s'&quot; % x
-...
-''
-'/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python27.zip'
-'/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/'
-'/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/plat-darwin'
-'/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/plat-mac'
-'/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/plat-mac/lib-scriptpackages'
-'/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-tk'
-'/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-old'
-'/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload'
-</code></pre>
-
-<p>ここまでが Python のコアで、<code>site-packages</code> 以降のディレクトリは Python の動作そのものには影響しない、ということのようです。<br />
-<a href="https://stackoverflow.com/questions/897792/where-is-pythons-sys-path-initialized-from">https://stackoverflow.com/questions/897792/where-is-pythons-sys-path-initialized-from</a></p>
-
-<h2 id="おまけ-mac-に-python3-環境をつくる">おまけ： mac に python3 環境をつくる</h2>
-
-<p>Python 3.4 以降をインストールすると、pip が自動的にインストールされます。<br />
-<a href="https://pip.pypa.io/en/stable/installing/">https://pip.pypa.io/en/stable/installing/</a></p>
-
-<pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
-$ brew install python3
-$ pip3 install numpy
-$ pip3 install scipy
-$ pip3 install matplotlib
+<pre><code class="language-shell">$ pip uninstall numpy
+DEPRECATION: Uninstalling a distutils installed project (numpy) has been deprecated and will be removed in a future version. This is due to the fact that uninstalling a distutils project will only partially uninstall the project.
+Uninstalling numpy-1.8.0rc1:
+  /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/numpy-1.8.0rc1-py2.7.egg-info
+Proceed (y/n)? y
+Exception:
+Traceback (most recent call last):
+  （中略）
+OSError: [Errno 1] Operation not permitted:
 </code></pre>
 
 <h2 id="参考資料">参考資料</h2>
 
-<p>めくるめく Python モジュールの世界。奥が深い…</p>
-
 <ul>
-<li><p>sys &mdash; システムパラメータと関数<br />
+<li><p>【Python】pipの使い方<br />
 <span style="word-break: break-all;">
-<a href="https://docs.python.jp/2.7/library/sys.html">https://docs.python.jp/2.7/library/sys.html</a>
+<a href="http://www.task-notes.com/entry/20150810/1439175600">http://www.task-notes.com/entry/20150810/1439175600</a>
 </span></p></li>
 
-<li><p>cpython / Lib / site.py<br />
+<li><p>sudo -Hと環境変数($PATH)ではまった話<br />
 <span style="word-break: break-all;">
-<a href="https://github.com/python/cpython/blob/2.7/Lib/site.py">https://github.com/python/cpython/blob/2.7/Lib/site.py</a>
+<a href="http://masasuzu.hatenadiary.jp/entry/2015/01/20/sudo_-Hと環境変数%28%24PATH%29ではまった話">http://masasuzu.hatenadiary.jp/entry/2015/01/20/sudo_-Hと環境変数%28%24PATH%29ではまった話</a>
 </span></p></li>
 
-<li><p>Installation &mdash; pip 9.0.1 documentation<br />
+<li><p>mac に SciPy がプリインストールされているか調べる<br />
 <span style="word-break: break-all;">
-<a href="https://pip.pypa.io/en/stable/installing/">https://pip.pypa.io/en/stable/installing/</a>
-</span></p></li>
-
-<li><p>Homebrew &mdash; macOS 用パッケージマネージャー<br />
-<span style="word-break: break-all;">
-<a href="https://brew.sh/index_ja.html">https://brew.sh/index_ja.html</a>
-</span></p></li>
-
-<li><p>Python パッケージ管理技術まとめ (pip, setuptools, easy_install, etc)<br />
-<span style="word-break: break-all;">
-<a href="http://www.yunabe.jp/docs/python_package_management.html">http://www.yunabe.jp/docs/python_package_management.html</a>
-</span></p></li>
-
-<li><p>Python の module search path について調べてみる<br />
-<span style="word-break: break-all;">
-<a href="http://hagifoo.hatenablog.com/entry/2013/07/29/132740">http://hagifoo.hatenablog.com/entry/2013/07/29/132740</a>
-</span></p></li>
-
-<li><p>Where is Python&rsquo;s sys.path initialized from?<br />
-<span style="word-break: break-all;">
-<a href="https://stackoverflow.com/questions/897792/where-is-pythons-sys-path-initialized-from">https://stackoverflow.com/questions/897792/where-is-pythons-sys-path-initialized-from</a>
-</span></p></li>
-
-<li><p>What sets up sys.path with Python, and when?<br />
-<span style="word-break: break-all;">
-<a href="https://stackoverflow.com/questions/4271494/what-sets-up-sys-path-with-python-and-when">https://stackoverflow.com/questions/4271494/what-sets-up-sys-path-with-python-and-when</a>
+<a href="http://yokaze.github.io/2017/09/17/">http://yokaze.github.io/2017/09/17/</a>
 </span></p></li>
 </ul>
 </div>

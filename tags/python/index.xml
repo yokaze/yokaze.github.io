@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Sat, 23 Sep 2017 10:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 27 Sep 2017 19:27:42 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>mac に最新の NumPy (SciPy) をインストールする</title>
+      <link>https://yokaze.github.io/2017/09/27/</link>
+      <pubDate>Wed, 27 Sep 2017 19:27:42 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017/09/27/</guid>
+      <description>mac にプリインストールされている NumPy, SciPy, matplotlib を上書きすることなく、最新のライブラリを使う方法を紹介します。 インストール済みの NumPy のバージョンを確認する</description>
+    </item>
     
     <item>
       <title>mac で PIL (Python Imaging Library) を使う</title>
