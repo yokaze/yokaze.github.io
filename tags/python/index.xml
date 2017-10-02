@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Wed, 27 Sep 2017 19:27:42 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 02 Oct 2017 21:09:47 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>pipdeptree を Python 2 と Python 3 に同時にインストールする</title>
+      <link>https://yokaze.github.io/2017/10/02/</link>
+      <pubDate>Mon, 02 Oct 2017 21:09:47 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017/10/02/</guid>
+      <description>pipdeptree を使うと、pip でインストールしたパッケージの依存関係を調べることができます。 $ # macOS Sierra (10.12) + Homebrew $ $ # Python2 用のソフトウェアをインストール $ pip install pipdeptree</description>
+    </item>
     
     <item>
       <title>mac に最新の NumPy (SciPy) をインストールする</title>

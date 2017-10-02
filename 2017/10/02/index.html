@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://yokaze.github.io/2017/09/19/">
+<link rel="canonical" href="https://yokaze.github.io/2017/10/02/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>Python でインストール済みモジュールをデバッグする - yokaze.github.io</title>
+    <title>pipdeptree を Python 2 と Python 3 に同時にインストールする - yokaze.github.io</title>
     
-<meta name="description" content="pdb, pip などのインストール済みモジュールを直接デバッグする方法。 モジュールの動作を細かく調べたい時に役立ちます。 $ # 強引に書くとおこられる $ python3 -m">
+<meta name="description" content="pipdeptree を使うと、pip でインストールしたパッケージの依存関係を調べることができます。 $ # macOS Sierra (10.12) &#43; Homebrew $ $ # Python2 用のソフトウェアをインストール $ pip install pipdeptree">
 
-<meta property="og:title" content="Python でインストール済みモジュールをデバッグする - yokaze.github.io">
+<meta property="og:title" content="pipdeptree を Python 2 と Python 3 に同時にインストールする - yokaze.github.io">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2017/09/19/">
+<meta property="og:url" content="https://yokaze.github.io/2017/10/02/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="pdb, pip などのインストール済みモジュールを直接デバッグする方法。 モジュールの動作を細かく調べたい時に役立ちます。 $ # 強引に書くとおこられる $ python3 -m">
+<meta property="og:description" content="pipdeptree を使うと、pip でインストールしたパッケージの依存関係を調べることができます。 $ # macOS Sierra (10.12) &#43; Homebrew $ $ # Python2 用のソフトウェアをインストール $ pip install pipdeptree">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2017/09/19/">
-<meta name="twitter:title" content="Python でインストール済みモジュールをデバッグする - yokaze.github.io">
-<meta name="twitter:description" content="pdb, pip などのインストール済みモジュールを直接デバッグする方法。 モジュールの動作を細かく調べたい時に役立ちます。 $ # 強引に書くとおこられる $ python3 -m">
+<meta name="twitter:url" content="https://yokaze.github.io/2017/10/02/">
+<meta name="twitter:title" content="pipdeptree を Python 2 と Python 3 に同時にインストールする - yokaze.github.io">
+<meta name="twitter:description" content="pipdeptree を使うと、pip でインストールしたパッケージの依存関係を調べることができます。 $ # macOS Sierra (10.12) &#43; Homebrew $ $ # Python2 用のソフトウェアをインストール $ pip install pipdeptree">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://yokaze.github.io/"
     },
-    "headline": "Python でインストール済みモジュールをデバッグする - yokaze.github.io",
+    "headline": "pipdeptree を Python 2 と Python 3 に同時にインストールする - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
       "url": "https://yokaze.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2017-09-19T21:30:00JST",
-    "dateModified": "2017-09-19T21:30:00JST",
+    "datePublished": "2017-10-02T21:09:47JST",
+    "dateModified": "2017-10-02T21:09:47JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "pdb, pip などのインストール済みモジュールを直接デバッグする方法。 モジュールの動作を細かく調べたい時に役立ちます。 $ # 強引に書くとおこられる $ python3 -m"
+    "description": "pipdeptree を使うと、pip でインストールしたパッケージの依存関係を調べることができます。 $ # macOS Sierra (10.12) + Homebrew $ $ # Python2 用のソフトウェアをインストール $ pip install pipdeptree"
   }
 </script>
 
@@ -137,116 +137,93 @@ ga('send', 'pageview');
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2017/" itemprop="url"><span itemprop="title">2017</span></a></li>
         
-        <li class="active">Python でインストール済みモジュールをデバッグする</li>
+        <li class="active">pipdeptree を Python 2 と Python 3 に同時にインストールする</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-09-19T21:30:00JST">Sep 19, 2017</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-10-02T21:09:47JST">Oct 2, 2017</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
       
     </ul>
 
-    <h1 class="title">Python でインストール済みモジュールをデバッグする</h1>
+    <h1 class="title">pipdeptree を Python 2 と Python 3 に同時にインストールする</h1>
   </header>
 
   
 
   <div class="article-body">
 
-<p><code>pdb</code>, <code>pip</code> などのインストール済みモジュールを直接デバッグする方法。<br />
-モジュールの動作を細かく調べたい時に役立ちます。</p>
-
-<pre><code class="language-shell">$ # 強引に書くとおこられる
-$ python3 -m pdb -m pip
-Traceback (most recent call last):
-  （中略）
-getopt.GetoptError: option -m not recognized
-</code></pre>
-
-<h2 id="m-オプションの意味">-m オプションの意味</h2>
-
-<p><code>python -m</code> は、該当のモジュールを <code>sys.path</code> から探し、見つかったファイルをスクリプトとして直接実行するコマンドです。<br />
-<span style="word-break: break-all;">
-<a href="https://docs.python.jp/3/using/cmdline.html#cmdoption-m">https://docs.python.jp/3/using/cmdline.html#cmdoption-m</a>
-</span></p>
-
-<p>したがって、次のコードはすべて同じ動作になります。</p>
+<p><code>pipdeptree</code> を使うと、<code>pip</code> でインストールしたパッケージの依存関係を調べることができます。</p>
 
 <pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
-$ pip3 freeze
-$ python3 -m pip freeze
-$ python3 /usr/local/lib/python3.6/site-packages/pip/__init__.py freeze
-</code></pre>
-
-<p>モジュールのファイルを探してきて <code>-m pdb</code> するとよさそうです。</p>
-
-<h2 id="モジュールの探し方">モジュールの探し方</h2>
-
-<p><code>pip</code> などでインストールしたモジュールであれば <code>pip show</code> が使えます。</p>
-
-<pre><code class="language-shell">$ pip3 show pip
-Name: pip
-Version: 9.0.1
-Summary: The PyPA recommended tool for installing Python packages.
-Home-page: https://pip.pypa.io/
-Author: The pip developers
-Author-email: python-virtualenv@groups.google.com
-License: MIT
-Location: /usr/local/lib/python3.6/site-packages
-Requires:
-</code></pre>
-
-<p>また、モジュールの <code>__file__</code> 属性を調べることもできます。</p>
-
-<pre><code class="language-shell">$ python3
-&gt;&gt;&gt; import pip
-&gt;&gt;&gt; pip.__file__
-'/usr/local/lib/python3.6/site-packages/pip/__init__.py'
-</code></pre>
-
-<p>モジュールのインストールパスの詳細は次の記事をご参照ください。<br />
-<a href="https://yokaze.github.io/2017/09/17/">https://yokaze.github.io/2017/09/17/</a></p>
-
-<h2 id="インストール済みモジュールをデバッグする">インストール済みモジュールをデバッグする</h2>
-
-<p>スクリプトファイルは <code>python -m pdb</code> でデバッグできるので、パスが分かればインストール済みモジュールをデバッグすることもできます。</p>
-
-<pre><code class="language-shell">$ python3 -m pdb /usr/local/lib/python3.6/site-packages/pip/__init__.py freeze
-</code></pre>
-
-<p><a href="https://github.com/inducer/pudb">PuDB</a> などの高機能デバッガを使うとしあわせになれるかもしれません。</p>
-
-<pre><code class="language-shell">$ # pudb をインストール
-$ pip3 install pudb
 $
-$ # pdb のかわりに pudb をつかう
-$ python3 -m pudb /usr/local/lib/python3.6/site-packages/pip/__init__.py freeze
+$ # Python2 用のソフトウェアをインストール
+$ pip install pipdeptree
+$
+$ # Python3 用のソフトウェアをインストール
+$ pip3 install pipdeptree
+</code></pre>
+
+<pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
+$ pipdeptree
+matplotlib==2.0.2
+  - cycler [required: &gt;=0.10, installed: 0.10.0]
+    - six [required: Any, installed: 1.11.0]
+  - numpy [required: &gt;=1.7.1, installed: 1.13.3]
+  - pyparsing [required: !=2.1.6,!=2.0.4,!=2.1.2,&gt;=1.5.6, installed: 2.2.0]
+  - python-dateutil [required: Any, installed: 2.6.1]
+    - six [required: &gt;=1.5, installed: 1.11.0]
+  - pytz [required: Any, installed: 2017.2]
+  - six [required: &gt;=1.10, installed: 1.11.0]
+pipdeptree==0.10.1
+  - pip [required: &gt;=6.0.0, installed: 9.0.1]
+scipy==0.19.1
+  - numpy [required: &gt;=1.8.2, installed: 1.13.3]
+setuptools==36.5.0
+wheel==0.30.0
+</code></pre>
+
+<p>しかし、<code>pipdeptree</code> はコマンドラインツールなので、このままでは Python の複数バージョンに同時にインストールすることができません。</p>
+
+<h2 id="モジュールとして実行する">モジュールとして実行する</h2>
+
+<p>実は、<code>pipdeptree</code> は Python のモジュールとして実行できます。
+この方法であれば、複数バージョンにインストールして使うことができます。</p>
+
+<pre><code class="language-shell">$ # Python 2 の pip モジュールを調べる
+$ python -m pipdeptree
+$
+$ # Python 3 の pip モジュールを調べる
+$ python3 -m pipdeptree
+</code></pre>
+
+<p>コマンドラインツールを残したい方を後からインストールします。</p>
+
+<pre><code class="language-shell">$ # 複数バージョンを同時にインストールする
+$ # この順番でインストールすると、コマンドラインツールは Python 3 用になります。
+$ pip install pipdeptree
+$ pip3 install pipdeptree
 </code></pre>
 
 <h2 id="参考資料">参考資料</h2>
 
 <ul>
-<li><p>コマンドラインと環境<br />
+<li><p>Python: pipdeptree でパッケージの依存関係を調べる<br />
 <span style="word-break: break-all;">
-<a href="https://docs.python.jp/3/using/cmdline.html">https://docs.python.jp/3/using/cmdline.html</a>
+<a href="http://blog.amedama.jp/entry/2016/05/29/182402">http://blog.amedama.jp/entry/2016/05/29/182402</a>
 </span></p></li>
 
-<li><p>pdb &mdash; Python デバッガ<br />
+<li><p>pipdeptree / setup.py<br />
 <span style="word-break: break-all;">
-<a href="https://docs.python.jp/3/library/pdb.html">https://docs.python.jp/3/library/pdb.html</a>
+<a href="https://github.com/naiquevin/pipdeptree/blob/master/setup.py">https://github.com/naiquevin/pipdeptree/blob/master/setup.py</a>
 </span></p></li>
 
-<li><p>Full-screen console debugger for Python<br />
+<li><p>Pythonでグローバルコマンドを含んだパッケージを作る<br />
 <span style="word-break: break-all;">
-<a href="https://github.com/inducer/pudb">https://github.com/inducer/pudb</a>
-</span></p></li>
-
-<li><p>mac に SciPy がプリインストールされているか調べる<br />
-<span style="word-break: break-all;">
-<a href="https://yokaze.github.io/2017/09/17/">https://yokaze.github.io/2017/09/17/</a>
+<a href="https://qiita.com/fetaro/items/bb0eb8292127b5d1e9a8">https://qiita.com/fetaro/items/bb0eb8292127b5d1e9a8</a>
 </span></p></li>
 </ul>
 </div>
