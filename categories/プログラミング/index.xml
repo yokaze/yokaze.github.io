@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Mon, 02 Oct 2017 21:09:47 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 04 Oct 2017 18:17:33 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>flake8 で hacking の警告を一時的に無効にする</title>
+      <link>https://yokaze.github.io/2017/10/04/</link>
+      <pubDate>Wed, 04 Oct 2017 18:17:33 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017/10/04/</guid>
+      <description>Python 向け Lint ツール flake8 のプラグインとして使える hacking ですが、警告がかなり厳しいため一時的に無効にしたいことがあります。 $ # flake8, hacking をインストール $ pip install flake8 $</description>
+    </item>
     
     <item>
       <title>pipdeptree を Python 2 と Python 3 に同時にインストールする</title>
