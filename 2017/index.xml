@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Wed, 04 Oct 2017 18:17:33 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 06 Oct 2017 17:51:02 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/2017/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>clang で未使用のマクロを警告する (-Wunused-macros)</title>
+      <link>https://yokaze.github.io/2017/10/06/</link>
+      <pubDate>Fri, 06 Oct 2017 17:51:02 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017/10/06/</guid>
+      <description>clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # macOS Sierra (10.12) + Homebrew $ clang sample.cpp -Wunused-macros sample.cpp:1:9: warning: macro is not used [-Wunused-macros]</description>
+    </item>
     
     <item>
       <title>flake8 で hacking の警告を一時的に無効にする</title>
