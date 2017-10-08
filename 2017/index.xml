@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Fri, 06 Oct 2017 17:51:02 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 08 Oct 2017 22:42:53 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/2017/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>X-T2 を買いました</title>
+      <link>https://yokaze.github.io/2017/10/08/</link>
+      <pubDate>Sun, 08 Oct 2017 22:42:53 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017/10/08/</guid>
+      <description>半年ぐらい悩んでいたんですが、ついに買っちゃいました。 FUJIFILM X-T2, XF55-200mm F3.5-4.8 R LM OIS, 1/1700, F3.5, ISO200 @ 神代植物公園 フジのカメラは RAW よりカメラ内現像の jpg が綺麗なことで有</description>
+    </item>
     
     <item>
       <title>clang で未使用のマクロを警告する (-Wunused-macros)</title>
