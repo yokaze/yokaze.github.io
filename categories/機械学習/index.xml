@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Wed, 27 Sep 2017 19:27:42 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 11 Oct 2017 21:32:04 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>EM アルゴリズム</title>
+      <link>https://yokaze.github.io/2017/10/11/</link>
+      <pubDate>Wed, 11 Oct 2017 21:32:04 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017/10/11/</guid>
+      <description>混合ガウス分布の Expectation-Maximization (EM) アルゴリズムとは、尤度 $$ p(X|\pi, \mu, \lambda) = \prod_{n = 1}^N \sum_{k = 1}^K \pi_k \mathcal{N}(x_n | \mu_k, \lambda_k^{-1}) $$ をなるべく大きくするようなパラメータの組 $(\pi, \mu, \lambda)$ を計算するアルゴリ</description>
+    </item>
     
     <item>
       <title>mac に最新の NumPy (SciPy) をインストールする</title>
