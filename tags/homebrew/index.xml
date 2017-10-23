@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Homebrew on yokaze.github.io</title>
+    <link>https://yokaze.github.io/tags/homebrew/</link>
+    <description>Recent content in Homebrew on yokaze.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>&amp;copy; Rue Yokaze</copyright>
+    <lastBuildDate>Mon, 23 Oct 2017 19:43:11 +0900</lastBuildDate>
+    
+	<atom:link href="https://yokaze.github.io/tags/homebrew/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>carthage 本体を更新する</title>
+      <link>https://yokaze.github.io/2017/10/23/</link>
+      <pubDate>Mon, 23 Oct 2017 19:43:11 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017/10/23/</guid>
+      <description>はじめに、Homebrew をアップデートします。 $ # macOS Sierra (10.12) + Homebrew $ brew update carthage の更新があるかどうかを確認します。 brew outdated で表示される場合、パッケージが更</description>
+    </item>
+    
+  </channel>
+</rss>

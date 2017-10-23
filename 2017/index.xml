@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Fri, 13 Oct 2017 19:07:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 23 Oct 2017 19:43:11 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/2017/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>carthage 本体を更新する</title>
+      <link>https://yokaze.github.io/2017/10/23/</link>
+      <pubDate>Mon, 23 Oct 2017 19:43:11 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2017/10/23/</guid>
+      <description>はじめに、Homebrew をアップデートします。 $ # macOS Sierra (10.12) + Homebrew $ brew update carthage の更新があるかどうかを確認します。 brew outdated で表示される場合、パッケージが更</description>
+    </item>
     
     <item>
       <title>機械学習で役立つ数学参考書のリスト</title>
