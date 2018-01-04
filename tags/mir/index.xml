@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mir on yokaze.github.io</title>
+    <link>https://yokaze.github.io/tags/mir/</link>
+    <description>Recent content in Mir on yokaze.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>&amp;copy; Rue Yokaze</copyright>
+    <lastBuildDate>Thu, 04 Jan 2018 22:14:22 +0900</lastBuildDate>
+    
+	<atom:link href="https://yokaze.github.io/tags/mir/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>論文紹介: Music Emotion Recognition: A State of the Art Review</title>
+      <link>https://yokaze.github.io/2018/01/04/</link>
+      <pubDate>Thu, 04 Jan 2018 22:14:22 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2018/01/04/</guid>
+      <description>表題のとおり、音楽感情認識のレビュー論文を読みました。 日本語の資料が少ないので、分かったことを簡単にまとめたいと思います。 章立て この論文は次</description>
+    </item>
+    
+  </channel>
+</rss>
