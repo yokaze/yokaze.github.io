@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Sat, 06 Jan 2018 14:01:24 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 13 Jan 2018 20:14:37 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>論文紹介: Feature Learning for Chord Recognition: The Deep Chroma Extractor</title>
+      <link>https://yokaze.github.io/2018/01/13/</link>
+      <pubDate>Sat, 13 Jan 2018 20:14:37 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2018/01/13/</guid>
+      <description>ISMIR 2016 で発表された、Deep Learning による和音認識の研究論文を読みました。 論文のモチベーション 著者らはまず、和音認識のレビュー論文 [M. McVicar et. al., 2014] を紹介し</description>
+    </item>
     
     <item>
       <title>lldb で使えるコマンド一覧</title>
