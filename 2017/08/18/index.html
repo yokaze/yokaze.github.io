@@ -249,6 +249,8 @@ const T&amp; get_element(const T* data,
 }
 </code></pre>
 
+<!--*-->
+
 <p>また、関数呼び出し演算子 () の実体は
 <a href="https://github.com/boostorg/multi_array/blob/83493ba2316f48ffc56cf934e3164feb4aa1433f/include/boost/multi_array/base.hpp#L297">multi_array_impl_base::access_element</a>
 である。
@@ -281,6 +283,8 @@ const T&amp; get_element(const T* data,
 }
 </code></pre>
 
+<!--*-->
+
 <h2 id="結論">結論</h2>
 
 <ul>
@@ -288,6 +292,12 @@ const T&amp; get_element(const T* data,
 <li>次元方向のループ展開はあまりパフォーマンスに影響しないので、添字演算子 [] と関数呼び出し演算子 () の選択はお好みで。</li>
 <li>最速を目指す場合はメモリアドレスを手動で計算し、添字の始点の取り扱いを省略する。</li>
 </ul>
+
+<p>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</p>
+
 
 <h2 id="参考文献">参考文献</h2>
 
