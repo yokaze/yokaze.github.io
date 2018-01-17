@@ -6,16 +6,70 @@
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 <meta name="generator" content="Hugo 0.29" />
 
-<link rel="alternate" type="application/rss+xml" title="RSS" href="https://yokaze.github.io/index.xml">
 
-<link rel="canonical" href="https://yokaze.github.io/">
+
+<link rel="canonical" href="https://yokaze.github.io/2018/01/17/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>yokaze.github.io</title>
+    <title>clang で 暗黙の符号変換を警告する (-Wsign-conversion) - yokaze.github.io</title>
     
+<meta name="description" content="clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; } $ # macOS Sierra (10.12) $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion changes signedness:">
+
+<meta property="og:title" content="clang で 暗黙の符号変換を警告する (-Wsign-conversion) - yokaze.github.io">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yokaze.github.io/2018/01/17/">
+<meta property="og:image" content="https://yokaze.github.io/images/default.png">
+<meta property="og:site_name" content="yokaze.github.io">
+<meta property="og:description" content="clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; } $ # macOS Sierra (10.12) $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion changes signedness:">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="yokaze.github.io">
+<meta name="twitter:url" content="https://yokaze.github.io/2018/01/17/">
+<meta name="twitter:title" content="clang で 暗黙の符号変換を警告する (-Wsign-conversion) - yokaze.github.io">
+<meta name="twitter:description" content="clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; } $ # macOS Sierra (10.12) $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion changes signedness:">
+<meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"https://yokaze.github.io/"
+    },
+    "headline": "clang で 暗黙の符号変換を警告する (-Wsign-conversion) - yokaze.github.io",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://yokaze.github.io/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "2018-01-17T20:41:18JST",
+    "dateModified": "2018-01-17T20:41:18JST",
+    "author": {
+      "@type": "Person",
+      "name": "yokaze.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "yokaze.github.io",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://yokaze.github.io/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; } $ # macOS Sierra (10.12) $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion changes signedness:"
+  }
+</script>
+
+
     <link href="https://yokaze.github.io/css/styles.css" rel="stylesheet">
     
 
@@ -77,144 +131,115 @@ ga('send', 'pageview');
 <div class="row">
   <div class="col-md-8">
 
-    
+    <nav class="p-crumb">
+      <ol class="breadcrumb">
+        <li><a href="https://yokaze.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2018/" itemprop="url"><span itemprop="title">2018</span></a></li>
+        
+        <li class="active">clang で 暗黙の符号変換を警告する (-Wsign-conversion)</li>
+      </ol>
+    </nav>
 
-    <ul class="p-articles">
-      
-      <li><article class="li">
+    <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-09-11T21:57:00JST">Sep 11, 2017</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-17T20:41:18JST">Jan 17, 2018</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
     </ul>
-    <h2 class="title"><a href="https://yokaze.github.io/2017/09/11/">boost::extents の解説</a></h2>
+
+    <h1 class="title">clang で 暗黙の符号変換を警告する (-Wsign-conversion)</h1>
   </header>
 
   
-  <div class="summary">boost::extents は、boost::multi_array の各次元の有効なインデックス範囲を指定するためのオブジェクトです。 #include &lt;boost/multi_array.hpp&gt; int main() { boost::multi_array&lt;float, 2&gt; arr(boost::extents[10][20]); return 0; } また、ex</div>
 
-  <footer>
-    <a href="https://yokaze.github.io/2017/09/11/" title="boost::extents の解説">Read More…</a>
+  <div class="article-body">
+
+<p>clang で暗黙の符号変換を警告するには、<code>-Wsign-conversion</code> オプションを指定します。</p>
+
+<pre><code class="language-cpp">int main()
+{
+    unsigned int x = -1;
+}
+</code></pre>
+
+<pre><code class="language-shell">$ # macOS Sierra (10.12)
+$ clang sample.cpp -Wsign-conversion
+sample.cpp:3:22: warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+    unsigned int x = -1;
+                 ~   ^~
+1 warning generated.
+</code></pre>
+
+<h2 id="警告を抑制する">警告を抑制する</h2>
+
+<p>逆に、警告を抑制したい場合は <code>-Wno-sign-conversion</code> オプションを指定します。
+このオプションを指定することで、既に指定されたオプションを打ち消すことができます。</p>
+
+<pre><code class="language-shell">$ # macOS Sierra (10.12)
+$ clang sample.cpp -Wsign-conversion -Wno-sign-conversion
+</code></pre>
+
+<p>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</p>
+
+
+<h2 id="参考資料">参考資料</h2>
+
+<ul>
+<li>Clang 6 documentation &mdash; DIAGNOSTIC FLAGS IN CLANG<br />
+<span style="word-break: break-all;">
+<a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wsign-conversion">https://clang.llvm.org/docs/DiagnosticsReference.html#wsign-conversion</a>
+</span></li>
+</ul>
+</div>
+ 
+  <br />
+
+  <footer class="article-footer">
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">CATEGORIES</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/">プログラミング</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">TAGS</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://yokaze.github.io/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
   </footer>
+
 </article>
-</li>
-      
-      <li><article class="li">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-09-08T20:07:56JST">Sep 8, 2017</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
-      
-    </ul>
-    <h2 class="title"><a href="https://yokaze.github.io/2017/09/08/">pycodestyle (pep8) で E501 line too long を無視する方法</a></h2>
-  </header>
 
-  
-  <div class="summary">Python の標準コーディング規約 &ldquo;PEP 8&rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pycodesty</div>
-
-  <footer>
-    <a href="https://yokaze.github.io/2017/09/08/" title="pycodestyle (pep8) で E501 line too long を無視する方法">Read More…</a>
-  </footer>
-</article>
-</li>
-      
-      <li><article class="li">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-09-07T18:27:23JST">Sep 7, 2017</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
-      
-    </ul>
-    <h2 class="title"><a href="https://yokaze.github.io/2017/09/07/">ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法</a></h2>
-  </header>
-
-  
-  <div class="summary">bind, baseURL オプションを指定して hugo server を起動する。 $ hugo server --bind=&quot;0.0.0.0&quot; --baseURL=&quot;http://[HOSTNAME]/&quot; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドするためのもので、hugo を</div>
-
-  <footer>
-    <a href="https://yokaze.github.io/2017/09/07/" title="ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法">Read More…</a>
-  </footer>
-</article>
-</li>
-      
-      <li><article class="li">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-08-18T18:30:00JST">Aug 18, 2017</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
-      
-    </ul>
-    <h2 class="title"><a href="https://yokaze.github.io/2017/08/18/">Boost.MultiArray の添字演算子について</a></h2>
-  </header>
-
-  
-  <div class="summary">Boost.MultiArray が添え字の境界チェックをしているのかよく分からなかったので、調べてみた。 リファレンスには次のように書かれている。 By default, the array access methods operator() and operator[] perform range checking. If</div>
-
-  <footer>
-    <a href="https://yokaze.github.io/2017/08/18/" title="Boost.MultiArray の添字演算子について">Read More…</a>
-  </footer>
-</article>
-</li>
-      
-      <li><article class="li">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2001-01-01T00:00:00JST">Jan 1, 2001</time></li>
-      
-      
-    </ul>
-    <h2 class="title"><a href="https://yokaze.github.io/about/">About</a></h2>
-  </header>
-
-  
-  <div class="summary">Rue Yokaze アセンブラから JavaScript までなんでもやります。 https://twitter.com/chrofieyue https://github.com/yokaze https://www.flickr.com/photos/chrofieyue</div>
-
-  <footer>
-    <a href="https://yokaze.github.io/about/" title="About">Read More…</a>
-  </footer>
-</article>
-</li>
-      
-      <li><article class="li">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2001-01-01T00:00:00JST">Jan 1, 2001</time></li>
-      
-      
-    </ul>
-    <h2 class="title"><a href="https://yokaze.github.io/software/">ソフトウェア</a></h2>
-  </header>
-
-  
-  <div class="summary">各種自作ソフトを公開します。鋭意作成中。 python-multi-array https://github.com/yokaze/python-multi-array python から boost::multi_array を使うためのライブラリです。 Python と C++ 拡張ライブラリの間で多次元配列を簡単に受け渡しできます</div>
-
-  <footer>
-    <a href="https://yokaze.github.io/software/" title="ソフトウェア">Read More…</a>
-  </footer>
-</article>
-</li>
-      
-    </ul>
 
     
-<nav>
-  <ul class="pager">
-
-    
-    <li><a href="/page/2/">Previous</a></li>
-    
-
-    
-    <li class="disabled"><a href="#">Next</a></li>
-    
-
-  </ul>
-</nav>
-
-
-
   </div>
+
   <div class="col-md-4">
     
 <aside class="l-sidebar">
@@ -295,6 +320,7 @@ ga('send', 'pageview');
 
   </div>
 </div>
+
 
       </div>
     </main>
