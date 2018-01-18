@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://yokaze.github.io/2017/09/07/">
+<link rel="canonical" href="https://yokaze.github.io/2018/01/18/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法 - yokaze.github.io</title>
+    <title>clang で負のビットシフトを警告する (-Wshift-count-negative) - yokaze.github.io</title>
     
-<meta name="description" content="bind, baseURL オプションを指定して hugo server を起動する。 $ hugo server --bind=&amp;quot;0.0.0.0&amp;quot; --baseURL=&amp;quot;http://[HOSTNAME]/&amp;quot; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドするためのもので、hugo を">
+<meta name="description" content="clang で負のビットシフトを警告するには、-Wshift-count-negative オプションを指定します。 #include &amp;lt;stdio.h&amp;gt; int main() { int x = 8; int y = x &amp;lt;&amp;lt; -1; printf(&amp;quot;%d\n&amp;quot;, y); }">
 
-<meta property="og:title" content="ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法 - yokaze.github.io">
+<meta property="og:title" content="clang で負のビットシフトを警告する (-Wshift-count-negative) - yokaze.github.io">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2017/09/07/">
+<meta property="og:url" content="https://yokaze.github.io/2018/01/18/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="bind, baseURL オプションを指定して hugo server を起動する。 $ hugo server --bind=&amp;quot;0.0.0.0&amp;quot; --baseURL=&amp;quot;http://[HOSTNAME]/&amp;quot; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドするためのもので、hugo を">
+<meta property="og:description" content="clang で負のビットシフトを警告するには、-Wshift-count-negative オプションを指定します。 #include &amp;lt;stdio.h&amp;gt; int main() { int x = 8; int y = x &amp;lt;&amp;lt; -1; printf(&amp;quot;%d\n&amp;quot;, y); }">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2017/09/07/">
-<meta name="twitter:title" content="ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法 - yokaze.github.io">
-<meta name="twitter:description" content="bind, baseURL オプションを指定して hugo server を起動する。 $ hugo server --bind=&amp;quot;0.0.0.0&amp;quot; --baseURL=&amp;quot;http://[HOSTNAME]/&amp;quot; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドするためのもので、hugo を">
+<meta name="twitter:url" content="https://yokaze.github.io/2018/01/18/">
+<meta name="twitter:title" content="clang で負のビットシフトを警告する (-Wshift-count-negative) - yokaze.github.io">
+<meta name="twitter:description" content="clang で負のビットシフトを警告するには、-Wshift-count-negative オプションを指定します。 #include &amp;lt;stdio.h&amp;gt; int main() { int x = 8; int y = x &amp;lt;&amp;lt; -1; printf(&amp;quot;%d\n&amp;quot;, y); }">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://yokaze.github.io/"
     },
-    "headline": "ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法 - yokaze.github.io",
+    "headline": "clang で負のビットシフトを警告する (-Wshift-count-negative) - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
       "url": "https://yokaze.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2017-09-07T18:27:23JST",
-    "dateModified": "2017-09-07T18:27:23JST",
+    "datePublished": "2018-01-18T22:55:39JST",
+    "dateModified": "2018-01-18T22:55:39JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "bind, baseURL オプションを指定して hugo server を起動する。 $ hugo server --bind=&quot;0.0.0.0&quot; --baseURL=&quot;http://[HOSTNAME]/&quot; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドするためのもので、hugo を"
+    "description": "clang で負のビットシフトを警告するには、-Wshift-count-negative オプションを指定します。 #include &lt;stdio.h&gt; int main() { int x = 8; int y = x &lt;&lt; -1; printf(&quot;%d\n&quot;, y); }"
   }
 </script>
 
@@ -135,36 +135,62 @@ ga('send', 'pageview');
       <ol class="breadcrumb">
         <li><a href="https://yokaze.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
         
-        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2017/" itemprop="url"><span itemprop="title">2017</span></a></li>
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2018/" itemprop="url"><span itemprop="title">2018</span></a></li>
         
-        <li class="active">ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法</li>
+        <li class="active">clang で負のビットシフトを警告する (-Wshift-count-negative)</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-09-07T18:27:23JST">Sep 7, 2017</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-18T22:55:39JST">Jan 18, 2018</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
     </ul>
 
-    <h1 class="title">ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法</h1>
+    <h1 class="title">clang で負のビットシフトを警告する (-Wshift-count-negative)</h1>
   </header>
 
   
 
   <div class="article-body">
 
-<p><code>bind</code>, <code>baseURL</code> オプションを指定して hugo server を起動する。</p>
+<p>clang で負のビットシフトを警告するには、<code>-Wshift-count-negative</code> オプションを指定します。</p>
 
-<pre><code class="language-shell">$ hugo server --bind=&quot;0.0.0.0&quot; --baseURL=&quot;http://[HOSTNAME]/&quot;
+<pre><code class="language-cpp">#include &lt;stdio.h&gt;
+
+int main()
+{
+    int x = 8;
+    int y = x &lt;&lt; -1;
+    printf(&quot;%d\n&quot;, y);
+}
 </code></pre>
 
-<p>HOSTNAME には自分のマシンの名前を入れてください。</p>
+<pre><code class="language-shell">$ clang sample.cpp -Wshift-count-negative
+sample.cpp:6:15: warning: shift count is negative [-Wshift-count-negative]
+    int y = x &lt;&lt; -1;
+              ^  ~~
+1 warning generated.
+</code></pre>
 
-<p>config.toml は Web サイトをビルドするためのもので、hugo をローカル起動する際のオプションは設定できないそうです。<br />
-詳しくはリンク先をご確認ください。</p>
+<p><code>-Wshift-count-negative</code> は <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wshift-count-negative">デフォルトで有効になっている</a> ため、警告は自動的に表示されます。</p>
+
+<pre><code class="language-shell">$ clang sample.cpp
+sample.cpp:6:15: warning: shift count is negative [-Wshift-count-negative]
+    int y = x &lt;&lt; -1;
+              ^  ~~
+1 warning generated.
+</code></pre>
+
+<h2 id="警告を抑制する">警告を抑制する</h2>
+
+<p>逆に、警告を抑制したい場合は <code>-Wno-shift-count-negative</code> を指定します。</p>
+
+<pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
+$ clang sample.cpp -Wno-shift-count-negative
+</code></pre>
 
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
@@ -175,8 +201,15 @@ ga('send', 'pageview');
 <h2 id="参考資料">参考資料</h2>
 
 <ul>
-<li>IP address as baseurl? <br />
-<a href="https://discourse.gohugo.io/t/ip-address-as-baseurl/705/">https://discourse.gohugo.io/t/ip-address-as-baseurl/705/</a></li>
+<li><p>Clang 6 documentation &mdash; DIAGNOSTIC FLAGS IN CLANG<br />
+<span style="word-break: break-all;">
+<a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wshift-count-negative">https://clang.llvm.org/docs/DiagnosticsReference.html#wshift-count-negative</a>
+</span></p></li>
+
+<li><p>INT34-C. 負のビット数のシフトやオペランドのビット数以上のシフトを行わない<br />
+<span style="word-break: break-all;">
+<a href="https://www.jpcert.or.jp/sc-rules/c-int34-c.html">https://www.jpcert.or.jp/sc-rules/c-int34-c.html</a>
+</span></p></li>
 </ul>
 </div>
  
@@ -208,7 +241,7 @@ ga('send', 'pageview');
       <div>
         <ul class="p-terms">
           
-          <li><a href="https://yokaze.github.io/tags/hugo/">hugo</a></li>
+          <li><a href="https://yokaze.github.io/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
           
         </ul>
       </div>
