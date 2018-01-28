@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://yokaze.github.io/2018/01/28/">
+<link rel="canonical" href="https://yokaze.github.io/2018/01/29/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>clang で range-based for の暗黙コピーを警告する (-Wrange-loop-analysis) - yokaze.github.io</title>
+    <title>clang でシフト演算のビット数超過を警告する (-Wshift-count-overflow) - yokaze.github.io</title>
     
-<meta name="description" content="clang で range-based for の暗黙コピーを警告するには、-Wrange-loop-analysis オプションを指定します。 次の例では const pair&amp;lt;const int, int&amp;gt;&amp;amp; で値を受け取るべきと">
+<meta name="description" content="clang でシフト演算のビット数超過を警告するには、-Wshift-count-overflow オプションを指定します。 #include &amp;lt;stdio.h&amp;gt; int main() { int x = 8; int y = x &amp;lt;&amp;lt;">
 
-<meta property="og:title" content="clang で range-based for の暗黙コピーを警告する (-Wrange-loop-analysis) - yokaze.github.io">
+<meta property="og:title" content="clang でシフト演算のビット数超過を警告する (-Wshift-count-overflow) - yokaze.github.io">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2018/01/28/">
+<meta property="og:url" content="https://yokaze.github.io/2018/01/29/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="clang で range-based for の暗黙コピーを警告するには、-Wrange-loop-analysis オプションを指定します。 次の例では const pair&amp;lt;const int, int&amp;gt;&amp;amp; で値を受け取るべきと">
+<meta property="og:description" content="clang でシフト演算のビット数超過を警告するには、-Wshift-count-overflow オプションを指定します。 #include &amp;lt;stdio.h&amp;gt; int main() { int x = 8; int y = x &amp;lt;&amp;lt;">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2018/01/28/">
-<meta name="twitter:title" content="clang で range-based for の暗黙コピーを警告する (-Wrange-loop-analysis) - yokaze.github.io">
-<meta name="twitter:description" content="clang で range-based for の暗黙コピーを警告するには、-Wrange-loop-analysis オプションを指定します。 次の例では const pair&amp;lt;const int, int&amp;gt;&amp;amp; で値を受け取るべきと">
+<meta name="twitter:url" content="https://yokaze.github.io/2018/01/29/">
+<meta name="twitter:title" content="clang でシフト演算のビット数超過を警告する (-Wshift-count-overflow) - yokaze.github.io">
+<meta name="twitter:description" content="clang でシフト演算のビット数超過を警告するには、-Wshift-count-overflow オプションを指定します。 #include &amp;lt;stdio.h&amp;gt; int main() { int x = 8; int y = x &amp;lt;&amp;lt;">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://yokaze.github.io/"
     },
-    "headline": "clang で range-based for の暗黙コピーを警告する (-Wrange-loop-analysis) - yokaze.github.io",
+    "headline": "clang でシフト演算のビット数超過を警告する (-Wshift-count-overflow) - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
       "url": "https://yokaze.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2018-01-28T19:48:59JST",
-    "dateModified": "2018-01-28T19:48:59JST",
+    "datePublished": "2018-01-29T00:17:55JST",
+    "dateModified": "2018-01-29T00:17:55JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "clang で range-based for の暗黙コピーを警告するには、-Wrange-loop-analysis オプションを指定します。 次の例では const pair&lt;const int, int&gt;&amp; で値を受け取るべきと"
+    "description": "clang でシフト演算のビット数超過を警告するには、-Wshift-count-overflow オプションを指定します。 #include &lt;stdio.h&gt; int main() { int x = 8; int y = x &lt;&lt;"
   }
 </script>
 
@@ -137,98 +137,68 @@ ga('send', 'pageview');
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2018/" itemprop="url"><span itemprop="title">2018</span></a></li>
         
-        <li class="active">clang で range-based for の暗黙コピーを警告する (-Wrange-loop-analysis)</li>
+        <li class="active">clang でシフト演算のビット数超過を警告する (-Wshift-count-overflow)</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-28T19:48:59JST">Jan 28, 2018</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-29T00:17:55JST">Jan 29, 2018</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
     </ul>
 
-    <h1 class="title">clang で range-based for の暗黙コピーを警告する (-Wrange-loop-analysis)</h1>
+    <h1 class="title">clang でシフト演算のビット数超過を警告する (-Wshift-count-overflow)</h1>
   </header>
 
   
 
   <div class="article-body">
 
-<p>clang で range-based for の暗黙コピーを警告するには、<code>-Wrange-loop-analysis</code> オプションを指定します。</p>
+<p>clang でシフト演算のビット数超過を警告するには、<code>-Wshift-count-overflow</code> オプションを指定します。</p>
 
-<p>次の例では <code>const pair&lt;const int, int&gt;&amp;</code> で値を受け取るべきところを <code>const pair&lt;int, int&gt;&amp;</code> で受けてしまっているため、余分なコピーが発生します。</p>
-
-<pre><code class="language-cpp">#include &lt;map&gt;
+<pre><code class="language-cpp">#include &lt;stdio.h&gt;
 
 int main()
 {
-    std::map&lt;int, int&gt; m = {
-        {1, 1},
-        {2, 4},
-        {3, 9},
-        {4, 16},
-    };
-    for (const std::pair&lt;int, int&gt;&amp; kv : m)
-    {
-        printf(&quot;%d x %d = %d\n&quot;, kv.first, kv.first, kv.second);
-    }
+    int x = 8;
+    int y = x &lt;&lt; 33;
+    printf(&quot;%d\n&quot;, y);
 }
 </code></pre>
 
+<p>シフト幅が左辺の整数型のビット数を超えた場合の動作は未定義です。
+したがって、意図しない演算結果となることがあります。</p>
+
 <pre><code class="language-shell">$ # macOS Sierra (10.12)
-$ clang sample.cpp -std=c++11 -lc++ -o sample -Wrange-loop-analysis
-sample.cpp:11:37: warning: loop variable 'kv' has type 'const std::pair&lt;int, int&gt; &amp;' but is initialized with type 'value_type' (aka 'pair&lt;const int, int&gt;') resulting in a copy [-Wrange-loop-analysis]
-    for (const std::pair&lt;int, int&gt;&amp; kv : m)
-                                    ^
-sample.cpp:11:10: note: use non-reference type 'std::pair&lt;int, int&gt;' to keep the copy or type 'const value_type &amp;' (aka 'const pair&lt;const int, int&gt; &amp;') to prevent copying
-    for (const std::pair&lt;int, int&gt;&amp; kv : m)
-         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+$ clang sample.cpp -o sample
+sample.cpp:6:15: warning: shift count &gt;= width of type [-Wshift-count-overflow]
+    int y = x &lt;&lt; 33;
+              ^  ~~
 1 warning generated.
 $
 $ ./sample
-1 x 1 = 1
-2 x 2 = 4
-3 x 3 = 9
-4 x 4 = 16
+16
 </code></pre>
 
-<p>プログラムを次のように修正し、<code>const pair&lt;const int, int&gt;&amp;</code> で受けるようにすれば警告は発生しません。</p>
-
-<pre><code class="language-cpp">#include &lt;map&gt;
-
-int main()
-{
-    std::map&lt;int, int&gt; m = {
-        {1, 1},
-        {2, 4},
-        {3, 9},
-        {4, 16},
-    };
-    for (const std::pair&lt;const int, int&gt;&amp; kv : m)
-    {
-        printf(&quot;%d x %d = %d\n&quot;, kv.first, kv.first, kv.second);
-    }
-}
-</code></pre>
+<p><code>-Wshift-count-overflow</code> は <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wshift-count-overflow">デフォルトで有効になっている</a> ため、警告は自動的に表示されます。</p>
 
 <pre><code class="language-shell">$ # macOS Sierra (10.12)
-$ clang sample.cpp -std=c++11 -lc++ -o sample -Wrange-loop-analysis
+$ clang sample.cpp
+sample.cpp:6:15: warning: shift count &gt;= width of type [-Wshift-count-overflow]
+    int y = x &lt;&lt; 33;
+              ^  ~~
+1 warning generated.
 </code></pre>
 
 <h2 id="警告を抑制する">警告を抑制する</h2>
 
-<p>逆に、警告を抑制したい場合は <code>-Wno-range-loop-analysis</code> オプションを指定します。
-このオプションを指定することで、既に指定されたオプションを打ち消すことができます。</p>
+<p>逆に、警告を抑制したい場合は <code>-Wno-shift-count-overflow</code> を指定します。</p>
 
 <pre><code class="language-shell">$ # macOS Sierra (10.12)
-$ clang sample.cpp -std=c++11 -lc++ -o sample -Wno-range-loop-analysis
+$ clang sample.cpp -Wno-shift-count-overflow
 </code></pre>
-
-<h2 id="xcode-での取り扱い">Xcode での取り扱い</h2>
-
-<p>この警告は、Xcode 上で &ldquo;Range-based For Loops&rdquo; (<code>CLANG_WARN_RANGE_LOOP_ANALYSIS</code>) という名前で表示されます。</p>
 
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
@@ -239,24 +209,14 @@ $ clang sample.cpp -std=c++11 -lc++ -o sample -Wno-range-loop-analysis
 <h2 id="参考資料">参考資料</h2>
 
 <ul>
-<li><p>range-based for loopsの要素の型について<br />
-<span style="word-break: break-all;">
-<a href="https://qiita.com/rinse_/items/cdfce8aa6a685a8ebe0c">https://qiita.com/rinse_/items/cdfce8aa6a685a8ebe0c</a>
-</span></p></li>
-
-<li><p>Range based forとauto&amp;&amp;によるperfect forwarding<br />
-<span style="word-break: break-all;">
-<a href="http://peng225.hatenablog.com/entry/2016/08/10/224044">http://peng225.hatenablog.com/entry/2016/08/10/224044</a>
-</span></p></li>
-
 <li><p>Clang 6 documentation &mdash; DIAGNOSTIC FLAGS IN CLANG<br />
 <span style="word-break: break-all;">
-<a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wrange-loop-analysis">https://clang.llvm.org/docs/DiagnosticsReference.html#wrange-loop-analysis</a>
+<a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wshift-count-overflow">https://clang.llvm.org/docs/DiagnosticsReference.html#wshift-count-overflow</a>
 </span></p></li>
 
-<li><p>D4169 Add -Wrange-loop-analysis to warn when a range-based for-loop is creating a copy.<br />
+<li><p>INT34-C. 負のビット数のシフトやオペランドのビット数以上のシフトを行わない<br />
 <span style="word-break: break-all;">
-<a href="https://reviews.llvm.org/D4169">https://reviews.llvm.org/D4169</a>
+<a href="https://www.jpcert.or.jp/sc-rules/c-int34-c.html">https://www.jpcert.or.jp/sc-rules/c-int34-c.html</a>
 </span></p></li>
 </ul>
 </div>

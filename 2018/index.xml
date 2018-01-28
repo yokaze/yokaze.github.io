@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Sun, 28 Jan 2018 19:48:59 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jan 2018 00:17:55 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/2018/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>clang でシフト演算のビット数超過を警告する (-Wshift-count-overflow)</title>
+      <link>https://yokaze.github.io/2018/01/29/</link>
+      <pubDate>Mon, 29 Jan 2018 00:17:55 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2018/01/29/</guid>
+      <description>clang でシフト演算のビット数超過を警告するには、-Wshift-count-overflow オプションを指定します。 #include &amp;lt;stdio.h&amp;gt; int main() { int x = 8; int y = x &amp;lt;&amp;lt;</description>
+    </item>
     
     <item>
       <title>clang で range-based for の暗黙コピーを警告する (-Wrange-loop-analysis)</title>
