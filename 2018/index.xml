@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Mon, 29 Jan 2018 00:17:55 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 04 Feb 2018 21:39:56 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/2018/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>pip のディストリビューションがインストールしたファイルの一覧を表示する</title>
+      <link>https://yokaze.github.io/2018/02/04/</link>
+      <pubDate>Sun, 04 Feb 2018 21:39:56 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2018/02/04/</guid>
+      <description>ディストリビューション（パッケージ）がインストールしたファイルの一覧は、インストール時に作成される RECORD ファイルに記録されています。 はじめに、p</description>
+    </item>
     
     <item>
       <title>clang でシフト演算のビット数超過を警告する (-Wshift-count-overflow)</title>
