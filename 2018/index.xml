@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Sun, 04 Feb 2018 21:39:56 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 05 Feb 2018 22:36:44 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/2018/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>mac に pybind11 をインストールする</title>
+      <link>https://yokaze.github.io/2018/02/05/</link>
+      <pubDate>Mon, 05 Feb 2018 22:36:44 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2018/02/05/</guid>
+      <description>pybind11 は Homebrew, pip3, Anaconda のいずれかの方法でインストールできます。 Homebrew でインストール Homebrew は mac 環境の汎用パッケージマネージャーです。 Homebrew を使って pybind11 をインストールする</description>
+    </item>
     
     <item>
       <title>pip のディストリビューションがインストールしたファイルの一覧を表示する</title>
