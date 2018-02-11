@@ -88,6 +88,25 @@ ga('send', 'pageview');
       <li><article class="li">
   <header>
     <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-02-11T11:30:00JST">Feb 11, 2018</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
+      
+    </ul>
+    <h2 class="title"><a href="https://yokaze.github.io/2018/02/11/">pybind11 で C&#43;&#43; から Python インタプリタを実行する</a></h2>
+  </header>
+
+  
+  <div class="summary">pybind11 の pybind11::scoped_interpreter を使うと、C++ から Python インタプリタを起動することができます。 #include &lt;pybind11/embed.h&gt; #include &lt;pybind11/pybind11.h&gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&quot;Hello, world!&quot;); } コンパイルには Python.h が必要です。 端末上に複数の</div>
+
+  <footer>
+    <a href="https://yokaze.github.io/2018/02/11/" title="pybind11 で C&#43;&#43; から Python インタプリタを実行する">Read More…</a>
+  </footer>
+</article>
+</li>
+      
+      <li><article class="li">
+  <header>
+    <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-02-05T22:36:44JST">Feb 5, 2018</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
@@ -256,25 +275,6 @@ ga('send', 'pageview');
 </article>
 </li>
       
-      <li><article class="li">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-10-23T19:43:11JST">Oct 23, 2017</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
-      
-    </ul>
-    <h2 class="title"><a href="https://yokaze.github.io/2017/10/23/">carthage 本体を更新する</a></h2>
-  </header>
-
-  
-  <div class="summary">はじめに、Homebrew をアップデートします。 $ # macOS Sierra (10.12) + Homebrew $ brew update carthage の更新があるかどうかを確認します。 brew outdated で表示される場合、パッケージが更</div>
-
-  <footer>
-    <a href="https://yokaze.github.io/2017/10/23/" title="carthage 本体を更新する">Read More…</a>
-  </footer>
-</article>
-</li>
-      
     </ul>
 
     
@@ -307,6 +307,8 @@ ga('send', 'pageview');
     </div>
     <div class="list-group">
       
+      <a href="https://yokaze.github.io/2018/02/11/" class="list-group-item">pybind11 で C&#43;&#43; から Python インタプリタを実行する</a>
+      
       <a href="https://yokaze.github.io/2018/02/05/" class="list-group-item">mac に pybind11 をインストールする</a>
       
       <a href="https://yokaze.github.io/2018/02/04/" class="list-group-item">pip のディストリビューションがインストールしたファイルの一覧を表示する</a>
@@ -324,8 +326,6 @@ ga('send', 'pageview');
       <a href="https://yokaze.github.io/2018/01/16/" class="list-group-item">clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告する (-Wshorten-64-to-32)</a>
       
       <a href="https://yokaze.github.io/2018/01/13/" class="list-group-item">論文紹介: Feature Learning for Chord Recognition: The Deep Chroma Extractor</a>
-      
-      <a href="https://yokaze.github.io/2018/01/06/" class="list-group-item">lldb で使えるコマンド一覧</a>
       
     </div>
   </section>

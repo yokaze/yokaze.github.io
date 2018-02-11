@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://yokaze.github.io/2018/01/17/">
+<link rel="canonical" href="https://yokaze.github.io/2018/02/11/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>clang で 暗黙の符号変換を警告する (-Wsign-conversion) - yokaze.github.io</title>
+    <title>pybind11 で C&#43;&#43; から Python インタプリタを実行する - yokaze.github.io</title>
     
-<meta name="description" content="clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; } $ # macOS Sierra (10.12) $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion changes signedness:">
+<meta name="description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;quot;Hello, world!&amp;quot;); } コンパイルには Python.h が必要です。 端末上に複数の">
 
-<meta property="og:title" content="clang で 暗黙の符号変換を警告する (-Wsign-conversion) - yokaze.github.io">
+<meta property="og:title" content="pybind11 で C&#43;&#43; から Python インタプリタを実行する - yokaze.github.io">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2018/01/17/">
+<meta property="og:url" content="https://yokaze.github.io/2018/02/11/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; } $ # macOS Sierra (10.12) $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion changes signedness:">
+<meta property="og:description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;quot;Hello, world!&amp;quot;); } コンパイルには Python.h が必要です。 端末上に複数の">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2018/01/17/">
-<meta name="twitter:title" content="clang で 暗黙の符号変換を警告する (-Wsign-conversion) - yokaze.github.io">
-<meta name="twitter:description" content="clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; } $ # macOS Sierra (10.12) $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion changes signedness:">
+<meta name="twitter:url" content="https://yokaze.github.io/2018/02/11/">
+<meta name="twitter:title" content="pybind11 で C&#43;&#43; から Python インタプリタを実行する - yokaze.github.io">
+<meta name="twitter:description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;quot;Hello, world!&amp;quot;); } コンパイルには Python.h が必要です。 端末上に複数の">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://yokaze.github.io/"
     },
-    "headline": "clang で 暗黙の符号変換を警告する (-Wsign-conversion) - yokaze.github.io",
+    "headline": "pybind11 で C&#43;&#43; から Python インタプリタを実行する - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
       "url": "https://yokaze.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2018-01-17T20:41:18JST",
-    "dateModified": "2018-01-17T20:41:18JST",
+    "datePublished": "2018-02-11T11:30:00JST",
+    "dateModified": "2018-02-11T11:30:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; } $ # macOS Sierra (10.12) $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion changes signedness:"
+    "description": "pybind11 の pybind11::scoped_interpreter を使うと、C++ から Python インタプリタを起動することができます。 #include &lt;pybind11/embed.h&gt; #include &lt;pybind11/pybind11.h&gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&quot;Hello, world!&quot;); } コンパイルには Python.h が必要です。 端末上に複数の"
   }
 </script>
 
@@ -137,49 +137,60 @@ ga('send', 'pageview');
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2018/" itemprop="url"><span itemprop="title">2018</span></a></li>
         
-        <li class="active">clang で 暗黙の符号変換を警告する (-Wsign-conversion)</li>
+        <li class="active">pybind11 で C&#43;&#43; から Python インタプリタを実行する</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-17T20:41:18JST">Jan 17, 2018</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-02-11T11:30:00JST">Feb 11, 2018</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
     </ul>
 
-    <h1 class="title">clang で 暗黙の符号変換を警告する (-Wsign-conversion)</h1>
+    <h1 class="title">pybind11 で C&#43;&#43; から Python インタプリタを実行する</h1>
   </header>
 
   
 
   <div class="article-body">
 
-<p>clang で暗黙の符号変換を警告するには、<code>-Wsign-conversion</code> オプションを指定します。</p>
+<p>pybind11 の <code>pybind11::scoped_interpreter</code> を使うと、C++ から Python インタプリタを起動することができます。</p>
 
-<pre><code class="language-cpp">int main()
+<pre><code class="language-cpp">#include &lt;pybind11/embed.h&gt;
+#include &lt;pybind11/pybind11.h&gt;
+
+namespace py = pybind11;
+
+int main()
 {
-    unsigned int x = -1;
+    py::scoped_interpreter interpreter;
+    py::print(&quot;Hello, world!&quot;);
 }
 </code></pre>
 
-<pre><code class="language-shell">$ # macOS Sierra (10.12)
-$ clang sample.cpp -Wsign-conversion
-sample.cpp:3:22: warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-    unsigned int x = -1;
-                 ~   ^~
-1 warning generated.
-</code></pre>
-
-<h2 id="警告を抑制する">警告を抑制する</h2>
-
-<p>逆に、警告を抑制したい場合は <code>-Wno-sign-conversion</code> オプションを指定します。
-このオプションを指定することで、既に指定されたオプションを打ち消すことができます。</p>
+<p>コンパイルには <code>Python.h</code> が必要です。
+端末上に複数の Python 環境がある場合は、リンクする Python のバージョンに合ったヘッダファイルを使う必要があります。
+次の例では、Homebrew でインストールした Python 3.6 にリンクしています。</p>
 
 <pre><code class="language-shell">$ # macOS Sierra (10.12)
-$ clang sample.cpp -Wsign-conversion -Wno-sign-conversion
+$ clang sample.cpp -std=c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
+$ ./sample
+Hello, world!
 </code></pre>
+
+<p>pybind11 の動作に影響するため、<code>Py_Initialize</code> と <code>Py_Finalize</code> を直接使うことはできません。</p>
+
+<blockquote>
+<p>Do not use the raw CPython API functions Py_Initialize and Py_Finalize as these do not properly handle the lifetime of pybind11’s internal data.</p>
+
+<p><br />
+引用: Embedding the interpreter &ndash; pybind11 2.3.dev0 documentation<br />
+<span style="word-break: break-all;">
+<a href="http://pybind11.readthedocs.io/en/master/advanced/embedding.html">http://pybind11.readthedocs.io/en/master/advanced/embedding.html</a>
+</span></p>
+</blockquote>
 
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
@@ -190,10 +201,15 @@ $ clang sample.cpp -Wsign-conversion -Wno-sign-conversion
 <h2 id="参考資料">参考資料</h2>
 
 <ul>
-<li>Clang 6 documentation &mdash; DIAGNOSTIC FLAGS IN CLANG<br />
+<li><p>pybind/pybind11: Seamless operability between C++11 and Python<br />
 <span style="word-break: break-all;">
-<a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wsign-conversion">https://clang.llvm.org/docs/DiagnosticsReference.html#wsign-conversion</a>
-</span></li>
+<a href="https://github.com/pybind/pybind11">https://github.com/pybind/pybind11</a>
+</span></p></li>
+
+<li><p>Embedding the interpreter &ndash; pybind11 2.3.dev0 documentation<br />
+<span style="word-break: break-all;">
+<a href="http://pybind11.readthedocs.io/en/master/advanced/embedding.html">http://pybind11.readthedocs.io/en/master/advanced/embedding.html</a>
+</span></p></li>
 </ul>
 </div>
  
@@ -237,25 +253,25 @@ $ clang sample.cpp -Wsign-conversion -Wno-sign-conversion
     </div>
     <div class="list-group">
       
+      <a href="https://yokaze.github.io/2018/02/05/" class="list-group-item">mac に pybind11 をインストールする</a>
+      
+      <a href="https://yokaze.github.io/2017/09/15/" class="list-group-item">Homebrew で python3 用の Boost.Python をインストールする</a>
+      
+      <a href="https://yokaze.github.io/2018/02/04/" class="list-group-item">pip のディストリビューションがインストールしたファイルの一覧を表示する</a>
+      
       <a href="https://yokaze.github.io/2018/01/29/" class="list-group-item">clang でシフト演算のビット数超過を警告する (-Wshift-count-overflow)</a>
       
       <a href="https://yokaze.github.io/2018/01/28/" class="list-group-item">clang で range-based for の暗黙コピーを警告する (-Wrange-loop-analysis)</a>
       
       <a href="https://yokaze.github.io/2018/01/18/" class="list-group-item">clang で負のビットシフトを警告する (-Wshift-count-negative)</a>
       
+      <a href="https://yokaze.github.io/2018/01/17/" class="list-group-item">clang で 暗黙の符号変換を警告する (-Wsign-conversion)</a>
+      
       <a href="https://yokaze.github.io/2018/01/16/" class="list-group-item">clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告する (-Wshorten-64-to-32)</a>
-      
-      <a href="https://yokaze.github.io/2017/10/06/" class="list-group-item">clang で未使用のマクロを警告する (-Wunused-macros)</a>
-      
-      <a href="https://yokaze.github.io/2017/09/21/" class="list-group-item">clang でマクロの再定義を警告する (-Wmacro-redefined)</a>
-      
-      <a href="https://yokaze.github.io/2018/02/11/" class="list-group-item">pybind11 で C&#43;&#43; から Python インタプリタを実行する</a>
-      
-      <a href="https://yokaze.github.io/2018/02/05/" class="list-group-item">mac に pybind11 をインストールする</a>
       
       <a href="https://yokaze.github.io/2018/01/06/" class="list-group-item">lldb で使えるコマンド一覧</a>
       
-      <a href="https://yokaze.github.io/2017/09/15/" class="list-group-item">Homebrew で python3 用の Boost.Python をインストールする</a>
+      <a href="https://yokaze.github.io/2017/10/06/" class="list-group-item">clang で未使用のマクロを警告する (-Wunused-macros)</a>
       
     </div>
   </section>
