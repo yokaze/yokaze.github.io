@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Sun, 11 Feb 2018 11:30:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 12 Feb 2018 20:30:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>mac に xtensor をインストールする</title>
+      <link>https://yokaze.github.io/2018/02/12/</link>
+      <pubDate>Mon, 12 Feb 2018 20:30:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2018/02/12/</guid>
+      <description>xtensor は C++ で多次元配列を扱うためのライブラリです。 このライブラリは Homebrew または Anaconda を使ってインストールすることができます。 Homebrew でインストール Homebrew は mac 環境の</description>
+    </item>
     
     <item>
       <title>pybind11 で C&#43;&#43; から Python インタプリタを実行する</title>
