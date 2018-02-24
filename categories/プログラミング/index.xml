@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Mon, 12 Feb 2018 20:30:00 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 24 Feb 2018 12:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>pybind11 上の matplotlib で macosx バックエンドを使う</title>
+      <link>https://yokaze.github.io/2018/02/24/</link>
+      <pubDate>Sat, 24 Feb 2018 12:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2018/02/24/</guid>
+      <description>macOS 上で matplotlib を立ち上げると、Python is not installed as a framework というエラーが出ることがあります。 この問題は（環境によるのかもしれませんが）以下の方法で再現</description>
+    </item>
     
     <item>
       <title>mac に xtensor をインストールする</title>
