@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Sat, 24 Feb 2018 12:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 28 Feb 2018 20:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>二重ポインタの const 早見表</title>
+      <link>https://yokaze.github.io/2018/02/28/</link>
+      <pubDate>Wed, 28 Feb 2018 20:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2018/02/28/</guid>
+      <description>多重ポインタの const の付け方をまとめました。 まずは普通のポインタから。 int main() { const int* x = new int(0); // ポインタの指す内容を書き換えることができない int* const y = new</description>
+    </item>
     
     <item>
       <title>pybind11 上の matplotlib で macosx バックエンドを使う</title>
