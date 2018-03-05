@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Wed, 28 Feb 2018 20:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 05 Mar 2018 21:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>pybind11 で main モジュール上に関数を定義する</title>
+      <link>https://yokaze.github.io/2018/03/05/</link>
+      <pubDate>Mon, 05 Mar 2018 21:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2018/03/05/</guid>
+      <description>pybind11 で main モジュール上に関数を定義するには、pybind11::module::def 関数を使います。 次の例では、C++ で定義した hello 関数を Python スク</description>
+    </item>
     
     <item>
       <title>二重ポインタの const 早見表</title>

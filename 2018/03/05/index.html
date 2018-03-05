@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://yokaze.github.io/2018/02/28/">
+<link rel="canonical" href="https://yokaze.github.io/2018/03/05/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>二重ポインタの const 早見表 - yokaze.github.io</title>
+    <title>pybind11 で main モジュール上に関数を定義する - yokaze.github.io</title>
     
-<meta name="description" content="多重ポインタの const の付け方をまとめました。 まずは普通のポインタから。 int main() { const int* x = new int(0); // ポインタの指す内容を書き換えることができない int* const y = new">
+<meta name="description" content="pybind11 で main モジュール上に関数を定義するには、pybind11::module::def 関数を使います。 次の例では、C&#43;&#43; で定義した hello 関数を Python スク">
 
-<meta property="og:title" content="二重ポインタの const 早見表 - yokaze.github.io">
+<meta property="og:title" content="pybind11 で main モジュール上に関数を定義する - yokaze.github.io">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2018/02/28/">
+<meta property="og:url" content="https://yokaze.github.io/2018/03/05/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="多重ポインタの const の付け方をまとめました。 まずは普通のポインタから。 int main() { const int* x = new int(0); // ポインタの指す内容を書き換えることができない int* const y = new">
+<meta property="og:description" content="pybind11 で main モジュール上に関数を定義するには、pybind11::module::def 関数を使います。 次の例では、C&#43;&#43; で定義した hello 関数を Python スク">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2018/02/28/">
-<meta name="twitter:title" content="二重ポインタの const 早見表 - yokaze.github.io">
-<meta name="twitter:description" content="多重ポインタの const の付け方をまとめました。 まずは普通のポインタから。 int main() { const int* x = new int(0); // ポインタの指す内容を書き換えることができない int* const y = new">
+<meta name="twitter:url" content="https://yokaze.github.io/2018/03/05/">
+<meta name="twitter:title" content="pybind11 で main モジュール上に関数を定義する - yokaze.github.io">
+<meta name="twitter:description" content="pybind11 で main モジュール上に関数を定義するには、pybind11::module::def 関数を使います。 次の例では、C&#43;&#43; で定義した hello 関数を Python スク">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://yokaze.github.io/"
     },
-    "headline": "二重ポインタの const 早見表 - yokaze.github.io",
+    "headline": "pybind11 で main モジュール上に関数を定義する - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
       "url": "https://yokaze.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2018-02-28T20:00:00JST",
-    "dateModified": "2018-02-28T20:00:00JST",
+    "datePublished": "2018-03-05T21:00:00JST",
+    "dateModified": "2018-03-05T21:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "多重ポインタの const の付け方をまとめました。 まずは普通のポインタから。 int main() { const int* x = new int(0); // ポインタの指す内容を書き換えることができない int* const y = new"
+    "description": "pybind11 で main モジュール上に関数を定義するには、pybind11::module::def 関数を使います。 次の例では、C++ で定義した hello 関数を Python スク"
   }
 </script>
 
@@ -137,148 +137,78 @@ ga('send', 'pageview');
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2018/" itemprop="url"><span itemprop="title">2018</span></a></li>
         
-        <li class="active">二重ポインタの const 早見表</li>
+        <li class="active">pybind11 で main モジュール上に関数を定義する</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-02-28T20:00:00JST">Feb 28, 2018</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-03-05T21:00:00JST">Mar 5, 2018</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
     </ul>
 
-    <h1 class="title">二重ポインタの const 早見表</h1>
+    <h1 class="title">pybind11 で main モジュール上に関数を定義する</h1>
   </header>
 
   
 
   <div class="article-body">
 
-<p>多重ポインタの <code>const</code> の付け方をまとめました。
-まずは普通のポインタから。</p>
+<p>pybind11 で main モジュール上に関数を定義するには、<code>pybind11::module::def</code> 関数を使います。
+次の例では、C++ で定義した <code>hello</code> 関数を Python スクリプトから呼び出しています。</p>
 
-<pre><code class="language-cpp">int main()
+<pre><code class="language-cpp">#include &lt;pybind11/embed.h&gt;
+#include &lt;pybind11/pybind11.h&gt;
+
+namespace py = pybind11;
+
+void hello()
 {
-    const int* x = new int(0);       // ポインタの指す内容を書き換えることができない
-    int* const y = new int(0);       // ポインタの指すアドレスを書き換えることができない
-    const int* const z = new int(0); // どちらの操作もできない
-    *x = 1;
-    *y = 1;
-    x = nullptr;
-    y = nullptr;
-    return 0;
+    printf(&quot;Hello, world!\n&quot;);
+}
+
+int main()
+{
+    // python インタプリタを起動する
+    py::scoped_interpreter interpreter;
+
+    // main モジュール上に hello 関数を定義する
+    py::module main_module = py::module::import(&quot;__main__&quot;);
+    main_module.def(&quot;hello&quot;, &amp;hello);
+
+    // python スクリプトから hello 関数を呼び出す
+    py::object scope = main_module.attr(&quot;__dict__&quot;);
+    py::exec(&quot;hello()&quot;, scope);
 }
 </code></pre>
 
-<pre><code class="language-shell">$ clang sample.cpp -std=c++11
-sample.cpp:5:8: error: read-only variable is not assignable
-    *x = 1;
-    ~~ ^
-sample.cpp:8:7: error: cannot assign to variable 'y' with const-qualified type 'int *const'
-    y = nullptr;
-    ~ ^
-sample.cpp:4:16: note: variable 'y' declared const here
-    int* const y = new int(0);
-    ~~~~~~~~~~~^~~~~~~~~~~~~~
-2 errors generated.
+<pre><code class="language-shell">$ # macOS Sierra (10.12)
+$ clang sample.cpp -std=c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
+$ ./sample
+Hello, world!
 </code></pre>
-
-<h2 id="二重ポインタの場合">二重ポインタの場合</h2>
-
-<pre><code class="language-cpp">int main()
-{
-    int** x = nullptr;
-    const int* const* a = x; // 一重ポインタ (*a) と値 (**a) を書き換えることができない
-    int* const* b = x;       // 一重ポインタ (*b) の指すアドレスを書き換えることができない
-    int** const c = x;       // 二重ポインタ (c) の指すアドレスを書き換えることができない
-    **a = 1;
-    **b = 1;
-    **c = 1;
-    *a = nullptr;
-    *b = nullptr;
-    *c = nullptr;
-    a = nullptr;
-    b = nullptr;
-    c = nullptr;
-}
-</code></pre>
-
-<pre><code class="language-shell">$ clang sample.cpp -std=c++11
-sample.cpp:7:9: error: read-only variable is not assignable
-    **a = 1;
-    ~~~ ^
-sample.cpp:10:8: error: read-only variable is not assignable
-    *a = nullptr;
-    ~~ ^
-sample.cpp:11:8: error: read-only variable is not assignable
-    *b = nullptr;
-    ~~ ^
-sample.cpp:15:7: error: cannot assign to variable 'c' with const-qualified type 'int **const'
-    c = nullptr;
-    ~ ^
-sample.cpp:6:17: note: variable 'c' declared const here
-    int** const c = x;
-    ~~~~~~~~~~~~^~~~~
-4 errors generated.
-</code></pre>
-
-<h2 id="よくある間違い">よくある間違い</h2>
-
-<pre><code class="language-cpp">int main()
-{
-    int** x = nullptr;
-    const int** a = x;
-}
-</code></pre>
-
-<pre><code class="language-shell">$ clang sample.cpp -std=c++11
-sample.cpp:4:17: error: cannot initialize a variable of type 'const int **' with an lvalue of type 'int **'
-    const int** a = x;
-                ^   ~
-1 error generated.
-</code></pre>
-
-<p><code>int**</code> を <code>const int**</code> に変換することはできません。</p>
-
-<h2 id="おまけ-三重ポインタ">おまけ（三重ポインタ）</h2>
-
-<pre><code class="language-cpp">int main()
-{
-    int*** x = nullptr;
-    const int*** a = x;       // const - none  - none
-    int* const** b = x;       // none  - const - none
-    const int* const** c = x; // const - const - none
-    const int** const* d = x; // const - none  - const
-
-    int* const* const* e = x; // none  - const - const これは OK
-}
-</code></pre>
-
-<pre><code class="language-shell">$ clang sample.cpp -std=c++11
-sample.cpp:4:18: error: cannot initialize a variable of type 'const int ***' with an lvalue of type 'int ***'
-    const int*** a = x;       // const - none  - none
-                 ^   ~
-sample.cpp:5:18: error: cannot initialize a variable of type 'int *const **' with an lvalue of type 'int ***'
-    int* const** b = x;       // none  - const - none
-                 ^   ~
-sample.cpp:6:24: error: cannot initialize a variable of type 'const int *const **' with an lvalue of type 'int ***'
-    const int* const** c = x; // const - const - none
-                       ^   ~
-sample.cpp:7:24: error: cannot initialize a variable of type 'const int **const *' with an lvalue of type 'int ***'
-    const int** const* d = x; // const - none  - const
-                       ^   ~
-4 errors generated.
-</code></pre>
-
-<p><code>const</code> を付け始めたら右端までキッチリ付けること。</p>
 
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
+
+<h2 id="参考資料">参考資料</h2>
+
+<ul>
+<li><p>pybind11 で C++ から Python インタプリタを実行する<br />
+<span style="word-break: break-all;">
+<a href="https://yokaze.github.io/2018/02/11/">https://yokaze.github.io/2018/02/11/</a>
+</span></p></li>
+
+<li><p>Functions &mdash; pybind11 2.2.1 documentation<br />
+<span style="word-break: break-all;">
+<a href="http://pybind11.readthedocs.io/en/stable/advanced/functions.html">http://pybind11.readthedocs.io/en/stable/advanced/functions.html</a>
+</span></p></li>
+</ul>
 </div>
  
   <br />
@@ -321,25 +251,25 @@ sample.cpp:7:24: error: cannot initialize a variable of type 'const int **const 
     </div>
     <div class="list-group">
       
-      <a href="https://yokaze.github.io/2018/03/05/" class="list-group-item">pybind11 で main モジュール上に関数を定義する</a>
-      
       <a href="https://yokaze.github.io/2018/02/24/" class="list-group-item">pybind11 上の matplotlib で macosx バックエンドを使う</a>
-      
-      <a href="https://yokaze.github.io/2018/02/12/" class="list-group-item">mac に xtensor をインストールする</a>
       
       <a href="https://yokaze.github.io/2018/02/11/" class="list-group-item">pybind11 で C&#43;&#43; から Python インタプリタを実行する</a>
       
       <a href="https://yokaze.github.io/2018/02/05/" class="list-group-item">mac に pybind11 をインストールする</a>
+      
+      <a href="https://yokaze.github.io/2017/09/15/" class="list-group-item">Homebrew で python3 用の Boost.Python をインストールする</a>
+      
+      <a href="https://yokaze.github.io/2018/02/28/" class="list-group-item">二重ポインタの const 早見表</a>
+      
+      <a href="https://yokaze.github.io/2018/02/12/" class="list-group-item">mac に xtensor をインストールする</a>
+      
+      <a href="https://yokaze.github.io/2018/02/04/" class="list-group-item">pip のディストリビューションがインストールしたファイルの一覧を表示する</a>
       
       <a href="https://yokaze.github.io/2018/01/29/" class="list-group-item">clang でシフト演算のビット数超過を警告する (-Wshift-count-overflow)</a>
       
       <a href="https://yokaze.github.io/2018/01/28/" class="list-group-item">clang で range-based for の暗黙コピーを警告する (-Wrange-loop-analysis)</a>
       
       <a href="https://yokaze.github.io/2018/01/18/" class="list-group-item">clang で負のビットシフトを警告する (-Wshift-count-negative)</a>
-      
-      <a href="https://yokaze.github.io/2018/01/17/" class="list-group-item">clang で 暗黙の符号変換を警告する (-Wsign-conversion)</a>
-      
-      <a href="https://yokaze.github.io/2018/01/16/" class="list-group-item">clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告する (-Wshorten-64-to-32)</a>
       
     </div>
   </section>
