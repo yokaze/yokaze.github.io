@@ -16,21 +16,21 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
     <title>clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告する (-Wshorten-64-to-32) - yokaze.github.io</title>
     
-<meta name="description" content="clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告するには、-Wshorten-64-to-32 オプションを指定します。 #include &amp;lt;stdint.h&amp;gt; int main() { int64_t x = 1; int32_t y = x; }">
+<meta name="description" content="clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告するには、-Wshorten-64-to-32 オプションを指定します。 #include &amp;lt;stdint.h&amp;gt; int main() { int64_t x = 1; int32_t y = x; return">
 
 <meta property="og:title" content="clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告する (-Wshorten-64-to-32) - yokaze.github.io">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://yokaze.github.io/2018/01/16/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告するには、-Wshorten-64-to-32 オプションを指定します。 #include &amp;lt;stdint.h&amp;gt; int main() { int64_t x = 1; int32_t y = x; }">
+<meta property="og:description" content="clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告するには、-Wshorten-64-to-32 オプションを指定します。 #include &amp;lt;stdint.h&amp;gt; int main() { int64_t x = 1; int32_t y = x; return">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
 <meta name="twitter:url" content="https://yokaze.github.io/2018/01/16/">
 <meta name="twitter:title" content="clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告する (-Wshorten-64-to-32) - yokaze.github.io">
-<meta name="twitter:description" content="clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告するには、-Wshorten-64-to-32 オプションを指定します。 #include &amp;lt;stdint.h&amp;gt; int main() { int64_t x = 1; int32_t y = x; }">
+<meta name="twitter:description" content="clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告するには、-Wshorten-64-to-32 オプションを指定します。 #include &amp;lt;stdint.h&amp;gt; int main() { int64_t x = 1; int32_t y = x; return">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告するには、-Wshorten-64-to-32 オプションを指定します。 #include &lt;stdint.h&gt; int main() { int64_t x = 1; int32_t y = x; }"
+    "description": "clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告するには、-Wshorten-64-to-32 オプションを指定します。 #include &lt;stdint.h&gt; int main() { int64_t x = 1; int32_t y = x; return"
   }
 </script>
 
@@ -164,6 +164,8 @@ int main()
 {
     int64_t x = 1;
     int32_t y = x;
+
+    return 0;
 }
 </code></pre>
 

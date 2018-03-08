@@ -181,6 +181,8 @@ int main()
     // python スクリプトから hello 関数を呼び出す
     py::object scope = main_module.attr(&quot;__dict__&quot;);
     py::exec(&quot;hello()&quot;, scope);
+
+    return 0;
 }
 </code></pre>
 

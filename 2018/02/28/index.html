@@ -168,6 +168,7 @@ ga('send', 'pageview');
     *y = 1;
     x = nullptr;
     y = nullptr;
+
     return 0;
 }
 </code></pre>
@@ -202,6 +203,8 @@ sample.cpp:4:16: note: variable 'y' declared const here
     a = nullptr;
     b = nullptr;
     c = nullptr;
+
+    return 0;
 }
 </code></pre>
 
@@ -230,6 +233,8 @@ sample.cpp:6:17: note: variable 'c' declared const here
 {
     int** x = nullptr;
     const int** a = x;
+
+    return 0;
 }
 </code></pre>
 
@@ -253,6 +258,8 @@ sample.cpp:4:17: error: cannot initialize a variable of type 'const int **' with
     const int** const* d = x; // const - none  - const
 
     int* const* const* e = x; // none  - const - const これは OK
+
+    return 0;
 }
 </code></pre>
 

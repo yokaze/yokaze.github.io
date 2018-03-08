@@ -96,7 +96,7 @@ ga('send', 'pageview');
   </header>
 
   
-  <div class="summary">clang で負のビットシフトを警告するには、-Wshift-count-negative オプションを指定します。 #include &lt;stdio.h&gt; int main() { int x = 8; int y = x &lt;&lt; -1; printf(&quot;%d\n&quot;, y); }</div>
+  <div class="summary">clang で負のビットシフトを警告するには、-Wshift-count-negative オプションを指定します。 #include &lt;stdio.h&gt; int main() { int x = 8; int y = x &lt;&lt; -1; printf(&quot;%d\n&quot;, y); return</div>
 
   <footer>
     <a href="https://yokaze.github.io/2018/01/18/" title="clang で負のビットシフトを警告する (-Wshift-count-negative)">Read More…</a>
@@ -115,7 +115,7 @@ ga('send', 'pageview');
   </header>
 
   
-  <div class="summary">clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; } $ # macOS Sierra (10.12) $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion changes signedness:</div>
+  <div class="summary">clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; return 0; } $ # macOS Sierra (10.12) $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion</div>
 
   <footer>
     <a href="https://yokaze.github.io/2018/01/17/" title="clang で 暗黙の符号変換を警告する (-Wsign-conversion)">Read More…</a>
@@ -134,7 +134,7 @@ ga('send', 'pageview');
   </header>
 
   
-  <div class="summary">clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告するには、-Wshorten-64-to-32 オプションを指定します。 #include &lt;stdint.h&gt; int main() { int64_t x = 1; int32_t y = x; }</div>
+  <div class="summary">clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告するには、-Wshorten-64-to-32 オプションを指定します。 #include &lt;stdint.h&gt; int main() { int64_t x = 1; int32_t y = x; return</div>
 
   <footer>
     <a href="https://yokaze.github.io/2018/01/16/" title="clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告する (-Wshorten-64-to-32)">Read More…</a>

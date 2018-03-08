@@ -54,7 +54,7 @@
       <pubDate>Sun, 11 Feb 2018 11:30:00 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2018/02/11/</guid>
-      <description>pybind11 の pybind11::scoped_interpreter を使うと、C++ から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;quot;Hello, world!&amp;quot;); } コンパイルには Python.h が必要です。 端末上に複数の</description>
+      <description>pybind11 の pybind11::scoped_interpreter を使うと、C++ から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;quot;Hello, world!&amp;quot;); return 0; } コンパイルには Python.h が必要です。 端末上に複</description>
     </item>
     
     <item>
@@ -108,7 +108,7 @@
       <pubDate>Thu, 18 Jan 2018 22:55:39 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2018/01/18/</guid>
-      <description>clang で負のビットシフトを警告するには、-Wshift-count-negative オプションを指定します。 #include &amp;lt;stdio.h&amp;gt; int main() { int x = 8; int y = x &amp;lt;&amp;lt; -1; printf(&amp;quot;%d\n&amp;quot;, y); }</description>
+      <description>clang で負のビットシフトを警告するには、-Wshift-count-negative オプションを指定します。 #include &amp;lt;stdio.h&amp;gt; int main() { int x = 8; int y = x &amp;lt;&amp;lt; -1; printf(&amp;quot;%d\n&amp;quot;, y); return</description>
     </item>
     
     <item>
@@ -117,7 +117,7 @@
       <pubDate>Wed, 17 Jan 2018 20:41:18 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2018/01/17/</guid>
-      <description>clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; } $ # macOS Sierra (10.12) $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion changes signedness:</description>
+      <description>clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; return 0; } $ # macOS Sierra (10.12) $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion</description>
     </item>
     
     <item>
@@ -126,7 +126,7 @@
       <pubDate>Tue, 16 Jan 2018 21:24:17 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2018/01/16/</guid>
-      <description>clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告するには、-Wshorten-64-to-32 オプションを指定します。 #include &amp;lt;stdint.h&amp;gt; int main() { int64_t x = 1; int32_t y = x; }</description>
+      <description>clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告するには、-Wshorten-64-to-32 オプションを指定します。 #include &amp;lt;stdint.h&amp;gt; int main() { int64_t x = 1; int32_t y = x; return</description>
     </item>
     
     <item>

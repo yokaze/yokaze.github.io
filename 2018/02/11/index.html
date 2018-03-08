@@ -16,21 +16,21 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
     <title>pybind11 で C&#43;&#43; から Python インタプリタを実行する - yokaze.github.io</title>
     
-<meta name="description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;quot;Hello, world!&amp;quot;); } コンパイルには Python.h が必要です。 端末上に複数の">
+<meta name="description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;quot;Hello, world!&amp;quot;); return 0; } コンパイルには Python.h が必要です。 端末上に複">
 
 <meta property="og:title" content="pybind11 で C&#43;&#43; から Python インタプリタを実行する - yokaze.github.io">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://yokaze.github.io/2018/02/11/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;quot;Hello, world!&amp;quot;); } コンパイルには Python.h が必要です。 端末上に複数の">
+<meta property="og:description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;quot;Hello, world!&amp;quot;); return 0; } コンパイルには Python.h が必要です。 端末上に複">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
 <meta name="twitter:url" content="https://yokaze.github.io/2018/02/11/">
 <meta name="twitter:title" content="pybind11 で C&#43;&#43; から Python インタプリタを実行する - yokaze.github.io">
-<meta name="twitter:description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;quot;Hello, world!&amp;quot;); } コンパイルには Python.h が必要です。 端末上に複数の">
+<meta name="twitter:description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;quot;Hello, world!&amp;quot;); return 0; } コンパイルには Python.h が必要です。 端末上に複">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "pybind11 の pybind11::scoped_interpreter を使うと、C++ から Python インタプリタを起動することができます。 #include &lt;pybind11/embed.h&gt; #include &lt;pybind11/pybind11.h&gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&quot;Hello, world!&quot;); } コンパイルには Python.h が必要です。 端末上に複数の"
+    "description": "pybind11 の pybind11::scoped_interpreter を使うと、C++ から Python インタプリタを起動することができます。 #include &lt;pybind11/embed.h&gt; #include &lt;pybind11/pybind11.h&gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&quot;Hello, world!&quot;); return 0; } コンパイルには Python.h が必要です。 端末上に複"
   }
 </script>
 
@@ -167,6 +167,8 @@ int main()
 {
     py::scoped_interpreter interpreter;
     py::print(&quot;Hello, world!&quot;);
+
+    return 0;
 }
 </code></pre>
 
