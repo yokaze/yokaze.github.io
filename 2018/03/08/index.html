@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://yokaze.github.io/2018/02/11/">
+<link rel="canonical" href="https://yokaze.github.io/2018/03/08/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>pybind11 で C&#43;&#43; から Python インタプリタを実行する - yokaze.github.io</title>
+    <title>pybind11 でキーワード引数 (kwargs) を使う - yokaze.github.io</title>
     
-<meta name="description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;quot;Hello, world!&amp;quot;); return 0; } コンパイルには Python.h が必要です。 端末上に複">
+<meta name="description" content="pybind11 でキーワード引数 (kwargs) を指定するには、pybind11::arg を使います。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { // python インタプリタを起動する py::scoped_interpreter interpreter; // numpy の各種オブ">
 
-<meta property="og:title" content="pybind11 で C&#43;&#43; から Python インタプリタを実行する - yokaze.github.io">
+<meta property="og:title" content="pybind11 でキーワード引数 (kwargs) を使う - yokaze.github.io">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2018/02/11/">
+<meta property="og:url" content="https://yokaze.github.io/2018/03/08/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;quot;Hello, world!&amp;quot;); return 0; } コンパイルには Python.h が必要です。 端末上に複">
+<meta property="og:description" content="pybind11 でキーワード引数 (kwargs) を指定するには、pybind11::arg を使います。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { // python インタプリタを起動する py::scoped_interpreter interpreter; // numpy の各種オブ">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2018/02/11/">
-<meta name="twitter:title" content="pybind11 で C&#43;&#43; から Python インタプリタを実行する - yokaze.github.io">
-<meta name="twitter:description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;quot;Hello, world!&amp;quot;); return 0; } コンパイルには Python.h が必要です。 端末上に複">
+<meta name="twitter:url" content="https://yokaze.github.io/2018/03/08/">
+<meta name="twitter:title" content="pybind11 でキーワード引数 (kwargs) を使う - yokaze.github.io">
+<meta name="twitter:description" content="pybind11 でキーワード引数 (kwargs) を指定するには、pybind11::arg を使います。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { // python インタプリタを起動する py::scoped_interpreter interpreter; // numpy の各種オブ">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://yokaze.github.io/"
     },
-    "headline": "pybind11 で C&#43;&#43; から Python インタプリタを実行する - yokaze.github.io",
+    "headline": "pybind11 でキーワード引数 (kwargs) を使う - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
       "url": "https://yokaze.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2018-02-11T11:30:00JST",
-    "dateModified": "2018-02-11T11:30:00JST",
+    "datePublished": "2018-03-08T21:00:00JST",
+    "dateModified": "2018-03-08T21:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "pybind11 の pybind11::scoped_interpreter を使うと、C++ から Python インタプリタを起動することができます。 #include &lt;pybind11/embed.h&gt; #include &lt;pybind11/pybind11.h&gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&quot;Hello, world!&quot;); return 0; } コンパイルには Python.h が必要です。 端末上に複"
+    "description": "pybind11 でキーワード引数 (kwargs) を指定するには、pybind11::arg を使います。 #include &lt;pybind11/embed.h&gt; #include &lt;pybind11/pybind11.h&gt; namespace py = pybind11; int main() { // python インタプリタを起動する py::scoped_interpreter interpreter; // numpy の各種オブ"
   }
 </script>
 
@@ -137,26 +137,26 @@ ga('send', 'pageview');
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2018/" itemprop="url"><span itemprop="title">2018</span></a></li>
         
-        <li class="active">pybind11 で C&#43;&#43; から Python インタプリタを実行する</li>
+        <li class="active">pybind11 でキーワード引数 (kwargs) を使う</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-02-11T11:30:00JST">Feb 11, 2018</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-03-08T21:00:00JST">Mar 8, 2018</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
     </ul>
 
-    <h1 class="title">pybind11 で C&#43;&#43; から Python インタプリタを実行する</h1>
+    <h1 class="title">pybind11 でキーワード引数 (kwargs) を使う</h1>
   </header>
 
   
 
   <div class="article-body">
 
-<p>pybind11 の <code>pybind11::scoped_interpreter</code> を使うと、C++ から Python インタプリタを起動することができます。</p>
+<p>pybind11 でキーワード引数 (kwargs) を指定するには、<code>pybind11::arg</code> を使います。</p>
 
 <pre><code class="language-cpp">#include &lt;pybind11/embed.h&gt;
 #include &lt;pybind11/pybind11.h&gt;
@@ -165,34 +165,80 @@ namespace py = pybind11;
 
 int main()
 {
+    // python インタプリタを起動する
     py::scoped_interpreter interpreter;
-    py::print(&quot;Hello, world!&quot;);
+
+    // numpy の各種オブジェクトを取得する
+    py::module numpy = pybind11::module::import(&quot;numpy&quot;);
+    py::object zeros = numpy.attr(&quot;zeros&quot;);
+    py::object float32 = numpy.attr(&quot;float32&quot;);
+    py::object int32 = numpy.attr(&quot;int32&quot;);
+
+    // numpy.ndarray を作る
+    py::object f32_array = zeros(10, py::arg(&quot;dtype&quot;) = float32);
+    py::object i32_array = zeros(10, py::arg(&quot;dtype&quot;) = int32);
+
+    // 配列の文字列表現を標準出力に書き出す
+    py::print(py::repr(f32_array));
+    py::print(py::repr(i32_array));
 
     return 0;
 }
 </code></pre>
 
-<p>コンパイルには <code>Python.h</code> が必要です。
-端末上に複数の Python 環境がある場合は、リンクする Python のバージョンに合ったヘッダファイルを使う必要があります。
-次の例では、Homebrew でインストールした Python 3.6 にリンクしています。</p>
+<pre><code class="language-shell">$ # macOS Sierra (10.12)
+$ clang sample.cpp -std=c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
+$ ./sample
+array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0.], dtype=float32)
+array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0], dtype=int32)
+</code></pre>
+
+<p>また、可変長引数とキーワード引数を受け取る場合は <code>pybind11::args</code> と <code>pybind11::kwargs</code> を使います。</p>
+
+<pre><code class="language-cpp">#include &lt;pybind11/embed.h&gt;
+#include &lt;pybind11/pybind11.h&gt;
+#include &lt;utility&gt;
+
+namespace py = pybind11;
+using std::pair;
+
+void hello(py::args args, py::kwargs kwargs)
+{
+    for (const py::handle&amp; arg : args)
+    {
+        py::print(py::str(arg));
+    }
+    for (const pair&lt;py::handle, py::handle&gt;&amp; kv : kwargs)
+    {
+        py::print(py::str(kv.first), &quot;=&quot;, py::str(kv.second));
+    }
+}
+
+int main()
+{
+    // python インタプリタを起動する
+    py::scoped_interpreter interpreter;
+
+    // main モジュール上に hello 関数を定義する
+    py::module main_module = py::module::import(&quot;__main__&quot;);
+    main_module.def(&quot;hello&quot;, &amp;hello);
+
+    // python スクリプトから hello 関数を呼び出す
+    py::object scope = main_module.attr(&quot;__dict__&quot;);
+    py::exec(&quot;hello('hello', a = 1, b = 2, abc = 123)&quot;, scope);
+
+    return 0;
+}
+</code></pre>
 
 <pre><code class="language-shell">$ # macOS Sierra (10.12)
 $ clang sample.cpp -std=c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
 $ ./sample
-Hello, world!
+hello
+a = 1
+b = 2
+abc = 123
 </code></pre>
-
-<p>pybind11 の動作に影響するため、<code>Py_Initialize</code> と <code>Py_Finalize</code> を直接使うことはできません。</p>
-
-<blockquote>
-<p>Do not use the raw CPython API functions Py_Initialize and Py_Finalize as these do not properly handle the lifetime of pybind11’s internal data.</p>
-
-<p><br />
-引用: Embedding the interpreter &ndash; pybind11 2.3.dev0 documentation<br />
-<span style="word-break: break-all;">
-<a href="http://pybind11.readthedocs.io/en/master/advanced/embedding.html">http://pybind11.readthedocs.io/en/master/advanced/embedding.html</a>
-</span></p>
-</blockquote>
 
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
@@ -203,14 +249,19 @@ Hello, world!
 <h2 id="参考資料">参考資料</h2>
 
 <ul>
-<li><p>pybind/pybind11: Seamless operability between C++11 and Python<br />
+<li><p>pybind11 で C++ から Python インタプリタを実行する<br />
 <span style="word-break: break-all;">
-<a href="https://github.com/pybind/pybind11">https://github.com/pybind/pybind11</a>
+<a href="https://yokaze.github.io/2018/02/11/">https://yokaze.github.io/2018/02/11/</a>
 </span></p></li>
 
-<li><p>Embedding the interpreter &ndash; pybind11 2.3.dev0 documentation<br />
+<li><p>pybind11 で main モジュール上に関数を定義する<br />
 <span style="word-break: break-all;">
-<a href="http://pybind11.readthedocs.io/en/master/advanced/embedding.html">http://pybind11.readthedocs.io/en/master/advanced/embedding.html</a>
+<a href="https://yokaze.github.io/2018/03/05/">https://yokaze.github.io/2018/03/05/</a>
+</span></p></li>
+
+<li><p>Functions &mdash; pybind11 2.2.1 documentation<br />
+<span style="word-break: break-all;">
+<a href="http://pybind11.readthedocs.io/en/stable/advanced/functions.html">http://pybind11.readthedocs.io/en/stable/advanced/functions.html</a>
 </span></p></li>
 </ul>
 </div>
@@ -255,11 +306,11 @@ Hello, world!
     </div>
     <div class="list-group">
       
-      <a href="https://yokaze.github.io/2018/03/08/" class="list-group-item">pybind11 でキーワード引数 (kwargs) を使う</a>
-      
       <a href="https://yokaze.github.io/2018/03/05/" class="list-group-item">pybind11 で main モジュール上に関数を定義する</a>
       
       <a href="https://yokaze.github.io/2018/02/24/" class="list-group-item">pybind11 上の matplotlib で macosx バックエンドを使う</a>
+      
+      <a href="https://yokaze.github.io/2018/02/11/" class="list-group-item">pybind11 で C&#43;&#43; から Python インタプリタを実行する</a>
       
       <a href="https://yokaze.github.io/2018/02/05/" class="list-group-item">mac に pybind11 をインストールする</a>
       
