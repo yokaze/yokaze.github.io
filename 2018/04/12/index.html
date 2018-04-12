@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://yokaze.github.io/2018/02/11/">
+<link rel="canonical" href="https://yokaze.github.io/2018/04/12/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>pybind11 で C&#43;&#43; から Python インタプリタを実行する - yokaze.github.io</title>
+    <title>pyscience11 で C&#43;&#43; から SciPy と Matplotlib を使う - yokaze.github.io</title>
     
-<meta name="description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;quot;Hello, world!&amp;quot;); return 0; } コンパイルには Python.h が必要です。 端末上に複">
+<meta name="description" content="私事ですが、GitHub で pyscience11 というライブラリを公開しています。 このライブラリは Header-Only で、C&#43;&#43; から NumPy, SciPy, Matplotlib を手軽に使うことができます。 動作には pybind11 が">
 
-<meta property="og:title" content="pybind11 で C&#43;&#43; から Python インタプリタを実行する - yokaze.github.io">
+<meta property="og:title" content="pyscience11 で C&#43;&#43; から SciPy と Matplotlib を使う - yokaze.github.io">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2018/02/11/">
+<meta property="og:url" content="https://yokaze.github.io/2018/04/12/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;quot;Hello, world!&amp;quot;); return 0; } コンパイルには Python.h が必要です。 端末上に複">
+<meta property="og:description" content="私事ですが、GitHub で pyscience11 というライブラリを公開しています。 このライブラリは Header-Only で、C&#43;&#43; から NumPy, SciPy, Matplotlib を手軽に使うことができます。 動作には pybind11 が">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2018/02/11/">
-<meta name="twitter:title" content="pybind11 で C&#43;&#43; から Python インタプリタを実行する - yokaze.github.io">
-<meta name="twitter:description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;quot;Hello, world!&amp;quot;); return 0; } コンパイルには Python.h が必要です。 端末上に複">
+<meta name="twitter:url" content="https://yokaze.github.io/2018/04/12/">
+<meta name="twitter:title" content="pyscience11 で C&#43;&#43; から SciPy と Matplotlib を使う - yokaze.github.io">
+<meta name="twitter:description" content="私事ですが、GitHub で pyscience11 というライブラリを公開しています。 このライブラリは Header-Only で、C&#43;&#43; から NumPy, SciPy, Matplotlib を手軽に使うことができます。 動作には pybind11 が">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://yokaze.github.io/"
     },
-    "headline": "pybind11 で C&#43;&#43; から Python インタプリタを実行する - yokaze.github.io",
+    "headline": "pyscience11 で C&#43;&#43; から SciPy と Matplotlib を使う - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
       "url": "https://yokaze.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2018-02-11T11:30:00JST",
-    "dateModified": "2018-02-11T11:30:00JST",
+    "datePublished": "2018-04-12T18:00:00JST",
+    "dateModified": "2018-04-12T18:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "pybind11 の pybind11::scoped_interpreter を使うと、C++ から Python インタプリタを起動することができます。 #include &lt;pybind11/embed.h&gt; #include &lt;pybind11/pybind11.h&gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&quot;Hello, world!&quot;); return 0; } コンパイルには Python.h が必要です。 端末上に複"
+    "description": "私事ですが、GitHub で pyscience11 というライブラリを公開しています。 このライブラリは Header-Only で、C++ から NumPy, SciPy, Matplotlib を手軽に使うことができます。 動作には pybind11 が"
   }
 </script>
 
@@ -137,62 +137,151 @@ ga('send', 'pageview');
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2018/" itemprop="url"><span itemprop="title">2018</span></a></li>
         
-        <li class="active">pybind11 で C&#43;&#43; から Python インタプリタを実行する</li>
+        <li class="active">pyscience11 で C&#43;&#43; から SciPy と Matplotlib を使う</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-02-11T11:30:00JST">Feb 11, 2018</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-04-12T18:00:00JST">Apr 12, 2018</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
     </ul>
 
-    <h1 class="title">pybind11 で C&#43;&#43; から Python インタプリタを実行する</h1>
+    <h1 class="title">pyscience11 で C&#43;&#43; から SciPy と Matplotlib を使う</h1>
   </header>
 
   
 
   <div class="article-body">
 
-<p>pybind11 の <code>pybind11::scoped_interpreter</code> を使うと、C++ から Python インタプリタを起動することができます。</p>
+<p>私事ですが、GitHub で <a href="https://github.com/yokaze/pyscience11">pyscience11</a> というライブラリを公開しています。
+このライブラリは Header-Only で、C++ から NumPy, SciPy, Matplotlib を手軽に使うことができます。
+動作には <a href="https://github.com/pybind/pybind11">pybind11</a> が必要です。</p>
+
+<p>次の例では、pybind11 の組み込み Python 環境で誤差関数 (erf) を表示しています。</p>
 
 <pre><code class="language-cpp">#include &lt;pybind11/embed.h&gt;
 #include &lt;pybind11/pybind11.h&gt;
+#include &lt;pyscience11/matplotlib.h&gt;
+#include &lt;pyscience11/matplotlib/pyplot.h&gt;
+#include &lt;pyscience11/numpy.h&gt;
+#include &lt;pyscience11/scipy/special.h&gt;
 
 namespace py = pybind11;
+namespace m11 = matplotlib11;
+namespace n11 = numpy11;
+namespace s11 = scipy11;
 
-int main()
+int main(void)
 {
+    // 組み込み Python インタプリタを起動する
     py::scoped_interpreter interpreter;
-    py::print(&quot;Hello, world!&quot;);
+
+    // numpy と scipy.special を読み込む
+    auto numpy = n11::import_numpy();
+    auto scipy_special = s11::scipy::import_special();
+
+    // 誤差関数 (erf) を計算する
+    auto x = numpy.linspace(-2, 2, 1001, py::arg(&quot;dtype&quot;) = numpy.attr(&quot;float32&quot;));
+    auto y = scipy_special.erf(x);
+
+    // matplotlib を読み込み、バックエンドを設定する
+    auto matplotlib = m11::import_matplotlib();
+    matplotlib.use(&quot;TkAgg&quot;);
+
+    // グラフを描画する
+    auto pl = m11::matplotlib::import_pyplot();
+    pl.plot(x, y);
+    pl.show();
 
     return 0;
 }
 </code></pre>
 
-<p>コンパイルには <code>Python.h</code> が必要です。
-端末上に複数の Python 環境がある場合は、リンクする Python のバージョンに合ったヘッダファイルを使う必要があります。
-次の例では、Homebrew でインストールした Python 3.6 にリンクしています。</p>
+<p>Python を実行ファイルに組み込むため、Python 3.6 にリンクしています。
+また、pybind11 と pyscience11 のヘッダファイルのパスを指定しています。</p>
 
 <pre><code class="language-shell">$ # macOS Sierra (10.12)
-$ clang sample.cpp -std=c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
-$ ./sample
-Hello, world!
+$ clang sample.cpp -std=c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -I/usr/local/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
 </code></pre>
 
-<p>pybind11 の動作に影響するため、<code>Py_Initialize</code> と <code>Py_Finalize</code> を直接使うことはできません。</p>
+<p>このプログラムを実行すると、次の通りグラフが表示されます。</p>
 
-<blockquote>
-<p>Do not use the raw CPython API functions Py_Initialize and Py_Finalize as these do not properly handle the lifetime of pybind11’s internal data.</p>
 
-<p><br />
-引用: Embedding the interpreter &ndash; pybind11 2.3.dev0 documentation<br />
-<span style="word-break: break-all;">
-<a href="http://pybind11.readthedocs.io/en/master/advanced/embedding.html">http://pybind11.readthedocs.io/en/master/advanced/embedding.html</a>
-</span></p>
-</blockquote>
+<figure class="center">
+    
+        <img src="/2018/04/12/erf.png" width="100%" />
+    
+    
+</figure>
+
+
+<h2 id="stl-との連携">STL との連携</h2>
+
+<p>pyscience11 では、pybind11 の STL 連携機能を使うことができます。
+<code>pybind11/stl.h</code> をインクルードすると、<code>std::vector</code> などを引数として Matplotlib を呼び出すことができます。</p>
+
+<pre><code class="language-cpp">#include &lt;pybind11/embed.h&gt;
+#include &lt;pybind11/pybind11.h&gt;
+#include &lt;pybind11/stl.h&gt;
+#include &lt;pyscience11/matplotlib.h&gt;
+#include &lt;pyscience11/matplotlib/pyplot.h&gt;
+
+namespace py = pybind11;
+namespace m11 = matplotlib11;
+
+int main(void)
+{
+    // 組み込み Python インタプリタを起動する
+    py::scoped_interpreter interpreter;
+
+    // 正弦関数 (sin) を計算する
+    std::vector&lt;float&gt; x, y;
+    for (int i = 0; i &lt;= 1000; ++i)
+    {
+        float xi = M_PI * (i - 500) / 500.f;
+        float yi = sinf(xi);
+        x.push_back(xi);
+        y.push_back(yi);
+    }
+
+    // matplotlib を読み込み、バックエンドを設定する
+    auto matplotlib = m11::import_matplotlib();
+    matplotlib.use(&quot;TkAgg&quot;);
+
+    // グラフを描画する
+    auto pl = m11::matplotlib::import_pyplot();
+    pl.plot(x, y);
+    pl.show();
+
+    return 0;
+}
+</code></pre>
+
+<p>このプログラムを実行すると、次のグラフが表示されます。</p>
+
+
+<figure class="center">
+    
+        <img src="/2018/04/12/sin.png" width="100%" />
+    
+    
+</figure>
+
+
+<h2 id="インストール">インストール</h2>
+
+<p>このライブラリは Header-Only なので、pybind11 と pyscience11 のヘッダファイルをダウンロードするだけで使えます。
+<code>pip</code> を使いシステムディレクトリにインストールすることもできます。</p>
+
+<pre><code class="language-shell">$ # pybind11 をインストールする（pyscience 11 の実行に必要です）
+$ pip install pybind11
+$
+$ # pyscience11 をインストールする
+$ pip install pyscience11
+</code></pre>
 
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
@@ -203,14 +292,24 @@ Hello, world!
 <h2 id="参考資料">参考資料</h2>
 
 <ul>
+<li><p>pybind11 で C++ から Python インタプリタを実行する<br />
+<span style="word-break: break-all;">
+<a href="https://yokaze.github.io/2018/02/11/">https://yokaze.github.io/2018/02/11/</a>
+</span></p></li>
+
+<li><p>pybind11 上の matplotlib で macosx バックエンドを使う<br />
+<span style="word-break: break-all;">
+<a href="https://yokaze.github.io/2018/02/24/">https://yokaze.github.io/2018/02/24/</a>
+</span></p></li>
+
 <li><p>pybind/pybind11: Seamless operability between C++11 and Python<br />
 <span style="word-break: break-all;">
 <a href="https://github.com/pybind/pybind11">https://github.com/pybind/pybind11</a>
 </span></p></li>
 
-<li><p>Embedding the interpreter &ndash; pybind11 2.3.dev0 documentation<br />
+<li><p>yokaze/pyscience11: C++11 wrapper for NumPy, SciPy and Matplotlib using pybind11<br />
 <span style="word-break: break-all;">
-<a href="http://pybind11.readthedocs.io/en/master/advanced/embedding.html">http://pybind11.readthedocs.io/en/master/advanced/embedding.html</a>
+<a href="https://github.com/yokaze/pyscience11">https://github.com/yokaze/pyscience11</a>
 </span></p></li>
 </ul>
 </div>
@@ -255,23 +354,23 @@ Hello, world!
     </div>
     <div class="list-group">
       
+      <a href="https://yokaze.github.io/2018/02/24/" class="list-group-item">pybind11 上の matplotlib で macosx バックエンドを使う</a>
+      
       <a href="https://yokaze.github.io/2018/03/08/" class="list-group-item">pybind11 でキーワード引数 (kwargs) を使う</a>
       
       <a href="https://yokaze.github.io/2018/03/05/" class="list-group-item">pybind11 で main モジュール上に関数を定義する</a>
       
-      <a href="https://yokaze.github.io/2018/02/24/" class="list-group-item">pybind11 上の matplotlib で macosx バックエンドを使う</a>
+      <a href="https://yokaze.github.io/2018/02/11/" class="list-group-item">pybind11 で C&#43;&#43; から Python インタプリタを実行する</a>
       
       <a href="https://yokaze.github.io/2018/02/05/" class="list-group-item">mac に pybind11 をインストールする</a>
       
-      <a href="https://yokaze.github.io/2018/04/12/" class="list-group-item">pyscience11 で C&#43;&#43; から SciPy と Matplotlib を使う</a>
+      <a href="https://yokaze.github.io/2017/09/27/" class="list-group-item">mac に最新の NumPy (SciPy) をインストールする</a>
       
-      <a href="https://yokaze.github.io/2017/09/15/" class="list-group-item">Homebrew で python3 用の Boost.Python をインストールする</a>
+      <a href="https://yokaze.github.io/2017/09/17/" class="list-group-item">mac に SciPy がプリインストールされているか調べる</a>
       
       <a href="https://yokaze.github.io/2018/02/28/" class="list-group-item">二重ポインタの const 早見表</a>
       
       <a href="https://yokaze.github.io/2018/02/12/" class="list-group-item">mac に xtensor をインストールする</a>
-      
-      <a href="https://yokaze.github.io/2018/02/04/" class="list-group-item">pip のディストリビューションがインストールしたファイルの一覧を表示する</a>
       
       <a href="https://yokaze.github.io/2018/01/29/" class="list-group-item">clang でシフト演算のビット数超過を警告する (-Wshift-count-overflow)</a>
       

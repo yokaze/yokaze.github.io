@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Thu, 08 Mar 2018 21:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 12 Apr 2018 18:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/2018/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>pyscience11 で C&#43;&#43; から SciPy と Matplotlib を使う</title>
+      <link>https://yokaze.github.io/2018/04/12/</link>
+      <pubDate>Thu, 12 Apr 2018 18:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2018/04/12/</guid>
+      <description>私事ですが、GitHub で pyscience11 というライブラリを公開しています。 このライブラリは Header-Only で、C++ から NumPy, SciPy, Matplotlib を手軽に使うことができます。 動作には pybind11 が</description>
+    </item>
     
     <item>
       <title>pybind11 でキーワード引数 (kwargs) を使う</title>
