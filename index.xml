@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Thu, 12 Apr 2018 18:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 07 Sep 2018 21:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>clang でループ式が実行されない場合に警告を出す (-Wunreachable-code-loop-increment)</title>
+      <link>https://yokaze.github.io/2018/09/07/</link>
+      <pubDate>Fri, 07 Sep 2018 21:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2018/09/07/</guid>
+      <description>clang でループ式が実行されない場合に警告を出すには、-Wunreachable-code-loop-increment オプションを指定します。 int</description>
+    </item>
     
     <item>
       <title>pyscience11 で C&#43;&#43; から SciPy と Matplotlib を使う</title>
