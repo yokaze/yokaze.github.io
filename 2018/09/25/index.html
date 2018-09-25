@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://yokaze.github.io/2018/01/22/">
+<link rel="canonical" href="https://yokaze.github.io/2018/09/25/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>swiftc で Hello World - yokaze.github.io</title>
+    <title>lldb のコマンドのオプションを読み解く - yokaze.github.io</title>
     
-<meta name="description" content="swiftc コマンドで Hello world プログラムをビルドします。 print(&amp;quot;Hello world!&amp;quot;) $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料">
+<meta name="description" content="lldb のコマンドのヘルプを確認すると、複数の構文が表示されることがあります。 次の例では、ソースコードの情報を取得する source info コマンドについて3つの構">
 
-<meta property="og:title" content="swiftc で Hello World - yokaze.github.io">
+<meta property="og:title" content="lldb のコマンドのオプションを読み解く - yokaze.github.io">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2018/01/22/">
+<meta property="og:url" content="https://yokaze.github.io/2018/09/25/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="swiftc コマンドで Hello world プログラムをビルドします。 print(&amp;quot;Hello world!&amp;quot;) $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料">
+<meta property="og:description" content="lldb のコマンドのヘルプを確認すると、複数の構文が表示されることがあります。 次の例では、ソースコードの情報を取得する source info コマンドについて3つの構">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2018/01/22/">
-<meta name="twitter:title" content="swiftc で Hello World - yokaze.github.io">
-<meta name="twitter:description" content="swiftc コマンドで Hello world プログラムをビルドします。 print(&amp;quot;Hello world!&amp;quot;) $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料">
+<meta name="twitter:url" content="https://yokaze.github.io/2018/09/25/">
+<meta name="twitter:title" content="lldb のコマンドのオプションを読み解く - yokaze.github.io">
+<meta name="twitter:description" content="lldb のコマンドのヘルプを確認すると、複数の構文が表示されることがあります。 次の例では、ソースコードの情報を取得する source info コマンドについて3つの構">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://yokaze.github.io/"
     },
-    "headline": "swiftc で Hello World - yokaze.github.io",
+    "headline": "lldb のコマンドのオプションを読み解く - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
       "url": "https://yokaze.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2018-01-22T22:07:42JST",
-    "dateModified": "2018-01-22T22:07:42JST",
+    "datePublished": "2018-09-25T21:00:00JST",
+    "dateModified": "2018-09-25T21:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "swiftc コマンドで Hello world プログラムをビルドします。 print(&quot;Hello world!&quot;) $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料"
+    "description": "lldb のコマンドのヘルプを確認すると、複数の構文が表示されることがあります。 次の例では、ソースコードの情報を取得する source info コマンドについて3つの構"
   }
 </script>
 
@@ -140,40 +140,138 @@ if (!doNotTrack) {
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2018/" itemprop="url"><span itemprop="title">2018</span></a></li>
         
-        <li class="active">swiftc で Hello World</li>
+        <li class="active">lldb のコマンドのオプションを読み解く</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-22T22:07:42JST">Jan 22, 2018</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-09-25T21:00:00JST">Sep 25, 2018</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
     </ul>
 
-    <h1 class="title">swiftc で Hello World</h1>
+    <h1 class="title">lldb のコマンドのオプションを読み解く</h1>
   </header>
 
   
 
   <div class="article-body">
 
-<p><code>swiftc</code> コマンドで Hello world プログラムをビルドします。</p>
+<p>lldb のコマンドのヘルプを確認すると、複数の構文が表示されることがあります。
+次の例では、ソースコードの情報を取得する <code>source info</code> コマンドについて3つの構文が表示されます。</p>
 
-<pre><code class="language-swift">print(&quot;Hello world!&quot;)
+<pre><code class="language-shell">$ # macOS High Sierra (10.13)
+$ lldb
+(lldb) help source info
+     Display source line information for the current target process.  Defaults
+     to instruction pointer in current stack frame.
+
+Syntax:
+
+Command Options Usage:
+  source info [-c &lt;count&gt;] [-s &lt;shlib-name&gt;] [-f &lt;filename&gt;] [-l &lt;linenum&gt;] [-e &lt;linenum&gt;]
+  source info [-c &lt;count&gt;] [-s &lt;shlib-name&gt;] [-n &lt;symbol&gt;]
+  source info [-c &lt;count&gt;] [-a &lt;address-expression&gt;]
+
+       -a &lt;address-expression&gt; ( --address &lt;address-expression&gt; )
+            Lookup the address and display the source information for the
+            corresponding file and line.
+
+       -c &lt;count&gt; ( --count &lt;count&gt; )
+            The number of line entries to display.
+
+       -e &lt;linenum&gt; ( --end-line &lt;linenum&gt; )
+            The line number at which to stop displaying lines.
+
+       -f &lt;filename&gt; ( --file &lt;filename&gt; )
+            The file from which to display source.
+
+       -l &lt;linenum&gt; ( --line &lt;linenum&gt; )
+            The line number at which to start the displaying lines.
+
+       -n &lt;symbol&gt; ( --name &lt;symbol&gt; )
+            The name of a function whose source to display.
+
+       -s &lt;shlib-name&gt; ( --shlib &lt;shlib-name&gt; )
+            Look up the source in the given module or shared library (can be
+            specified more than once).
 </code></pre>
 
-<pre><code class="language-shell">$ swiftc sample.swift
-$ ./sample
-Hello world!
+<p>上記のオプションのうち <code>-c</code> は3つの構文全てで使えますが、<code>-s</code> は最初の2つの構文でしか使えません。
+また、その他のオプションはいずれか1つの構文でしか使えません。
+この違いが何によって決まるのかを調べました。</p>
+
+<h2 id="コマンドのオプションはそれぞれの構文に割り当てられる">コマンドのオプションはそれぞれの構文に割り当てられる</h2>
+
+<p><code>source info</code> コマンドの各オプションは以下の通りそれぞれの構文に割り当てられています。</p>
+
+<pre><code class="language-cpp">static OptionDefinition g_source_info_options[] = {
+  { LLDB_OPT_SET_ALL,                false, &quot;count&quot;,    'c', ... },
+  { LLDB_OPT_SET_1 | LLDB_OPT_SET_2, false, &quot;shlib&quot;,    's', ... },
+  { LLDB_OPT_SET_1,                  false, &quot;file&quot;,     'f', ... },
+  { LLDB_OPT_SET_1,                  false, &quot;line&quot;,     'l', ... },
+  { LLDB_OPT_SET_1,                  false, &quot;end-line&quot;, 'e', ... },
+  { LLDB_OPT_SET_2,                  false, &quot;name&quot;,     'n', ... },
+  { LLDB_OPT_SET_3,                  false, &quot;address&quot;,  'a', ... },
+};
 </code></pre>
 
-<p><code>swift</code> コマンドを使うとコンソールから直接実行することもできます。</p>
+<p><span style="word-break: break-all;">
+<a href="https://github.com/llvm-mirror/lldb/blob/release_70/source/Commands/CommandObjectSource.cpp#L44">https://github.com/llvm-mirror/lldb/blob/release_70/source/Commands/CommandObjectSource.cpp#L44</a>
+</span></p>
 
-<pre><code class="language-shell">$ swift sample.swift
-Hello world!
+<p>ここから、2番目・3番目の構文が <code>-n</code> と <code>-a</code> オプションのために存在していることが分かります。
+この視点に立つと、上記3つの構文がそれぞれ</p>
+
+<ol>
+<li>ファイルと行番号を指定してソースコードの情報を表示する</li>
+<li>シンボルからソースコードを検索する</li>
+<li>アドレスからソースコードを検索する</li>
+</ol>
+
+<p>ためのコマンドであることが分かります。</p>
+
+<h2 id="使用例">使用例</h2>
+
+<pre><code class="language-cpp">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    printf(&quot;Hello World!\n&quot;);
+    return 0;
+}
 </code></pre>
+
+<pre><code class="language-shell">$ # macOS High Sierra (10.13)
+$ clang sample.cpp -g -o sample
+$ lldb sample
+(lldb) target create &quot;sample&quot;
+Current executable set to 'sample' (x86_64).
+(lldb) source info -f sample.cpp
+Lines found for file sample.cpp in compilation unit sample.cpp in `sample
+[0x0000000100000f60-0x0000000100000f76): /path/to/directory/sample.cpp:4
+[0x0000000100000f76-0x0000000100000f7f): /path/to/directory/sample.cpp:5:5
+[0x0000000100000f7f-0x0000000100000f8a): /path/to/directory/sample.cpp:6:5
+(lldb) source info -n main
+Lines found in module `sample
+[0x0000000100000f60-0x0000000100000f76): /path/to/directory/sample.cpp:4
+[0x0000000100000f76-0x0000000100000f7f): /path/to/directory/sample.cpp:5:5
+[0x0000000100000f7f-0x0000000100000f8a): /path/to/directory/sample.cpp:6:5
+(lldb) p main
+(int (*)()) $0 = 0x0000000100000f60
+(lldb) source info -a 0x100000f60
+Lines found in module `sample
+[0x0000000100000f60-0x0000000100000f76): /path/to/directory/sample.cpp:4
+</code></pre>
+
+<p>めでたし。</p>
+
+<p>lldb のコマンドは <code>lldb/source/Commands</code> の各 cpp ファイルで実装されています。<br />
+<span style="word-break: break-all;">
+<a href="https://github.com/llvm-mirror/lldb/tree/release_70/source/Commands">https://github.com/llvm-mirror/lldb/tree/release_70/source/Commands</a>
+</span></p>
 
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
@@ -184,19 +282,19 @@ Hello world!
 <h2 id="参考資料">参考資料</h2>
 
 <ul>
-<li><p>Swiftをコマンドラインから使ってみた。<br />
+<li><p>The LLVM Compiler Infrastructure<br />
 <span style="word-break: break-all;">
-<a href="http://yamaimo.hatenablog.jp/entry/2015/06/19/200000">http://yamaimo.hatenablog.jp/entry/2015/06/19/200000</a>
+<a href="https://llvm.org/">https://llvm.org/</a>
 </span></p></li>
 
-<li><p>Swift コンパイラのアーキテクチャ<br />
+<li><p>LLDB&rsquo;s Architecture<br />
 <span style="word-break: break-all;">
-<a href="https://qiita.com/rintaro/items/3ad640e3938207218c20">https://qiita.com/rintaro/items/3ad640e3938207218c20</a>
+<a href="https://lldb.llvm.org/architecture/index.html">https://lldb.llvm.org/architecture/index.html</a>
 </span></p></li>
 
-<li><p>apple/swift: The Swift Programming Language<br />
+<li><p>lldb で使えるコマンド一覧<br />
 <span style="word-break: break-all;">
-<a href="https://github.com/apple/swift">https://github.com/apple/swift</a>
+<a href="https://yokaze.github.io/2018/01/06/">https://yokaze.github.io/2018/01/06/</a>
 </span></p></li>
 </ul>
 </div>
@@ -241,7 +339,7 @@ Hello world!
     </div>
     <div class="list-group">
       
-      <a href="https://yokaze.github.io/2018/09/25/" class="list-group-item">lldb のコマンドのオプションを読み解く</a>
+      <a href="https://yokaze.github.io/2018/01/06/" class="list-group-item">lldb で使えるコマンド一覧</a>
       
       <a href="https://yokaze.github.io/2018/09/18/" class="list-group-item">pybind11 で print 文を使う</a>
       
@@ -305,8 +403,6 @@ Hello world!
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

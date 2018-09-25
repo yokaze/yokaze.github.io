@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Tue, 18 Sep 2018 18:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 25 Sep 2018 21:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>lldb のコマンドのオプションを読み解く</title>
+      <link>https://yokaze.github.io/2018/09/25/</link>
+      <pubDate>Tue, 25 Sep 2018 21:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2018/09/25/</guid>
+      <description>lldb のコマンドのヘルプを確認すると、複数の構文が表示されることがあります。 次の例では、ソースコードの情報を取得する source info コマンドについて3つの構</description>
+    </item>
     
     <item>
       <title>pybind11 で print 文を使う</title>
