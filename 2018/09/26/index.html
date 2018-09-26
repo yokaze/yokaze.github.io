@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://yokaze.github.io/2018/01/17/">
+<link rel="canonical" href="https://yokaze.github.io/2018/09/26/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>clang で 暗黙の符号変換を警告する (-Wsign-conversion) - yokaze.github.io</title>
+    <title>clang で初期化されていない変数を使った場合に警告を出す (-Wuninitialized) - yokaze.github.io</title>
     
-<meta name="description" content="clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; return 0; } $ # macOS Sierra (10.12) $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion">
+<meta name="description" content="clang で初期化されていない変数を使った場合に警告を出すには、-Wuninitialized オプションを指定します。 // Program 1 #include &amp;lt;stdio.h&amp;gt; int main(void) { int x; printf(&amp;quot;%d\n&amp;quot;, x); return 0; }">
 
-<meta property="og:title" content="clang で 暗黙の符号変換を警告する (-Wsign-conversion) - yokaze.github.io">
+<meta property="og:title" content="clang で初期化されていない変数を使った場合に警告を出す (-Wuninitialized) - yokaze.github.io">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2018/01/17/">
+<meta property="og:url" content="https://yokaze.github.io/2018/09/26/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; return 0; } $ # macOS Sierra (10.12) $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion">
+<meta property="og:description" content="clang で初期化されていない変数を使った場合に警告を出すには、-Wuninitialized オプションを指定します。 // Program 1 #include &amp;lt;stdio.h&amp;gt; int main(void) { int x; printf(&amp;quot;%d\n&amp;quot;, x); return 0; }">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2018/01/17/">
-<meta name="twitter:title" content="clang で 暗黙の符号変換を警告する (-Wsign-conversion) - yokaze.github.io">
-<meta name="twitter:description" content="clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; return 0; } $ # macOS Sierra (10.12) $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion">
+<meta name="twitter:url" content="https://yokaze.github.io/2018/09/26/">
+<meta name="twitter:title" content="clang で初期化されていない変数を使った場合に警告を出す (-Wuninitialized) - yokaze.github.io">
+<meta name="twitter:description" content="clang で初期化されていない変数を使った場合に警告を出すには、-Wuninitialized オプションを指定します。 // Program 1 #include &amp;lt;stdio.h&amp;gt; int main(void) { int x; printf(&amp;quot;%d\n&amp;quot;, x); return 0; }">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://yokaze.github.io/"
     },
-    "headline": "clang で 暗黙の符号変換を警告する (-Wsign-conversion) - yokaze.github.io",
+    "headline": "clang で初期化されていない変数を使った場合に警告を出す (-Wuninitialized) - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
       "url": "https://yokaze.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2018-01-17T20:41:18JST",
-    "dateModified": "2018-01-17T20:41:18JST",
+    "datePublished": "2018-09-26T18:00:00JST",
+    "dateModified": "2018-09-26T18:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; return 0; } $ # macOS Sierra (10.12) $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion"
+    "description": "clang で初期化されていない変数を使った場合に警告を出すには、-Wuninitialized オプションを指定します。 // Program 1 #include &lt;stdio.h&gt; int main(void) { int x; printf(&quot;%d\n&quot;, x); return 0; }"
   }
 </script>
 
@@ -140,49 +140,103 @@ if (!doNotTrack) {
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2018/" itemprop="url"><span itemprop="title">2018</span></a></li>
         
-        <li class="active">clang で 暗黙の符号変換を警告する (-Wsign-conversion)</li>
+        <li class="active">clang で初期化されていない変数を使った場合に警告を出す (-Wuninitialized)</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-17T20:41:18JST">Jan 17, 2018</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-09-26T18:00:00JST">Sep 26, 2018</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
     </ul>
 
-    <h1 class="title">clang で 暗黙の符号変換を警告する (-Wsign-conversion)</h1>
+    <h1 class="title">clang で初期化されていない変数を使った場合に警告を出す (-Wuninitialized)</h1>
   </header>
 
   
 
   <div class="article-body">
 
-<p>clang で暗黙の符号変換を警告するには、<code>-Wsign-conversion</code> オプションを指定します。</p>
+<p>clang で初期化されていない変数を使った場合に警告を出すには、<code>-Wuninitialized</code> オプションを指定します。</p>
 
-<pre><code class="language-cpp">int main()
+<pre><code class="language-cpp">//  Program 1
+#include &lt;stdio.h&gt;
+
+int main(void)
 {
-    unsigned int x = -1;
+    int x;
+    printf(&quot;%d\n&quot;, x);
     return 0;
 }
 </code></pre>
 
-<pre><code class="language-shell">$ # macOS Sierra (10.12)
-$ clang sample.cpp -Wsign-conversion
-sample.cpp:3:22: warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-    unsigned int x = -1;
-                 ~   ^~
+<p>このプログラムを起動すると、環境によって実行ごとに異なる値が表示されます（同じ値が表示されることもあります）。</p>
+
+<pre><code class="language-shell">$ # macOS High Sierra (10.13)
+$ clang program1.cpp -o program1
+$ ./program1
+318947794
+$ ./program1
+208458194
+</code></pre>
+
+<p>コンピュータのメモリは有限のため、同じ領域を何度か繰り返して使う必要があります。</p>
+
+<p>他のプログラムが値を書き込んだメモリを再利用する際には初期化をする必要がありますが、C++ では初期化が不要な場合（後々あらためて初期化されることが分かっているため、初期化を省略できる場合など）に動作を高速化できるよう、初期化は明示的に行うことになっています。</p>
+
+<p>たとえば、次のプログラムは問題なく動作します。</p>
+
+<pre><code class="language-cpp">//  Program 2
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int x;
+    x = 123;
+    printf(&quot;%d\n&quot;, x);
+    return 0;
+}
+</code></pre>
+
+<pre><code class="language-shell">$ # macOS High Sierra (10.13)
+$ clang program2.cpp -o program2
+$ ./program2
+123
+$ ./program2
+123
+</code></pre>
+
+<p>実際には不注意のため、Program 2 のように書くつもりで Program 1 のように書いてしまう場合があります。
+このため、clang や gcc などの C++ コンパイラではコンピュータによる警告を表示することができます。</p>
+
+<pre><code class="language-shell">$ # macOS High Sierra (10.13)
+$ clang program1.cpp -o program1 -Wuninitialized
+program1.cpp:6:20: warning: variable 'x' is uninitialized when used here
+      [-Wuninitialized]
+    printf(&quot;%d\n&quot;, x);
+                   ^
+program1.cpp:5:10: note: initialize the variable 'x' to silence this warning
+    int x;
+         ^
+          = 0
 1 warning generated.
+</code></pre>
+
+<p>Program 2 では <code>x</code> は正しく初期化されているため、警告は表示されません。</p>
+
+<pre><code class="language-shell">$ # macOS High Sierra (10.13)
+$ clang program2.cpp -o program2 -Wuninitialized
 </code></pre>
 
 <h2 id="警告を抑制する">警告を抑制する</h2>
 
-<p>逆に、警告を抑制したい場合は <code>-Wno-sign-conversion</code> オプションを指定します。
+<p>逆に、警告を抑制したい場合は <code>-Wno-uninitialized</code> オプションを指定します。
 このオプションを指定することで、既に指定されたオプションを打ち消すことができます。</p>
 
-<pre><code class="language-shell">$ # macOS Sierra (10.12)
-$ clang sample.cpp -Wsign-conversion -Wno-sign-conversion
+<pre><code class="language-shell">$ # macOS High Sierra (10.13)
+$ clang program1.cpp -o program1 -Wuninitialized -Wno-uninitialized
 </code></pre>
 
 <p>
@@ -196,7 +250,7 @@ $ clang sample.cpp -Wsign-conversion -Wno-sign-conversion
 <ul>
 <li>Clang 6 documentation &mdash; DIAGNOSTIC FLAGS IN CLANG<br />
 <span style="word-break: break-all;">
-<a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wsign-conversion">https://clang.llvm.org/docs/DiagnosticsReference.html#wsign-conversion</a>
+<a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wuninitialized">https://clang.llvm.org/docs/DiagnosticsReference.html#wuninitialized</a>
 </span></li>
 </ul>
 </div>
@@ -241,8 +295,6 @@ $ clang sample.cpp -Wsign-conversion -Wno-sign-conversion
     </div>
     <div class="list-group">
       
-      <a href="https://yokaze.github.io/2018/09/26/" class="list-group-item">clang で初期化されていない変数を使った場合に警告を出す (-Wuninitialized)</a>
-      
       <a href="https://yokaze.github.io/2018/09/07/" class="list-group-item">clang でループ式が実行されない場合に警告を出す (-Wunreachable-code-loop-increment)</a>
       
       <a href="https://yokaze.github.io/2018/01/29/" class="list-group-item">clang でシフト演算のビット数超過を警告する (-Wshift-count-overflow)</a>
@@ -250,6 +302,8 @@ $ clang sample.cpp -Wsign-conversion -Wno-sign-conversion
       <a href="https://yokaze.github.io/2018/01/28/" class="list-group-item">clang で range-based for の暗黙コピーを警告する (-Wrange-loop-analysis)</a>
       
       <a href="https://yokaze.github.io/2018/01/18/" class="list-group-item">clang で負のビットシフトを警告する (-Wshift-count-negative)</a>
+      
+      <a href="https://yokaze.github.io/2018/01/17/" class="list-group-item">clang で 暗黙の符号変換を警告する (-Wsign-conversion)</a>
       
       <a href="https://yokaze.github.io/2018/01/16/" class="list-group-item">clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告する (-Wshorten-64-to-32)</a>
       

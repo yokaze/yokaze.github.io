@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Tue, 25 Sep 2018 21:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 26 Sep 2018 18:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>clang で初期化されていない変数を使った場合に警告を出す (-Wuninitialized)</title>
+      <link>https://yokaze.github.io/2018/09/26/</link>
+      <pubDate>Wed, 26 Sep 2018 18:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2018/09/26/</guid>
+      <description>clang で初期化されていない変数を使った場合に警告を出すには、-Wuninitialized オプションを指定します。 // Program 1 #include &amp;lt;stdio.h&amp;gt; int main(void) { int x; printf(&amp;quot;%d\n&amp;quot;, x); return 0; }</description>
+    </item>
     
     <item>
       <title>lldb のコマンドのオプションを読み解く</title>
