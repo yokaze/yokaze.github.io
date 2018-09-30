@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Wed, 26 Sep 2018 18:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 30 Sep 2018 21:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>早朝の山下公園</title>
+      <link>https://yokaze.github.io/2018/09/30/</link>
+      <pubDate>Sun, 30 Sep 2018 21:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2018/09/30/</guid>
+      <description>横浜の夜明けを撮りに山下公園へ。 FUJIFILM X-T2, XF35mm F1.4 R, 1/125, F1.4, WB 5000K, Classic Chrome @ みなとみらい駅 朝7時のみなとみらい駅。東京郊外からだと始発近くの電車でも夜明けまでに</description>
+    </item>
     
     <item>
       <title>clang で初期化されていない変数を使った場合に警告を出す (-Wuninitialized)</title>
