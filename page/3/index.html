@@ -87,6 +87,25 @@ if (!doNotTrack) {
       <li><article class="li">
   <header>
     <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-17T20:41:18JST">Jan 17, 2018</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
+      
+    </ul>
+    <h2 class="title"><a href="https://yokaze.github.io/2018/01/17/">clang で 暗黙の符号変換を警告する (-Wsign-conversion)</a></h2>
+  </header>
+
+  
+  <div class="summary">clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; return 0; } $ # macOS Sierra (10.12) $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion</div>
+
+  <footer>
+    <a href="https://yokaze.github.io/2018/01/17/" title="clang で 暗黙の符号変換を警告する (-Wsign-conversion)">Read More…</a>
+  </footer>
+</article>
+</li>
+      
+      <li><article class="li">
+  <header>
+    <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-16T21:24:17JST">Jan 16, 2018</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
@@ -255,25 +274,6 @@ if (!doNotTrack) {
 </article>
 </li>
       
-      <li><article class="li">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-10-06T17:51:02JST">Oct 6, 2017</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
-      
-    </ul>
-    <h2 class="title"><a href="https://yokaze.github.io/2017/10/06/">clang で未使用のマクロを警告する (-Wunused-macros)</a></h2>
-  </header>
-
-  
-  <div class="summary">clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # macOS Sierra (10.12) + Homebrew $ clang sample.cpp -Wunused-macros sample.cpp:1:9: warning: macro is not used [-Wunused-macros]</div>
-
-  <footer>
-    <a href="https://yokaze.github.io/2017/10/06/" title="clang で未使用のマクロを警告する (-Wunused-macros)">Read More…</a>
-  </footer>
-</article>
-</li>
-      
     </ul>
 
     
@@ -306,6 +306,8 @@ if (!doNotTrack) {
     </div>
     <div class="list-group">
       
+      <a href="https://yokaze.github.io/2018/10/04/" class="list-group-item">lldb の source info コマンドの使い方</a>
+      
       <a href="https://yokaze.github.io/2018/10/02/" class="list-group-item">はじめての登山道具</a>
       
       <a href="https://yokaze.github.io/2018/09/30/" class="list-group-item">早朝の山下公園</a>
@@ -323,8 +325,6 @@ if (!doNotTrack) {
       <a href="https://yokaze.github.io/2018/03/08/" class="list-group-item">pybind11 でキーワード引数 (kwargs) を使う</a>
       
       <a href="https://yokaze.github.io/2018/03/05/" class="list-group-item">pybind11 で main モジュール上に関数を定義する</a>
-      
-      <a href="https://yokaze.github.io/2018/02/28/" class="list-group-item">二重ポインタの const 早見表</a>
       
     </div>
   </section>

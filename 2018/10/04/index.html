@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://yokaze.github.io/2018/01/22/">
+<link rel="canonical" href="https://yokaze.github.io/2018/10/04/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>swiftc で Hello World - yokaze.github.io</title>
+    <title>lldb の source info コマンドの使い方 - yokaze.github.io</title>
     
-<meta name="description" content="swiftc コマンドで Hello world プログラムをビルドします。 print(&amp;quot;Hello world!&amp;quot;) $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料">
+<meta name="description" content="source info コマンドを使うとデバッグ中のプロセスに関するソースコードの情報を取得することができます。 ここでは、次のソースコードを例として source info コマンド">
 
-<meta property="og:title" content="swiftc で Hello World - yokaze.github.io">
+<meta property="og:title" content="lldb の source info コマンドの使い方 - yokaze.github.io">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2018/01/22/">
+<meta property="og:url" content="https://yokaze.github.io/2018/10/04/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="swiftc コマンドで Hello world プログラムをビルドします。 print(&amp;quot;Hello world!&amp;quot;) $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料">
+<meta property="og:description" content="source info コマンドを使うとデバッグ中のプロセスに関するソースコードの情報を取得することができます。 ここでは、次のソースコードを例として source info コマンド">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2018/01/22/">
-<meta name="twitter:title" content="swiftc で Hello World - yokaze.github.io">
-<meta name="twitter:description" content="swiftc コマンドで Hello world プログラムをビルドします。 print(&amp;quot;Hello world!&amp;quot;) $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料">
+<meta name="twitter:url" content="https://yokaze.github.io/2018/10/04/">
+<meta name="twitter:title" content="lldb の source info コマンドの使い方 - yokaze.github.io">
+<meta name="twitter:description" content="source info コマンドを使うとデバッグ中のプロセスに関するソースコードの情報を取得することができます。 ここでは、次のソースコードを例として source info コマンド">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://yokaze.github.io/"
     },
-    "headline": "swiftc で Hello World - yokaze.github.io",
+    "headline": "lldb の source info コマンドの使い方 - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
       "url": "https://yokaze.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2018-01-22T22:07:42JST",
-    "dateModified": "2018-01-22T22:07:42JST",
+    "datePublished": "2018-10-04T15:00:00JST",
+    "dateModified": "2018-10-04T15:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "swiftc コマンドで Hello world プログラムをビルドします。 print(&quot;Hello world!&quot;) $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料"
+    "description": "source info コマンドを使うとデバッグ中のプロセスに関するソースコードの情報を取得することができます。 ここでは、次のソースコードを例として source info コマンド"
   }
 </script>
 
@@ -140,63 +140,135 @@ if (!doNotTrack) {
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2018/" itemprop="url"><span itemprop="title">2018</span></a></li>
         
-        <li class="active">swiftc で Hello World</li>
+        <li class="active">lldb の source info コマンドの使い方</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-22T22:07:42JST">Jan 22, 2018</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-10-04T15:00:00JST">Oct 4, 2018</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
     </ul>
 
-    <h1 class="title">swiftc で Hello World</h1>
+    <h1 class="title">lldb の source info コマンドの使い方</h1>
   </header>
 
   
 
   <div class="article-body">
 
-<p><code>swiftc</code> コマンドで Hello world プログラムをビルドします。</p>
+<p><code>source info</code> コマンドを使うとデバッグ中のプロセスに関するソースコードの情報を取得することができます。
+ここでは、次のソースコードを例として <code>source info</code> コマンドの動作を解説します。</p>
 
-<pre><code class="language-swift">print(&quot;Hello world!&quot;)
+<pre><code class="language-cpp">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    printf(&quot;Hello, World!\n&quot;);
+    return 0;
+}
 </code></pre>
 
-<pre><code class="language-shell">$ swiftc sample.swift
-$ ./sample
-Hello world!
+<pre><code class="language-shell">$ # macOS High Sierra (10.13)
+$ clang sample.cpp -g -o sample
+$ lldb sample
+(lldb) target create &quot;sample&quot;
+Current executable set to 'sample' (x86_64).
 </code></pre>
 
-<p><code>swift</code> コマンドを使うとコンソールから直接実行することもできます。</p>
+<p><code>source info</code> コマンドには3つの構文があります。</p>
 
-<pre><code class="language-shell">$ swift sample.swift
-Hello world!
+<h3 id="1-ファイルを指定してソースコードの情報を表示する-f-l-e">1. ファイルを指定してソースコードの情報を表示する <code>-f</code> <code>-l</code> <code>-e</code></h3>
+
+<p><code>source info [-c &lt;count&gt;] [-s &lt;shlib-name&gt;] [-f &lt;filename&gt;] [-l &lt;linenum&gt;] [-e &lt;linenum&gt;]</code></p>
+
+<p><code>-f</code> オプションに続けてソースファイルの名前を指定します。
+<code>-l</code>, <code>-e</code> オプションで表示する範囲を指定できます。</p>
+
+<pre><code class="language-shell">(lldb) source info -f sample.cpp
+Lines found for file sample.cpp in compilation unit sample.cpp in `sample
+[0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
+[0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
+[0x0000000100000f6f-0x0000000100000f7a): /path/to/directory/sample.cpp:6:5
 </code></pre>
 
-<p>
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</p>
+<pre><code class="language-shell">(lldb) source info -f sample.cpp -l 5 -e 5
+Lines found for file sample.cpp in compilation unit sample.cpp in `sample
+[0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
+</code></pre>
 
+<p>また、<code>-c</code> オプションを使い、表示するエントリの数を制限することができます。</p>
+
+<pre><code class="language-shell">(lldb) source info -f sample.cpp -c 2
+Lines found for file sample.cpp in compilation unit sample.cpp in `sample
+[0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
+[0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
+</code></pre>
+
+<h3 id="2-シンボル名を指定してソースコードの情報を表示する-n">2. シンボル名を指定してソースコードの情報を表示する <code>-n</code></h3>
+
+<p><code>source info [-c &lt;count&gt;] [-s &lt;shlib-name&gt;] [-n &lt;symbol&gt;]</code></p>
+
+<p><code>-n</code> オプションに続けて関数の名前を指定します。
+<code>-s</code> オプションで探索するモジュールを限定することができます。</p>
+
+<pre><code class="language-shell">(lldb) source info -n main
+Lines found in module `sample
+[0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
+[0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
+[0x0000000100000f6f-0x0000000100000f7a): /path/to/directory/sample.cpp:6:5
+</code></pre>
+
+<pre><code class="language-shell">(lldb) source info -s sample -n main
+Lines found in module `sample
+[0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
+[0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
+[0x0000000100000f6f-0x0000000100000f7a): /path/to/directory/sample.cpp:6:5
+</code></pre>
+
+<p>モジュールの一覧は <code>target modules list</code> コマンドで表示できます。</p>
+
+<pre><code class="language-shell">(lldb) target modules list
+[  0] CE5B2F68-A0F6-3747-8CC0-BEA6BF888731 0x0000000100000000 /path/to/directory/sample
+      /path/to/directory/sample.dSYM/Contents/Resources/DWARF/sample
+      ...
+</code></pre>
+
+<h3 id="3-関数のアドレスを指定してソースコードの情報を表示する-a">3. 関数のアドレスを指定してソースコードの情報を表示する <code>-a</code></h3>
+
+<p><code>source info [-c &lt;count&gt;] [-a &lt;address-expression&gt;]</code></p>
+
+<p><code>-a</code> オプションに続けて関数のアドレスを指定します。</p>
+
+<pre><code class="language-shell">(lldb) p main
+sou(int (*)()) $0 = 0x0000000100000f50
+(lldb) source info -a 0x100000f50
+Lines found in module `sample
+[0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
+</code></pre>
+
+<h2 id="追加情報">追加情報</h2>
+
+<p><code>source info</code> コマンドの構文とオプション一覧は <code>help source info</code> コマンドで確認できます。</p>
 
 <h2 id="参考資料">参考資料</h2>
 
 <ul>
-<li><p>Swiftをコマンドラインから使ってみた。<br />
+<li><p>The LLVM Compiler Infrastructure<br />
 <span style="word-break: break-all;">
-<a href="http://yamaimo.hatenablog.jp/entry/2015/06/19/200000">http://yamaimo.hatenablog.jp/entry/2015/06/19/200000</a>
+<a href="https://llvm.org/">https://llvm.org/</a>
 </span></p></li>
 
-<li><p>Swift コンパイラのアーキテクチャ<br />
+<li><p>lldb で使えるコマンド一覧<br />
 <span style="word-break: break-all;">
-<a href="https://qiita.com/rintaro/items/3ad640e3938207218c20">https://qiita.com/rintaro/items/3ad640e3938207218c20</a>
+<a href="https://yokaze.github.io/2018/01/06/">https://yokaze.github.io/2018/01/06/</a>
 </span></p></li>
 
-<li><p>apple/swift: The Swift Programming Language<br />
+<li><p>lldb のコマンドのオプションを読み解く<br />
 <span style="word-break: break-all;">
-<a href="https://github.com/apple/swift">https://github.com/apple/swift</a>
+<a href="https://yokaze.github.io/2018/09/25/">https://yokaze.github.io/2018/09/25/</a>
 </span></p></li>
 </ul>
 </div>
@@ -241,11 +313,11 @@ Hello world!
     </div>
     <div class="list-group">
       
-      <a href="https://yokaze.github.io/2018/10/04/" class="list-group-item">lldb の source info コマンドの使い方</a>
+      <a href="https://yokaze.github.io/2018/09/25/" class="list-group-item">lldb のコマンドのオプションを読み解く</a>
+      
+      <a href="https://yokaze.github.io/2018/01/06/" class="list-group-item">lldb で使えるコマンド一覧</a>
       
       <a href="https://yokaze.github.io/2018/09/26/" class="list-group-item">clang で初期化されていない変数を使った場合に警告を出す (-Wuninitialized)</a>
-      
-      <a href="https://yokaze.github.io/2018/09/25/" class="list-group-item">lldb のコマンドのオプションを読み解く</a>
       
       <a href="https://yokaze.github.io/2018/09/18/" class="list-group-item">pybind11 で print 文を使う</a>
       
@@ -305,8 +377,6 @@ Hello world!
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>
