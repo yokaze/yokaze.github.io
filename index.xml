@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Thu, 04 Oct 2018 15:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 11 Oct 2018 18:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CMake &#43; Visual Studio で特定の警告を無視する</title>
+      <link>https://yokaze.github.io/2018/10/11/</link>
+      <pubDate>Thu, 11 Oct 2018 18:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2018/10/11/</guid>
+      <description>CMake と Visual Studio を併用する際、特定の警告を無視するには /wd オプションを指定します。 次の例では、通常 x の初期化に関する警告が出力されます。 #include &amp;lt;stdio.h&amp;gt; int main(void) { int x;</description>
+    </item>
     
     <item>
       <title>lldb の source info コマンドの使い方</title>

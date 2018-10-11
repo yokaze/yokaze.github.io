@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://yokaze.github.io/2018/02/28/">
+<link rel="canonical" href="https://yokaze.github.io/2018/10/11/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>二重ポインタの const 早見表 - yokaze.github.io</title>
+    <title>CMake &#43; Visual Studio で特定の警告を無視する - yokaze.github.io</title>
     
-<meta name="description" content="多重ポインタの const の付け方をまとめました。 まずは普通のポインタから。 int main() { const int* x = new int(0); // ポインタの指す内容を書き換えることができない int* const y = new">
+<meta name="description" content="CMake と Visual Studio を併用する際、特定の警告を無視するには /wd オプションを指定します。 次の例では、通常 x の初期化に関する警告が出力されます。 #include &amp;lt;stdio.h&amp;gt; int main(void) { int x;">
 
-<meta property="og:title" content="二重ポインタの const 早見表 - yokaze.github.io">
+<meta property="og:title" content="CMake &#43; Visual Studio で特定の警告を無視する - yokaze.github.io">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2018/02/28/">
+<meta property="og:url" content="https://yokaze.github.io/2018/10/11/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="多重ポインタの const の付け方をまとめました。 まずは普通のポインタから。 int main() { const int* x = new int(0); // ポインタの指す内容を書き換えることができない int* const y = new">
+<meta property="og:description" content="CMake と Visual Studio を併用する際、特定の警告を無視するには /wd オプションを指定します。 次の例では、通常 x の初期化に関する警告が出力されます。 #include &amp;lt;stdio.h&amp;gt; int main(void) { int x;">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2018/02/28/">
-<meta name="twitter:title" content="二重ポインタの const 早見表 - yokaze.github.io">
-<meta name="twitter:description" content="多重ポインタの const の付け方をまとめました。 まずは普通のポインタから。 int main() { const int* x = new int(0); // ポインタの指す内容を書き換えることができない int* const y = new">
+<meta name="twitter:url" content="https://yokaze.github.io/2018/10/11/">
+<meta name="twitter:title" content="CMake &#43; Visual Studio で特定の警告を無視する - yokaze.github.io">
+<meta name="twitter:description" content="CMake と Visual Studio を併用する際、特定の警告を無視するには /wd オプションを指定します。 次の例では、通常 x の初期化に関する警告が出力されます。 #include &amp;lt;stdio.h&amp;gt; int main(void) { int x;">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://yokaze.github.io/"
     },
-    "headline": "二重ポインタの const 早見表 - yokaze.github.io",
+    "headline": "CMake &#43; Visual Studio で特定の警告を無視する - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
       "url": "https://yokaze.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2018-02-28T20:00:00JST",
-    "dateModified": "2018-02-28T20:00:00JST",
+    "datePublished": "2018-10-11T18:00:00JST",
+    "dateModified": "2018-10-11T18:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "多重ポインタの const の付け方をまとめました。 まずは普通のポインタから。 int main() { const int* x = new int(0); // ポインタの指す内容を書き換えることができない int* const y = new"
+    "description": "CMake と Visual Studio を併用する際、特定の警告を無視するには /wd オプションを指定します。 次の例では、通常 x の初期化に関する警告が出力されます。 #include &lt;stdio.h&gt; int main(void) { int x;"
   }
 </script>
 
@@ -140,155 +140,104 @@ if (!doNotTrack) {
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2018/" itemprop="url"><span itemprop="title">2018</span></a></li>
         
-        <li class="active">二重ポインタの const 早見表</li>
+        <li class="active">CMake &#43; Visual Studio で特定の警告を無視する</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-02-28T20:00:00JST">Feb 28, 2018</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-10-11T18:00:00JST">Oct 11, 2018</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
     </ul>
 
-    <h1 class="title">二重ポインタの const 早見表</h1>
+    <h1 class="title">CMake &#43; Visual Studio で特定の警告を無視する</h1>
   </header>
 
   
 
   <div class="article-body">
 
-<p>多重ポインタの <code>const</code> の付け方をまとめました。
-まずは普通のポインタから。</p>
+<p>CMake と Visual Studio を併用する際、特定の警告を無視するには <code>/wd</code> オプションを指定します。</p>
 
-<pre><code class="language-cpp">int main()
+<p>次の例では、通常 <code>x</code> の初期化に関する警告が出力されます。</p>
+
+<pre><code class="language-cpp">#include &lt;stdio.h&gt;
+
+int main(void)
 {
-    const int* x = new int(0);       // ポインタの指す内容を書き換えることができない
-    int* const y = new int(0);       // ポインタの指すアドレスを書き換えることができない
-    const int* const z = new int(0); // どちらの操作もできない
-    *x = 1;
-    *y = 1;
-    x = nullptr;
-    y = nullptr;
-
+    int x;
+    printf(&quot;%d\n&quot;, x);
     return 0;
 }
 </code></pre>
 
-<pre><code class="language-shell">$ clang sample.cpp -std=c++11
-sample.cpp:5:8: error: read-only variable is not assignable
-    *x = 1;
-    ~~ ^
-sample.cpp:8:7: error: cannot assign to variable 'y' with const-qualified type 'int *const'
-    y = nullptr;
-    ~ ^
-sample.cpp:4:16: note: variable 'y' declared const here
-    int* const y = new int(0);
-    ~~~~~~~~~~~^~~~~~~~~~~~~~
-2 errors generated.
+<pre><code class="language-no-highlight">1&gt;------ すべてのリビルド開始: プロジェクト:ZERO_CHECK, 構成: Debug x64 ------
+1&gt;Checking Build System
+1&gt;CMake does not need to re-run because /path/to/directory/CMakeFiles/generate.stamp is up-to-date.
+2&gt;------ すべてのリビルド開始: プロジェクト:Sample, 構成: Debug x64 ------
+2&gt;Building Custom Rule /path/to/directory/CMakeLists.txt
+2&gt;CMake does not need to re-run because /path/to/directory/CMakeFiles/generate.stamp is up-to-date.
+2&gt;sample.cpp
+2&gt;/path/to/directory/sample.cpp(6): warning C4700: 初期化されていないローカル変数 'x' が使用されます
+2&gt;Sample.vcxproj -&gt; /path/to/directory/Debug/Sample.exe
+2&gt;Sample.vcxproj -&gt; /path/to/directory/Debug/Sample.pdb (Full PDB)
+2&gt;プロジェクト &quot;Sample.vcxproj&quot; のビルドが終了しました。
+3&gt;------ [すべてリビルド] のスキップ: プロジェクト:ALL_BUILD, 構成: Debug x64 ------
+3&gt;プロジェクトはこのソリューション構成に対してビルドするように選択されていません。
+========== すべてリビルド: 2 正常終了、0 失敗、1 スキップ ==========
 </code></pre>
 
-<h2 id="二重ポインタの場合">二重ポインタの場合</h2>
+<h2 id="警告の無効化">警告の無効化</h2>
 
-<pre><code class="language-cpp">int main()
-{
-    int** x = nullptr;
-    const int* const* a = x; // 一重ポインタ (*a) と値 (**a) を書き換えることができない
-    int* const* b = x;       // 一重ポインタ (*b) の指すアドレスを書き換えることができない
-    int** const c = x;       // 二重ポインタ (c) の指すアドレスを書き換えることができない
-    **a = 1;
-    **b = 1;
-    **c = 1;
-    *a = nullptr;
-    *b = nullptr;
-    *c = nullptr;
-    a = nullptr;
-    b = nullptr;
-    c = nullptr;
+<p>上記のコードを <code>CMake</code> でプロジェクト化する際、<code>add_compile_options</code> コマンドで <code>/wd</code> オプションを指定すると特定の警告を無視することができます。</p>
 
-    return 0;
-}
+<pre><code class="language-no-highlight">cmake_minimum_required(VERSION 3.12)
+project(Sample)
+
+add_compile_options(/wd4700)
+add_executable(Sample sample.cpp)
 </code></pre>
 
-<pre><code class="language-shell">$ clang sample.cpp -std=c++11
-sample.cpp:7:9: error: read-only variable is not assignable
-    **a = 1;
-    ~~~ ^
-sample.cpp:10:8: error: read-only variable is not assignable
-    *a = nullptr;
-    ~~ ^
-sample.cpp:11:8: error: read-only variable is not assignable
-    *b = nullptr;
-    ~~ ^
-sample.cpp:15:7: error: cannot assign to variable 'c' with const-qualified type 'int **const'
-    c = nullptr;
-    ~ ^
-sample.cpp:6:17: note: variable 'c' declared const here
-    int** const c = x;
-    ~~~~~~~~~~~~^~~~~
-4 errors generated.
+<pre><code class="language-no-highlight">1&gt;------ すべてのリビルド開始: プロジェクト:ZERO_CHECK, 構成: Debug x64 ------
+1&gt;Checking Build System
+1&gt;CMake does not need to re-run because /path/to/directory/CMakeFiles/generate.stamp is up-to-date.
+2&gt;------ すべてのリビルド開始: プロジェクト:Sample, 構成: Debug x64 ------
+2&gt;Building Custom Rule /path/to/directory/CMakeLists.txt
+2&gt;CMake does not need to re-run because /path/to/directory/CMakeFiles/generate.stamp is up-to-date.
+2&gt;sample.cpp
+2&gt;Sample.vcxproj -&gt; /path/to/directory/Debug/Sample.exe
+2&gt;Sample.vcxproj -&gt; /path/to/directory/Debug/Sample.pdb (Full PDB)
+3&gt;------ [すべてリビルド] のスキップ: プロジェクト:ALL_BUILD, 構成: Debug x64 ------
+3&gt;プロジェクトはこのソリューション構成に対してビルドするように選択されていません。
+========== すべてリビルド: 2 正常終了、0 失敗、1 スキップ ==========
 </code></pre>
-
-<h2 id="よくある間違い">よくある間違い</h2>
-
-<pre><code class="language-cpp">int main()
-{
-    int** x = nullptr;
-    const int** a = x;
-
-    return 0;
-}
-</code></pre>
-
-<pre><code class="language-shell">$ clang sample.cpp -std=c++11
-sample.cpp:4:17: error: cannot initialize a variable of type 'const int **' with an lvalue of type 'int **'
-    const int** a = x;
-                ^   ~
-1 error generated.
-</code></pre>
-
-<p><code>int**</code> を <code>const int**</code> に変換することはできません。</p>
-
-<h2 id="おまけ-三重ポインタ">おまけ（三重ポインタ）</h2>
-
-<pre><code class="language-cpp">int main()
-{
-    int*** x = nullptr;
-    const int*** a = x;       // const - none  - none
-    int* const** b = x;       // none  - const - none
-    const int* const** c = x; // const - const - none
-    const int** const* d = x; // const - none  - const
-
-    int* const* const* e = x; // none  - const - const これは OK
-
-    return 0;
-}
-</code></pre>
-
-<pre><code class="language-shell">$ clang sample.cpp -std=c++11
-sample.cpp:4:18: error: cannot initialize a variable of type 'const int ***' with an lvalue of type 'int ***'
-    const int*** a = x;       // const - none  - none
-                 ^   ~
-sample.cpp:5:18: error: cannot initialize a variable of type 'int *const **' with an lvalue of type 'int ***'
-    int* const** b = x;       // none  - const - none
-                 ^   ~
-sample.cpp:6:24: error: cannot initialize a variable of type 'const int *const **' with an lvalue of type 'int ***'
-    const int* const** c = x; // const - const - none
-                       ^   ~
-sample.cpp:7:24: error: cannot initialize a variable of type 'const int **const *' with an lvalue of type 'int ***'
-    const int** const* d = x; // const - none  - const
-                       ^   ~
-4 errors generated.
-</code></pre>
-
-<p><code>const</code> を付け始めたら右端までキッチリ付けること。</p>
 
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
+
+<h2 id="参考資料">参考資料</h2>
+
+<ul>
+<li><p>CMake<br />
+<span style="word-break: break-all;">
+<a href="https://cmake.org/">https://cmake.org/</a>
+</span></p></li>
+
+<li><p>CMake を使ったクロスプラットフォーム開発環境<br />
+<span style="word-break: break-all;">
+<a href="https://engineering.linecorp.com/ja/blog/detail/103">https://engineering.linecorp.com/ja/blog/detail/103</a>
+</span></p></li>
+
+<li><p>コンパイラの警告 (レベル 1 およびレベル 4) C4700<br />
+<span style="word-break: break-all;">
+<a href="https://msdn.microsoft.com/ja-jp/library/axhfhh6x.aspx">https://msdn.microsoft.com/ja-jp/library/axhfhh6x.aspx</a>
+</span></p></li>
+</ul>
 </div>
  
   <br />
@@ -331,8 +280,6 @@ sample.cpp:7:24: error: cannot initialize a variable of type 'const int **const 
     </div>
     <div class="list-group">
       
-      <a href="https://yokaze.github.io/2018/10/11/" class="list-group-item">CMake &#43; Visual Studio で特定の警告を無視する</a>
-      
       <a href="https://yokaze.github.io/2018/10/04/" class="list-group-item">lldb の source info コマンドの使い方</a>
       
       <a href="https://yokaze.github.io/2018/09/26/" class="list-group-item">clang で初期化されていない変数を使った場合に警告を出す (-Wuninitialized)</a>
@@ -348,6 +295,8 @@ sample.cpp:7:24: error: cannot initialize a variable of type 'const int **const 
       <a href="https://yokaze.github.io/2018/03/08/" class="list-group-item">pybind11 でキーワード引数 (kwargs) を使う</a>
       
       <a href="https://yokaze.github.io/2018/03/05/" class="list-group-item">pybind11 で main モジュール上に関数を定義する</a>
+      
+      <a href="https://yokaze.github.io/2018/02/28/" class="list-group-item">二重ポインタの const 早見表</a>
       
       <a href="https://yokaze.github.io/2018/02/24/" class="list-group-item">pybind11 上の matplotlib で macosx バックエンドを使う</a>
       
