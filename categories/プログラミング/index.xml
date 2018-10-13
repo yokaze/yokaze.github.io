@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Thu, 11 Oct 2018 18:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 13 Oct 2018 12:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CMake &#43; Visual Studio でモジュール定義ファイル (.def) を使う</title>
+      <link>https://yokaze.github.io/2018/10/13/</link>
+      <pubDate>Sat, 13 Oct 2018 12:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2018/10/13/</guid>
+      <description>CMake でモジュール定義ファイルを使う場合は、.def ファイルをソースコードと同時に指定します。 #include &amp;lt;stdio.h&amp;gt; extern &amp;quot;C&amp;quot; void hello() { printf(&amp;quot;Hello\n&amp;quot;); } エクスポートの設定がない場合、関</description>
+    </item>
     
     <item>
       <title>CMake &#43; Visual Studio で特定の警告を無視する</title>
