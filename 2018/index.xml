@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Sat, 13 Oct 2018 12:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 26 Oct 2018 21:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/2018/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>高尾山・城山縦走</title>
+      <link>https://yokaze.github.io/2018/10/26/</link>
+      <pubDate>Fri, 26 Oct 2018 21:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2018/10/26/</guid>
+      <description>FUJIFILM X-T2, XF18-55mm F2.8-4 R LM OIS, 1/80, F5.6, WB 5300K, ASTIA @ 高尾山 先週に引き続き山に登ってきました。 登山靴とストックを手に入れたので、今回は長めに歩いてみます。 登山ルート 高尾</description>
+    </item>
     
     <item>
       <title>CMake &#43; Visual Studio でモジュール定義ファイル (.def) を使う</title>
