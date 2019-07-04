@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://yokaze.github.io/2017/10/06/">
+<link rel="canonical" href="https://yokaze.github.io/2019/07/04/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>clang で未使用のマクロを警告する (-Wunused-macros) - yokaze.github.io</title>
+    <title>clang でソースコードが依存するヘッダー一覧を表示する - yokaze.github.io</title>
     
-<meta name="description" content="clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # macOS Sierra (10.12) &#43; Homebrew $ clang sample.cpp -Wunused-macros sample.cpp:1:9: warning: macro is not used [-Wunused-macros]">
+<meta name="description" content="ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &amp;lt;algorithm&amp;gt; sample.cpp #include &amp;quot;sample.h&amp;quot; int main(void) { printf(&amp;quot;%d\n&amp;quot;, std::min&amp;lt;int&amp;gt;(1, 2)); return 0; } -MF オプションで出力先を指定で">
 
-<meta property="og:title" content="clang で未使用のマクロを警告する (-Wunused-macros) - yokaze.github.io">
+<meta property="og:title" content="clang でソースコードが依存するヘッダー一覧を表示する - yokaze.github.io">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2017/10/06/">
+<meta property="og:url" content="https://yokaze.github.io/2019/07/04/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # macOS Sierra (10.12) &#43; Homebrew $ clang sample.cpp -Wunused-macros sample.cpp:1:9: warning: macro is not used [-Wunused-macros]">
+<meta property="og:description" content="ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &amp;lt;algorithm&amp;gt; sample.cpp #include &amp;quot;sample.h&amp;quot; int main(void) { printf(&amp;quot;%d\n&amp;quot;, std::min&amp;lt;int&amp;gt;(1, 2)); return 0; } -MF オプションで出力先を指定で">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2017/10/06/">
-<meta name="twitter:title" content="clang で未使用のマクロを警告する (-Wunused-macros) - yokaze.github.io">
-<meta name="twitter:description" content="clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # macOS Sierra (10.12) &#43; Homebrew $ clang sample.cpp -Wunused-macros sample.cpp:1:9: warning: macro is not used [-Wunused-macros]">
+<meta name="twitter:url" content="https://yokaze.github.io/2019/07/04/">
+<meta name="twitter:title" content="clang でソースコードが依存するヘッダー一覧を表示する - yokaze.github.io">
+<meta name="twitter:description" content="ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &amp;lt;algorithm&amp;gt; sample.cpp #include &amp;quot;sample.h&amp;quot; int main(void) { printf(&amp;quot;%d\n&amp;quot;, std::min&amp;lt;int&amp;gt;(1, 2)); return 0; } -MF オプションで出力先を指定で">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://yokaze.github.io/"
     },
-    "headline": "clang で未使用のマクロを警告する (-Wunused-macros) - yokaze.github.io",
+    "headline": "clang でソースコードが依存するヘッダー一覧を表示する - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
       "url": "https://yokaze.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2017-10-06T17:51:02JST",
-    "dateModified": "2017-10-06T17:51:02JST",
+    "datePublished": "2019-07-04T21:00:00JST",
+    "dateModified": "2019-07-04T21:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # macOS Sierra (10.12) + Homebrew $ clang sample.cpp -Wunused-macros sample.cpp:1:9: warning: macro is not used [-Wunused-macros]"
+    "description": "ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &lt;algorithm&gt; sample.cpp #include &quot;sample.h&quot; int main(void) { printf(&quot;%d\n&quot;, std::min&lt;int&gt;(1, 2)); return 0; } -MF オプションで出力先を指定で"
   }
 </script>
 
@@ -138,53 +138,65 @@ if (!doNotTrack) {
       <ol class="breadcrumb">
         <li><a href="https://yokaze.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
         
-        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2017/" itemprop="url"><span itemprop="title">2017</span></a></li>
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2019/" itemprop="url"><span itemprop="title">2019</span></a></li>
         
-        <li class="active">clang で未使用のマクロを警告する (-Wunused-macros)</li>
+        <li class="active">clang でソースコードが依存するヘッダー一覧を表示する</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-10-06T17:51:02JST">Oct 6, 2017</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-04T21:00:00JST">Jul 4, 2019</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2019/">2019</a></li>
       
     </ul>
 
-    <h1 class="title">clang で未使用のマクロを警告する (-Wunused-macros)</h1>
+    <h1 class="title">clang でソースコードが依存するヘッダー一覧を表示する</h1>
   </header>
 
   
 
   <div class="article-body">
 
-<p>clang で未使用のマクロを警告するには、<code>-Wunused-macros</code> オプションを指定します。</p>
+<p>ソースコードが依存するヘッダー一覧を表示するには、<code>-MD</code> オプションを使います。</p>
 
-<pre><code class="language-cpp">#define MY_UNUSED_MACRO
+<p><code>sample.h</code></p>
+
+<pre><code class="language-cpp">#pragma once
+#include &lt;algorithm&gt;
+</code></pre>
+
+<p><code>sample.cpp</code></p>
+
+<pre><code class="language-cpp">#include &quot;sample.h&quot;
 
 int main(void)
 {
+    printf(&quot;%d\n&quot;, std::min&lt;int&gt;(1, 2));
     return 0;
 }
 </code></pre>
 
-<pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
-$ clang sample.cpp -Wunused-macros
-sample.cpp:1:9: warning: macro is not used [-Wunused-macros]
-#define MY_UNUSED_MACRO
-        ^
-1 warning generated.
+<p><code>-MF</code> オプションで出力先を指定できます。</p>
+
+<pre><code class="language-shell">$ clang sample.cpp -MD -MF sample.d
+$ cat sample.d
+sample.o: sample.cpp sample.h \
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/algorithm \
+  （中略）
+/usr/include/assert.h \
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/atomic
+$ # この例では、ヘッダーとして 84 ファイルが include されます。
+$ cat sample.d | wc -l
+      84
 </code></pre>
 
-<h2 id="警告を抑制する">警告を抑制する</h2>
+<p><code>-MMD</code> オプションを使うと、ユーザー定義ファイルのみの一覧を表示することができます。</p>
 
-<p>警告を抑制したい場合は <code>-Wno-unused-macros</code> を指定します。<br />
-<code>-Wunused-macros</code> はデフォルトで無効になっていますが、ビルドツール等がこのオプションを指定している場合は後付けで打ち消すことができます。</p>
-
-<pre><code>$ # macOS Sierra (10.12) + Homebrew
-$ # -Wno-unused-macros が後ろにある場合、警告は表示されません。
-$ clang sample.cpp -Wunused-macros -Wno-unused-macros
+<pre><code class="language-shell">$ clang sample.cpp -MMD -MF sample.d
+$ cat sample.d
+sample.o: sample.cpp sample.h
 </code></pre>
 
 <p>
@@ -196,15 +208,10 @@ $ clang sample.cpp -Wunused-macros -Wno-unused-macros
 <h2 id="参考資料">参考資料</h2>
 
 <ul>
-<li><p>Clang 6 documentation &mdash; DIAGNOSTIC FLAGS IN CLANG<br />
+<li>Clang command line argument reference<br />
 <span style="word-break: break-all;">
-<a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wunused-macros">https://clang.llvm.org/docs/DiagnosticsReference.html#wunused-macros</a>
-</span></p></li>
-
-<li><p>gccで Wall &amp; Wextra を使っても有効にならない警告<br />
-<span style="word-break: break-all;">
-<a href="https://qiita.com/EqualL2/items/0cfb5b1cbfd70e2af662">https://qiita.com/EqualL2/items/0cfb5b1cbfd70e2af662</a>
-</span></p></li>
+<a href="https://clang.llvm.org/docs/ClangCommandLineReference.html">https://clang.llvm.org/docs/ClangCommandLineReference.html</a>
+</span></li>
 </ul>
 </div>
  
@@ -248,10 +255,6 @@ $ clang sample.cpp -Wunused-macros -Wno-unused-macros
     </div>
     <div class="list-group">
       
-      <a href="https://yokaze.github.io/2017/09/21/" class="list-group-item">clang でマクロの再定義を警告する (-Wmacro-redefined)</a>
-      
-      <a href="https://yokaze.github.io/2019/07/04/" class="list-group-item">clang でソースコードが依存するヘッダー一覧を表示する</a>
-      
       <a href="https://yokaze.github.io/2018/09/26/" class="list-group-item">clang で初期化されていない変数を使った場合に警告を出す (-Wuninitialized)</a>
       
       <a href="https://yokaze.github.io/2018/09/07/" class="list-group-item">clang でループ式が実行されない場合に警告を出す (-Wunreachable-code-loop-increment)</a>
@@ -266,7 +269,11 @@ $ clang sample.cpp -Wunused-macros -Wno-unused-macros
       
       <a href="https://yokaze.github.io/2018/01/16/" class="list-group-item">clang で 64bit 整数から 32bit 整数への暗黙の型変換を警告する (-Wshorten-64-to-32)</a>
       
-      <a href="https://yokaze.github.io/2017/09/15/" class="list-group-item">Homebrew で python3 用の Boost.Python をインストールする</a>
+      <a href="https://yokaze.github.io/2017/10/06/" class="list-group-item">clang で未使用のマクロを警告する (-Wunused-macros)</a>
+      
+      <a href="https://yokaze.github.io/2017/09/21/" class="list-group-item">clang でマクロの再定義を警告する (-Wmacro-redefined)</a>
+      
+      <a href="https://yokaze.github.io/2018/10/13/" class="list-group-item">CMake &#43; Visual Studio でモジュール定義ファイル (.def) を使う</a>
       
     </div>
   </section>

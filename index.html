@@ -87,6 +87,25 @@ if (!doNotTrack) {
       <li><article class="li">
   <header>
     <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-04T21:00:00JST">Jul 4, 2019</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2019/">2019</a></li>
+      
+    </ul>
+    <h2 class="title"><a href="https://yokaze.github.io/2019/07/04/">clang でソースコードが依存するヘッダー一覧を表示する</a></h2>
+  </header>
+
+  
+  <div class="summary">ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &lt;algorithm&gt; sample.cpp #include &quot;sample.h&quot; int main(void) { printf(&quot;%d\n&quot;, std::min&lt;int&gt;(1, 2)); return 0; } -MF オプションで出力先を指定で</div>
+
+  <footer>
+    <a href="https://yokaze.github.io/2019/07/04/" title="clang でソースコードが依存するヘッダー一覧を表示する">Read More…</a>
+  </footer>
+</article>
+</li>
+      
+      <li><article class="li">
+  <header>
+    <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-02T21:00:00JST">Jul 2, 2019</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2019/">2019</a></li>
       
@@ -255,25 +274,6 @@ if (!doNotTrack) {
 </article>
 </li>
       
-      <li><article class="li">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-09-18T18:00:00JST">Sep 18, 2018</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
-      
-    </ul>
-    <h2 class="title"><a href="https://yokaze.github.io/2018/09/18/">pybind11 で print 文を使う</a></h2>
-  </header>
-
-  
-  <div class="summary">pybind11 でオブジェクトの値を表示するには、pybind11::print を使います。 #include &lt;pybind11/embed.h&gt; #include &lt;pybind11/pybind11.h&gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&quot;sys&quot;); py::print(sys_module); return 0; } $ # macOS High Sierra (10.13) $ clang sample.cpp -std=c++11</div>
-
-  <footer>
-    <a href="https://yokaze.github.io/2018/09/18/" title="pybind11 で print 文を使う">Read More…</a>
-  </footer>
-</article>
-</li>
-      
     </ul>
 
     
@@ -306,6 +306,8 @@ if (!doNotTrack) {
     </div>
     <div class="list-group">
       
+      <a href="https://yokaze.github.io/2019/07/04/" class="list-group-item">clang でソースコードが依存するヘッダー一覧を表示する</a>
+      
       <a href="https://yokaze.github.io/2019/07/02/" class="list-group-item">carthage のバージョンを確認する</a>
       
       <a href="https://yokaze.github.io/2018/10/26/" class="list-group-item">高尾山・城山縦走</a>
@@ -323,8 +325,6 @@ if (!doNotTrack) {
       <a href="https://yokaze.github.io/2018/09/26/" class="list-group-item">clang で初期化されていない変数を使った場合に警告を出す (-Wuninitialized)</a>
       
       <a href="https://yokaze.github.io/2018/09/25/" class="list-group-item">lldb のコマンドのオプションを読み解く</a>
-      
-      <a href="https://yokaze.github.io/2018/09/18/" class="list-group-item">pybind11 で print 文を使う</a>
       
     </div>
   </section>
