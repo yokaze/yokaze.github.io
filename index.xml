@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Thu, 04 Jul 2019 21:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jul 2019 18:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>lldb で関数の呼び出し履歴を表示する</title>
+      <link>https://yokaze.github.io/2019/07/05/</link>
+      <pubDate>Fri, 05 Jul 2019 18:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2019/07/05/</guid>
+      <description>lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &amp;lt;stdio.h&amp;gt; void sample1() { printf(&amp;quot;sample 1\n&amp;quot;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ clang -g sample.cpp -o</description>
+    </item>
     
     <item>
       <title>clang でソースコードが依存するヘッダー一覧を表示する</title>

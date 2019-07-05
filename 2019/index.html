@@ -91,6 +91,25 @@ if (!doNotTrack) {
       <li><article class="li">
   <header>
     <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-05T18:00:00JST">Jul 5, 2019</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2019/">2019</a></li>
+      
+    </ul>
+    <h2 class="title"><a href="https://yokaze.github.io/2019/07/05/">lldb で関数の呼び出し履歴を表示する</a></h2>
+  </header>
+
+  
+  <div class="summary">lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &lt;stdio.h&gt; void sample1() { printf(&quot;sample 1\n&quot;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ clang -g sample.cpp -o</div>
+
+  <footer>
+    <a href="https://yokaze.github.io/2019/07/05/" title="lldb で関数の呼び出し履歴を表示する">Read More…</a>
+  </footer>
+</article>
+</li>
+      
+      <li><article class="li">
+  <header>
+    <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-04T21:00:00JST">Jul 4, 2019</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2019/">2019</a></li>
       
@@ -144,6 +163,8 @@ if (!doNotTrack) {
     </div>
     <div class="list-group">
       
+      <a href="https://yokaze.github.io/2019/07/05/" class="list-group-item">lldb で関数の呼び出し履歴を表示する</a>
+      
       <a href="https://yokaze.github.io/2019/07/04/" class="list-group-item">clang でソースコードが依存するヘッダー一覧を表示する</a>
       
       <a href="https://yokaze.github.io/2019/07/02/" class="list-group-item">carthage のバージョンを確認する</a>
@@ -161,8 +182,6 @@ if (!doNotTrack) {
       <a href="https://yokaze.github.io/2018/09/30/" class="list-group-item">早朝の山下公園</a>
       
       <a href="https://yokaze.github.io/2018/09/26/" class="list-group-item">clang で初期化されていない変数を使った場合に警告を出す (-Wuninitialized)</a>
-      
-      <a href="https://yokaze.github.io/2018/09/25/" class="list-group-item">lldb のコマンドのオプションを読み解く</a>
       
     </div>
   </section>

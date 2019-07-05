@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://yokaze.github.io/2018/09/25/">
+<link rel="canonical" href="https://yokaze.github.io/2019/07/05/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>lldb のコマンドのオプションを読み解く - yokaze.github.io</title>
+    <title>lldb で関数の呼び出し履歴を表示する - yokaze.github.io</title>
     
-<meta name="description" content="lldb のコマンドのヘルプを確認すると、複数の構文が表示されることがあります。 次の例では、ソースコードの情報を取得する source info コマンドについて3つの構">
+<meta name="description" content="lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &amp;lt;stdio.h&amp;gt; void sample1() { printf(&amp;quot;sample 1\n&amp;quot;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ clang -g sample.cpp -o">
 
-<meta property="og:title" content="lldb のコマンドのオプションを読み解く - yokaze.github.io">
+<meta property="og:title" content="lldb で関数の呼び出し履歴を表示する - yokaze.github.io">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2018/09/25/">
+<meta property="og:url" content="https://yokaze.github.io/2019/07/05/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="lldb のコマンドのヘルプを確認すると、複数の構文が表示されることがあります。 次の例では、ソースコードの情報を取得する source info コマンドについて3つの構">
+<meta property="og:description" content="lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &amp;lt;stdio.h&amp;gt; void sample1() { printf(&amp;quot;sample 1\n&amp;quot;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ clang -g sample.cpp -o">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2018/09/25/">
-<meta name="twitter:title" content="lldb のコマンドのオプションを読み解く - yokaze.github.io">
-<meta name="twitter:description" content="lldb のコマンドのヘルプを確認すると、複数の構文が表示されることがあります。 次の例では、ソースコードの情報を取得する source info コマンドについて3つの構">
+<meta name="twitter:url" content="https://yokaze.github.io/2019/07/05/">
+<meta name="twitter:title" content="lldb で関数の呼び出し履歴を表示する - yokaze.github.io">
+<meta name="twitter:description" content="lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &amp;lt;stdio.h&amp;gt; void sample1() { printf(&amp;quot;sample 1\n&amp;quot;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ clang -g sample.cpp -o">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://yokaze.github.io/"
     },
-    "headline": "lldb のコマンドのオプションを読み解く - yokaze.github.io",
+    "headline": "lldb で関数の呼び出し履歴を表示する - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
       "url": "https://yokaze.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2018-09-25T21:00:00JST",
-    "dateModified": "2018-09-25T21:00:00JST",
+    "datePublished": "2019-07-05T18:00:00JST",
+    "dateModified": "2019-07-05T18:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "lldb のコマンドのヘルプを確認すると、複数の構文が表示されることがあります。 次の例では、ソースコードの情報を取得する source info コマンドについて3つの構"
+    "description": "lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &lt;stdio.h&gt; void sample1() { printf(&quot;sample 1\n&quot;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ clang -g sample.cpp -o"
   }
 </script>
 
@@ -138,140 +138,80 @@ if (!doNotTrack) {
       <ol class="breadcrumb">
         <li><a href="https://yokaze.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
         
-        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2018/" itemprop="url"><span itemprop="title">2018</span></a></li>
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2019/" itemprop="url"><span itemprop="title">2019</span></a></li>
         
-        <li class="active">lldb のコマンドのオプションを読み解く</li>
+        <li class="active">lldb で関数の呼び出し履歴を表示する</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-09-25T21:00:00JST">Sep 25, 2018</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-05T18:00:00JST">Jul 5, 2019</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2019/">2019</a></li>
       
     </ul>
 
-    <h1 class="title">lldb のコマンドのオプションを読み解く</h1>
+    <h1 class="title">lldb で関数の呼び出し履歴を表示する</h1>
   </header>
 
   
 
   <div class="article-body">
 
-<p>lldb のコマンドのヘルプを確認すると、複数の構文が表示されることがあります。
-次の例では、ソースコードの情報を取得する <code>source info</code> コマンドについて3つの構文が表示されます。</p>
-
-<pre><code class="language-shell">$ # macOS High Sierra (10.13)
-$ lldb
-(lldb) help source info
-     Display source line information for the current target process.  Defaults
-     to instruction pointer in current stack frame.
-
-Syntax:
-
-Command Options Usage:
-  source info [-c &lt;count&gt;] [-s &lt;shlib-name&gt;] [-f &lt;filename&gt;] [-l &lt;linenum&gt;] [-e &lt;linenum&gt;]
-  source info [-c &lt;count&gt;] [-s &lt;shlib-name&gt;] [-n &lt;symbol&gt;]
-  source info [-c &lt;count&gt;] [-a &lt;address-expression&gt;]
-
-       -a &lt;address-expression&gt; ( --address &lt;address-expression&gt; )
-            Lookup the address and display the source information for the
-            corresponding file and line.
-
-       -c &lt;count&gt; ( --count &lt;count&gt; )
-            The number of line entries to display.
-
-       -e &lt;linenum&gt; ( --end-line &lt;linenum&gt; )
-            The line number at which to stop displaying lines.
-
-       -f &lt;filename&gt; ( --file &lt;filename&gt; )
-            The file from which to display source.
-
-       -l &lt;linenum&gt; ( --line &lt;linenum&gt; )
-            The line number at which to start the displaying lines.
-
-       -n &lt;symbol&gt; ( --name &lt;symbol&gt; )
-            The name of a function whose source to display.
-
-       -s &lt;shlib-name&gt; ( --shlib &lt;shlib-name&gt; )
-            Look up the source in the given module or shared library (can be
-            specified more than once).
-</code></pre>
-
-<p>上記のオプションのうち <code>-c</code> は3つの構文全てで使えますが、<code>-s</code> は最初の2つの構文でしか使えません。
-また、その他のオプションはいずれか1つの構文でしか使えません。
-この違いが何によって決まるのかを調べました。</p>
-
-<h2 id="コマンドのオプションはそれぞれの構文に割り当てられる">コマンドのオプションはそれぞれの構文に割り当てられる</h2>
-
-<p><code>source info</code> コマンドの各オプションは以下の通りそれぞれの構文に割り当てられています。</p>
-
-<pre><code class="language-cpp">static OptionDefinition g_source_info_options[] = {
-  { LLDB_OPT_SET_ALL,                false, &quot;count&quot;,    'c', ... },
-  { LLDB_OPT_SET_1 | LLDB_OPT_SET_2, false, &quot;shlib&quot;,    's', ... },
-  { LLDB_OPT_SET_1,                  false, &quot;file&quot;,     'f', ... },
-  { LLDB_OPT_SET_1,                  false, &quot;line&quot;,     'l', ... },
-  { LLDB_OPT_SET_1,                  false, &quot;end-line&quot;, 'e', ... },
-  { LLDB_OPT_SET_2,                  false, &quot;name&quot;,     'n', ... },
-  { LLDB_OPT_SET_3,                  false, &quot;address&quot;,  'a', ... },
-};
-</code></pre>
-
-<p><span style="word-break: break-all;">
-<a href="https://github.com/llvm-mirror/lldb/blob/release_70/source/Commands/CommandObjectSource.cpp#L44">https://github.com/llvm-mirror/lldb/blob/release_70/source/Commands/CommandObjectSource.cpp#L44</a>
-</span></p>
-
-<p>ここから、2番目・3番目の構文が <code>-n</code> と <code>-a</code> オプションのために存在していることが分かります。
-この視点に立つと、上記3つの構文がそれぞれ</p>
-
-<ol>
-<li>ファイルと行番号を指定してソースコードの情報を表示する</li>
-<li>シンボルからソースコードを検索する</li>
-<li>アドレスからソースコードを検索する</li>
-</ol>
-
-<p>ためのコマンドであることが分かります。</p>
-
-<h2 id="使用例">使用例</h2>
+<p>lldb で関数の呼び出し履歴（バックトレース）を表示するには、<code>bt</code> コマンドを使います。</p>
 
 <pre><code class="language-cpp">#include &lt;stdio.h&gt;
 
+void sample1()
+{
+    printf(&quot;sample 1\n&quot;);
+}
+
+void sample2()
+{
+    sample1();
+}
+
+void sample3()
+{
+    sample2();
+}
+
 int main(void)
 {
-    printf(&quot;Hello World!\n&quot;);
+    sample3();
     return 0;
 }
 </code></pre>
 
-<pre><code class="language-shell">$ # macOS High Sierra (10.13)
-$ clang sample.cpp -g -o sample
+<pre><code class="language-shell">$ clang -g sample.cpp -o sample
 $ lldb sample
 (lldb) target create &quot;sample&quot;
 Current executable set to 'sample' (x86_64).
-(lldb) source info -f sample.cpp
-Lines found for file sample.cpp in compilation unit sample.cpp in `sample
-[0x0000000100000f60-0x0000000100000f76): /path/to/directory/sample.cpp:4
-[0x0000000100000f76-0x0000000100000f7f): /path/to/directory/sample.cpp:5:5
-[0x0000000100000f7f-0x0000000100000f8a): /path/to/directory/sample.cpp:6:5
-(lldb) source info -n main
-Lines found in module `sample
-[0x0000000100000f60-0x0000000100000f76): /path/to/directory/sample.cpp:4
-[0x0000000100000f76-0x0000000100000f7f): /path/to/directory/sample.cpp:5:5
-[0x0000000100000f7f-0x0000000100000f8a): /path/to/directory/sample.cpp:6:5
-(lldb) p main
-(int (*)()) $0 = 0x0000000100000f60
-(lldb) source info -a 0x100000f60
-Lines found in module `sample
-[0x0000000100000f60-0x0000000100000f76): /path/to/directory/sample.cpp:4
+(lldb) b sample1
+Breakpoint 1: where = sample`sample1() + 15 at sample.cpp:5, address = 0x0000000100000f3f
+(lldb) run
+Process 2060 launched: '/path/to/directory/sample' (x86_64)
+Process 2060 stopped
+* thread #1, queue = 'com.apple.main-thread', stop reason = breakpoint 1.1
+    frame #0: 0x0000000100000f3f sample`sample1() at sample.cpp:5
+   2
+   3   	void sample1()
+   4   	{
+-&gt; 5   	    printf(&quot;sample 1\n&quot;);
+   6   	}
+   7
+   8   	void sample2()
+Target 0: (sample) stopped.
+(lldb) bt
+* thread #1, queue = 'com.apple.main-thread', stop reason = breakpoint 1.1
+  * frame #0: 0x0000000100000f3f sample`sample1() at sample.cpp:5
+    frame #1: 0x0000000100000f59 sample`sample2() at sample.cpp:10
+    frame #2: 0x0000000100000f69 sample`sample3() at sample.cpp:15
+    frame #3: 0x0000000100000f84 sample`main at sample.cpp:20
+    frame #4: 0x00007fff51562015 libdyld.dylib`start + 1
 </code></pre>
-
-<p>めでたし。</p>
-
-<p>lldb のコマンドは <code>lldb/source/Commands</code> の各 cpp ファイルで実装されています。<br />
-<span style="word-break: break-all;">
-<a href="https://github.com/llvm-mirror/lldb/tree/release_70/source/Commands">https://github.com/llvm-mirror/lldb/tree/release_70/source/Commands</a>
-</span></p>
 
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
@@ -285,11 +225,6 @@ Lines found in module `sample
 <li><p>The LLVM Compiler Infrastructure<br />
 <span style="word-break: break-all;">
 <a href="https://llvm.org/">https://llvm.org/</a>
-</span></p></li>
-
-<li><p>LLDB&rsquo;s Architecture<br />
-<span style="word-break: break-all;">
-<a href="https://lldb.llvm.org/architecture/index.html">https://lldb.llvm.org/architecture/index.html</a>
 </span></p></li>
 
 <li><p>lldb で使えるコマンド一覧<br />
@@ -341,9 +276,11 @@ Lines found in module `sample
       
       <a href="https://yokaze.github.io/2018/10/04/" class="list-group-item">lldb の source info コマンドの使い方</a>
       
+      <a href="https://yokaze.github.io/2018/09/25/" class="list-group-item">lldb のコマンドのオプションを読み解く</a>
+      
       <a href="https://yokaze.github.io/2018/01/06/" class="list-group-item">lldb で使えるコマンド一覧</a>
       
-      <a href="https://yokaze.github.io/2019/07/05/" class="list-group-item">lldb で関数の呼び出し履歴を表示する</a>
+      <a href="https://yokaze.github.io/2019/07/04/" class="list-group-item">clang でソースコードが依存するヘッダー一覧を表示する</a>
       
       <a href="https://yokaze.github.io/2018/10/13/" class="list-group-item">CMake &#43; Visual Studio でモジュール定義ファイル (.def) を使う</a>
       
@@ -356,8 +293,6 @@ Lines found in module `sample
       <a href="https://yokaze.github.io/2018/09/07/" class="list-group-item">clang でループ式が実行されない場合に警告を出す (-Wunreachable-code-loop-increment)</a>
       
       <a href="https://yokaze.github.io/2018/04/12/" class="list-group-item">pyscience11 で C&#43;&#43; から SciPy と Matplotlib を使う</a>
-      
-      <a href="https://yokaze.github.io/2018/03/08/" class="list-group-item">pybind11 でキーワード引数 (kwargs) を使う</a>
       
     </div>
   </section>
