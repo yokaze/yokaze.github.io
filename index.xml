@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Fri, 05 Jul 2019 18:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 12 Jul 2019 18:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Wasserstein 距離について</title>
+      <link>https://yokaze.github.io/2019/07/12/</link>
+      <pubDate>Fri, 12 Jul 2019 18:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2019/07/12/</guid>
+      <description>Computational Optimal Transport の命題 2.2 の解説。 この命題では、$p$-Wassserstein 関数が単体上の距離関数となることを証明している。 ここでは 1-Wasserstein の場合のみを証</description>
+    </item>
     
     <item>
       <title>lldb で関数の呼び出し履歴を表示する</title>
