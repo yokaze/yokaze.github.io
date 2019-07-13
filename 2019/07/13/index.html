@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://yokaze.github.io/2018/01/04/">
+<link rel="canonical" href="https://yokaze.github.io/2019/07/13/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
-    <title>論文紹介: Music Emotion Recognition: A State of the Art Review - yokaze.github.io</title>
+    <title>Monge-Kantorovich の問題を SciPy で解く - yokaze.github.io</title>
     
-<meta name="description" content="表題のとおり、音楽感情認識のレビュー論文を読みました。 日本語の資料が少ないので、分かったことを簡単にまとめたいと思います。 章立て この論文は次">
+<meta name="description" content="Wasserstein GAN に出てくる最適輸送問題を SciPy で解いてみます。 問題の説明は前回の記事をご覧ください。 問題設定 2つの生産地 A1, A2 から3つの消費地 B1, B2, B3 へ物資を輸">
 
-<meta property="og:title" content="論文紹介: Music Emotion Recognition: A State of the Art Review - yokaze.github.io">
+<meta property="og:title" content="Monge-Kantorovich の問題を SciPy で解く - yokaze.github.io">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2018/01/04/">
+<meta property="og:url" content="https://yokaze.github.io/2019/07/13/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="表題のとおり、音楽感情認識のレビュー論文を読みました。 日本語の資料が少ないので、分かったことを簡単にまとめたいと思います。 章立て この論文は次">
+<meta property="og:description" content="Wasserstein GAN に出てくる最適輸送問題を SciPy で解いてみます。 問題の説明は前回の記事をご覧ください。 問題設定 2つの生産地 A1, A2 から3つの消費地 B1, B2, B3 へ物資を輸">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2018/01/04/">
-<meta name="twitter:title" content="論文紹介: Music Emotion Recognition: A State of the Art Review - yokaze.github.io">
-<meta name="twitter:description" content="表題のとおり、音楽感情認識のレビュー論文を読みました。 日本語の資料が少ないので、分かったことを簡単にまとめたいと思います。 章立て この論文は次">
+<meta name="twitter:url" content="https://yokaze.github.io/2019/07/13/">
+<meta name="twitter:title" content="Monge-Kantorovich の問題を SciPy で解く - yokaze.github.io">
+<meta name="twitter:description" content="Wasserstein GAN に出てくる最適輸送問題を SciPy で解いてみます。 問題の説明は前回の記事をご覧ください。 問題設定 2つの生産地 A1, A2 から3つの消費地 B1, B2, B3 へ物資を輸">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://yokaze.github.io/"
     },
-    "headline": "論文紹介: Music Emotion Recognition: A State of the Art Review - yokaze.github.io",
+    "headline": "Monge-Kantorovich の問題を SciPy で解く - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
       "url": "https://yokaze.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2018-01-04T22:14:22JST",
-    "dateModified": "2018-01-04T22:14:22JST",
+    "datePublished": "2019-07-13T18:00:00JST",
+    "dateModified": "2019-07-13T18:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "表題のとおり、音楽感情認識のレビュー論文を読みました。 日本語の資料が少ないので、分かったことを簡単にまとめたいと思います。 章立て この論文は次"
+    "description": "Wasserstein GAN に出てくる最適輸送問題を SciPy で解いてみます。 問題の説明は前回の記事をご覧ください。 問題設定 2つの生産地 A1, A2 から3つの消費地 B1, B2, B3 へ物資を輸"
   }
 </script>
 
@@ -138,75 +138,125 @@ if (!doNotTrack) {
       <ol class="breadcrumb">
         <li><a href="https://yokaze.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
         
-        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2018/" itemprop="url"><span itemprop="title">2018</span></a></li>
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yokaze.github.io/2019/" itemprop="url"><span itemprop="title">2019</span></a></li>
         
-        <li class="active">論文紹介: Music Emotion Recognition: A State of the Art Review</li>
+        <li class="active">Monge-Kantorovich の問題を SciPy で解く</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-04T22:14:22JST">Jan 4, 2018</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-13T18:00:00JST">Jul 13, 2019</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2019/">2019</a></li>
       
     </ul>
 
-    <h1 class="title">論文紹介: Music Emotion Recognition: A State of the Art Review</h1>
+    <h1 class="title">Monge-Kantorovich の問題を SciPy で解く</h1>
   </header>
 
   
 
   <div class="article-body">
 
-<p>表題のとおり、音楽感情認識のレビュー論文を読みました。
-日本語の資料が少ないので、分かったことを簡単にまとめたいと思います。</p>
+<p><a href="http://proceedings.mlr.press/v70/arjovsky17a.html">Wasserstein GAN</a> に出てくる最適輸送問題を SciPy で解いてみます。</p>
 
-<h3 id="章立て">章立て</h3>
+<p>問題の説明は<a href="/2019/07/12/#monge-kantorovich">前回の記事</a>をご覧ください。</p>
 
-<p>この論文は次のような章立てになっています。</p>
+<h2 id="問題設定">問題設定</h2>
 
-<ol>
-<li>イントロダクション</li>
-<li>音楽感情認識と心理学の関係</li>
-<li>感情認識システムの設計</li>
-<li>人手による正解データの作成</li>
-<li>テキスト情報を使った音楽感情認識</li>
-<li>音響特徴量を使った音楽感情認識</li>
-<li>複数ドメインの特徴量の組み合わせ</li>
-<li>結論</li>
-</ol>
+<p>2つの生産地 A1, A2 から3つの消費地 B1, B2, B3 へ物資を輸送する問題を考えます。生産量 $\mathbf{a}$, 消費量 $\mathbf{b}$, 単位量あたりの輸送コスト $\mathbf{C}$ を次の値に設定します。</p>
 
-<p>分かりやすくするために、若干の意訳が入っています。
-正確な各章のタイトルは論文をご参照ください。</p>
+<pre><code class="language-python">a = [ 0.5, 0.5 ]
+b = [ 0.25, 0.5, 0.25 ]
 
-<h3 id="心理学に基づく音楽感情の取り扱い">心理学に基づく音楽感情の取り扱い</h3>
+      B1 B2 B3
+C = [  1, 2, 3 ] A1
+    [  3, 2, 1 ] A2
+</code></pre>
 
-<p>はじめに、音楽感情のどういった側面を分析するのかについて述べられています。
-著者らは音楽に関係した感情を</p>
+<p>最適輸送問題では輸送 $\mathbf{P}$ と輸送コスト $\mathbf{C}$ が行列の形になっていますが、線型計画問題のライブラリを使う際はこれらを一次元に並べなおす必要があります。</p>
 
-<ul>
-<li>音楽によって表現される感情</li>
-<li>音楽から知覚される感情</li>
-<li>音楽が誘発する感情</li>
-</ul>
+<p><div>
+輸送 $\mathbf{P}$ の制約条件は $\mathbf{P}\mathbf{1}_3 = \mathbf{a}, \mathbf{P}^\mathrm{T}\mathbf{1}_2 = \mathbf{b}$ なので、これを並べると
+<div style="overflow-x: scroll;">
+$$
+\left[
+    \begin{array}{rrrrrr}
+        1 & 1 & 1 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 1 & 1 & 1 \\
+        1 & 0 & 0 & 1 & 0 & 0 \\
+        0 & 1 & 0 & 0 & 1 & 0 \\
+        0 & 0 & 1 & 0 & 0 & 1 \\
+    \end{array}
+\right]
+\left[
+\begin{array}{r}
+P_{11} \\
+P_{12} \\
+P_{13} \\
+P_{21} \\
+P_{22} \\
+P_{23}
+\end{array}
+\right] =
+\left[
+\begin{array}{r}
+a_1 \\
+a_2 \\
+b_1 \\
+b_2 \\
+b_3
+\end{array}
+\right]
+$$
+</div>
+と書けます。
+</div></p>
 
-<p>の三種類にまとめ、このうち、音楽によって表現される感情に主眼を置くことを宣言しています。
-音楽から知覚される感情と、音楽が誘発する感情の違いは [Juslin and Luakka, 2004] に詳しく書かれています。
-これはおそらく、「怒り」の感情を知覚することで「共感」を覚える、というような違いのことだと思われます。</p>
+<h2 id="実装">実装</h2>
 
-<p>次に、音楽感情を計算機上でどう取り扱うかが説明されます。ここではカテゴリー分類の例として MIREX の 5 分類が、連続空間モデルの例としてラッセルの円環モデル（Valence-Arousal; VA 空間モデル）が紹介されます。</p>
+<p><div>
+<code>scipy.optimize.linprog</code> を使うと、$A_{\mathrm{eq}}\mathbf{x} = \mathbf{b}_{\mathrm{eq}}$　の条件を満たしつつ $\langle \mathbf{c}, \mathbf{x} \rangle$ を最小化する解を計算することができます。
+<code>bounds</code> を指定しない場合、$\mathbf{x}$ の各要素は 0 以上と仮定されます。
+</div></p>
 
-<h3 id="音楽感情の計算機的取り扱い">音楽感情の計算機的取り扱い</h3>
+<pre><code class="language-python">import numpy
+import scipy.optimize
 
-<p>計算機による音楽感情認識がクラス推定・回帰問題のいずれかとなることを指摘した上で、各論に入ります。</p>
+c = numpy.array([1, 2, 3, 3, 2, 1])
+A = numpy.array([
+[ 1, 1, 1, 0, 0, 0 ],
+[ 0, 0, 0, 1, 1, 1 ],
+[ 1, 0, 0, 1, 0, 0 ],
+[ 0, 1, 0, 0, 1, 0 ],
+[ 0, 0, 1, 0, 0, 1 ],
+])
+b = numpy.array([.5, .5, .25, .5, .25]) # a_1, a_2, b_1, b_2, b_3
 
-<p>4章は正解データの作り方について。人手による方法、Last.fm を参照する方法などが説明されています。</p>
+print(scipy.optimize.linprog(c, A_eq=A, b_eq=b))
+</code></pre>
 
-<p>5-7章は、テキスト情報・音響特徴量・これらの組み合わせによる感情認識研究の網羅的なサーベイとなっています。
-8章は結論で、研究分野の将来展望などが述べられています。</p>
+<p>このプログラムを実行すると次の解が得られます。</p>
 
-<p>全体としてはとても面白く、音楽感情認識の基本が詰まった論文という印象でした。</p>
+<pre><code class="language-shell">$ python3 sample.py
+     fun: 1.5
+ message: 'Optimization terminated successfully.'
+     nit: 8
+   slack: array([], dtype=float64)
+  status: 0
+ success: True
+       x: array([0.25, 0.25, 0.  , 0.  , 0.25, 0.25])
+</code></pre>
+
+<p>したがって、最適な輸送 $\mathbf{P}^* $ は</p>
+
+<pre><code class="language-python">      B1    B2    B3
+P = [ 0.25, 0.25, 0    ] A1
+    [ 0   , 0.25, 0.25 ] A2
+</code></pre>
+
+<p>また、この時の輸送コストは <code>1.5</code> となることが分かりました。</p>
 
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
@@ -214,27 +264,32 @@ if (!doNotTrack) {
 </p>
 
 
-<h2 id="参考文献">参考文献</h2>
+<h2 id="参考資料">参考資料</h2>
 
 <ul>
-<li><p>Y. E. Kim et. al., &ldquo;Music emotion recognition: A state of the art review&rdquo;, in <em>Proc. ISMIR</em>, 2010, pp. 255-266.<br />
+<li><p>Wasserstein 距離について<br />
 <span style="word-break: break-all;">
-<a href="http://ismir2010.ismir.net/proceedings/ismir2010-45.pdf">http://ismir2010.ismir.net/proceedings/ismir2010-45.pdf</a>
+<a href="https://yokaze.github.io/2019/07/12/">https://yokaze.github.io/2019/07/12/</a>
 </span></p></li>
 
-<li><p>P. Juslin and P. Luakka, &ldquo;Expression, perception, and induction of musical emotions: A review and questionnaire study of everyday listening&rdquo;, <em>Journal of New Music Research</em>, vol. 33, no. 3, pp. 217-238, 2004.<br />
+<li><p>scipy.optimize.linprog &mdash; SciPy v1.3.0 Reference Guide<br />
 <span style="word-break: break-all;">
-<a href="http://www.tandfonline.com/doi/abs/10.1080/0929821042000317813">http://www.tandfonline.com/doi/abs/10.1080/0929821042000317813</a>
+<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html</a>
 </span></p></li>
 
-<li><p>MIREX 2017: Audio Classification (Train/Test) Tasks<br />
+<li><p>Wasserstein GAN and the Kantorovich-Rubinstein Duality<br />
 <span style="word-break: break-all;">
-<a href="http://www.music-ir.org/mirex/wiki/2017:Audio_Classification_(Train/Test)_Tasks">http://www.music-ir.org/mirex/wiki/2017:Audio_Classification_(Train/Test)_Tasks</a>
+<a href="https://vincentherrmann.github.io/blog/wasserstein/">https://vincentherrmann.github.io/blog/wasserstein/</a>
 </span></p></li>
 
-<li><p>J. A. Russell, &ldquo;A circumplex model of affect&rdquo;, <em>Journal of Psychology and Social Psychology</em>, vol. 39, no. 6, pp. 1161-1178, 1980.<br />
+<li><p>Gabriel Peyré and Marco Cuturi, &ldquo;Computational Optimal Transport&rdquo;, <em>Foundations and Trends in Machine Learning</em>, vol. 11, no. 5&ndash;6, pp. 355&ndash;607, 2019.<br />
 <span style="word-break: break-all;">
-<a href="http://psycnet.apa.org/record/1981-25062-001">http://psycnet.apa.org/record/1981-25062-001</a>
+<a href="https://arxiv.org/abs/1803.00567">https://arxiv.org/abs/1803.00567</a>
+</span></p></li>
+
+<li><p>Martin Arjovsky, Soumith Chintala, and Léon Bottou, &ldquo;Wasserstein Generative Adversarial Networks&rdquo;, in <em>Proc. ICML</em>, 2017, pp. 214&ndash;223.<br />
+<span style="word-break: break-all;">
+<a href="http://proceedings.mlr.press/v70/arjovsky17a.html">http://proceedings.mlr.press/v70/arjovsky17a.html</a>
 </span></p></li>
 </ul>
 </div>
@@ -279,10 +334,6 @@ if (!doNotTrack) {
     </div>
     <div class="list-group">
       
-      <a href="https://yokaze.github.io/2018/01/13/" class="list-group-item">論文紹介: Feature Learning for Chord Recognition: The Deep Chroma Extractor</a>
-      
-      <a href="https://yokaze.github.io/2019/07/13/" class="list-group-item">Monge-Kantorovich の問題を SciPy で解く</a>
-      
       <a href="https://yokaze.github.io/2019/07/12/" class="list-group-item">Wasserstein 距離について</a>
       
       <a href="https://yokaze.github.io/2017/10/13/" class="list-group-item">機械学習で役立つ数学参考書のリスト</a>
@@ -292,6 +343,12 @@ if (!doNotTrack) {
       <a href="https://yokaze.github.io/2017/09/27/" class="list-group-item">mac に最新の NumPy (SciPy) をインストールする</a>
       
       <a href="https://yokaze.github.io/2017/09/17/" class="list-group-item">mac に SciPy がプリインストールされているか調べる</a>
+      
+      <a href="https://yokaze.github.io/2018/04/12/" class="list-group-item">pyscience11 で C&#43;&#43; から SciPy と Matplotlib を使う</a>
+      
+      <a href="https://yokaze.github.io/2018/01/13/" class="list-group-item">論文紹介: Feature Learning for Chord Recognition: The Deep Chroma Extractor</a>
+      
+      <a href="https://yokaze.github.io/2018/01/04/" class="list-group-item">論文紹介: Music Emotion Recognition: A State of the Art Review</a>
       
     </div>
   </section>
@@ -327,6 +384,15 @@ if (!doNotTrack) {
 
   </div>
 </div>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config
+  ({
+    tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processEscapes: true },
+    TeX: { equationNumbers: { autoNumber: "AMS" }}
+  });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_SVG"></script>
 
 
       </div>

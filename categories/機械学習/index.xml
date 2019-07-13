@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Fri, 12 Jul 2019 18:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 13 Jul 2019 18:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Monge-Kantorovich の問題を SciPy で解く</title>
+      <link>https://yokaze.github.io/2019/07/13/</link>
+      <pubDate>Sat, 13 Jul 2019 18:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2019/07/13/</guid>
+      <description>Wasserstein GAN に出てくる最適輸送問題を SciPy で解いてみます。 問題の説明は前回の記事をご覧ください。 問題設定 2つの生産地 A1, A2 から3つの消費地 B1, B2, B3 へ物資を輸</description>
+    </item>
     
     <item>
       <title>Wasserstein 距離について</title>
