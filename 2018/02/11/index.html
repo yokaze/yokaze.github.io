@@ -50,7 +50,7 @@
       "width": 800
     },
     "datePublished": "2018-02-11T11:30:00JST",
-    "dateModified": "2018-02-11T11:30:00JST",
+    "dateModified": "2019-07-13T00:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -139,7 +139,7 @@ if (!doNotTrack) {
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-02-11T11:30:00JST">Feb 11, 2018</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-13T00:00:00JST">Jul 13, 2019</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
     </ul>
@@ -171,8 +171,8 @@ int main()
 端末上に複数の Python 環境がある場合は、リンクする Python のバージョンに合ったヘッダファイルを使う必要があります。
 次の例では、Homebrew でインストールした Python 3.6 にリンクしています。</p>
 
-<pre><code class="language-shell">$ # macOS Sierra (10.12)
-$ clang sample.cpp -std=c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
+<pre><code class="language-shell">$ # macOS Mojave (10.14) + Homebrew
+$ clang sample.cpp -std=c++11 -I/usr/local/Cellar/python/3.7.4/Frameworks/Python.framework/Versions/3.7/include/python3.7m -L/usr/local/Cellar/python/3.7.4/Frameworks/Python.framework/Versions/3.7/lib -lc++ -lpython3.7m -o sample
 $ ./sample
 Hello, world!
 </code></pre>
