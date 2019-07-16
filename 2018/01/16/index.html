@@ -50,7 +50,7 @@
       "width": 800
     },
     "datePublished": "2018-01-16T21:24:17JST",
-    "dateModified": "2018-01-16T21:24:17JST",
+    "dateModified": "2019-07-16T00:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -139,7 +139,7 @@ if (!doNotTrack) {
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-16T21:24:17JST">Jan 16, 2018</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-16T00:00:00JST">Jul 16, 2019</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
     </ul>
@@ -164,7 +164,7 @@ int main()
 }
 </code></pre>
 
-<pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
+<pre><code class="language-shell">$ # macOS Mojave (10.14)
 $ clang sample.cpp -Wshorten-64-to-32
 sample.cpp:6:17: warning: implicit conversion loses integer precision: 'int64_t'
       (aka 'long long') to 'int32_t' (aka 'int') [-Wshorten-64-to-32]
@@ -178,7 +178,7 @@ sample.cpp:6:17: warning: implicit conversion loses integer precision: 'int64_t'
 <p>逆に、警告を抑制したい場合は <code>-Wno-shorten-64-to-32</code> オプションを指定します。
 このオプションを指定することで、既に指定されたオプションを打ち消すことができます。</p>
 
-<pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
+<pre><code class="language-shell">$ # macOS Mojave (10.14)
 $ clang sample.cpp -Wshorten-64-to-32 -Wno-shorten-64-to-32
 </code></pre>
 
@@ -191,7 +191,7 @@ $ clang sample.cpp -Wshorten-64-to-32 -Wno-shorten-64-to-32
 <h2 id="参考資料">参考資料</h2>
 
 <ul>
-<li>Clang 6 documentation &mdash; DIAGNOSTIC FLAGS IN CLANG<br />
+<li>Diagnostic flags in Clang &#8212; Clang 9 documentation<br />
 <span style="word-break: break-all;">
 <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wshorten-64-to-32">https://clang.llvm.org/docs/DiagnosticsReference.html#wshorten-64-to-32</a>
 </span></li>

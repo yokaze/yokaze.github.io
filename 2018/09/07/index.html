@@ -50,7 +50,7 @@
       "width": 800
     },
     "datePublished": "2018-09-07T21:00:00JST",
-    "dateModified": "2018-09-07T21:00:00JST",
+    "dateModified": "2019-07-16T00:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -139,7 +139,7 @@ if (!doNotTrack) {
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-09-07T21:00:00JST">Sep 7, 2018</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-16T00:00:00JST">Jul 16, 2019</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
     </ul>
@@ -165,7 +165,7 @@ if (!doNotTrack) {
 
 <p>この例では初回のループが終了する前に <code>break</code> 文が実行されるため、警告が表示されます。</p>
 
-<pre><code class="language-shell">$ # macOS High Sierra (10.13)
+<pre><code class="language-shell">$ # macOS Mojave (10.14)
 $ clang -Wunreachable-code-loop-increment sample.cpp
 sample.cpp:3:29: warning: loop will run at most once (loop increment never executed) [-Wunreachable-code-loop-increment]
     for (int i = 0; i &lt; 10; ++i)
@@ -178,7 +178,7 @@ sample.cpp:3:29: warning: loop will run at most once (loop increment never execu
 <p>逆に、警告を抑制したい場合は <code>-Wno-unreachable-code-loop-increment</code> オプションを指定します。
 このオプションを指定することで、既に指定されたオプションを打ち消すことができます。</p>
 
-<pre><code class="language-shell">$ # macOS High Sierra (10.13)
+<pre><code class="language-shell">$ # macOS Mojave (10.14)
 $ clang -Wunreachable-code-loop-increment -Wno-unreachable-code-loop-increment sample.cpp
 </code></pre>
 
@@ -191,7 +191,7 @@ $ clang -Wunreachable-code-loop-increment -Wno-unreachable-code-loop-increment s
 <h2 id="参考資料">参考資料</h2>
 
 <ul>
-<li>Clang 6 documentation &mdash; DIAGNOSTIC FLAGS IN CLANG<br />
+<li>Diagnostic flags in Clang &#8212; Clang 9 documentation<br />
 <span style="word-break: break-all;">
 <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wunreachable-code-loop-increment">https://clang.llvm.org/docs/DiagnosticsReference.html#wunreachable-code-loop-increment</a>
 </span></li>
