@@ -22,12 +22,12 @@
     </item>
     
     <item>
-      <title>Wasserstein 距離について</title>
+      <title>Wasserstein 計量が距離関数になることを証明する</title>
       <link>https://yokaze.github.io/2019/07/12/</link>
       <pubDate>Fri, 12 Jul 2019 18:00:00 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2019/07/12/</guid>
-      <description>Computational Optimal Transport の命題 2.2 の解説。 この命題では、$p$-Wassserstein 関数が単体上の距離関数となることを証明している。 ここでは 1-Wasserstein の場合のみを証</description>
+      <description>ここでは Wasserstein 計量を最適輸送コストから計算し、この計量が距離の定義（補足 1）を満たすことを証明します。 また、Wasserstein 計量が元の空間</description>
     </item>
     
     <item>
