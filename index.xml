@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Sat, 13 Jul 2019 18:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 07 Aug 2019 18:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>TensorFlow 2.0 で Variable を ndarray に変換する</title>
+      <link>https://yokaze.github.io/2019/08/07/</link>
+      <pubDate>Wed, 07 Aug 2019 18:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2019/08/07/</guid>
+      <description>TensorFlow 2.0 の Variable を ndarray に変換するには tensorflow.Variable.numpy() を使います。 import tensorflow x = tensorflow.Variable(tensorflow.random.uniform([4, 4])) print(x) y = x.numpy() print(y) $ # macOS Mojave (10.14) + TensorFlow 2.0.0b1 $ python3 sample.py &amp;lt;tf.Variable &#39;Variable:0&#39; shape=(4, 4) dtype=float32, numpy= array([[0.4963708 , 0.5265337 , 0.645676 , 0.36317182], [0.88785803, 0.6770747 , 0.34829807, 0.7676312 ], [0.64356697, 0.1472162 , 0.6687521 , 0.6949041 ], [0.9588698 ,</description>
+    </item>
     
     <item>
       <title>Monge-Kantorovich の問題を SciPy で解く</title>
