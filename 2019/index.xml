@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Wed, 07 Aug 2019 18:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 12 Aug 2019 15:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/2019/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>TensorFlow 2.0 で非負値行列因子分解 (NMF) を解く</title>
+      <link>https://yokaze.github.io/2019/08/12/</link>
+      <pubDate>Mon, 12 Aug 2019 15:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2019/08/12/</guid>
+      <description>TensorFlow 2.0 の練習を兼ねて、非負値行列因子分解 (NMF) を実装しました。 問題設定 NMF は非負値行列 $X \in \mathbb{R}^{T \times F}$ を二つの低ランク行列の積 $WH$ で近似するアルゴリズムで、</description>
+    </item>
     
     <item>
       <title>TensorFlow 2.0 で Variable を ndarray に変換する</title>
