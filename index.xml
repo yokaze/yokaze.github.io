@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Mon, 12 Aug 2019 15:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 23 Aug 2019 21:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>線形位相空間の原点の近傍が併呑集合であることを証明する</title>
+      <link>https://yokaze.github.io/2019/08/23/</link>
+      <pubDate>Fri, 23 Aug 2019 21:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/2019/08/23/</guid>
+      <description>基本的な事柄ですが、証明が見つからなかったので勉強を兼ねて証明してみます。 補題 線形位相空間 (topological vector space, tvs) $X$ において、実数 $a$ と $X$ の任意の元 $x$ の積 $ax$ は</description>
+    </item>
     
     <item>
       <title>TensorFlow 2.0 で非負値行列因子分解 (NMF) を解く</title>
