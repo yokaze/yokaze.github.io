@@ -368,6 +368,24 @@ else:
 </figure>
 </p>
 
+<h3 id="追記-centered-rmsprop">追記：Centered RMSprop</h3>
+
+<p>Centered RMSprop を使うと収束が改善します。</p>
+
+<pre><code class="language-python">opt = tf.keras.optimizers.RMSprop(learning_rate=.03, centered=True)
+</code></pre>
+
+<p>RMSprop, Centered RMSprop とも中央のコンポーネントが左右どちらに振れるかは試行によってまちまちなのですが、
+左のコンポーネントが収束する速さはほぼこのアニメーション通りになります。
+
+<figure class="center">
+    
+        <img src="/2019/08/30/centered_rmsprop.png" />
+    
+    
+</figure>
+</p>
+
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
