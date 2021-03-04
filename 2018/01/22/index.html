@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -16,21 +16,21 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
     <title>swiftc で Hello World - yokaze.github.io</title>
     
-<meta name="description" content="swiftc コマンドで Hello world プログラムをビルドします。 print(&amp;quot;Hello world!&amp;quot;) $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料">
+<meta name="description" content="swiftc コマンドで Hello world プログラムをビルドします。 print(&amp;#34;Hello world!&amp;#34;) $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料">
 
 <meta property="og:title" content="swiftc で Hello World - yokaze.github.io">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://yokaze.github.io/2018/01/22/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="swiftc コマンドで Hello world プログラムをビルドします。 print(&amp;quot;Hello world!&amp;quot;) $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料">
+<meta property="og:description" content="swiftc コマンドで Hello world プログラムをビルドします。 print(&amp;#34;Hello world!&amp;#34;) $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
 <meta name="twitter:url" content="https://yokaze.github.io/2018/01/22/">
 <meta name="twitter:title" content="swiftc で Hello World - yokaze.github.io">
-<meta name="twitter:description" content="swiftc コマンドで Hello world プログラムをビルドします。 print(&amp;quot;Hello world!&amp;quot;) $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料">
+<meta name="twitter:description" content="swiftc コマンドで Hello world プログラムをビルドします。 print(&amp;#34;Hello world!&amp;#34;) $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "swiftc で Hello World - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,12 +60,12 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
     },
-    "description": "swiftc コマンドで Hello world プログラムをビルドします。 print(&quot;Hello world!&quot;) $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料"
+    "description": "swiftc コマンドで Hello world プログラムをビルドします。 print(\u0026#34;Hello world!\u0026#34;) $ swiftc sample.swift $ .\/sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料"
   }
 </script>
 
@@ -149,47 +149,39 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p><code>swiftc</code> コマンドで Hello world プログラムをビルドします。</p>
-
-<pre><code class="language-swift">print(&quot;Hello world!&quot;)
-</code></pre>
-
-<pre><code class="language-shell">$ swiftc sample.swift
+  <div class="article-body"><p><code>swiftc</code> コマンドで Hello world プログラムをビルドします。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">print(<span style="color:#e6db74">&#34;Hello world!&#34;</span>)
+</code></pre></div><pre><code class="language-console" data-lang="console">$ swiftc sample.swift
 $ ./sample
 Hello world!
-</code></pre>
-
-<p><code>swift</code> コマンドを使うとコンソールから直接実行することもできます。</p>
-
-<pre><code class="language-shell">$ swift sample.swift
+</code></pre><p><code>swift</code> コマンドを使うとコンソールから直接実行することもできます。</p>
+<pre><code class="language-console" data-lang="console">$ swift sample.swift
 Hello world!
-</code></pre>
-
-<p>
+</code></pre><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考資料">参考資料</h2>
-
 <ul>
-<li><p>Swiftをコマンドラインから使ってみた。<br />
+<li>
+<p>Swiftをコマンドラインから使ってみた。<br />
 <span style="word-break: break-all;">
 <a href="http://yamaimo.hatenablog.jp/entry/2015/06/19/200000">http://yamaimo.hatenablog.jp/entry/2015/06/19/200000</a>
-</span></p></li>
-
-<li><p>Swift コンパイラのアーキテクチャ<br />
+</span></p>
+</li>
+<li>
+<p>Swift コンパイラのアーキテクチャ<br />
 <span style="word-break: break-all;">
 <a href="https://qiita.com/rintaro/items/3ad640e3938207218c20">https://qiita.com/rintaro/items/3ad640e3938207218c20</a>
-</span></p></li>
-
-<li><p>apple/swift: The Swift Programming Language<br />
+</span></p>
+</li>
+<li>
+<p>apple/swift: The Swift Programming Language<br />
 <span style="word-break: break-all;">
 <a href="https://github.com/apple/swift">https://github.com/apple/swift</a>
-</span></p></li>
+</span></p>
+</li>
 </ul>
 </div>
  
@@ -304,9 +296,9 @@ Hello world!
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/swift.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

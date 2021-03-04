@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "Boost.MultiArray の添字演算子について - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,7 +60,7 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
@@ -149,30 +149,23 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p>Boost.MultiArray が添え字の境界チェックをしているのかよく分からなかったので、調べてみた。</p>
-
+  <div class="article-body"><p>Boost.MultiArray が添え字の境界チェックをしているのかよく分からなかったので、調べてみた。</p>
 <p>リファレンスには次のように書かれている。</p>
-
 <blockquote>
-<p>By default, the array access methods operator() and operator[] perform range checking.
+<p>
+By default, the array access methods operator() and operator[] perform range checking.
 If a supplied index is out of the range defined for an array, an assertion will abort the program.
-To disable range checking (for performance reasons in production releases), define the BOOST_DISABLE_ASSERTS preprocessor macro prior to including multi_array.hpp in an application.</p>
-
-<p><a href="http://www.boost.org/doc/libs/1_64_0/libs/multi_array/doc/reference.html#range_checking">Boost.MultiArray Reference Manual</a></p>
-
-<p><br /></p>
-
+To disable range checking (for performance reasons in production releases), define the BOOST_DISABLE_ASSERTS preprocessor macro prior to including multi_array.hpp in an application.
+</p>
+<p><a href="http://www.boost.org/doc/libs/1_64_0/libs/multi_array/doc/reference.html#range_checking">Boost.MultiArray Reference Manual</a>
+<br />
+<br /></p>
 <p>和訳</p>
-
 <p>明示的な指定がない場合、配列にアクセスするための () および [] 演算子は範囲の確認をおこないます。
 指定されたインデックスが配列の境界を超える場合、アサーションが発行されプログラムは終了します。
 （製品のリリース時など、性能上の観点から）境界チェックを無効にしたい場合は、アプリケーションが multi_array.hpp をインクルードする前に BOOST_DISABLE_ASSERTS マクロを定義してください。</p>
 </blockquote>
-
 <p>境界チェックには BOOST_ASSERT が使われている。これは <a href="https://github.com/boostorg/assert/blob/develop/include/boost/assert.hpp">&lt;boost/assert.hpp&gt;</a> で定義されていて、</p>
-
 <ol>
 <li>BOOST_DISABLE_ASSERTS が定義されている場合： <br />
 テストを行わない</li>
@@ -184,17 +177,12 @@ NDEBUG が定義されておらず BOOST_ENABLE_ASSERT_DEBUG_HANDLER のみ定�
 <li>それ以外の場合： <br />
 &lt;assert.h&gt; を読み込み標準の assert を呼び出す。</li>
 </ol>
-
 <p>ややこしいのだが、境界チェックを外すためには BOOST_DISABLE_ASSERTS が必要とのこと。
 NDEBUG は関係なさそうだ。</p>
-
 <h2 id="実装を確認する">実装を確認する</h2>
-
 <p><a href="https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array.hpp">&lt;boost/multi_array.hpp&gt;</a> の実装を調べた結果も載せておく。</p>
-
 <p>boost::multi_array の継承関係は以下のようになっている。（名前空間名は省略）</p>
-
-<pre><code class="language-no-highlight">+ multi_array&lt;T, NumDims, Allocator&gt;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">+ multi_array&lt;T, NumDims, Allocator&gt;
   + multi_array_ref&lt;T, NumDims&gt;
     + const_multi_array_ref&lt;T, NumDims, TPtr = T*&gt;
       + multi_array_impl_base&lt;T, NumDims&gt;
@@ -205,97 +193,80 @@ NDEBUG は関係なさそうだ。</p>
           = choose_value_accessor_n&lt;T, NumDims&gt;::type
             = value_accessor_n&lt;T, NimDims&gt;
               + multi_array_base
-</code></pre>
-
-<p>添え字演算子 [] の実装をしているのは value_accessor_one と value_accessor_n である。</p>
-
+</code></pre></div><p>添え字演算子 [] の実装をしているのは value_accessor_one と value_accessor_n である。</p>
 <p><a href="https://github.com/boostorg/multi_array/blob/83493ba2316f48ffc56cf934e3164feb4aa1433f/include/boost/multi_array/base.hpp#L108">boost/multi_array/base.hpp:L108</a>
 近辺で BOOST_ASSERT が使われている。
 テンプレートで実装されているため、次元に関するループはコンパイル時に展開される。
 また、boost::multi_array では各次元の添字の始点を設定できるため、この値をメモリから読み込む処理が必要になる。</p>
-
 <p>処理の疑似コードは以下の通り。</p>
-
-<pre><code class="language-cpp">// &lt;boost/multi_array/base.hpp&gt; より引用・改変
-
-template&lt;size_t NumDims&gt;
-const T&amp; get_element(const T* data,
-                     const ptrdiff_t* indices,
-                     const size_t* extents,
-                     const ptrdiff_t* strides,
-                     const ptrdiff_t* index_bases)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// &lt;boost/multi_array/base.hpp&gt; より引用・改変
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span>size_t NumDims<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">const</span> T<span style="color:#f92672">&amp;</span> get_element(<span style="color:#66d9ef">const</span> T<span style="color:#f92672">*</span> data,
+                     <span style="color:#66d9ef">const</span> ptrdiff_t<span style="color:#f92672">*</span> indices,
+                     <span style="color:#66d9ef">const</span> size_t<span style="color:#f92672">*</span> extents,
+                     <span style="color:#66d9ef">const</span> ptrdiff_t<span style="color:#f92672">*</span> strides,
+                     <span style="color:#66d9ef">const</span> ptrdiff_t<span style="color:#f92672">*</span> index_bases)
 {
-#if !defined(BOOST_DISABLE_ASSERTS)
-    assert(0 &lt;= (indices[0] - index_bases[0]));
-    assert(static_cast&lt;size_t&gt;(indices[0] - index_bases[0]) &lt; extents[0]);
-#endif
-    data += (indices[0] - index_bases[0]) * strides[0];
+<span style="color:#75715e">#if !defined(BOOST_DISABLE_ASSERTS)
+</span><span style="color:#75715e"></span>    assert(<span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> (indices[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> index_bases[<span style="color:#ae81ff">0</span>]));
+    assert(<span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span>size_t<span style="color:#f92672">&gt;</span>(indices[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> index_bases[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">&lt;</span> extents[<span style="color:#ae81ff">0</span>]);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    data <span style="color:#f92672">+=</span> (indices[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> index_bases[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">*</span> strides[<span style="color:#ae81ff">0</span>];
 
-#if !defined(BOOST_DISABLE_ASSERTS)
-    assert(0 &lt;= (indices[1] - index_bases[1]));
-    assert(static_cast&lt;size_t&gt;(indices[1] - index_bases[1]) &lt; extents[1]);
-#endif
-    data += (indices[1] - index_bases[1]) * strides[1];
+<span style="color:#75715e">#if !defined(BOOST_DISABLE_ASSERTS)
+</span><span style="color:#75715e"></span>    assert(<span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> (indices[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> index_bases[<span style="color:#ae81ff">1</span>]));
+    assert(<span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span>size_t<span style="color:#f92672">&gt;</span>(indices[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> index_bases[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">&lt;</span> extents[<span style="color:#ae81ff">1</span>]);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    data <span style="color:#f92672">+=</span> (indices[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> index_bases[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">*</span> strides[<span style="color:#ae81ff">1</span>];
     ...
-    data += (indices[NumDims - 1] - index_bases[NumDims - 1])
-            * strides[NumDims - 1];
+    data <span style="color:#f92672">+=</span> (indices[NumDims <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> index_bases[NumDims <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])
+            <span style="color:#f92672">*</span> strides[NumDims <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
 
-    return *data;
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">*</span>data;
 }
-</code></pre>
-
-<!--*-->
-
+</code></pre></div><!--*-->
 <p>また、関数呼び出し演算子 () の実体は
 <a href="https://github.com/boostorg/multi_array/blob/83493ba2316f48ffc56cf934e3164feb4aa1433f/include/boost/multi_array/base.hpp#L297">multi_array_impl_base::access_element</a>
 である。
 こちらはなんと NDEBUG または BOOST_DISABLE_ASSERTS のどちらかが定義されていれば境界チェックをスキップしてしまう。
 NDEBUG のみ指定された環境では、添字演算子 [] のみ境界チェックをするということになり、std::vector と逆の動きをする点に注意。</p>
-
 <p>こちらは次元に関して for でループを回している。処理の疑似コードは以下の通り。</p>
-
-<pre><code class="language-cpp">// &lt;boost/multi_array/base.hpp&gt; より引用・改変
-
-template&lt;size_t NumDims&gt;
-const T&amp; get_element(const T* data,
-                     const ptrdiff_t* indices,
-                     const size_t* extents,
-                     const ptrdiff_t* strides,
-                     const ptrdiff_t* index_bases)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// &lt;boost/multi_array/base.hpp&gt; より引用・改変
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span>size_t NumDims<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">const</span> T<span style="color:#f92672">&amp;</span> get_element(<span style="color:#66d9ef">const</span> T<span style="color:#f92672">*</span> data,
+                     <span style="color:#66d9ef">const</span> ptrdiff_t<span style="color:#f92672">*</span> indices,
+                     <span style="color:#66d9ef">const</span> size_t<span style="color:#f92672">*</span> extents,
+                     <span style="color:#66d9ef">const</span> ptrdiff_t<span style="color:#f92672">*</span> strides,
+                     <span style="color:#66d9ef">const</span> ptrdiff_t<span style="color:#f92672">*</span> index_bases)
 {
-#if !defined(NDEBUG) &amp;&amp; !defined(BOOST_DISABLE_ASSERTS)
-    for (size_t i = 0; i &lt; NumDims; ++i)
+<span style="color:#75715e">#if !defined(NDEBUG) &amp;&amp; !defined(BOOST_DISABLE_ASSERTS)
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (size_t i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NumDims; <span style="color:#f92672">++</span>i)
     {
-        assert(0 &lt;= (indices[i] - index_bases[i]));
-        assert(static_cast&lt;size_t&gt;(indices[i] - index_bases[i]) &lt; extents[i]);
+        assert(<span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> (indices[i] <span style="color:#f92672">-</span> index_bases[i]));
+        assert(<span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span>size_t<span style="color:#f92672">&gt;</span>(indices[i] <span style="color:#f92672">-</span> index_bases[i]) <span style="color:#f92672">&lt;</span> extents[i]);
     }
-#endif
-    for (size_t i = 0; i &lt; NumDims; ++i)
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (size_t i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NumDims; <span style="color:#f92672">++</span>i)
     {
-        data += (indices[i] - index_bases[i]) * strides[i];
+        data <span style="color:#f92672">+=</span> (indices[i] <span style="color:#f92672">-</span> index_bases[i]) <span style="color:#f92672">*</span> strides[i];
     }
-    return *data;
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">*</span>data;
 }
-</code></pre>
-
-<!--*-->
-
+</code></pre></div><!--*-->
 <h2 id="結論">結論</h2>
-
 <ul>
 <li>アサーションがあると分岐ペナルティが発生するため、BOOST_DISABLE_ASSERTS を設定することが望ましい。</li>
 <li>次元方向のループ展開はあまりパフォーマンスに影響しないので、添字演算子 [] と関数呼び出し演算子 () の選択はお好みで。</li>
 <li>最速を目指す場合はメモリアドレスを手動で計算し、添字の始点の取り扱いを省略する。</li>
 </ul>
-
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考文献">参考文献</h2>
-
 <ol>
 <li><a href="http://www.boost.org/doc/libs/1_64_0/libs/assert/assert.html">assert.hpp (Reference)</a></li>
 <li><a href="http://www.boost.org/doc/libs/1_64_0/libs/multi_array/doc/reference.html">Boost.MultiArray Reference Manual</a></li>
@@ -415,7 +386,7 @@ const T&amp; get_element(const T* data,
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

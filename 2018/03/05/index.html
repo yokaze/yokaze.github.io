@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "pybind11 で main モジュール上に関数を定義する - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,12 +60,12 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
     },
-    "description": "pybind11 で main モジュール上に関数を定義するには、pybind11::module::def 関数を使います。 次の例では、C++ で定義した hello 関数を Python スク"
+    "description": "pybind11 で main モジュール上に関数を定義するには、pybind11::module::def 関数を使います。 次の例では、C\u002b\u002b で定義した hello 関数を Python スク"
   }
 </script>
 
@@ -149,62 +149,56 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p>pybind11 で main モジュール上に関数を定義するには、<code>pybind11::module::def</code> 関数を使います。
+  <div class="article-body"><p>pybind11 で main モジュール上に関数を定義するには、<code>pybind11::module::def</code> 関数を使います。
 次の例では、C++ で定義した <code>hello</code> 関数を Python スクリプトから呼び出しています。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">namespace</span> py <span style="color:#f92672">=</span> pybind11;
 
-<pre><code class="language-cpp">#include &lt;pybind11/embed.h&gt;
-#include &lt;pybind11/pybind11.h&gt;
-
-namespace py = pybind11;
-
-void hello()
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">hello</span>()
 {
-    printf(&quot;Hello, world!\n&quot;);
+    printf(<span style="color:#e6db74">&#34;Hello, world!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 }
 
-int main()
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-    // python インタプリタを起動する
-    py::scoped_interpreter interpreter;
+    <span style="color:#75715e">// python インタプリタを起動する
+</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>scoped_interpreter interpreter;
 
-    // main モジュール上に hello 関数を定義する
-    py::module main_module = py::module::import(&quot;__main__&quot;);
-    main_module.def(&quot;hello&quot;, &amp;hello);
+    <span style="color:#75715e">// main モジュール上に hello 関数を定義する
+</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>module main_module <span style="color:#f92672">=</span> py<span style="color:#f92672">::</span>module<span style="color:#f92672">::</span>import(<span style="color:#e6db74">&#34;__main__&#34;</span>);
+    main_module.def(<span style="color:#e6db74">&#34;hello&#34;</span>, <span style="color:#f92672">&amp;</span>hello);
 
-    // python スクリプトから hello 関数を呼び出す
-    py::object scope = main_module.attr(&quot;__dict__&quot;);
-    py::exec(&quot;hello()&quot;, scope);
+    <span style="color:#75715e">// python スクリプトから hello 関数を呼び出す
+</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>object scope <span style="color:#f92672">=</span> main_module.attr(<span style="color:#e6db74">&#34;__dict__&#34;</span>);
+    py<span style="color:#f92672">::</span>exec(<span style="color:#e6db74">&#34;hello()&#34;</span>, scope);
 
-    return 0;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<pre><code class="language-shell">$ # macOS Sierra (10.12)
+</code></pre></div><pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12)
 $ clang sample.cpp -std=c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
 $ ./sample
 Hello, world!
-</code></pre>
-
-<p>
+</code></pre><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考資料">参考資料</h2>
-
 <ul>
-<li><p>pybind11 で C++ から Python インタプリタを実行する<br />
+<li>
+<p>pybind11 で C++ から Python インタプリタを実行する<br />
 <span style="word-break: break-all;">
 <a href="https://yokaze.github.io/2018/02/11/">https://yokaze.github.io/2018/02/11/</a>
-</span></p></li>
-
-<li><p>Functions &mdash; pybind11 2.2.1 documentation<br />
+</span></p>
+</li>
+<li>
+<p>Functions — pybind11 2.2.1 documentation<br />
 <span style="word-break: break-all;">
 <a href="http://pybind11.readthedocs.io/en/stable/advanced/functions.html">http://pybind11.readthedocs.io/en/stable/advanced/functions.html</a>
-</span></p></li>
+</span></p>
+</li>
 </ul>
 </div>
  
@@ -319,7 +313,7 @@ Hello, world!
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

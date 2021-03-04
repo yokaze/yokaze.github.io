@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "pipdeptree を Python 2 と Python 3 に同時にインストールする - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,12 +60,12 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
     },
-    "description": "pipdeptree を使うと、pip でインストールしたパッケージの依存関係を調べることができます。 $ # macOS Sierra (10.12) + Homebrew $ $ # Python2 用のソフトウェアをインストール $ pip install pipdeptree"
+    "description": "pipdeptree を使うと、pip でインストールしたパッケージの依存関係を調べることができます。 $ # macOS Sierra (10.12) \u002b Homebrew $ $ # Python2 用のソフトウェアをインストール $ pip install pipdeptree"
   }
 </script>
 
@@ -149,20 +149,15 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p><code>pipdeptree</code> を使うと、<code>pip</code> でインストールしたパッケージの依存関係を調べることができます。</p>
-
-<pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
+  <div class="article-body"><p><code>pipdeptree</code> を使うと、<code>pip</code> でインストールしたパッケージの依存関係を調べることができます。</p>
+<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12) + Homebrew
 $
 $ # Python2 用のソフトウェアをインストール
 $ pip install pipdeptree
 $
 $ # Python3 用のソフトウェアをインストール
 $ pip3 install pipdeptree
-</code></pre>
-
-<pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
+</code></pre><pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12) + Homebrew
 $ pipdeptree
 matplotlib==2.0.2
   - cycler [required: &gt;=0.10, installed: 0.10.0]
@@ -179,53 +174,45 @@ scipy==0.19.1
   - numpy [required: &gt;=1.8.2, installed: 1.13.3]
 setuptools==36.5.0
 wheel==0.30.0
-</code></pre>
-
-<p>しかし、<code>pipdeptree</code> はコマンドラインツールなので、このままでは Python の複数バージョンに同時にインストールすることができません。</p>
-
+</code></pre><p>しかし、<code>pipdeptree</code> はコマンドラインツールなので、このままでは Python の複数バージョンに同時にインストールすることができません。</p>
 <h2 id="モジュールとして実行する">モジュールとして実行する</h2>
-
 <p>実は、<code>pipdeptree</code> は Python のモジュールとして実行できます。
 この方法であれば、複数バージョンにインストールして使うことができます。</p>
-
-<pre><code class="language-shell">$ # Python 2 の pip モジュールを調べる
+<pre><code class="language-console" data-lang="console">$ # Python 2 の pip モジュールを調べる
 $ python -m pipdeptree
 $
 $ # Python 3 の pip モジュールを調べる
 $ python3 -m pipdeptree
-</code></pre>
-
-<p>コマンドラインツールを残したい方を後からインストールします。</p>
-
-<pre><code class="language-shell">$ # 複数バージョンを同時にインストールする
+</code></pre><p>コマンドラインツールを残したい方を後からインストールします。</p>
+<pre><code class="language-console" data-lang="console">$ # 複数バージョンを同時にインストールする
 $ # この順番でインストールすると、コマンドラインツールは Python 3 用になります。
 $ pip install pipdeptree
 $ pip3 install pipdeptree
-</code></pre>
-
-<p>
+</code></pre><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考資料">参考資料</h2>
-
 <ul>
-<li><p>Python: pipdeptree でパッケージの依存関係を調べる<br />
+<li>
+<p>Python: pipdeptree でパッケージの依存関係を調べる<br />
 <span style="word-break: break-all;">
 <a href="http://blog.amedama.jp/entry/2016/05/29/182402">http://blog.amedama.jp/entry/2016/05/29/182402</a>
-</span></p></li>
-
-<li><p>pipdeptree / setup.py<br />
+</span></p>
+</li>
+<li>
+<p>pipdeptree / setup.py<br />
 <span style="word-break: break-all;">
 <a href="https://github.com/naiquevin/pipdeptree/blob/master/setup.py">https://github.com/naiquevin/pipdeptree/blob/master/setup.py</a>
-</span></p></li>
-
-<li><p>Pythonでグローバルコマンドを含んだパッケージを作る<br />
+</span></p>
+</li>
+<li>
+<p>Pythonでグローバルコマンドを含んだパッケージを作る<br />
 <span style="word-break: break-all;">
 <a href="https://qiita.com/fetaro/items/bb0eb8292127b5d1e9a8">https://qiita.com/fetaro/items/bb0eb8292127b5d1e9a8</a>
-</span></p></li>
+</span></p>
+</li>
 </ul>
 </div>
  
@@ -340,7 +327,7 @@ $ pip3 install pipdeptree
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

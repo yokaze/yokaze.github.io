@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "TensorFlow 2.0 で Variable を ndarray に変換する - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,12 +60,12 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
     },
-    "description": "TensorFlow 2.0 の Variable を ndarray に変換するには tensorflow.Variable.numpy() を使います。 import tensorflow x = tensorflow.Variable(tensorflow.random.uniform([4, 4])) print(x) y = x.numpy() print(y) $ # macOS Mojave (10.14) + TensorFlow 2.0.0b1 $ python3 sample.py &lt;tf.Variable 'Variable:0' shape=(4, 4) dtype=float32, numpy= array([[0.4963708 , 0.5265337 , 0.645676 , 0.36317182], [0.88785803, 0.6770747 , 0.34829807, 0.7676312 ], [0.64356697, 0.1472162 , 0.6687521 , 0.6949041 ], [0.9588698 ,"
+    "description": "TensorFlow 2.0 の Variable を ndarray に変換するには tensorflow.Variable.numpy() を使います。 import tensorflow x = tensorflow.Variable(tensorflow.random.uniform([4, 4])) print(x) y = x.numpy() print(y) $ # macOS Mojave (10.14) \u002b TensorFlow 2.0.0b1 $ python3 sample.py \u0026lt;tf.Variable \u0027Variable:0\u0027 shape=(4, 4) dtype=float32, numpy= array([[0.4963708 , 0.5265337 , 0.645676 , 0.36317182], [0.88785803, 0.6770747 , 0.34829807, 0.7676312 ], [0.64356697, 0.1472162 , 0.6687521 , 0.6949041 ], [0.9588698 ,"
   }
 </script>
 
@@ -149,20 +149,15 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
+  <div class="article-body"><p>TensorFlow 2.0 の <code>Variable</code> を <code>ndarray</code> に変換するには <code>tensorflow.Variable.numpy()</code> を使います。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> tensorflow
 
-<p>TensorFlow 2.0 の <code>Variable</code> を <code>ndarray</code> に変換するには <code>tensorflow.Variable.numpy()</code> を使います。</p>
+x <span style="color:#f92672">=</span> tensorflow<span style="color:#f92672">.</span>Variable(tensorflow<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>uniform([<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">4</span>]))
+<span style="color:#66d9ef">print</span>(x)
 
-<pre><code class="language-python">import tensorflow
-
-x = tensorflow.Variable(tensorflow.random.uniform([4, 4]))
-print(x)
-
-y = x.numpy()
-print(y)
-</code></pre>
-
-<pre><code class="language-shell">$ # macOS Mojave (10.14) + TensorFlow 2.0.0b1
+y <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>numpy()
+<span style="color:#66d9ef">print</span>(y)
+</code></pre></div><pre><code class="language-console" data-lang="console">$ # macOS Mojave (10.14) + TensorFlow 2.0.0b1
 $ python3 sample.py
 &lt;tf.Variable 'Variable:0' shape=(4, 4) dtype=float32, numpy=
 array([[0.4963708 , 0.5265337 , 0.645676  , 0.36317182],
@@ -173,31 +168,31 @@ array([[0.4963708 , 0.5265337 , 0.645676  , 0.36317182],
  [0.88785803 0.6770747  0.34829807 0.7676312 ]
  [0.64356697 0.1472162  0.6687521  0.6949041 ]
  [0.9588698  0.0772624  0.69979465 0.9192028 ]]
-</code></pre>
-
-<p>
+</code></pre><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考資料">参考資料</h2>
-
 <ul>
-<li><p>TensorFlow 2.0 ベータ版<br />
+<li>
+<p>TensorFlow 2.0 ベータ版<br />
 <span style="word-break: break-all;">
 <a href="https://www.tensorflow.org/beta?hl=ja">https://www.tensorflow.org/beta?hl=ja</a>
-</span></p></li>
-
-<li><p>初心者のための TensorFlow 2.0 入門<br />
+</span></p>
+</li>
+<li>
+<p>初心者のための TensorFlow 2.0 入門<br />
 <span style="word-break: break-all;">
 <a href="https://www.tensorflow.org/beta/tutorials/quickstart/beginner?hl=ja">https://www.tensorflow.org/beta/tutorials/quickstart/beginner?hl=ja</a>
-</span></p></li>
-
-<li><p>Effective TensorFlow 2.0<br />
+</span></p>
+</li>
+<li>
+<p>Effective TensorFlow 2.0<br />
 <span style="word-break: break-all;">
 <a href="https://www.tensorflow.org/beta/guide/effective_tf2">https://www.tensorflow.org/beta/guide/effective_tf2</a>
-</span></p></li>
+</span></p>
+</li>
 </ul>
 </div>
  
@@ -312,7 +307,7 @@ array([[0.4963708 , 0.5265337 , 0.645676  , 0.36317182],
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

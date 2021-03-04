@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "二重ポインタの const 早見表 - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,12 +60,12 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
     },
-    "description": "多重ポインタの const の付け方をまとめました。 まずは普通のポインタから。 int main() { const int* x = new int(0); // ポインタの指す内容を書き換えることができない int* const y = new"
+    "description": "多重ポインタの const の付け方をまとめました。 まずは普通のポインタから。 int main() { const int* x = new int(0); \/\/ ポインタの指す内容を書き換えることができない int* const y = new"
   }
 </script>
 
@@ -149,26 +149,21 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p>多重ポインタの <code>const</code> の付け方をまとめました。
+  <div class="article-body"><p>多重ポインタの <code>const</code> の付け方をまとめました。
 まずは普通のポインタから。</p>
-
-<pre><code class="language-cpp">int main()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-    const int* x = new int(0);       // ポインタの指す内容を書き換えることができない
-    int* const y = new int(0);       // ポインタの指すアドレスを書き換えることができない
-    const int* const z = new int(0); // どちらの操作もできない
-    *x = 1;
-    *y = 1;
-    x = nullptr;
-    y = nullptr;
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> x <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>(<span style="color:#ae81ff">0</span>);       <span style="color:#75715e">// ポインタの指す内容を書き換えることができない
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span> y <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>(<span style="color:#ae81ff">0</span>);       <span style="color:#75715e">// ポインタの指すアドレスを書き換えることができない
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span> z <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>(<span style="color:#ae81ff">0</span>); <span style="color:#75715e">// どちらの操作もできない
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">*</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#f92672">*</span>y <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    x <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;
+    y <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;
 
-    return 0;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<pre><code class="language-shell">$ clang sample.cpp -std=c++11
+</code></pre></div><pre><code class="language-console" data-lang="console">$ clang sample.cpp -std=c++11
 sample.cpp:5:8: error: read-only variable is not assignable
     *x = 1;
     ~~ ^
@@ -179,31 +174,26 @@ sample.cpp:4:16: note: variable 'y' declared const here
     int* const y = new int(0);
     ~~~~~~~~~~~^~~~~~~~~~~~~~
 2 errors generated.
-</code></pre>
-
-<h2 id="二重ポインタの場合">二重ポインタの場合</h2>
-
-<pre><code class="language-cpp">int main()
+</code></pre><h2 id="二重ポインタの場合">二重ポインタの場合</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-    int** x = nullptr;
-    const int* const* a = x; // 一重ポインタ (*a) と値 (**a) を書き換えることができない
-    int* const* b = x;       // 一重ポインタ (*b) の指すアドレスを書き換えることができない
-    int** const c = x;       // 二重ポインタ (c) の指すアドレスを書き換えることができない
-    **a = 1;
-    **b = 1;
-    **c = 1;
-    *a = nullptr;
-    *b = nullptr;
-    *c = nullptr;
-    a = nullptr;
-    b = nullptr;
-    c = nullptr;
+    <span style="color:#66d9ef">int</span><span style="color:#f92672">**</span> x <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span><span style="color:#f92672">*</span> a <span style="color:#f92672">=</span> x; <span style="color:#75715e">// 一重ポインタ (*a) と値 (**a) を書き換えることができない
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span><span style="color:#f92672">*</span> b <span style="color:#f92672">=</span> x;       <span style="color:#75715e">// 一重ポインタ (*b) の指すアドレスを書き換えることができない
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span><span style="color:#f92672">**</span> <span style="color:#66d9ef">const</span> c <span style="color:#f92672">=</span> x;       <span style="color:#75715e">// 二重ポインタ (c) の指すアドレスを書き換えることができない
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">**</span>a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#f92672">**</span>b <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#f92672">**</span>c <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#f92672">*</span>a <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;
+    <span style="color:#f92672">*</span>b <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;
+    <span style="color:#f92672">*</span>c <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;
+    a <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;
+    b <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;
+    c <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;
 
-    return 0;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<pre><code class="language-shell">$ clang sample.cpp -std=c++11
+</code></pre></div><pre><code class="language-console" data-lang="console">$ clang sample.cpp -std=c++11
 sample.cpp:7:9: error: read-only variable is not assignable
     **a = 1;
     ~~~ ^
@@ -220,45 +210,34 @@ sample.cpp:6:17: note: variable 'c' declared const here
     int** const c = x;
     ~~~~~~~~~~~~^~~~~
 4 errors generated.
-</code></pre>
-
-<h2 id="よくある間違い">よくある間違い</h2>
-
-<pre><code class="language-cpp">int main()
+</code></pre><h2 id="よくある間違い">よくある間違い</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-    int** x = nullptr;
-    const int** a = x;
+    <span style="color:#66d9ef">int</span><span style="color:#f92672">**</span> x <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">**</span> a <span style="color:#f92672">=</span> x;
 
-    return 0;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<pre><code class="language-shell">$ clang sample.cpp -std=c++11
+</code></pre></div><pre><code class="language-console" data-lang="console">$ clang sample.cpp -std=c++11
 sample.cpp:4:17: error: cannot initialize a variable of type 'const int **' with an lvalue of type 'int **'
     const int** a = x;
                 ^   ~
 1 error generated.
-</code></pre>
-
-<p><code>int**</code> を <code>const int**</code> に変換することはできません。</p>
-
-<h2 id="おまけ-三重ポインタ">おまけ（三重ポインタ）</h2>
-
-<pre><code class="language-cpp">int main()
+</code></pre><p><code>int**</code> を <code>const int**</code> に変換することはできません。</p>
+<h2 id="おまけ三重ポインタ">おまけ（三重ポインタ）</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-    int*** x = nullptr;
-    const int*** a = x;       // const - none  - none
-    int* const** b = x;       // none  - const - none
-    const int* const** c = x; // const - const - none
-    const int** const* d = x; // const - none  - const
-
-    int* const* const* e = x; // none  - const - const これは OK
-
-    return 0;
+    <span style="color:#66d9ef">int</span><span style="color:#f92672">***</span> x <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">***</span> a <span style="color:#f92672">=</span> x;       <span style="color:#75715e">// const - none  - none
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span><span style="color:#f92672">**</span> b <span style="color:#f92672">=</span> x;       <span style="color:#75715e">// none  - const - none
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span><span style="color:#f92672">**</span> c <span style="color:#f92672">=</span> x; <span style="color:#75715e">// const - const - none
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">**</span> <span style="color:#66d9ef">const</span><span style="color:#f92672">*</span> d <span style="color:#f92672">=</span> x; <span style="color:#75715e">// const - none  - const
+</span><span style="color:#75715e"></span>
+    <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span><span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span><span style="color:#f92672">*</span> e <span style="color:#f92672">=</span> x; <span style="color:#75715e">// none  - const - const これは OK
+</span><span style="color:#75715e"></span>
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<pre><code class="language-shell">$ clang sample.cpp -std=c++11
+</code></pre></div><pre><code class="language-console" data-lang="console">$ clang sample.cpp -std=c++11
 sample.cpp:4:18: error: cannot initialize a variable of type 'const int ***' with an lvalue of type 'int ***'
     const int*** a = x;       // const - none  - none
                  ^   ~
@@ -272,10 +251,7 @@ sample.cpp:7:24: error: cannot initialize a variable of type 'const int **const 
     const int** const* d = x; // const - none  - const
                        ^   ~
 4 errors generated.
-</code></pre>
-
-<p><code>const</code> を付け始めたら右端までキッチリ付けること。</p>
-
+</code></pre><p><code>const</code> を付け始めたら右端までキッチリ付けること。</p>
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -394,7 +370,7 @@ sample.cpp:7:24: error: cannot initialize a variable of type 'const int **const 
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

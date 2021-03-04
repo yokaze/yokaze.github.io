@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "pip のディストリビューションがインストールしたファイルの一覧を表示する - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,7 +60,7 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
@@ -149,13 +149,9 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p>ディストリビューション（パッケージ）がインストールしたファイルの一覧は、インストール時に作成される <code>RECORD</code> ファイルに記録されています。</p>
-
+  <div class="article-body"><p>ディストリビューション（パッケージ）がインストールしたファイルの一覧は、インストール時に作成される <code>RECORD</code> ファイルに記録されています。</p>
 <p>はじめに、<code>pip show</code> コマンドでディストリビューションの位置を確認します。</p>
-
-<pre><code class="language-shell">$ # macOS Sierra (10.12)
+<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12)
 $ pip show Pillow
 Name: Pillow
 Version: 4.2.1
@@ -166,21 +162,15 @@ Author-email: aclark@aclark.net
 License: Standard PIL License
 Location: /Library/Python/2.7/site-packages
 Requires: olefile
-</code></pre>
-
-<p><code>RECORD</code> ファイルはディストリビューションの <code>dist-info</code> フォルダにあります。</p>
-
-<pre><code class="language-shell">$ # macOS Sierra (10.12)
+</code></pre><p><code>RECORD</code> ファイルはディストリビューションの <code>dist-info</code> フォルダにあります。</p>
+<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12)
 $ pwd
 /Library/Python/2.7/site-packages/Pillow-4.2.1.dist-info
 $ ls
 DESCRIPTION.rst	INSTALLER	METADATA	RECORD		WHEEL		metadata.json	top_level.txt	zip-safe
-</code></pre>
-
-<p><code>RECORD</code> ファイルには、インストールディレクトリからの相対パス、sha256 ハッシュ、ファイルサイズが記録されています。
+</code></pre><p><code>RECORD</code> ファイルには、インストールディレクトリからの相対パス、sha256 ハッシュ、ファイルサイズが記録されています。
 各ファイルのハッシュ値を計算することで、ファイルが変更されていないか確認することができます。</p>
-
-<pre><code class="language-shell">$ # macOS Sierra (10.12)
+<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12)
 $ # Pillow ディストリビューションがインストールしたファイルの一覧を表示
 $
 $ cat RECORD
@@ -188,58 +178,62 @@ PIL/__init__.py,sha256=t6lt8swQiV7BhuYXk_sOrl34QijmWJpPUbmYHVpVjZ8,1671
 PIL/_binary.py,sha256=d4Fm598vk15H9L6eYybEJ9nwXFMpq7bIOO5-6u4-IPA,1797
   ...
 PIL/TiffTags.pyc,,
-</code></pre>
-
-<p><code>RECORD</code> ファイル本体、<code>pyc</code> ファイルなどのハッシュ値、ファイルサイズは記録されません。</p>
-
+</code></pre><p><code>RECORD</code> ファイル本体、<code>pyc</code> ファイルなどのハッシュ値、ファイルサイズは記録されません。</p>
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考資料">参考資料</h2>
-
 <ul>
-<li><p>Pythonのsource distributionとeggとwheel<br />
+<li>
+<p>Pythonのsource distributionとeggとwheel<br />
 <span style="word-break: break-all;">
 <a href="http://tkmr.hatenablog.com/entry/2014/06/28/164426">http://tkmr.hatenablog.com/entry/2014/06/28/164426</a>
-</span></p></li>
-
-<li><p>Python パッケージ管理技術まとめ (pip, setuptools, easy_install, etc)<br />
+</span></p>
+</li>
+<li>
+<p>Python パッケージ管理技術まとめ (pip, setuptools, easy_install, etc)<br />
 <span style="word-break: break-all;">
 <a href="http://www.yunabe.jp/docs/python_package_management.html">http://www.yunabe.jp/docs/python_package_management.html</a>
-</span></p></li>
-
-<li><p>wheelのありがたさとAnacondaへの要望<br />
+</span></p>
+</li>
+<li>
+<p>wheelのありがたさとAnacondaへの要望<br />
 <span style="word-break: break-all;">
 <a href="http://ymotongpoo.hatenablog.com/entry/2017/02/02/182647">http://ymotongpoo.hatenablog.com/entry/2017/02/02/182647</a>
-</span></p></li>
-
-<li><p>PEP 427 &ndash; The Wheel Binary Package Format 1.0<br />
+</span></p>
+</li>
+<li>
+<p>PEP 427 &ndash; The Wheel Binary Package Format 1.0<br />
 <span style="word-break: break-all;">
 <a href="https://www.python.org/dev/peps/pep-0427/">https://www.python.org/dev/peps/pep-0427/</a>
-</span></p></li>
-
-<li><p>PEP 376 &ndash; Database of Installed Python Distributions<br />
+</span></p>
+</li>
+<li>
+<p>PEP 376 &ndash; Database of Installed Python Distributions<br />
 <span style="word-break: break-all;">
 <a href="https://www.python.org/dev/peps/pep-0376/">https://www.python.org/dev/peps/pep-0376/</a>
-</span></p></li>
-
-<li><p>Wheel &ndash; wheel 0.29.0 documentation<br />
+</span></p>
+</li>
+<li>
+<p>Wheel &ndash; wheel 0.29.0 documentation<br />
 <span style="word-break: break-all;">
 <a href="https://wheel.readthedocs.io/en/stable/">https://wheel.readthedocs.io/en/stable/</a>
-</span></p></li>
-
-<li><p>Python 3.5 対応画像処理ライブラリ Pillow (PIL) の使い方<br />
+</span></p>
+</li>
+<li>
+<p>Python 3.5 対応画像処理ライブラリ Pillow (PIL) の使い方<br />
 <span style="word-break: break-all;">
 <a href="https://librabuch.jp/blog/2013/05/python_pillow_pil/">https://librabuch.jp/blog/2013/05/python_pillow_pil/</a>
-</span></p></li>
-
-<li><p>mac で PIL (Python Imaging Library) を使う<br />
+</span></p>
+</li>
+<li>
+<p>mac で PIL (Python Imaging Library) を使う<br />
 <span style="word-break: break-all;">
 <a href="https://yokaze.github.io/2017/09/23/">https://yokaze.github.io/2017/09/23/</a>
-</span></p></li>
+</span></p>
+</li>
 </ul>
 </div>
  
@@ -354,7 +348,7 @@ PIL/TiffTags.pyc,,
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

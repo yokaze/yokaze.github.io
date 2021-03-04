@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2019 on yokaze.github.io</title>
@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Thu, 12 Sep 2019 21:00:00 +0900</lastBuildDate>
-    
-	<atom:link href="https://yokaze.github.io/2019/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 12 Sep 2019 21:00:00 +0900</lastBuildDate><atom:link href="https://yokaze.github.io/2019/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Sliced Wasserstein GMM を実装してみた</title>
       <link>https://yokaze.github.io/2019/09/12/</link>
@@ -81,7 +77,7 @@
       <pubDate>Fri, 05 Jul 2019 18:00:00 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2019/07/05/</guid>
-      <description>lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &amp;lt;stdio.h&amp;gt; void sample1() { printf(&amp;quot;sample 1\n&amp;quot;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ clang -g sample.cpp -o</description>
+      <description>lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &amp;lt;stdio.h&amp;gt; void sample1() { printf(&amp;#34;sample 1\n&amp;#34;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ clang -g sample.cpp -o</description>
     </item>
     
     <item>
@@ -90,7 +86,7 @@
       <pubDate>Thu, 04 Jul 2019 21:00:00 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2019/07/04/</guid>
-      <description>ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &amp;lt;algorithm&amp;gt; sample.cpp #include &amp;quot;sample.h&amp;quot; int main(void) { printf(&amp;quot;%d\n&amp;quot;, std::min&amp;lt;int&amp;gt;(1, 2)); return 0; } -MF オプションで出力先を指定で</description>
+      <description>ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &amp;lt;algorithm&amp;gt;sample.cpp #include &amp;#34;sample.h&amp;#34; int main(void) { printf(&amp;#34;%d\n&amp;#34;, std::min&amp;lt;int&amp;gt;(1, 2)); return 0; } -MF オプションで出力先を指定でき</description>
     </item>
     
     <item>

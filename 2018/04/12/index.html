@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
-    "headline": "pyscience11 で C&#43;&#43; から SciPy と Matplotlib を使う - yokaze.github.io",
+    "headline": "pyscience11 で C\u002b\u002b から SciPy と Matplotlib を使う - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,12 +60,12 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
     },
-    "description": "私事ですが、GitHub で pyscience11 というライブラリを公開しています。 このライブラリは Header-Only で、C++ から NumPy, SciPy, Matplotlib を手軽に使うことができます。 動作には pybind11 が"
+    "description": "私事ですが、GitHub で pyscience11 というライブラリを公開しています。 このライブラリは Header-Only で、C\u002b\u002b から NumPy, SciPy, Matplotlib を手軽に使うことができます。 動作には pybind11 が"
   }
 </script>
 
@@ -149,163 +149,137 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p>私事ですが、GitHub で <a href="https://github.com/yokaze/pyscience11">pyscience11</a> というライブラリを公開しています。
+  <div class="article-body"><p>私事ですが、GitHub で <a href="https://github.com/yokaze/pyscience11">pyscience11</a> というライブラリを公開しています。
 このライブラリは Header-Only で、C++ から NumPy, SciPy, Matplotlib を手軽に使うことができます。
 動作には <a href="https://github.com/pybind/pybind11">pybind11</a> が必要です。</p>
-
 <p>次の例では、pybind11 の組み込み Python 環境で誤差関数 (erf) を表示しています。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pyscience11/matplotlib.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pyscience11/matplotlib/pyplot.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pyscience11/numpy.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pyscience11/scipy/special.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">namespace</span> py <span style="color:#f92672">=</span> pybind11;
+<span style="color:#66d9ef">namespace</span> m11 <span style="color:#f92672">=</span> matplotlib11;
+<span style="color:#66d9ef">namespace</span> n11 <span style="color:#f92672">=</span> numpy11;
+<span style="color:#66d9ef">namespace</span> s11 <span style="color:#f92672">=</span> scipy11;
 
-<pre><code class="language-cpp">#include &lt;pybind11/embed.h&gt;
-#include &lt;pybind11/pybind11.h&gt;
-#include &lt;pyscience11/matplotlib.h&gt;
-#include &lt;pyscience11/matplotlib/pyplot.h&gt;
-#include &lt;pyscience11/numpy.h&gt;
-#include &lt;pyscience11/scipy/special.h&gt;
-
-namespace py = pybind11;
-namespace m11 = matplotlib11;
-namespace n11 = numpy11;
-namespace s11 = scipy11;
-
-int main(void)
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
 {
-    // 組み込み Python インタプリタを起動する
-    py::scoped_interpreter interpreter;
+    <span style="color:#75715e">// 組み込み Python インタプリタを起動する
+</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>scoped_interpreter interpreter;
 
-    // numpy と scipy.special を読み込む
-    auto numpy = n11::import_numpy();
-    auto scipy_special = s11::scipy::import_special();
+    <span style="color:#75715e">// numpy と scipy.special を読み込む
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">auto</span> numpy <span style="color:#f92672">=</span> n11<span style="color:#f92672">::</span>import_numpy();
+    <span style="color:#66d9ef">auto</span> scipy_special <span style="color:#f92672">=</span> s11<span style="color:#f92672">::</span>scipy<span style="color:#f92672">::</span>import_special();
 
-    // 誤差関数 (erf) を計算する
-    auto x = numpy.linspace(-2, 2, 1001, py::arg(&quot;dtype&quot;) = numpy.attr(&quot;float32&quot;));
-    auto y = scipy_special.erf(x);
+    <span style="color:#75715e">// 誤差関数 (erf) を計算する
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">auto</span> x <span style="color:#f92672">=</span> numpy.linspace(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1001</span>, py<span style="color:#f92672">::</span>arg(<span style="color:#e6db74">&#34;dtype&#34;</span>) <span style="color:#f92672">=</span> numpy.attr(<span style="color:#e6db74">&#34;float32&#34;</span>));
+    <span style="color:#66d9ef">auto</span> y <span style="color:#f92672">=</span> scipy_special.erf(x);
 
-    // matplotlib を読み込み、バックエンドを設定する
-    auto matplotlib = m11::import_matplotlib();
-    matplotlib.use(&quot;TkAgg&quot;);
+    <span style="color:#75715e">// matplotlib を読み込み、バックエンドを設定する
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">auto</span> matplotlib <span style="color:#f92672">=</span> m11<span style="color:#f92672">::</span>import_matplotlib();
+    matplotlib.use(<span style="color:#e6db74">&#34;TkAgg&#34;</span>);
 
-    // グラフを描画する
-    auto pl = m11::matplotlib::import_pyplot();
+    <span style="color:#75715e">// グラフを描画する
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">auto</span> pl <span style="color:#f92672">=</span> m11<span style="color:#f92672">::</span>matplotlib<span style="color:#f92672">::</span>import_pyplot();
     pl.plot(x, y);
     pl.show();
 
-    return 0;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<p>Python を実行ファイルに組み込むため、Python 3.6 にリンクしています。
+</code></pre></div><p>Python を実行ファイルに組み込むため、Python 3.6 にリンクしています。
 また、pybind11 と pyscience11 のヘッダファイルのパスを指定しています。</p>
-
-<pre><code class="language-shell">$ # macOS Sierra (10.12)
+<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12)
 $ clang sample.cpp -std=c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -I/usr/local/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
-</code></pre>
-
-<p>このプログラムを実行すると、次の通りグラフが表示されます。</p>
-
-
+</code></pre><p>このプログラムを実行すると、次の通りグラフが表示されます。</p>
 <figure class="center">
-    
-        <img src="/2018/04/12/erf.png" width="100%" />
-    
-    
+    <img src="/2018/04/12/erf.png" width="100%"/> 
 </figure>
 
-
 <h2 id="stl-との連携">STL との連携</h2>
-
 <p>pyscience11 では、pybind11 の STL 連携機能を使うことができます。
 <code>pybind11/stl.h</code> をインクルードすると、<code>std::vector</code> などを引数として Matplotlib を呼び出すことができます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/stl.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pyscience11/matplotlib.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pyscience11/matplotlib/pyplot.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">namespace</span> py <span style="color:#f92672">=</span> pybind11;
+<span style="color:#66d9ef">namespace</span> m11 <span style="color:#f92672">=</span> matplotlib11;
 
-<pre><code class="language-cpp">#include &lt;pybind11/embed.h&gt;
-#include &lt;pybind11/pybind11.h&gt;
-#include &lt;pybind11/stl.h&gt;
-#include &lt;pyscience11/matplotlib.h&gt;
-#include &lt;pyscience11/matplotlib/pyplot.h&gt;
-
-namespace py = pybind11;
-namespace m11 = matplotlib11;
-
-int main(void)
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
 {
-    // 組み込み Python インタプリタを起動する
-    py::scoped_interpreter interpreter;
+    <span style="color:#75715e">// 組み込み Python インタプリタを起動する
+</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>scoped_interpreter interpreter;
 
-    // 正弦関数 (sin) を計算する
-    std::vector&lt;float&gt; x, y;
-    for (int i = 0; i &lt;= 1000; ++i)
+    <span style="color:#75715e">// 正弦関数 (sin) を計算する
+</span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span> x, y;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1000</span>; <span style="color:#f92672">++</span>i)
     {
-        float xi = M_PI * (i - 500) / 500.f;
-        float yi = sinf(xi);
+        <span style="color:#66d9ef">float</span> xi <span style="color:#f92672">=</span> M_PI <span style="color:#f92672">*</span> (i <span style="color:#f92672">-</span> <span style="color:#ae81ff">500</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">500.f</span>;
+        <span style="color:#66d9ef">float</span> yi <span style="color:#f92672">=</span> sinf(xi);
         x.push_back(xi);
         y.push_back(yi);
     }
 
-    // matplotlib を読み込み、バックエンドを設定する
-    auto matplotlib = m11::import_matplotlib();
-    matplotlib.use(&quot;TkAgg&quot;);
+    <span style="color:#75715e">// matplotlib を読み込み、バックエンドを設定する
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">auto</span> matplotlib <span style="color:#f92672">=</span> m11<span style="color:#f92672">::</span>import_matplotlib();
+    matplotlib.use(<span style="color:#e6db74">&#34;TkAgg&#34;</span>);
 
-    // グラフを描画する
-    auto pl = m11::matplotlib::import_pyplot();
+    <span style="color:#75715e">// グラフを描画する
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">auto</span> pl <span style="color:#f92672">=</span> m11<span style="color:#f92672">::</span>matplotlib<span style="color:#f92672">::</span>import_pyplot();
     pl.plot(x, y);
     pl.show();
 
-    return 0;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<p>このプログラムを実行すると、次のグラフが表示されます。</p>
-
-
+</code></pre></div><p>このプログラムを実行すると、次のグラフが表示されます。</p>
 <figure class="center">
-    
-        <img src="/2018/04/12/sin.png" width="100%" />
-    
-    
+    <img src="/2018/04/12/sin.png" width="100%"/> 
 </figure>
 
-
 <h2 id="インストール">インストール</h2>
-
 <p>このライブラリは Header-Only なので、pybind11 と pyscience11 のヘッダファイルをダウンロードするだけで使えます。
 <code>pip</code> を使いシステムディレクトリにインストールすることもできます。</p>
-
-<pre><code class="language-shell">$ # pybind11 をインストールする（pyscience 11 の実行に必要です）
+<pre><code class="language-console" data-lang="console">$ # pybind11 をインストールする（pyscience 11 の実行に必要です）
 $ pip install pybind11
 $
 $ # pyscience11 をインストールする
 $ pip install pyscience11
-</code></pre>
-
-<p>
+</code></pre><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考資料">参考資料</h2>
-
 <ul>
-<li><p>pybind11 で C++ から Python インタプリタを実行する<br />
+<li>
+<p>pybind11 で C++ から Python インタプリタを実行する<br />
 <span style="word-break: break-all;">
 <a href="https://yokaze.github.io/2018/02/11/">https://yokaze.github.io/2018/02/11/</a>
-</span></p></li>
-
-<li><p>pybind11 上の matplotlib で macosx バックエンドを使う<br />
+</span></p>
+</li>
+<li>
+<p>pybind11 上の matplotlib で macosx バックエンドを使う<br />
 <span style="word-break: break-all;">
 <a href="https://yokaze.github.io/2018/02/24/">https://yokaze.github.io/2018/02/24/</a>
-</span></p></li>
-
-<li><p>pybind/pybind11: Seamless operability between C++11 and Python<br />
+</span></p>
+</li>
+<li>
+<p>pybind/pybind11: Seamless operability between C++11 and Python<br />
 <span style="word-break: break-all;">
 <a href="https://github.com/pybind/pybind11">https://github.com/pybind/pybind11</a>
-</span></p></li>
-
-<li><p>yokaze/pyscience11: C++11 wrapper for NumPy, SciPy and Matplotlib using pybind11<br />
+</span></p>
+</li>
+<li>
+<p>yokaze/pyscience11: C++11 wrapper for NumPy, SciPy and Matplotlib using pybind11<br />
 <span style="word-break: break-all;">
 <a href="https://github.com/yokaze/pyscience11">https://github.com/yokaze/pyscience11</a>
-</span></p></li>
+</span></p>
+</li>
 </ul>
 </div>
  
@@ -420,7 +394,7 @@ $ pip install pyscience11
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

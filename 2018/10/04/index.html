@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "lldb の source info コマンドの使い方 - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,7 +60,7 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
@@ -149,119 +149,87 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p><code>source info</code> コマンドを使うとデバッグ中のプロセスに関するソースコードの情報を取得することができます。
+  <div class="article-body"><p><code>source info</code> コマンドを使うとデバッグ中のプロセスに関するソースコードの情報を取得することができます。
 ここでは、次のソースコードを例として <code>source info</code> コマンドの動作を解説します。</p>
-
-<pre><code class="language-cpp">#include &lt;stdio.h&gt;
-
-int main(void)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
 {
-    printf(&quot;Hello, World!\n&quot;);
-    return 0;
+    printf(<span style="color:#e6db74">&#34;Hello, World!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<pre><code class="language-shell">$ # macOS High Sierra (10.13)
+</code></pre></div><pre><code class="language-console" data-lang="console">$ # macOS High Sierra (10.13)
 $ clang sample.cpp -g -o sample
 $ lldb sample
 (lldb) target create &quot;sample&quot;
 Current executable set to 'sample' (x86_64).
-</code></pre>
-
-<p><code>source info</code> コマンドには3つの構文があります。</p>
-
-<h3 id="1-ファイルを指定してソースコードの情報を表示する-f-l-e">1. ファイルを指定してソースコードの情報を表示する <code>-f</code> <code>-l</code> <code>-e</code></h3>
-
+</code></pre><p><code>source info</code> コマンドには3つの構文があります。</p>
+<h3 id="1-ファイルを指定してソースコードの情報を表示する--f--l--e">1. ファイルを指定してソースコードの情報を表示する <code>-f</code> <code>-l</code> <code>-e</code></h3>
 <p><code>source info [-c &lt;count&gt;] [-s &lt;shlib-name&gt;] [-f &lt;filename&gt;] [-l &lt;linenum&gt;] [-e &lt;linenum&gt;]</code></p>
-
 <p><code>-f</code> オプションに続けてソースファイルの名前を指定します。
 <code>-l</code>, <code>-e</code> オプションで表示する範囲を指定できます。</p>
-
-<pre><code class="language-shell">(lldb) source info -f sample.cpp
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">(lldb) source info -f sample.cpp
 Lines found for file sample.cpp in compilation unit sample.cpp in `sample
 [0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
 [0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
 [0x0000000100000f6f-0x0000000100000f7a): /path/to/directory/sample.cpp:6:5
-</code></pre>
-
-<pre><code class="language-shell">(lldb) source info -f sample.cpp -l 5 -e 5
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">(lldb) source info -f sample.cpp -l 5 -e 5
 Lines found for file sample.cpp in compilation unit sample.cpp in `sample
 [0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
-</code></pre>
-
-<p>また、<code>-c</code> オプションを使い、表示するエントリの数を制限することができます。</p>
-
-<pre><code class="language-shell">(lldb) source info -f sample.cpp -c 2
+</code></pre></div><p>また、<code>-c</code> オプションを使い、表示するエントリの数を制限することができます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">(lldb) source info -f sample.cpp -c 2
 Lines found for file sample.cpp in compilation unit sample.cpp in `sample
 [0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
 [0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
-</code></pre>
-
-<h3 id="2-シンボル名を指定してソースコードの情報を表示する-n">2. シンボル名を指定してソースコードの情報を表示する <code>-n</code></h3>
-
+</code></pre></div><h3 id="2-シンボル名を指定してソースコードの情報を表示する--n">2. シンボル名を指定してソースコードの情報を表示する <code>-n</code></h3>
 <p><code>source info [-c &lt;count&gt;] [-s &lt;shlib-name&gt;] [-n &lt;symbol&gt;]</code></p>
-
 <p><code>-n</code> オプションに続けて関数の名前を指定します。
 <code>-s</code> オプションで探索するモジュールを限定することができます。</p>
-
-<pre><code class="language-shell">(lldb) source info -n main
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">(lldb) source info -n main
 Lines found in module `sample
 [0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
 [0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
 [0x0000000100000f6f-0x0000000100000f7a): /path/to/directory/sample.cpp:6:5
-</code></pre>
-
-<pre><code class="language-shell">(lldb) source info -s sample -n main
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">(lldb) source info -s sample -n main
 Lines found in module `sample
 [0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
 [0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
 [0x0000000100000f6f-0x0000000100000f7a): /path/to/directory/sample.cpp:6:5
-</code></pre>
-
-<p>モジュールの一覧は <code>target modules list</code> コマンドで表示できます。</p>
-
-<pre><code class="language-shell">(lldb) target modules list
+</code></pre></div><p>モジュールの一覧は <code>target modules list</code> コマンドで表示できます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">(lldb) target modules list
 [  0] CE5B2F68-A0F6-3747-8CC0-BEA6BF888731 0x0000000100000000 /path/to/directory/sample
       /path/to/directory/sample.dSYM/Contents/Resources/DWARF/sample
       ...
-</code></pre>
-
-<h3 id="3-関数のアドレスを指定してソースコードの情報を表示する-a">3. 関数のアドレスを指定してソースコードの情報を表示する <code>-a</code></h3>
-
+</code></pre></div><h3 id="3-関数のアドレスを指定してソースコードの情報を表示する--a">3. 関数のアドレスを指定してソースコードの情報を表示する <code>-a</code></h3>
 <p><code>source info [-c &lt;count&gt;] [-a &lt;address-expression&gt;]</code></p>
-
 <p><code>-a</code> オプションに続けて関数のアドレスを指定します。</p>
-
-<pre><code class="language-shell">(lldb) p main
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">(lldb) p main
 sou(int (*)()) $0 = 0x0000000100000f50
 (lldb) source info -a 0x100000f50
 Lines found in module `sample
 [0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
-</code></pre>
-
-<h2 id="追加情報">追加情報</h2>
-
+</code></pre></div><h2 id="追加情報">追加情報</h2>
 <p><code>source info</code> コマンドの構文とオプション一覧は <code>help source info</code> コマンドで確認できます。</p>
-
 <h2 id="参考資料">参考資料</h2>
-
 <ul>
-<li><p>The LLVM Compiler Infrastructure<br />
+<li>
+<p>The LLVM Compiler Infrastructure<br />
 <span style="word-break: break-all;">
 <a href="https://llvm.org/">https://llvm.org/</a>
-</span></p></li>
-
-<li><p>lldb で使えるコマンド一覧<br />
+</span></p>
+</li>
+<li>
+<p>lldb で使えるコマンド一覧<br />
 <span style="word-break: break-all;">
 <a href="https://yokaze.github.io/2018/01/06/">https://yokaze.github.io/2018/01/06/</a>
-</span></p></li>
-
-<li><p>lldb のコマンドのオプションを読み解く<br />
+</span></p>
+</li>
+<li>
+<p>lldb のコマンドのオプションを読み解く<br />
 <span style="word-break: break-all;">
 <a href="https://yokaze.github.io/2018/09/25/">https://yokaze.github.io/2018/09/25/</a>
-</span></p></li>
+</span></p>
+</li>
 </ul>
 </div>
  
@@ -376,7 +344,7 @@ Lines found in module `sample
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>プログラミング on yokaze.github.io</title>
@@ -7,18 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Fri, 05 Jul 2019 18:00:00 +0900</lastBuildDate>
-    
-	<atom:link href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 05 Jul 2019 18:00:00 +0900</lastBuildDate><atom:link href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>lldb で関数の呼び出し履歴を表示する</title>
       <link>https://yokaze.github.io/2019/07/05/</link>
       <pubDate>Fri, 05 Jul 2019 18:00:00 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2019/07/05/</guid>
-      <description>lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &amp;lt;stdio.h&amp;gt; void sample1() { printf(&amp;quot;sample 1\n&amp;quot;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ clang -g sample.cpp -o</description>
+      <description>lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &amp;lt;stdio.h&amp;gt; void sample1() { printf(&amp;#34;sample 1\n&amp;#34;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ clang -g sample.cpp -o</description>
     </item>
     
     <item>
@@ -27,7 +23,7 @@
       <pubDate>Thu, 04 Jul 2019 21:00:00 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2019/07/04/</guid>
-      <description>ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &amp;lt;algorithm&amp;gt; sample.cpp #include &amp;quot;sample.h&amp;quot; int main(void) { printf(&amp;quot;%d\n&amp;quot;, std::min&amp;lt;int&amp;gt;(1, 2)); return 0; } -MF オプションで出力先を指定で</description>
+      <description>ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &amp;lt;algorithm&amp;gt;sample.cpp #include &amp;#34;sample.h&amp;#34; int main(void) { printf(&amp;#34;%d\n&amp;#34;, std::min&amp;lt;int&amp;gt;(1, 2)); return 0; } -MF オプションで出力先を指定でき</description>
     </item>
     
     <item>
@@ -45,7 +41,7 @@
       <pubDate>Sat, 13 Oct 2018 12:00:00 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2018/10/13/</guid>
-      <description>CMake でモジュール定義ファイルを使う場合は、.def ファイルをソースコードと同時に指定します。 #include &amp;lt;stdio.h&amp;gt; extern &amp;quot;C&amp;quot; void hello() { printf(&amp;quot;Hello\n&amp;quot;); } エクスポートの設定がない場合、関</description>
+      <description>CMake でモジュール定義ファイルを使う場合は、.def ファイルをソースコードと同時に指定します。 #include &amp;lt;stdio.h&amp;gt; extern &amp;#34;C&amp;#34; void hello() { printf(&amp;#34;Hello\n&amp;#34;); } エクスポートの設定がない場合、関</description>
     </item>
     
     <item>
@@ -72,7 +68,7 @@
       <pubDate>Wed, 26 Sep 2018 18:00:00 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2018/09/26/</guid>
-      <description>clang で初期化されていない変数を使った場合に警告を出すには、-Wuninitialized オプションを指定します。 // Program 1 #include &amp;lt;stdio.h&amp;gt; int main(void) { int x; printf(&amp;quot;%d\n&amp;quot;, x); return 0; }</description>
+      <description>clang で初期化されていない変数を使った場合に警告を出すには、-Wuninitialized オプションを指定します。 // Program 1 #include &amp;lt;stdio.h&amp;gt; int main(void) { int x; printf(&amp;#34;%d\n&amp;#34;, x); return 0; }</description>
     </item>
     
     <item>
@@ -90,7 +86,7 @@
       <pubDate>Tue, 18 Sep 2018 18:00:00 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2018/09/18/</guid>
-      <description>pybind11 でオブジェクトの値を表示するには、pybind11::print を使います。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&amp;quot;sys&amp;quot;); py::print(sys_module); return 0; } $ # macOS High Sierra (10.13) $ clang sample.cpp -std=c++11</description>
+      <description>pybind11 でオブジェクトの値を表示するには、pybind11::print を使います。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&amp;#34;sys&amp;#34;); py::print(sys_module); return 0; } $ # macOS High Sierra (10.13) $ clang sample.cpp -std=c++11 -lc++</description>
     </item>
     
     <item>
@@ -117,7 +113,7 @@
       <pubDate>Thu, 08 Mar 2018 21:00:00 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2018/03/08/</guid>
-      <description>pybind11 でキーワード引数 (kwargs) を指定するには、pybind11::arg を使います。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { // python インタプリタを起動する py::scoped_interpreter interpreter; // numpy の各種オブ</description>
+      <description>pybind11 でキーワード引数 (kwargs) を指定するには、pybind11::arg を使います。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { // python インタプリタを起動する py::scoped_interpreter interpreter; // numpy の各種オブジ</description>
     </item>
     
     <item>
@@ -162,7 +158,7 @@
       <pubDate>Sun, 11 Feb 2018 11:30:00 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2018/02/11/</guid>
-      <description>pybind11 の pybind11::scoped_interpreter を使うと、C++ から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;quot;Hello, world!&amp;quot;); return 0; } コンパイルには Python.h が必要です。 端末上に複</description>
+      <description>pybind11 の pybind11::scoped_interpreter を使うと、C++ から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;#34;Hello, world!&amp;#34;); return 0; } コンパイルには Python.h が必要です。 端末上に複数</description>
     </item>
     
     <item>
@@ -207,7 +203,7 @@
       <pubDate>Mon, 22 Jan 2018 22:07:42 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2018/01/22/</guid>
-      <description>swiftc コマンドで Hello world プログラムをビルドします。 print(&amp;quot;Hello world!&amp;quot;) $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料</description>
+      <description>swiftc コマンドで Hello world プログラムをビルドします。 print(&amp;#34;Hello world!&amp;#34;) $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料</description>
     </item>
     
     <item>
@@ -216,7 +212,7 @@
       <pubDate>Thu, 18 Jan 2018 22:55:39 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2018/01/18/</guid>
-      <description>clang で負のビットシフトを警告するには、-Wshift-count-negative オプションを指定します。 #include &amp;lt;stdio.h&amp;gt; int main() { int x = 8; int y = x &amp;lt;&amp;lt; -1; printf(&amp;quot;%d\n&amp;quot;, y); return</description>
+      <description>clang で負のビットシフトを警告するには、-Wshift-count-negative オプションを指定します。 #include &amp;lt;stdio.h&amp;gt; int main() { int x = 8; int y = x &amp;lt;&amp;lt; -1; printf(&amp;#34;%d\n&amp;#34;, y); return</description>
     </item>
     
     <item>

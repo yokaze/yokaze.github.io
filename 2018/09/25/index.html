@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "lldb のコマンドのオプションを読み解く - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,7 +60,7 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
@@ -149,12 +149,9 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p>lldb のコマンドのヘルプを確認すると、複数の構文が表示されることがあります。
+  <div class="article-body"><p>lldb のコマンドのヘルプを確認すると、複数の構文が表示されることがあります。
 次の例では、ソースコードの情報を取得する <code>source info</code> コマンドについて3つの構文が表示されます。</p>
-
-<pre><code class="language-shell">$ # macOS High Sierra (10.13)
+<pre><code class="language-console" data-lang="console">$ # macOS High Sierra (10.13)
 $ lldb
 (lldb) help source info
      Display source line information for the current target process.  Defaults
@@ -189,54 +186,40 @@ Command Options Usage:
        -s &lt;shlib-name&gt; ( --shlib &lt;shlib-name&gt; )
             Look up the source in the given module or shared library (can be
             specified more than once).
-</code></pre>
-
-<p>上記のオプションのうち <code>-c</code> は3つの構文全てで使えますが、<code>-s</code> は最初の2つの構文でしか使えません。
+</code></pre><p>上記のオプションのうち <code>-c</code> は3つの構文全てで使えますが、<code>-s</code> は最初の2つの構文でしか使えません。
 また、その他のオプションはいずれか1つの構文でしか使えません。
 この違いが何によって決まるのかを調べました。</p>
-
 <h2 id="コマンドのオプションはそれぞれの構文に割り当てられる">コマンドのオプションはそれぞれの構文に割り当てられる</h2>
-
 <p><code>source info</code> コマンドの各オプションは以下の通りそれぞれの構文に割り当てられています。</p>
-
-<pre><code class="language-cpp">static OptionDefinition g_source_info_options[] = {
-  { LLDB_OPT_SET_ALL,                false, &quot;count&quot;,    'c', ... },
-  { LLDB_OPT_SET_1 | LLDB_OPT_SET_2, false, &quot;shlib&quot;,    's', ... },
-  { LLDB_OPT_SET_1,                  false, &quot;file&quot;,     'f', ... },
-  { LLDB_OPT_SET_1,                  false, &quot;line&quot;,     'l', ... },
-  { LLDB_OPT_SET_1,                  false, &quot;end-line&quot;, 'e', ... },
-  { LLDB_OPT_SET_2,                  false, &quot;name&quot;,     'n', ... },
-  { LLDB_OPT_SET_3,                  false, &quot;address&quot;,  'a', ... },
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">static</span> OptionDefinition g_source_info_options[] <span style="color:#f92672">=</span> {
+  { LLDB_OPT_SET_ALL,                false, <span style="color:#e6db74">&#34;count&#34;</span>,    <span style="color:#e6db74">&#39;c&#39;</span>, ... },
+  { LLDB_OPT_SET_1 <span style="color:#f92672">|</span> LLDB_OPT_SET_2, false, <span style="color:#e6db74">&#34;shlib&#34;</span>,    <span style="color:#e6db74">&#39;s&#39;</span>, ... },
+  { LLDB_OPT_SET_1,                  false, <span style="color:#e6db74">&#34;file&#34;</span>,     <span style="color:#e6db74">&#39;f&#39;</span>, ... },
+  { LLDB_OPT_SET_1,                  false, <span style="color:#e6db74">&#34;line&#34;</span>,     <span style="color:#e6db74">&#39;l&#39;</span>, ... },
+  { LLDB_OPT_SET_1,                  false, <span style="color:#e6db74">&#34;end-line&#34;</span>, <span style="color:#e6db74">&#39;e&#39;</span>, ... },
+  { LLDB_OPT_SET_2,                  false, <span style="color:#e6db74">&#34;name&#34;</span>,     <span style="color:#e6db74">&#39;n&#39;</span>, ... },
+  { LLDB_OPT_SET_3,                  false, <span style="color:#e6db74">&#34;address&#34;</span>,  <span style="color:#e6db74">&#39;a&#39;</span>, ... },
 };
-</code></pre>
-
-<p><span style="word-break: break-all;">
-<a href="https://github.com/llvm-mirror/lldb/blob/release_70/source/Commands/CommandObjectSource.cpp#L44">https://github.com/llvm-mirror/lldb/blob/release_70/source/Commands/CommandObjectSource.cpp#L44</a>
-</span></p>
-
+</code></pre></div><span style="word-break: break-all;">
+https://github.com/llvm-mirror/lldb/blob/release_70/source/Commands/CommandObjectSource.cpp#L44
+</span>
 <p>ここから、2番目・3番目の構文が <code>-n</code> と <code>-a</code> オプションのために存在していることが分かります。
 この視点に立つと、上記3つの構文がそれぞれ</p>
-
 <ol>
 <li>ファイルと行番号を指定してソースコードの情報を表示する</li>
 <li>シンボルからソースコードを検索する</li>
 <li>アドレスからソースコードを検索する</li>
 </ol>
-
 <p>ためのコマンドであることが分かります。</p>
-
 <h2 id="使用例">使用例</h2>
-
-<pre><code class="language-cpp">#include &lt;stdio.h&gt;
-
-int main(void)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
 {
-    printf(&quot;Hello World!\n&quot;);
-    return 0;
+    printf(<span style="color:#e6db74">&#34;Hello World!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<pre><code class="language-shell">$ # macOS High Sierra (10.13)
+</code></pre></div><pre><code class="language-console" data-lang="console">$ # macOS High Sierra (10.13)
 $ clang sample.cpp -g -o sample
 $ lldb sample
 (lldb) target create &quot;sample&quot;
@@ -256,38 +239,36 @@ Lines found in module `sample
 (lldb) source info -a 0x100000f60
 Lines found in module `sample
 [0x0000000100000f60-0x0000000100000f76): /path/to/directory/sample.cpp:4
-</code></pre>
-
-<p>めでたし。</p>
-
+</code></pre><p>めでたし。</p>
 <p>lldb のコマンドは <code>lldb/source/Commands</code> の各 cpp ファイルで実装されています。<br />
 <span style="word-break: break-all;">
 <a href="https://github.com/llvm-mirror/lldb/tree/release_70/source/Commands">https://github.com/llvm-mirror/lldb/tree/release_70/source/Commands</a>
 </span></p>
-
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考資料">参考資料</h2>
-
 <ul>
-<li><p>The LLVM Compiler Infrastructure<br />
+<li>
+<p>The LLVM Compiler Infrastructure<br />
 <span style="word-break: break-all;">
 <a href="https://llvm.org/">https://llvm.org/</a>
-</span></p></li>
-
-<li><p>LLDB&rsquo;s Architecture<br />
+</span></p>
+</li>
+<li>
+<p>LLDB&rsquo;s Architecture<br />
 <span style="word-break: break-all;">
 <a href="https://lldb.llvm.org/architecture/index.html">https://lldb.llvm.org/architecture/index.html</a>
-</span></p></li>
-
-<li><p>lldb で使えるコマンド一覧<br />
+</span></p>
+</li>
+<li>
+<p>lldb で使えるコマンド一覧<br />
 <span style="word-break: break-all;">
 <a href="https://yokaze.github.io/2018/01/06/">https://yokaze.github.io/2018/01/06/</a>
-</span></p></li>
+</span></p>
+</li>
 </ul>
 </div>
  
@@ -402,7 +383,7 @@ Lines found in module `sample
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

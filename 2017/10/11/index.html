@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "EM アルゴリズム - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,12 +60,12 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
     },
-    "description": "混合ガウス分布の Expectation-Maximization (EM) アルゴリズムとは、尤度 $$ p(X|\pi, \mu, \lambda) = \prod_{n = 1}^N \sum_{k = 1}^K \pi_k \mathcal{N}(x_n | \mu_k, \lambda_k^{-1}) $$ をなるべく大きくするようなパラメータの組 $(\pi, \mu, \lambda)$ を計算するアルゴリ"
+    "description": "混合ガウス分布の Expectation-Maximization (EM) アルゴリズムとは、尤度 $$ p(X|\\pi, \\mu, \\lambda) = \\prod_{n = 1}^N \\sum_{k = 1}^K \\pi_k \\mathcal{N}(x_n | \\mu_k, \\lambda_k^{-1}) $$ をなるべく大きくするようなパラメータの組 $(\\pi, \\mu, \\lambda)$ を計算するアルゴリ"
   }
 </script>
 
@@ -149,11 +149,9 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p><div>
+  <div class="article-body"><p><div>
 混合ガウス分布の Expectation-Maximization (EM) アルゴリズムとは、尤度
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 p(X|\pi, \mu, \lambda) = \prod_{n = 1}^N \sum_{k = 1}^K \pi_k \mathcal{N}(x_n | \mu_k, \lambda_k^{-1})
 $$
@@ -162,23 +160,20 @@ $$
 $N$ はデータ数、$K$ はクラス数である。
 $\pi = [ \pi_1, \cdots, \pi_K ]$ は混合率、$\mu_k$, $\lambda_k$ は $k$ 番目のクラスの平均、精度（分散の逆数）をあらわす。
 </div></p>
-
 <h2 id="完全同時分布">完全同時分布</h2>
-
 <p><div>
 モデルパラメータを探索する際、$k$ による和の微分の計算を避けるため、補助確率変数 $Z$ を導入する。
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 p(X, Z|\pi, \mu, \lambda) = \prod_{n = 1}^N \prod_{k = 1}^K \left\{ \pi_k \mathcal{N}(x_n | \mu_k, \lambda_k^{-1}) \right\}^{z_{nk}}
 $$
 </div>
 完全同時分布から $Z$ を積分消去すると、もとの確率分布 $p(X|\pi, \mu, \lambda)$ に戻る。
 </div></p>
-
 <p><div>
 $z_n$ は 1-hot ベクトルだから、特定の要素だけが 1 となるような $K$ 次元のベクトルである。
 単位ベクトルの集合を $E = \{ e_1, \cdots, e_K \}$ とすると、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 & \sum_Z p(X, Z|\pi, \mu, \lambda) \\
@@ -200,18 +195,14 @@ $\sum_Z$ は $Z = \{ z_1, \cdots, z_N \}$ のすべての組み合わせにつ�
 項の右下に添えられた注釈は代入をあらわす。
 $z_n = e_{k_n}$ は $z_{nk} = \delta_{kk_n}$ と同値である。
 </div></p>
-
 <p>上式の最後で、単独であらわれる $\sum_{k_n}$ は <code>for kn:</code> の意味だから、記号を変えて $\sum_k$ (<code>for k:</code>) としてよい。</p>
-
 <h2 id="尤度の下限">尤度の下限</h2>
-
 <p>次に、尤度の対数 $\ln p(X|\pi, \mu, \lambda)$ と同じ値をとり、より微分が簡単な表現を導出する。
 この値は尤度の下限と呼ばれている。
 本文では $L$ であらわす。</p>
-
 <p><div>
 パラメータ $\gamma$ であらわされる補助分布 $q(Z)$ を
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 q(Z) = \prod_{n = 1}^N \prod_{k = 1}^K \gamma_{nk}^{z_{nk}}
@@ -220,7 +211,7 @@ $$
 </div>
 とする。
 また、$L$ を以下のように定義する。
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 L & = \sum_Z q(Z) \ln \frac{p(X, Z|\pi, \mu, \lambda)}{q(Z)} \\
@@ -230,10 +221,9 @@ L & = \sum_Z q(Z) \ln \frac{p(X, Z|\pi, \mu, \lambda)}{q(Z)} \\
 $$
 </div>
 </div></p>
-
 <p><div>
 $\sum_Z$ は取り扱いが難しいため、すべて展開する。
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 L_1 & = \sum_Z q(Z) \ln p(X, Z|\pi, \mu, \lambda) \\
@@ -243,7 +233,7 @@ L_1 & = \sum_Z q(Z) \ln p(X, Z|\pi, \mu, \lambda) \\
 $$
 </div>
 ここで、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \left[ q(Z) \right]_{\{ z_n = e_{k_n} \}_{n = 1}^N} & = \left[ \prod_{n = 1}^N \prod_{k = 1}^K \gamma_{nk}^{z_{nk}} \right] _{\{ z_n = e_{k_n} \}_{n = 1}^N} \\
@@ -251,7 +241,7 @@ $$
 \end{align*}
 $$
 </div>
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 & \left[ \ln p(X, Z|\pi, \mu, \lambda) \right]_{\{ z_n = e_{k_n} \}_{n = 1}^N} \\
@@ -261,7 +251,7 @@ $$
 $$
 </div>
 だから、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 L_1 & = \sum_{k_1 = 1}^K \cdots \sum_{k_N = 1}^K \left[ \prod_{n = 1}^N \gamma_{nk_n} \right]
@@ -271,10 +261,9 @@ $$
 </div>
 となる。
 </div></p>
-
 <p><div>
 次に、$L_2$ を計算する。
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \left[ \ln q(Z) \right]_{\{ z_n = e_{k_n} \}_{n = 1}^N} & = \left[ \sum_{n = 1}^N \sum_{k = 1}^K z_{nk} \ln \gamma_{nk} \right]_{\{ z_n = e_{k_n} \}_{n = 1}^N} \\
@@ -283,7 +272,7 @@ $$
 $$
 </div>
 だから、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 L_2 & = \sum_Z q(Z) \ln q(Z) \\
@@ -295,7 +284,7 @@ L_2 & = \sum_Z q(Z) \ln q(Z) \\
 $$
 </div>
 である。したがって、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 L & = L_1 - L_2 \\
@@ -306,10 +295,9 @@ $$
 </div>
 となる。
 </div></p>
-
 <p><div>
 特に、すべての $n$ について
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \sum_{k = 1}^K \gamma_{nk} = 1
@@ -317,7 +305,7 @@ $$
 $$
 </div>
 がなりたつとき、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 L & = \sum_{m = 1}^N \left[ \sum_{k_1 = 1}^K \cdots \sum_{k_N = 1}^K \left[ \prod_{n = 1}^N \gamma_{nk_n} \right]
@@ -331,13 +319,11 @@ $$
 </div>
 である。
 </div></p>
-
-<h2 id="e-ステップ-負担率の計算">E-ステップ（負担率の計算）</h2>
-
+<h2 id="e-ステップ負担率の計算">E-ステップ（負担率の計算）</h2>
 <p><div>
 $L$ と $\ln p(X|\pi, \mu, \lambda)$ はことなる式なので、一般に $L \neq \ln p(X|\pi, \mu, \lambda)$ である。
 ところが
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \gamma_{nk} = \frac{\pi_k \mathcal{N}(x_n | \mu_k, \lambda_k^{-1})}{\sum_{j = 1}^K \pi_j \mathcal{N}(x_n | \mu_j, \lambda_j^{-1})}
@@ -345,7 +331,7 @@ $$
 $$
 </div>
 を代入すると、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 L & = \sum_{n = 1}^N \sum_{k = 1}^K \gamma_{nk} \left\{ \ln \pi_k + \ln \mathcal{N}(x_n | \mu_k, \lambda_k^{-1}) - \ln \gamma_{nk} \right\} \\
@@ -359,12 +345,10 @@ $$
 となり、$\ln p(X | \pi, \mu, \lambda)$ に一致する。
 $\gamma_{nk}$ は負担率 (responsibility) と呼ばれており、観測値 $X$ とパラメータ $(\pi, \mu, \lambda)$ から $\gamma_{nk}$ をすべて計算することを E-ステップ という。
 </div></p>
-
-<h2 id="m-ステップ-パラメータの更新">M-ステップ（パラメータの更新）</h2>
-
+<h2 id="m-ステップパラメータの更新">M-ステップ（パラメータの更新）</h2>
 <p><div>
 M-ステップ の目標は、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \ln p(X|\pi, \mu, \lambda) < L(\pi^\ast, \mu^\ast, \lambda^\ast, \gamma)
@@ -373,7 +357,7 @@ $$
 </div>
 となるような新しいパラメータの組 $(\pi^\ast, \mu^\ast, \lambda^\ast)$ を計算することである。
 またこのとき、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 L(\pi^\ast, \mu^\ast, \lambda^\ast, \gamma) < \ln p(X|\pi^\ast, \mu^\ast, \lambda^\ast)
@@ -382,10 +366,9 @@ $$
 </div>
 となることが証明できる。
 </div></p>
-
 <p><div>
 $L$ を $\mu_j$ で微分すると、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \frac{\partial L}{\partial \mu_j}
@@ -400,7 +383,7 @@ $$
 $$
 </div>
 したがって、$\partial_{\mu_j} L = 0$ となるのは
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \mu_j = \frac{\sum_{n = 1}^N \gamma_{nj} x_n}{\sum_{n = 1}^N \gamma_{nj}}
@@ -409,7 +392,7 @@ $$
 </div>
 のときである。
 また、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \frac{\partial^2 L}{\partial \mu_j^2} = - \sum_{n = 1}^N \gamma_{nj} \lambda_j < 0
@@ -419,10 +402,9 @@ $$
 だから、このとき $L$ は $\mu_j$ に関して最大である。
 この値を $\mu_j^\ast$ とする。
 </div></p>
-
 <p><div>
 つぎに、$L$ を $\lambda_j$ で微分すると、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \frac{\partial L}{\partial \lambda_j}
@@ -434,7 +416,7 @@ $$
 $$
 </div>
 したがって、$\partial_{\lambda_j} L = 0$ となるのは
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \frac{1}{\lambda_j} = \frac{\sum_{n = 1}^N \gamma_{nj} (x_n - \mu_j)^2}{\sum_{n = 1}^N \gamma_{nj}}
@@ -442,7 +424,7 @@ $$
 $$
 </div>
 のときである。
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \frac{\partial^2 L}{\partial \lambda_j^2} = - \frac{\sum_{n = 1}^N \gamma_{nj}}{2 \lambda_j^2} < 0
@@ -450,7 +432,7 @@ $$
 $$
 </div>
 だから、このとき $L$ は $\lambda_j$ に関して最大である。特に、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \frac{1}{\lambda_j^\ast} = \frac{\sum_{n = 1}^N \gamma_{nj} (x_n - \mu_j^\ast)^2}{\sum_{n = 1}^N \gamma_{nj}}
@@ -459,13 +441,11 @@ $$
 </div>
 となるように $\lambda_j^\ast$ をえらぶと、$L$ を $\mu_j$, $\lambda_j$ に関して同時に最大化することができる。
 </div></p>
-
 <h2 id="クラス混合率の更新">クラス混合率の更新</h2>
-
 <p><div>
 $L$ を $\sum_{k = 1}^K \pi_k = 1$ という制約条件のもとで最大化するため、ラグランジュの未定乗数法を使う。
 未定乗数法は停留点、すなわち関数の極大・極小・鞍点をすべて導出するための方程式である。
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \Phi & = \sum_{k = 1}^K \pi_k - 1 \\
@@ -474,7 +454,7 @@ L' & = L + \alpha \Phi
 $$
 </div>
 とすると、$L'$ の $\pi_j$ による微分は
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \frac{\partial L'}{\partial \pi_j} & = \frac{\partial}{\partial \pi_j} \sum_{n = 1}^N \sum_{k = 1}^K \gamma_{nk}
@@ -487,7 +467,7 @@ $$
 </div>
 である。
 停留点では、すべての $j$ について
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \frac{\partial L'}{\partial \pi_j} = 0
@@ -495,7 +475,7 @@ $$
 $$
 </div>
 が成り立つから、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \sum_{j = 1}^K \pi_j \frac{\partial L'}{\partial \pi_j} = N + \alpha = 0
@@ -505,10 +485,9 @@ $$
 である。
 この式から、未定乗数 $\alpha = -N$ が求まる。
 </div></p>
-
 <p><div>
 以上より、$L$ の停留点は
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \pi^\ast = \left( \frac{\sum_{n = 1}^N \gamma_{n1}}{N}, \cdots, \frac{\sum_{n = 1}^N \gamma_{nK}}{N} \right)
@@ -517,10 +496,9 @@ $$
 </div>
 の一点だけである。
 </div></p>
-
 <p><div>
 つぎに、$L$ が $\pi^\ast$ で最大となることを証明する。任意の $\pi$ について
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 & L(\pi^\ast, \mu, \lambda, \gamma) - L(\pi, \mu, \lambda, \gamma) \\
@@ -533,10 +511,9 @@ $$
 であり、この式は Kullback-Leibler ダイバージェンスと同じ形だから常に 0 以上である。
 したがって、実際に $L$ は $\pi^\ast$ で最大となる。
 </div></p>
-
 <p><div>
 以上のすべての議論より、$(\pi^\ast, \mu^\ast, \lambda^\ast) \neq (\pi, \mu, \lambda)$ であれば
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \ln p(X|\pi, \mu, \lambda) < L(\pi^\ast, \mu^\ast, \lambda^\ast, \gamma)
@@ -545,12 +522,10 @@ $$
 </div>
 となる。
 </div></p>
-
 <h2 id="尤度の評価">尤度の評価</h2>
-
 <p><div>
 更新されたパラメータ $(\pi^\ast, \mu^\ast, \lambda^\ast)$ が実際に尤度を上昇させることを証明する。
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \gamma_{nk}^\ast = \frac{\pi_k^\ast \mathcal{N}(x_n | \mu_k^\ast, {\lambda_k^\ast}^{-1}))}{\sum_{j = 1}^K \pi_j^\ast \mathcal{N}(x_n | \mu_j^\ast, {\lambda_j^\ast}^{-1}))}
@@ -558,7 +533,7 @@ $$
 $$
 </div>
 とおくと、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 & \ln p(X | \pi^\ast, \mu^\ast, \lambda^\ast) - L(\pi^\ast, \mu^\ast, \lambda^\ast, \gamma) \\
@@ -579,7 +554,7 @@ $$
 $$
 </div>
 である。この式もまた Kullback-Leibler ダイバージェンスと同じ形になるから、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 L(\pi^\ast, \mu^\ast, \lambda^\ast, \gamma) \leq \ln p(X | \pi^\ast, \mu^\ast, \lambda^\ast)
@@ -588,11 +563,10 @@ $$
 </div>
 である。特に、$(\pi^\ast, \mu^\ast, \lambda^\ast) \neq (\pi, \mu, \lambda)$ の場合には不等号が成立する。
 </div></p>
-
 <p><div>
 上記の E-ステップ と M-ステップ を組み合わせることで、尤度を次々と増加させる点列 $(\pi^{(i)}, \mu^{(i)}, \lambda^{(i)})$ を計算することができる。
 尤度の数列 $p(X | \pi^{(i)}, \mu^{(i)}, \lambda^{(i)})$ が一定の値に収束するとき、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \lim_{i \rightarrow \infty} (\pi^{(i)}, \mu^{(i)}, \lambda^{(i)})
@@ -604,33 +578,34 @@ $$
 混合ガウス分布では $2 \leq K$ の場合、必ずこのような初期値が存在する。
 探索空間の正則性については渡辺澄夫氏の著作に詳しい記述がある。
 </div></p>
-
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考資料">参考資料</h2>
-
 <ul>
-<li><p>C. M. Bishop, <em>Pattern Recognition and Machine Learning</em>, Springer, 2006.<br />
+<li>
+<p>C. M. Bishop, <em>Pattern Recognition and Machine Learning</em>, Springer, 2006.<br />
 <span style="word-break: break-all;">
 日本語訳（上巻） <a href="https://pub.maruzen.co.jp/book_magazine/book_data/search/9784621061220.html">https://pub.maruzen.co.jp/book_magazine/book_data/search/9784621061220.html</a>
 </span><br />
 <span style="word-break: break-all;">
 日本語訳（下巻） <a href="https://pub.maruzen.co.jp/book_magazine/book_data/search/9784621061244.html">https://pub.maruzen.co.jp/book_magazine/book_data/search/9784621061244.html</a>
-</span></p></li>
-
-<li><p>渡辺澄夫，<em>ベイズ統計の理論と方法</em> ，コロナ社，2012．<br />
+</span></p>
+</li>
+<li>
+<p>渡辺澄夫，<em>ベイズ統計の理論と方法</em> ，コロナ社，2012．<br />
 <span style="word-break: break-all;">
 <a href="http://www.coronasha.co.jp/np/isbn/9784339024623/">http://www.coronasha.co.jp/np/isbn/9784339024623/</a>
-</span></p></li>
-
-<li><p>[機械学習]カルバック・ライブラーダイバージェンスの覚え方とか<br />
+</span></p>
+</li>
+<li>
+<p>[機械学習]カルバック・ライブラーダイバージェンスの覚え方とか<br />
 <span style="word-break: break-all;">
 <a href="http://d.hatena.ne.jp/sleepy_yoshi/20110720/p1">http://d.hatena.ne.jp/sleepy_yoshi/20110720/p1</a>
-</span></p></li>
+</span></p>
+</li>
 </ul>
 </div>
  
@@ -754,7 +729,7 @@ $$
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

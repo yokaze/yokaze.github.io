@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -16,21 +16,21 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
     <title>pybind11 でキーワード引数 (kwargs) を使う - yokaze.github.io</title>
     
-<meta name="description" content="pybind11 でキーワード引数 (kwargs) を指定するには、pybind11::arg を使います。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { // python インタプリタを起動する py::scoped_interpreter interpreter; // numpy の各種オブ">
+<meta name="description" content="pybind11 でキーワード引数 (kwargs) を指定するには、pybind11::arg を使います。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { // python インタプリタを起動する py::scoped_interpreter interpreter; // numpy の各種オブジ">
 
 <meta property="og:title" content="pybind11 でキーワード引数 (kwargs) を使う - yokaze.github.io">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://yokaze.github.io/2018/03/08/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="pybind11 でキーワード引数 (kwargs) を指定するには、pybind11::arg を使います。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { // python インタプリタを起動する py::scoped_interpreter interpreter; // numpy の各種オブ">
+<meta property="og:description" content="pybind11 でキーワード引数 (kwargs) を指定するには、pybind11::arg を使います。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { // python インタプリタを起動する py::scoped_interpreter interpreter; // numpy の各種オブジ">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
 <meta name="twitter:url" content="https://yokaze.github.io/2018/03/08/">
 <meta name="twitter:title" content="pybind11 でキーワード引数 (kwargs) を使う - yokaze.github.io">
-<meta name="twitter:description" content="pybind11 でキーワード引数 (kwargs) を指定するには、pybind11::arg を使います。 #include &amp;lt;pybind11/embed.h&amp;gt; #include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { // python インタプリタを起動する py::scoped_interpreter interpreter; // numpy の各種オブ">
+<meta name="twitter:description" content="pybind11 でキーワード引数 (kwargs) を指定するには、pybind11::arg を使います。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { // python インタプリタを起動する py::scoped_interpreter interpreter; // numpy の各種オブジ">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "pybind11 でキーワード引数 (kwargs) を使う - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,12 +60,12 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
     },
-    "description": "pybind11 でキーワード引数 (kwargs) を指定するには、pybind11::arg を使います。 #include &lt;pybind11/embed.h&gt; #include &lt;pybind11/pybind11.h&gt; namespace py = pybind11; int main() { // python インタプリタを起動する py::scoped_interpreter interpreter; // numpy の各種オブ"
+    "description": "pybind11 でキーワード引数 (kwargs) を指定するには、pybind11::arg を使います。 #include \u0026lt;pybind11\/embed.h\u0026gt;#include \u0026lt;pybind11\/pybind11.h\u0026gt; namespace py = pybind11; int main() { \/\/ python インタプリタを起動する py::scoped_interpreter interpreter; \/\/ numpy の各種オブジ"
   }
 </script>
 
@@ -149,115 +149,105 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
+  <div class="article-body"><p>pybind11 でキーワード引数 (kwargs) を指定するには、<code>pybind11::arg</code> を使います。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">namespace</span> py <span style="color:#f92672">=</span> pybind11;
 
-<p>pybind11 でキーワード引数 (kwargs) を指定するには、<code>pybind11::arg</code> を使います。</p>
-
-<pre><code class="language-cpp">#include &lt;pybind11/embed.h&gt;
-#include &lt;pybind11/pybind11.h&gt;
-
-namespace py = pybind11;
-
-int main()
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-    // python インタプリタを起動する
-    py::scoped_interpreter interpreter;
+    <span style="color:#75715e">// python インタプリタを起動する
+</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>scoped_interpreter interpreter;
 
-    // numpy の各種オブジェクトを取得する
-    py::module numpy = pybind11::module::import(&quot;numpy&quot;);
-    py::object zeros = numpy.attr(&quot;zeros&quot;);
-    py::object float32 = numpy.attr(&quot;float32&quot;);
-    py::object int32 = numpy.attr(&quot;int32&quot;);
+    <span style="color:#75715e">// numpy の各種オブジェクトを取得する
+</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>module numpy <span style="color:#f92672">=</span> pybind11<span style="color:#f92672">::</span>module<span style="color:#f92672">::</span>import(<span style="color:#e6db74">&#34;numpy&#34;</span>);
+    py<span style="color:#f92672">::</span>object zeros <span style="color:#f92672">=</span> numpy.attr(<span style="color:#e6db74">&#34;zeros&#34;</span>);
+    py<span style="color:#f92672">::</span>object float32 <span style="color:#f92672">=</span> numpy.attr(<span style="color:#e6db74">&#34;float32&#34;</span>);
+    py<span style="color:#f92672">::</span>object int32 <span style="color:#f92672">=</span> numpy.attr(<span style="color:#e6db74">&#34;int32&#34;</span>);
 
-    // numpy.ndarray を作る
-    py::object f32_array = zeros(10, py::arg(&quot;dtype&quot;) = float32);
-    py::object i32_array = zeros(10, py::arg(&quot;dtype&quot;) = int32);
+    <span style="color:#75715e">// numpy.ndarray を作る
+</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>object f32_array <span style="color:#f92672">=</span> zeros(<span style="color:#ae81ff">10</span>, py<span style="color:#f92672">::</span>arg(<span style="color:#e6db74">&#34;dtype&#34;</span>) <span style="color:#f92672">=</span> float32);
+    py<span style="color:#f92672">::</span>object i32_array <span style="color:#f92672">=</span> zeros(<span style="color:#ae81ff">10</span>, py<span style="color:#f92672">::</span>arg(<span style="color:#e6db74">&#34;dtype&#34;</span>) <span style="color:#f92672">=</span> int32);
 
-    // 配列の文字列表現を標準出力に書き出す
-    py::print(py::repr(f32_array));
-    py::print(py::repr(i32_array));
+    <span style="color:#75715e">// 配列の文字列表現を標準出力に書き出す
+</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>print(py<span style="color:#f92672">::</span>repr(f32_array));
+    py<span style="color:#f92672">::</span>print(py<span style="color:#f92672">::</span>repr(i32_array));
 
-    return 0;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<pre><code class="language-shell">$ # macOS Sierra (10.12)
+</code></pre></div><pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12)
 $ clang sample.cpp -std=c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
 $ ./sample
 array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0.], dtype=float32)
 array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0], dtype=int32)
-</code></pre>
+</code></pre><p>また、可変長引数とキーワード引数を受け取る場合は <code>pybind11::args</code> と <code>pybind11::kwargs</code> を使います。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;utility&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">namespace</span> py <span style="color:#f92672">=</span> pybind11;
+<span style="color:#66d9ef">using</span> std<span style="color:#f92672">::</span>pair;
 
-<p>また、可変長引数とキーワード引数を受け取る場合は <code>pybind11::args</code> と <code>pybind11::kwargs</code> を使います。</p>
-
-<pre><code class="language-cpp">#include &lt;pybind11/embed.h&gt;
-#include &lt;pybind11/pybind11.h&gt;
-#include &lt;utility&gt;
-
-namespace py = pybind11;
-using std::pair;
-
-void hello(py::args args, py::kwargs kwargs)
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">hello</span>(py<span style="color:#f92672">::</span>args args, py<span style="color:#f92672">::</span>kwargs kwargs)
 {
-    for (const py::handle&amp; arg : args)
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> py<span style="color:#f92672">::</span>handle<span style="color:#f92672">&amp;</span> arg : args)
     {
-        py::print(py::str(arg));
+        py<span style="color:#f92672">::</span>print(py<span style="color:#f92672">::</span>str(arg));
     }
-    for (const pair&lt;py::handle, py::handle&gt;&amp; kv : kwargs)
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> pair<span style="color:#f92672">&lt;</span>py<span style="color:#f92672">::</span>handle, py<span style="color:#f92672">::</span>handle<span style="color:#f92672">&gt;&amp;</span> kv : kwargs)
     {
-        py::print(py::str(kv.first), &quot;=&quot;, py::str(kv.second));
+        py<span style="color:#f92672">::</span>print(py<span style="color:#f92672">::</span>str(kv.first), <span style="color:#e6db74">&#34;=&#34;</span>, py<span style="color:#f92672">::</span>str(kv.second));
     }
 }
 
-int main()
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-    // python インタプリタを起動する
-    py::scoped_interpreter interpreter;
+    <span style="color:#75715e">// python インタプリタを起動する
+</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>scoped_interpreter interpreter;
 
-    // main モジュール上に hello 関数を定義する
-    py::module main_module = py::module::import(&quot;__main__&quot;);
-    main_module.def(&quot;hello&quot;, &amp;hello);
+    <span style="color:#75715e">// main モジュール上に hello 関数を定義する
+</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>module main_module <span style="color:#f92672">=</span> py<span style="color:#f92672">::</span>module<span style="color:#f92672">::</span>import(<span style="color:#e6db74">&#34;__main__&#34;</span>);
+    main_module.def(<span style="color:#e6db74">&#34;hello&#34;</span>, <span style="color:#f92672">&amp;</span>hello);
 
-    // python スクリプトから hello 関数を呼び出す
-    py::object scope = main_module.attr(&quot;__dict__&quot;);
-    py::exec(&quot;hello('hello', a = 1, b = 2, abc = 123)&quot;, scope);
+    <span style="color:#75715e">// python スクリプトから hello 関数を呼び出す
+</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>object scope <span style="color:#f92672">=</span> main_module.attr(<span style="color:#e6db74">&#34;__dict__&#34;</span>);
+    py<span style="color:#f92672">::</span>exec(<span style="color:#e6db74">&#34;hello(&#39;hello&#39;, a = 1, b = 2, abc = 123)&#34;</span>, scope);
 
-    return 0;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<pre><code class="language-shell">$ # macOS Sierra (10.12)
+</code></pre></div><pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12)
 $ clang sample.cpp -std=c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
 $ ./sample
 hello
 a = 1
 b = 2
 abc = 123
-</code></pre>
-
-<p>
+</code></pre><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考資料">参考資料</h2>
-
 <ul>
-<li><p>pybind11 で C++ から Python インタプリタを実行する<br />
+<li>
+<p>pybind11 で C++ から Python インタプリタを実行する<br />
 <span style="word-break: break-all;">
 <a href="https://yokaze.github.io/2018/02/11/">https://yokaze.github.io/2018/02/11/</a>
-</span></p></li>
-
-<li><p>pybind11 で main モジュール上に関数を定義する<br />
+</span></p>
+</li>
+<li>
+<p>pybind11 で main モジュール上に関数を定義する<br />
 <span style="word-break: break-all;">
 <a href="https://yokaze.github.io/2018/03/05/">https://yokaze.github.io/2018/03/05/</a>
-</span></p></li>
-
-<li><p>Functions &mdash; pybind11 2.2.1 documentation<br />
+</span></p>
+</li>
+<li>
+<p>Functions — pybind11 2.2.1 documentation<br />
 <span style="word-break: break-all;">
 <a href="http://pybind11.readthedocs.io/en/stable/advanced/functions.html">http://pybind11.readthedocs.io/en/stable/advanced/functions.html</a>
-</span></p></li>
+</span></p>
+</li>
 </ul>
 </div>
  
@@ -372,7 +362,7 @@ abc = 123
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

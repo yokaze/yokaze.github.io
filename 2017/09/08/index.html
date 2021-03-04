@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "pycodestyle (pep8) で E501 line too long を無視する方法 - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,12 +60,12 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
     },
-    "description": "Python の標準コーディング規約 &ldquo;PEP 8&rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pycodesty"
+    "description": "Python の標準コーディング規約 \u0026ldquo;PEP 8\u0026rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pycodesty"
   }
 </script>
 
@@ -149,66 +149,55 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p>Python の標準コーディング規約 &ldquo;PEP 8&rdquo; には一行あたりの文字数制限があります。<br />
+  <div class="article-body"><p>Python の標準コーディング規約 &ldquo;PEP 8&rdquo; には一行あたりの文字数制限があります。<br />
 一行最大79文字と、ちょっと厳しい。</p>
-
 <p>これを無視するには、<code>pycodestyle --ignore=&quot;E501&quot;</code> と入力するとよいみたいです。</p>
-
-<pre><code class="language-shell">$ pycodestyle .
+<pre><code class="language-console" data-lang="console">$ pycodestyle .
 ./events/factory/_convert_result.py:25:80: E501 line too long (88 &gt; 79 characters)
 ./events/factory/_convert_result.py:31:80: E501 line too long (95 &gt; 79 characters)
 ./events/factory/_meta_event_factory.py:76:80: E501 line too long (82 &gt; 79 characters)
 ./events/factory/_meta_event_factory.py:82:80: E501 line too long (80 &gt; 79 characters)
 ./events/meta/_key_signature_event.py:33:80: E501 line too long (83 &gt; 79 characters)
 ./events/meta/_text_meta_event.py:13:1: E302 expected 2 blank lines, found 1
-</code></pre>
-
-<p>ヘルプの記述は以下の通り。</p>
-
-<pre><code class="language-shell">$ pycodestyle --help
+</code></pre><p>ヘルプの記述は以下の通り。</p>
+<pre><code class="language-console" data-lang="console">$ pycodestyle --help
 ...
 --ignore=errors      skip errors and warnings (e.g. E4,W) (default:
                      E121,E123,E126,E226,E24,E704)
 ...
-</code></pre>
-
-<p>使ってみた。</p>
-
-<pre><code class="language-shell">$ pycodestyle . --ignore=&quot;E501&quot;
+</code></pre><p>使ってみた。</p>
+<pre><code class="language-console" data-lang="console">$ pycodestyle . --ignore=&quot;E501&quot;
 ./events/meta/_text_meta_event.py:13:1: E302 expected 2 blank lines, found 1
-</code></pre>
-
-<p>確認が足りなかったのか、一件残ってしまった。</p>
-
+</code></pre><p>確認が足りなかったのか、一件残ってしまった。</p>
 <h2 id="追記">追記</h2>
-
 <p>なんと pep8 コマンドは pycodestyle に変わったらしいです。。</p>
-
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考資料">参考資料</h2>
-
 <ul>
-<li><p>PEP 8 &ndash; Style Guide for Python Code<br />
-<a href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a></p></li>
-
-<li><p>pep8 - Python style guide checker<br />
-<a href="https://pypi.python.org/pypi/pep8">https://pypi.python.org/pypi/pep8</a></p></li>
-
-<li><p>pycodestyle (formerly called pep8) - Python style guide checker<br />
-<a href="https://github.com/PyCQA/pycodestyle">https://github.com/PyCQA/pycodestyle</a></p></li>
-
-<li><p>pep8 が pycodestyle に変わった話<br />
-<a href="http://qiita.com/tell-k/items/da52229749a7242b4440">http://qiita.com/tell-k/items/da52229749a7242b4440</a></p></li>
-
-<li><p>Crest MIDI Library for Python （本記事で使用したソースコード）<br />
-<a href="https://github.com/yokaze/crest-python">https://github.com/yokaze/crest-python</a></p></li>
+<li>
+<p>PEP 8 &ndash; Style Guide for Python Code<br />
+<a href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a></p>
+</li>
+<li>
+<p>pep8 - Python style guide checker<br />
+<a href="https://pypi.python.org/pypi/pep8">https://pypi.python.org/pypi/pep8</a></p>
+</li>
+<li>
+<p>pycodestyle (formerly called pep8) - Python style guide checker<br />
+<a href="https://github.com/PyCQA/pycodestyle">https://github.com/PyCQA/pycodestyle</a></p>
+</li>
+<li>
+<p>pep8 が pycodestyle に変わった話<br />
+<a href="http://qiita.com/tell-k/items/da52229749a7242b4440">http://qiita.com/tell-k/items/da52229749a7242b4440</a></p>
+</li>
+<li>
+<p>Crest MIDI Library for Python （本記事で使用したソースコード）<br />
+<a href="https://github.com/yokaze/crest-python">https://github.com/yokaze/crest-python</a></p>
+</li>
 </ul>
 </div>
  
@@ -323,7 +312,7 @@ if (!doNotTrack) {
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

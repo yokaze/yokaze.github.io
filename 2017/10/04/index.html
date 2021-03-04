@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "flake8 で hacking の警告を一時的に無効にする - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,7 +60,7 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
@@ -149,41 +149,34 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p>Python 向け Lint ツール <code>flake8</code> のプラグインとして使える <code>hacking</code> ですが、警告がかなり厳しいため一時的に無効にしたいことがあります。</p>
-
-<pre><code class="language-shell">$ # flake8, hacking をインストール
+  <div class="article-body"><p>Python 向け Lint ツール <code>flake8</code> のプラグインとして使える <code>hacking</code> ですが、警告がかなり厳しいため一時的に無効にしたいことがあります。</p>
+<pre><code class="language-console" data-lang="console">$ # flake8, hacking をインストール
 $ pip install flake8
 $ pip install hacking
 $
 $ # flake8 + hacking でソースコードをテスト
 $ flake8 source_file.py
-</code></pre>
-
-<p>hacking の警告だけを無効にする場合は、<code>flake8 --ignore=&quot;H&quot;</code> と入力します。</p>
-
-<pre><code class="language-shell">$ flake8 source_file.py --ignore=&quot;H&quot;
-</code></pre>
-
-<p>
+</code></pre><p>hacking の警告だけを無効にする場合は、<code>flake8 --ignore=&quot;H&quot;</code> と入力します。</p>
+<pre><code class="language-console" data-lang="console">$ flake8 source_file.py --ignore=&quot;H&quot;
+</code></pre><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考資料">参考資料</h2>
-
 <ul>
-<li><p>Pythonのスタイルガイドとそれを守るための各種Lint・解析ツール5種まとめ！<br />
+<li>
+<p>Pythonのスタイルガイドとそれを守るための各種Lint・解析ツール5種まとめ！<br />
 <span style="word-break: break-all;">
 <a href="http://blog-ja.sideci.com/entry/python-lint-pickup-5tools">http://blog-ja.sideci.com/entry/python-lint-pickup-5tools</a>
-</span></p></li>
-
-<li><p>Python の Lint (文法チェッカ) まとめ - flake8 + hacking を使う -<br />
+</span></p>
+</li>
+<li>
+<p>Python の Lint (文法チェッカ) まとめ - flake8 + hacking を使う -<br />
 <span style="word-break: break-all;">
 <a href="https://qiita.com/kitsuyui/items/5ab4608003a29ff7689f">https://qiita.com/kitsuyui/items/5ab4608003a29ff7689f</a>
-</span></p></li>
+</span></p>
+</li>
 </ul>
 </div>
  
@@ -298,7 +291,7 @@ $ flake8 source_file.py
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

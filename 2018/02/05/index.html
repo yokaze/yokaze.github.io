@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "mac に pybind11 をインストールする - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,7 +60,7 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
@@ -149,29 +149,19 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p>pybind11 は Homebrew, pip3, Anaconda のいずれかの方法でインストールできます。</p>
-
+  <div class="article-body"><p>pybind11 は Homebrew, pip3, Anaconda のいずれかの方法でインストールできます。</p>
 <h2 id="homebrew-でインストール">Homebrew でインストール</h2>
-
 <p>Homebrew は mac 環境の汎用パッケージマネージャーです。
 Homebrew を使って pybind11 をインストールするには、<code>brew install pybind11</code> と入力します。</p>
-
-<pre><code class="language-shell">$ # macOS Sierra (10.12)
+<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12)
 $ brew install pybind11
 ==&gt; Downloading https://homebrew.bintray.com/bottles/pybind11-2.2.1_1.sierra.bottle.tar.gz
 ==&gt; Pouring pybind11-2.2.1_1.sierra.bottle.tar.gz
 🍺  /usr/local/Cellar/pybind11/2.2.1_1: 33 files, 540.4KB
-</code></pre>
-
-<p>pybind11 は <code>/usr/local/include/pybind11</code> にインストールされます。</p>
-
+</code></pre><p>pybind11 は <code>/usr/local/include/pybind11</code> にインストールされます。</p>
 <h2 id="pip-でインストール">pip でインストール</h2>
-
 <p>pip は python の汎用パッケージマネージャーですが、pybind11 をインストールする際は注意が必要です。</p>
-
-<pre><code class="language-shell">$ # macOS Sierra (10.12)
+<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12)
 $ sudo -H pip install pybind11
 Collecting pybind11
   Downloading pybind11-2.2.1-py2.py3-none-any.whl (143kB)
@@ -185,13 +175,9 @@ Traceback (most recent call last):
   File &quot;/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/os.py&quot;, line 157, in makedirs
     mkdir(name, mode)
 OSError: [Errno 1] Operation not permitted: '/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pybind11'
-</code></pre>
-
-<p><span style="word-break: break-all;"><code>/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7</code></span> は SIP (System Integrity Protection) の対象ディレクトリであり、管理者権限でもファイルを書き込むことができません。</p>
-
+</code></pre><p><span style="word-break: break-all;"><code>/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7</code></span> は SIP (System Integrity Protection) の対象ディレクトリであり、管理者権限でもファイルを書き込むことができません。</p>
 <p>こうなってしまった場合は、一旦不完全なファイルをアンインストールします。</p>
-
-<pre><code class="language-shell">$ # macOS Sierra (10.12)
+<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12)
 $ sudo -H pip uninstall pybind11
 Uninstalling pybind11-2.2.1:
   /Library/Python/2.7/site-packages/pybind11-2.2.1.dist-info/DESCRIPTION.rst
@@ -208,56 +194,49 @@ Uninstalling pybind11-2.2.1:
   /Library/Python/2.7/site-packages/pybind11/_version.pyc
 Proceed (y/n)? y
   Successfully uninstalled pybind11-2.2.1
-</code></pre>
-
-<h2 id="pip3-でインストール">pip3 でインストール</h2>
-
+</code></pre><h2 id="pip3-でインストール">pip3 でインストール</h2>
 <p>Homebrew から python3 をインストールした場合は <code>pip3</code> を使って pybind11 をインストールすることができます。</p>
-
-<pre><code class="language-shell">$ # macOS Sierra (10.12)
+<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12)
 $ pip3 install pybind11
 Collecting pybind11
   Using cached pybind11-2.2.1-py2.py3-none-any.whl
 Installing collected packages: pybind11
 Successfully installed pybind11-2.2.1
-</code></pre>
-
-<p>pybind11 は <code>/usr/local/include/python3.6m/pybind11/</code> にインストールされます。</p>
-
+</code></pre><p>pybind11 は <code>/usr/local/include/python3.6m/pybind11/</code> にインストールされます。</p>
 <h2 id="anaconda-でインストール">Anaconda でインストール</h2>
-
 <p>Anaconda を使う場合は、<code>conda install -c conda-forge pybind11</code> でインストールすることができます。</p>
-
 <p>参考: <span style="word-break: break-all;"><a href="https://anaconda.org/conda-forge/pybind11">https://anaconda.org/conda-forge/pybind11</a></span></p>
-
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考資料">参考資料</h2>
-
 <ul>
-<li><p>GitHub - pybind/pybind11: Seamless operability between C++11 and Python<br />
+<li>
+<p>GitHub - pybind/pybind11: Seamless operability between C++11 and Python<br />
 <span style="word-break: break-all;">
 <a href="https://github.com/pybind/pybind11">https://github.com/pybind/pybind11</a>
-</span></p></li>
-
-<li><p>Mac のシステム整合性保護について<br />
+</span></p>
+</li>
+<li>
+<p>Mac のシステム整合性保護について<br />
 <span style="word-break: break-all;">
 <a href="https://support.apple.com/ja-jp/HT204899">https://support.apple.com/ja-jp/HT204899</a>
-</span></p></li>
-
-<li><p>Anaconda - python.jp<br />
+</span></p>
+</li>
+<li>
+<p>Anaconda - python.jp<br />
 <span style="word-break: break-all;">
 <a href="https://www.python.jp/install/windows/anaconda/install_anaconda.html">https://www.python.jp/install/windows/anaconda/install_anaconda.html</a>
-</span></p></li>
-
-<li><p>Anaconda で Python 環境をインストールする<br />
+</span></p>
+</li>
+<li>
+<p>Anaconda で Python 環境をインストールする<br />
 <span style="word-break: break-all;">
 <a href="https://qiita.com/t2y/items/2a3eb58103e85d8064b6">https://qiita.com/t2y/items/2a3eb58103e85d8064b6</a>
-</span></p></li>
+</span></p>
+</li>
 </ul>
 </div>
  
@@ -372,7 +351,7 @@ Successfully installed pybind11-2.2.1
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

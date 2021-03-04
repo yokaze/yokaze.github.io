@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -16,21 +16,21 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
     <title>CMake &#43; Visual Studio でモジュール定義ファイル (.def) を使う - yokaze.github.io</title>
     
-<meta name="description" content="CMake でモジュール定義ファイルを使う場合は、.def ファイルをソースコードと同時に指定します。 #include &amp;lt;stdio.h&amp;gt; extern &amp;quot;C&amp;quot; void hello() { printf(&amp;quot;Hello\n&amp;quot;); } エクスポートの設定がない場合、関">
+<meta name="description" content="CMake でモジュール定義ファイルを使う場合は、.def ファイルをソースコードと同時に指定します。 #include &amp;lt;stdio.h&amp;gt; extern &amp;#34;C&amp;#34; void hello() { printf(&amp;#34;Hello\n&amp;#34;); } エクスポートの設定がない場合、関">
 
 <meta property="og:title" content="CMake &#43; Visual Studio でモジュール定義ファイル (.def) を使う - yokaze.github.io">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://yokaze.github.io/2018/10/13/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="CMake でモジュール定義ファイルを使う場合は、.def ファイルをソースコードと同時に指定します。 #include &amp;lt;stdio.h&amp;gt; extern &amp;quot;C&amp;quot; void hello() { printf(&amp;quot;Hello\n&amp;quot;); } エクスポートの設定がない場合、関">
+<meta property="og:description" content="CMake でモジュール定義ファイルを使う場合は、.def ファイルをソースコードと同時に指定します。 #include &amp;lt;stdio.h&amp;gt; extern &amp;#34;C&amp;#34; void hello() { printf(&amp;#34;Hello\n&amp;#34;); } エクスポートの設定がない場合、関">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
 <meta name="twitter:url" content="https://yokaze.github.io/2018/10/13/">
 <meta name="twitter:title" content="CMake &#43; Visual Studio でモジュール定義ファイル (.def) を使う - yokaze.github.io">
-<meta name="twitter:description" content="CMake でモジュール定義ファイルを使う場合は、.def ファイルをソースコードと同時に指定します。 #include &amp;lt;stdio.h&amp;gt; extern &amp;quot;C&amp;quot; void hello() { printf(&amp;quot;Hello\n&amp;quot;); } エクスポートの設定がない場合、関">
+<meta name="twitter:description" content="CMake でモジュール定義ファイルを使う場合は、.def ファイルをソースコードと同時に指定します。 #include &amp;lt;stdio.h&amp;gt; extern &amp;#34;C&amp;#34; void hello() { printf(&amp;#34;Hello\n&amp;#34;); } エクスポートの設定がない場合、関">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
-    "headline": "CMake &#43; Visual Studio でモジュール定義ファイル (.def) を使う - yokaze.github.io",
+    "headline": "CMake \u002b Visual Studio でモジュール定義ファイル (.def) を使う - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,12 +60,12 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
     },
-    "description": "CMake でモジュール定義ファイルを使う場合は、.def ファイルをソースコードと同時に指定します。 #include &lt;stdio.h&gt; extern &quot;C&quot; void hello() { printf(&quot;Hello\n&quot;); } エクスポートの設定がない場合、関"
+    "description": "CMake でモジュール定義ファイルを使う場合は、.def ファイルをソースコードと同時に指定します。 #include \u0026lt;stdio.h\u0026gt; extern \u0026#34;C\u0026#34; void hello() { printf(\u0026#34;Hello\\n\u0026#34;); } エクスポートの設定がない場合、関"
   }
 </script>
 
@@ -149,21 +149,15 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p>CMake でモジュール定義ファイルを使う場合は、<code>.def</code> ファイルをソースコードと同時に指定します。</p>
-
-<pre><code class="language-cpp">#include &lt;stdio.h&gt;
-
-extern &quot;C&quot; void hello()
+  <div class="article-body"><p>CMake でモジュール定義ファイルを使う場合は、<code>.def</code> ファイルをソースコードと同時に指定します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;C&#34;</span> <span style="color:#66d9ef">void</span> hello()
 {
-    printf(&quot;Hello\n&quot;);
+    printf(<span style="color:#e6db74">&#34;Hello</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 }
-</code></pre>
-
-<p>エクスポートの設定がない場合、関数は DLL の外部から使うことができず、<code>dumpbin</code> コマンドの結果にも表示されません。</p>
-
-<pre><code class="language-no-highlight">&gt; dumpbin /EXPORTS Sample.dll
+</code></pre></div><p>エクスポートの設定がない場合、関数は DLL の外部から使うことができず、<code>dumpbin</code> コマンドの結果にも表示されません。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">&gt; dumpbin /EXPORTS Sample.dll
 Microsoft (R) COFF/PE Dumper Version 14.10.25019.0
 Copyright (C) Microsoft Corporation.  All rights reserved.
 
@@ -181,28 +175,18 @@ File Type: DLL
         1000 .reloc
         1000 .rsrc
         8000 .text
-</code></pre>
-
-<h2 id="モジュール定義ファイルを指定する">モジュール定義ファイルを指定する</h2>
-
+</code></pre></div><h2 id="モジュール定義ファイルを指定する">モジュール定義ファイルを指定する</h2>
 <p><code>CMakeLists.txt</code> で次のように指定することで <code>.def</code> ファイルを使うことができます。</p>
-
-<pre><code class="language-no-highlight">cmake_minimum_required(VERSION 3.12)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">cmake_minimum_required(VERSION 3.12)
 project(Sample)
 
 # DLL プロジェクトを作成
 add_library(Sample SHARED sample.cpp sample.def)
-</code></pre>
-
-<p><code>sample.def</code> には以下の通り記入します。</p>
-
-<pre><code class="language-no-highlight">EXPORTS
+</code></pre></div><p><code>sample.def</code> には以下の通り記入します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">EXPORTS
     hello
-</code></pre>
-
-<p>こうすると <code>hello</code> 関数は <code>dumpbin</code> コマンドの結果に表示され、DLL の外部から利用することができます。</p>
-
-<pre><code class="language-no-highlight">&gt; dumpbin /EXPORTS Sample.dll
+</code></pre></div><p>こうすると <code>hello</code> 関数は <code>dumpbin</code> コマンドの結果に表示され、DLL の外部から利用することができます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">&gt; dumpbin /EXPORTS Sample.dll
 Microsoft (R) COFF/PE Dumper Version 14.10.25019.0
 Copyright (C) Microsoft Corporation.  All rights reserved.
 
@@ -233,51 +217,49 @@ File Type: DLL
         1000 .reloc
         1000 .rsrc
         8000 .text
-</code></pre>
-
-<h2 id="dllexport-属性を使う">dllexport 属性を使う</h2>
-
+</code></pre></div><h2 id="dllexport-属性を使う">dllexport 属性を使う</h2>
 <p>関数のエクスポートには <code>__declspec(dllexport)</code> を使うこともできます。</p>
-
-<pre><code class="language-cpp">extern &quot;C&quot; void __declspec(dllexport) hello()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;C&#34;</span> <span style="color:#66d9ef">void</span> <span style="color:#66d9ef">__declspec</span>(dllexport) hello()
 {
-    printf(&quot;Hello\n&quot;);
+    printf(<span style="color:#e6db74">&#34;Hello</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 }
-</code></pre>
-
-<p>
+</code></pre></div><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考資料">参考資料</h2>
-
 <ul>
-<li><p>CMake<br />
+<li>
+<p>CMake<br />
 <span style="word-break: break-all;">
 <a href="https://cmake.org/">https://cmake.org/</a>
-</span></p></li>
-
-<li><p>CMake を使ったクロスプラットフォーム開発環境<br />
+</span></p>
+</li>
+<li>
+<p>CMake を使ったクロスプラットフォーム開発環境<br />
 <span style="word-break: break-all;">
 <a href="https://engineering.linecorp.com/ja/blog/detail/103">https://engineering.linecorp.com/ja/blog/detail/103</a>
-</span></p></li>
-
-<li><p>add_library &mdash; CMake Documentation<br />
+</span></p>
+</li>
+<li>
+<p>add_library &mdash; CMake Documentation<br />
 <span style="word-break: break-all;">
 <a href="https://cmake.org/cmake/help/latest/command/add_library.html">https://cmake.org/cmake/help/latest/command/add_library.html</a>
-</span></p></li>
-
-<li><p>dllexport, dllimport - MSDN<br />
+</span></p>
+</li>
+<li>
+<p>dllexport, dllimport - MSDN<br />
 <span style="word-break: break-all;">
 <a href="https://msdn.microsoft.com/ja-jp/library/3y1sfaz2.aspx">https://msdn.microsoft.com/ja-jp/library/3y1sfaz2.aspx</a>
-</span></p></li>
-
-<li><p>C++のマングルとextern &ldquo;C&rdquo; &#123;<br />
+</span></p>
+</li>
+<li>
+<p>C++のマングルとextern &ldquo;C&rdquo; {<br />
 <span style="word-break: break-all;">
 <a href="https://www.wagavulin.jp/entry/2017/02/09/215036">https://www.wagavulin.jp/entry/2017/02/09/215036</a>
-</span></p></li>
+</span></p>
+</li>
 </ul>
 </div>
  
@@ -392,7 +374,7 @@ File Type: DLL
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

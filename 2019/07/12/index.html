@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "Wasserstein 計量が距離関数になることを証明する - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,7 +60,7 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
@@ -149,34 +149,26 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p>ここでは Wasserstein 計量を最適輸送コストから計算し、この計量が距離の定義（<a href="#appendix1">補足 1</a>）を満たすことを証明します。
+  <div class="article-body"><p>ここでは Wasserstein 計量を最適輸送コストから計算し、この計量が距離の定義（<a href="#appendix1">補足 1</a>）を満たすことを証明します。
 また、Wasserstein 計量が元の空間上の確率分布間の距離とみなせることを示します。</p>
-
 <p>本記事は <a href="https://arxiv.org/abs/1803.00567">Computational Optimal Transport</a> の命題 2.2 の解説です。
 簡単のため 1-Wasserstein の場合のみ証明します。</p>
-
 <p><a name="monge-kantorovich"></a></p>
-
-<h2 id="monge-kantorovich-の問題-cot-2-3-節">Monge-Kantorovich の問題（COT 2.3 節）</h2>
-
+<h2 id="monge-kantorovich-の問題cot-23-節">Monge-Kantorovich の問題（COT 2.3 節）</h2>
 <p><div>
 複数の工場 $A_1 ... A_n$ で生産した量 $a_1 ... a_n$ の物資があり、これを別の場所 $B_1 ... B_m$ で利用することにしたい。
 物資は使い切るものとし、$B_j$ には $b_j$ の物資を割り当てる。
 したがって、$\sum_i a_i = \sum_j b_j$ が成り立つ。
 </div></p>
-
 <p><div>
 $A_i$ から $B_j$ へ物資を輸送するにあたって、単位量あたり $C_{ij}$ のコストがかかるものとする。
 $A_i$ から $B_j$ へ輸送する物資の量を $P_{ij}$ とすると、輸送にかかるコストは $\langle \mathbf{C}, \mathbf{P} \rangle = \sum_{ij} C_{ij} P_{ij}$ である。
 ここで、輸送コストを最小にする輸送方法を最適輸送と呼び、最適な輸送 $\mathbf{P}^* $ を求める問題を最適輸送問題という。
 問題設定から、$a_i = \sum_j P_{ij}$, $b_j = \sum_i P_{ij}$ が成り立つ。
 </div></p>
-
 <p><div>
 以下では、有効な輸送の全体を $\mathbf{U}(\mathbf{a}, \mathbf{b})$, 最適輸送コストを $L_\mathbf{C}(\mathbf{a}, \mathbf{b})$ であらわす。
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \mathbf{U}(\mathbf{a}, \mathbf{b}) = \left\{ \mathbf{P} \in \mathbb{R}_+^{n \times m} \middle|
 \mathbf{P}\mathbf{1}_m = \mathbf{a},
@@ -187,46 +179,35 @@ L_\mathbf{C}(\mathbf{a}, \mathbf{b}) = \min_{\mathbf{P} \in \mathbf{U}(\mathbf{a
 $$
 </div>
 </div></p>
-
 <p>最適輸送 $\mathbf{P}^* $ は線型計画法で計算できる（<a href="https://arxiv.org/abs/1803.00567">COT 2&ndash;3 章</a>）。</p>
-
-<h2 id="wasserstein-距離-cot-2-4-節">Wasserstein 距離（COT 2.4 節）</h2>
-
+<h2 id="wasserstein-距離cot-24-節">Wasserstein 距離（COT 2.4 節）</h2>
 <p><div>
 次に、物資の生産と消費が同じ場所で行われるケースを考える（$[ A_1 ... A_n ] = [ B_1 ... B_n ]$）。
 また、地点間の輸送コストは距離の定義を満たすものとする（<a href="#appendix1">補足 1</a>）。
 輸送コスト行列 $\mathbf{D}$ はこの距離関数を行列の形で書き下したものである（$D_{ij} = d(A_i, A_j)$）。
 </div></p>
-
-<h3 id="命題-2-2-cot">命題 2.2 (COT)</h3>
-
+<h3 id="命題-22-cot">命題 2.2 (COT)</h3>
 <p><div>
 資源量を正規化し、生産量 $\mathbf{a}$ と消費量 $\mathbf{b}$ を単体 $\Sigma_n$ 上に制限する（$\mathbf{a}, \mathbf{b} \in \Sigma_n$）。
 このとき $\Sigma_n$ 上に定義される $p$-Wasserstein 関数
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 W_p(\mathbf{a}, \mathbf{b}) = \left[ L_{\mathbf{D}^p}(\mathbf{a}, \mathbf{b}) \right]^{\frac{1}{p}}
 $$
 </div>
 は $\Sigma_n$ 上の距離関数になる（$\Sigma_n$ は要素の和が 1 となるような非負値ベクトル全体の集合である）。
 </div></p>
-
 <h4 id="諸注意">諸注意</h4>
-
 <p>輸送コストは有限の地点間に定義されるが、$p$-Wasserstein は単体上の距離になる。
 $\Sigma_n$ はカテゴリー分布（<a href="#appendix2">補足 2</a>）のパラメータ空間と同等であるため、$p$-Wasserstein 関数は確率分布間の距離とみなすことができる。</p>
-
 <p><a href="http://proceedings.mlr.press/v70/arjovsky17a.html">Wasserstein GAN</a> (Arjovski et al., 2017) で使われているのは 1-Wasserstein である。
 この距離関数は Earth Mover&rsquo;s Distance（EM 距離）とも呼ばれている。</p>
-
-<h3 id="証明-p-1-の場合">証明 （p = 1 の場合）</h3>
-
+<h3 id="証明-p--1-の場合">証明 （p = 1 の場合）</h3>
 <ol>
 <li>$W(\mathbf{a}, \mathbf{a}) = 0$</li>
 </ol>
-
 <p><div>
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 W(\mathbf{a}, \mathbf{a})
@@ -243,15 +224,13 @@ Wasserstein 距離は最適な輸送方法を元に計算されるため、$\mat
 \leq \langle \mathbf{D}, \mathbf{P} \rangle$
 が成り立つことに注意する。
 </div></p>
-
 <ol start="2">
 <li>$W(\mathbf{a}, \mathbf{b}) > 0$　($\mathbf{a} \neq \mathbf{b}$)</li>
 </ol>
-
 <p><div>
 $\mathbf{a} \neq \mathbf{b}$ であるため、ある $k$ が存在し $a_k > b_k$ となる。
 任意の有効な輸送 $\mathbf{P}$ について $P_{kk} \leq b_k$, $\sum_j P_{kj} = a_k$ だから、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \sum_{j \neq k} P_{kj}
@@ -261,7 +240,7 @@ $$
 $$
 </div>
 が成り立つ。さらに $D^* = \min_{j \neq k}D_{kj}$ とすると、
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 \langle \mathbf{D}, \mathbf{P} \rangle
@@ -274,15 +253,13 @@ $$
 が成立する。
 $D^* (a_k - b_k)$ は $\mathbf{P}$ によらない定数なので、$W(\mathbf{a}, \mathbf{b}) > 0$ が成り立つ。
 </div></p>
-
 <ol start="3">
 <li>$W(\mathbf{a}, \mathbf{b}) = W(\mathbf{b}, \mathbf{a})$</li>
 </ol>
-
 <p><div>
 $W(\mathbf{a}, \mathbf{b})$, $W(\mathbf{b}, \mathbf{a})$ をあたえる最適輸送をそれぞれ
 $\mathbf{P}^* $, $\mathbf{Q}^* $ とする。このとき
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \begin{align*}
 W(\mathbf{a}, \mathbf{b})
@@ -297,36 +274,32 @@ $$
 </div>
 逆も同等のため、$W(\mathbf{a}, \mathbf{b}) = W(\mathbf{b}, \mathbf{a})$ が成り立つ。
 </div></p>
-
 <ol start="4">
 <li>$W(\mathbf{a}, \mathbf{c}) \leq W(\mathbf{a}, \mathbf{b}) + W(\mathbf{b}, \mathbf{c})$</li>
 </ol>
-
 <p>この部分の証明は <a href="https://arxiv.org/abs/1803.00567">Computational Optimal Transport</a> に詳しく書かれているため省きます。</p>
-
 <p><a name="appendix1"></a></p>
-
 <h2 id="補足-1-距離の定義">補足 1. 距離の定義</h2>
-
 <p>距離関数とは、集合 $S$ 上で定義された実数値二値関数 $d$ で、次の条件を満たすものである。</p>
-
 <ol>
-<li><p>$d(a, a) = 0$</p></li>
-
-<li><p>$d(a, b) &gt; 0$　($a \neq b$)</p></li>
-
-<li><p>$d(a, b) = d(b, a)$</p></li>
-
-<li><p>$d(a, c) \leq d(a, b) + d(b, c)$</p></li>
+<li>
+<p>$d(a, a) = 0$</p>
+</li>
+<li>
+<p>$d(a, b) &gt; 0$　($a \neq b$)</p>
+</li>
+<li>
+<p>$d(a, b) = d(b, a)$</p>
+</li>
+<li>
+<p>$d(a, c) \leq d(a, b) + d(b, c)$</p>
+</li>
 </ol>
-
 <p><a name="appendix2"></a></p>
-
 <h2 id="補足-2-カテゴリー分布">補足 2. カテゴリー分布</h2>
-
 <p><div>
 試行回数が 1 の多項分布を特別にカテゴリー分布と呼ぶことがある。
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \mathrm{Cat}(\mathbf{x}|\mathbf{p}) = \prod_{i = 1}^n p_i^{x_i}
 $$
@@ -334,12 +307,10 @@ $$
 $\mathbf{x}$ は 1 つの要素だけが 1 となり、他の要素がすべて 0 となるようなベクトルである。
 これを 1-hot ベクトルという。
 </div></p>
-
 <h2 id="補足-3-対角行列">補足 3. 対角行列</h2>
-
 <p><div>
 $\mathrm{diag}$ はベクトルから対角行列を作る関数で、次のように定義される。
-<div style="overflow-x: scroll;">
+<div style="overflow-x: auto;">
 $$
 \mathrm{diag} (\mathbf{a}) =
 \left[
@@ -352,30 +323,31 @@ $$
 $$
 </div>
 </div></p>
-
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考文献">参考文献</h2>
-
 <ul>
-<li><p>Gabriel Peyré and Marco Cuturi, &ldquo;Computational Optimal Transport&rdquo;, <em>Foundations and Trends in Machine Learning</em>, vol. 11, no. 5&ndash;6, pp. 355&ndash;607, 2019.<br />
+<li>
+<p>Gabriel Peyré and Marco Cuturi, &ldquo;Computational Optimal Transport&rdquo;, <em>Foundations and Trends in Machine Learning</em>, vol. 11, no. 5&ndash;6, pp. 355&ndash;607, 2019.<br />
 <span style="word-break: break-all;">
 <a href="https://arxiv.org/abs/1803.00567">https://arxiv.org/abs/1803.00567</a>
-</span></p></li>
-
-<li><p>Wasserstein GAN and the Kantorovich-Rubinstein Duality<br />
+</span></p>
+</li>
+<li>
+<p>Wasserstein GAN and the Kantorovich-Rubinstein Duality<br />
 <span style="word-break: break-all;">
 <a href="https://vincentherrmann.github.io/blog/wasserstein/">https://vincentherrmann.github.io/blog/wasserstein/</a>
-</span></p></li>
-
-<li><p>Martin Arjovsky, Soumith Chintala, and Léon Bottou, &ldquo;Wasserstein Generative Adversarial Networks&rdquo;, in <em>Proc. ICML</em>, 2017, pp. 214&ndash;223.<br />
+</span></p>
+</li>
+<li>
+<p>Martin Arjovsky, Soumith Chintala, and Léon Bottou, &ldquo;Wasserstein Generative Adversarial Networks&rdquo;, in <em>Proc. ICML</em>, 2017, pp. 214&ndash;223.<br />
 <span style="word-break: break-all;">
 <a href="http://proceedings.mlr.press/v70/arjovsky17a.html">http://proceedings.mlr.press/v70/arjovsky17a.html</a>
-</span></p></li>
+</span></p>
+</li>
 </ul>
 </div>
  
@@ -499,7 +471,7 @@ $$
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

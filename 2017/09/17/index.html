@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "mac に SciPy がプリインストールされているか調べる - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,7 +60,7 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
@@ -149,14 +149,10 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p>手元の環境 (macOS 10.12 Sierra) に入っている SciPy がプリインストールされたものか、自分でインストールしたものか分からなくなったので調査しました。</p>
-
+  <div class="article-body"><p>手元の環境 (macOS 10.12 Sierra) に入っている SciPy がプリインストールされたものか、自分でインストールしたものか分からなくなったので調査しました。</p>
 <p>まずは <code>sys.path</code> から。
 スクリプト（または対話シェル）で <code>import</code> 文を使うと、<code>sys.path</code> に含まれるフォルダを先頭から順に検索していきます。</p>
-
-<pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
+<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12) + Homebrew
 $ python
 Python 2.7.10 (default, Feb  7 2017, 00:08:15)
 [GCC 4.2.1 Compatible Apple LLVM 8.0.0 (clang-800.0.34)] on darwin
@@ -176,29 +172,28 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 '/Library/Python/2.7/site-packages'
 '/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python'
 '/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/PyObjC'
-</code></pre>
-
-<p>リストは 4 つのカテゴリーに分かれています。</p>
-
+</code></pre><p>リストは 4 つのカテゴリーに分かれています。</p>
 <ol>
-<li><p><code>''</code><br />
-カレントディレクトリ。ユーザーが定義したモジュールは最優先で読み込まれます。</p></li>
-
-<li><p><code>Python.framework/Versions/2.7/lib</code><br />
-Python の標準モジュールがインストールされているディレクトリです。</p></li>
-
-<li><p><code>site-packages</code><br />
-ユーザーがインストールしたパッケージを置くためのディレクトリです。</p></li>
-
-<li><p><code>Python.framework/Versions/2.7/Extras/lib</code><br />
-macOS 独自のディレクトリで、Apple がプリインストールしたパッケージが置かれています。</p></li>
+<li>
+<p><code>''</code><br />
+カレントディレクトリ。ユーザーが定義したモジュールは最優先で読み込まれます。</p>
+</li>
+<li>
+<p><code>Python.framework/Versions/2.7/lib</code><br />
+Python の標準モジュールがインストールされているディレクトリです。</p>
+</li>
+<li>
+<p><code>site-packages</code><br />
+ユーザーがインストールしたパッケージを置くためのディレクトリです。</p>
+</li>
+<li>
+<p><code>Python.framework/Versions/2.7/Extras/lib</code><br />
+macOS 独自のディレクトリで、Apple がプリインストールしたパッケージが置かれています。</p>
+</li>
 </ol>
-
 <h2 id="numpy-scipy-matplotlib-のインストールパス">NumPy, SciPy, matplotlib のインストールパス</h2>
-
 <p>すべて Apple の拡張ディレクトリに置かれています。</p>
-
-<pre><code class="language-shell">$ python
+<pre><code class="language-console" data-lang="console">$ python
 &gt;&gt;&gt; import numpy, scipy, matplotlib
 &gt;&gt;&gt; numpy.__file__
 '/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/numpy/__init__.pyc'
@@ -206,21 +201,14 @@ macOS 独自のディレクトリで、Apple がプリインストールした�
 '/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/scipy/__init__.pyc'
 &gt;&gt;&gt; matplotlib.__file__
 '/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/matplotlib/__init__.pyc'
-</code></pre>
-
-<p>自分でインストールしたパッケージは <code>site-packages</code> 以下に置かれます。</p>
-
-<pre><code class="language-shell">$ python
+</code></pre><p>自分でインストールしたパッケージは <code>site-packages</code> 以下に置かれます。</p>
+<pre><code class="language-console" data-lang="console">$ python
 &gt;&gt;&gt; import pycodestyle
 &gt;&gt;&gt; pycodestyle.__file__
 '/Library/Python/2.7/site-packages/pycodestyle.pyc'
-</code></pre>
-
-<p>したがって、macOS Sierra には NumPy, SciPy, matplotlib が標準でインストールされる、ということになります。</p>
-
-<h2 id="おまけ-サイト固有のパスを読み込まずに-python-を起動する">おまけ：サイト固有のパスを読み込まずに Python を起動する</h2>
-
-<pre><code class="language-shell">$ python -S
+</code></pre><p>したがって、macOS Sierra には NumPy, SciPy, matplotlib が標準でインストールされる、ということになります。</p>
+<h2 id="おまけサイト固有のパスを読み込まずに-python-を起動する">おまけ：サイト固有のパスを読み込まずに Python を起動する</h2>
+<pre><code class="language-console" data-lang="console">$ python -S
 Python 2.7.10 (default, Feb  7 2017, 00:08:15)
 [GCC 4.2.1 Compatible Apple LLVM 8.0.0 (clang-800.0.34)] on darwin
 &gt;&gt;&gt; import sys
@@ -235,73 +223,72 @@ Python 2.7.10 (default, Feb  7 2017, 00:08:15)
 '/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-tk'
 '/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-old'
 '/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload'
-</code></pre>
-
-<p>ここまでが Python のコアで、<code>site-packages</code> 以降のディレクトリは Python の動作そのものには影響しない、ということのようです。<br />
+</code></pre><p>ここまでが Python のコアで、<code>site-packages</code> 以降のディレクトリは Python の動作そのものには影響しない、ということのようです。<br />
 <a href="https://stackoverflow.com/questions/897792/where-is-pythons-sys-path-initialized-from">https://stackoverflow.com/questions/897792/where-is-pythons-sys-path-initialized-from</a></p>
-
 <h2 id="おまけ-mac-に-python3-環境をつくる">おまけ： mac に python3 環境をつくる</h2>
-
 <p>Python 3.4 以降をインストールすると、pip が自動的にインストールされます。<br />
 <a href="https://pip.pypa.io/en/stable/installing/">https://pip.pypa.io/en/stable/installing/</a></p>
-
-<pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
+<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12) + Homebrew
 $ brew install python3
 $ pip3 install numpy
 $ pip3 install scipy
 $ pip3 install matplotlib
-</code></pre>
-
-<p>
+</code></pre><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考資料">参考資料</h2>
-
 <p>めくるめく Python モジュールの世界。奥が深い…</p>
-
 <ul>
-<li><p>sys &mdash; システムパラメータと関数<br />
+<li>
+<p>sys — システムパラメータと関数<br />
 <span style="word-break: break-all;">
 <a href="https://docs.python.jp/2.7/library/sys.html">https://docs.python.jp/2.7/library/sys.html</a>
-</span></p></li>
-
-<li><p>cpython / Lib / site.py<br />
+</span></p>
+</li>
+<li>
+<p>cpython / Lib / site.py<br />
 <span style="word-break: break-all;">
 <a href="https://github.com/python/cpython/blob/2.7/Lib/site.py">https://github.com/python/cpython/blob/2.7/Lib/site.py</a>
-</span></p></li>
-
-<li><p>Installation &mdash; pip 9.0.1 documentation<br />
+</span></p>
+</li>
+<li>
+<p>Installation — pip 9.0.1 documentation<br />
 <span style="word-break: break-all;">
 <a href="https://pip.pypa.io/en/stable/installing/">https://pip.pypa.io/en/stable/installing/</a>
-</span></p></li>
-
-<li><p>Homebrew &mdash; macOS 用パッケージマネージャー<br />
+</span></p>
+</li>
+<li>
+<p>Homebrew — macOS 用パッケージマネージャー<br />
 <span style="word-break: break-all;">
 <a href="https://brew.sh/index_ja.html">https://brew.sh/index_ja.html</a>
-</span></p></li>
-
-<li><p>Python パッケージ管理技術まとめ (pip, setuptools, easy_install, etc)<br />
+</span></p>
+</li>
+<li>
+<p>Python パッケージ管理技術まとめ (pip, setuptools, easy_install, etc)<br />
 <span style="word-break: break-all;">
 <a href="http://www.yunabe.jp/docs/python_package_management.html">http://www.yunabe.jp/docs/python_package_management.html</a>
-</span></p></li>
-
-<li><p>Python の module search path について調べてみる<br />
+</span></p>
+</li>
+<li>
+<p>Python の module search path について調べてみる<br />
 <span style="word-break: break-all;">
 <a href="http://hagifoo.hatenablog.com/entry/2013/07/29/132740">http://hagifoo.hatenablog.com/entry/2013/07/29/132740</a>
-</span></p></li>
-
-<li><p>Where is Python&rsquo;s sys.path initialized from?<br />
+</span></p>
+</li>
+<li>
+<p>Where is Python&rsquo;s sys.path initialized from?<br />
 <span style="word-break: break-all;">
 <a href="https://stackoverflow.com/questions/897792/where-is-pythons-sys-path-initialized-from">https://stackoverflow.com/questions/897792/where-is-pythons-sys-path-initialized-from</a>
-</span></p></li>
-
-<li><p>What sets up sys.path with Python, and when?<br />
+</span></p>
+</li>
+<li>
+<p>What sets up sys.path with Python, and when?<br />
 <span style="word-break: break-all;">
 <a href="https://stackoverflow.com/questions/4271494/what-sets-up-sys-path-with-python-and-when">https://stackoverflow.com/questions/4271494/what-sets-up-sys-path-with-python-and-when</a>
-</span></p></li>
+</span></p>
+</li>
 </ul>
 </div>
  
@@ -416,7 +403,7 @@ $ pip3 install matplotlib
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

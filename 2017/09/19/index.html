@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "Python でインストール済みモジュールをデバッグする - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,7 +60,7 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
@@ -149,40 +149,27 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p><code>pdb</code>, <code>pip</code> などのインストール済みモジュールを直接デバッグする方法。<br />
+  <div class="article-body"><p><code>pdb</code>, <code>pip</code> などのインストール済みモジュールを直接デバッグする方法。<br />
 モジュールの動作を細かく調べたい時に役立ちます。</p>
-
-<pre><code class="language-shell">$ # 強引に書くとおこられる
+<pre><code class="language-console" data-lang="console">$ # 強引に書くとおこられる
 $ python3 -m pdb -m pip
 Traceback (most recent call last):
   （中略）
 getopt.GetoptError: option -m not recognized
-</code></pre>
-
-<h2 id="m-オプションの意味">-m オプションの意味</h2>
-
+</code></pre><h2 id="-m-オプションの意味">-m オプションの意味</h2>
 <p><code>python -m</code> は、該当のモジュールを <code>sys.path</code> から探し、見つかったファイルをスクリプトとして直接実行するコマンドです。<br />
 <span style="word-break: break-all;">
 <a href="https://docs.python.jp/3/using/cmdline.html#cmdoption-m">https://docs.python.jp/3/using/cmdline.html#cmdoption-m</a>
 </span></p>
-
 <p>したがって、次のコードはすべて同じ動作になります。</p>
-
-<pre><code class="language-shell">$ # macOS Sierra (10.12) + Homebrew
+<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12) + Homebrew
 $ pip3 freeze
 $ python3 -m pip freeze
 $ python3 /usr/local/lib/python3.6/site-packages/pip/__init__.py freeze
-</code></pre>
-
-<p>モジュールのファイルを探してきて <code>-m pdb</code> するとよさそうです。</p>
-
+</code></pre><p>モジュールのファイルを探してきて <code>-m pdb</code> するとよさそうです。</p>
 <h2 id="モジュールの探し方">モジュールの探し方</h2>
-
 <p><code>pip</code> などでインストールしたモジュールであれば <code>pip show</code> が使えます。</p>
-
-<pre><code class="language-shell">$ pip3 show pip
+<pre><code class="language-console" data-lang="console">$ pip3 show pip
 Name: pip
 Version: 9.0.1
 Summary: The PyPA recommended tool for installing Python packages.
@@ -192,63 +179,53 @@ Author-email: python-virtualenv@groups.google.com
 License: MIT
 Location: /usr/local/lib/python3.6/site-packages
 Requires:
-</code></pre>
-
-<p>また、モジュールの <code>__file__</code> 属性を調べることもできます。</p>
-
-<pre><code class="language-shell">$ python3
+</code></pre><p>また、モジュールの <code>__file__</code> 属性を調べることもできます。</p>
+<pre><code class="language-console" data-lang="console">$ python3
 &gt;&gt;&gt; import pip
 &gt;&gt;&gt; pip.__file__
 '/usr/local/lib/python3.6/site-packages/pip/__init__.py'
-</code></pre>
-
-<p>モジュールのインストールパスの詳細は次の記事をご参照ください。<br />
+</code></pre><p>モジュールのインストールパスの詳細は次の記事をご参照ください。<br />
 <a href="https://yokaze.github.io/2017/09/17/">https://yokaze.github.io/2017/09/17/</a></p>
-
 <h2 id="インストール済みモジュールをデバッグする">インストール済みモジュールをデバッグする</h2>
-
 <p>スクリプトファイルは <code>python -m pdb</code> でデバッグできるので、パスが分かればインストール済みモジュールをデバッグすることもできます。</p>
-
-<pre><code class="language-shell">$ python3 -m pdb /usr/local/lib/python3.6/site-packages/pip/__init__.py freeze
-</code></pre>
-
-<p><a href="https://github.com/inducer/pudb">PuDB</a> などの高機能デバッガを使うとしあわせになれるかもしれません。</p>
-
-<pre><code class="language-shell">$ # pudb をインストール
+<pre><code class="language-console" data-lang="console">$ python3 -m pdb /usr/local/lib/python3.6/site-packages/pip/__init__.py freeze
+</code></pre><p><a href="https://github.com/inducer/pudb">PuDB</a> などの高機能デバッガを使うとしあわせになれるかもしれません。</p>
+<pre><code class="language-console" data-lang="console">$ # pudb をインストール
 $ pip3 install pudb
 $
 $ # pdb のかわりに pudb をつかう
 $ python3 -m pudb /usr/local/lib/python3.6/site-packages/pip/__init__.py freeze
-</code></pre>
-
-<p>
+</code></pre><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考資料">参考資料</h2>
-
 <ul>
-<li><p>コマンドラインと環境<br />
+<li>
+<p>コマンドラインと環境<br />
 <span style="word-break: break-all;">
 <a href="https://docs.python.jp/3/using/cmdline.html">https://docs.python.jp/3/using/cmdline.html</a>
-</span></p></li>
-
-<li><p>pdb &mdash; Python デバッガ<br />
+</span></p>
+</li>
+<li>
+<p>pdb — Python デバッガ<br />
 <span style="word-break: break-all;">
 <a href="https://docs.python.jp/3/library/pdb.html">https://docs.python.jp/3/library/pdb.html</a>
-</span></p></li>
-
-<li><p>Full-screen console debugger for Python<br />
+</span></p>
+</li>
+<li>
+<p>Full-screen console debugger for Python<br />
 <span style="word-break: break-all;">
 <a href="https://github.com/inducer/pudb">https://github.com/inducer/pudb</a>
-</span></p></li>
-
-<li><p>mac に SciPy がプリインストールされているか調べる<br />
+</span></p>
+</li>
+<li>
+<p>mac に SciPy がプリインストールされているか調べる<br />
 <span style="word-break: break-all;">
 <a href="https://yokaze.github.io/2017/09/17/">https://yokaze.github.io/2017/09/17/</a>
-</span></p></li>
+</span></p>
+</li>
 </ul>
 </div>
  
@@ -363,7 +340,7 @@ $ python3 -m pudb /usr/local/lib/python3.6/site-packages/pip/__init__.py freeze
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on yokaze.github.io</title>
@@ -7,9 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    
-	<atom:link href="https://yokaze.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Thu, 12 Sep 2019 21:00:00 +0900</lastBuildDate><atom:link href="https://yokaze.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>機械学習</title>
+      <link>https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/</link>
+      <pubDate>Thu, 12 Sep 2019 21:00:00 +0900</pubDate>
+      
+      <guid>https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>プログラミング</title>
@@ -26,15 +32,6 @@
       <pubDate>Fri, 26 Oct 2018 21:00:00 +0900</pubDate>
       
       <guid>https://yokaze.github.io/categories/%E5%86%99%E7%9C%9F/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>機械学習</title>
-      <link>https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/</link>
-      <pubDate>Thu, 12 Sep 2019 21:00:00 +0900</pubDate>
-      
-      <guid>https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/</guid>
       <description></description>
     </item>
     

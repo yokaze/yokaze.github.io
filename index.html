@@ -4,9 +4,9 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
-<link rel="alternate" type="application/rss+xml" title="RSS" href="https://yokaze.github.io/index.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="/index.xml">
 
 <link rel="canonical" href="https://yokaze.github.io/">
 
@@ -84,7 +84,8 @@ if (!doNotTrack) {
 
     <ul class="p-articles">
       
-      <li><article class="li">
+        
+        <li><article class="li">
   <header>
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-09-12T21:00:00JST">Sep 12, 2019</time></li>
@@ -102,8 +103,8 @@ if (!doNotTrack) {
   </footer>
 </article>
 </li>
-      
-      <li><article class="li">
+        
+        <li><article class="li">
   <header>
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-08-30T21:00:00JST">Aug 30, 2019</time></li>
@@ -121,8 +122,8 @@ if (!doNotTrack) {
   </footer>
 </article>
 </li>
-      
-      <li><article class="li">
+        
+        <li><article class="li">
   <header>
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-08-23T21:00:00JST">Aug 23, 2019</time></li>
@@ -140,8 +141,8 @@ if (!doNotTrack) {
   </footer>
 </article>
 </li>
-      
-      <li><article class="li">
+        
+        <li><article class="li">
   <header>
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-08-12T15:00:00JST">Aug 12, 2019</time></li>
@@ -159,8 +160,8 @@ if (!doNotTrack) {
   </footer>
 </article>
 </li>
-      
-      <li><article class="li">
+        
+        <li><article class="li">
   <header>
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-08-07T18:00:00JST">Aug 7, 2019</time></li>
@@ -178,8 +179,8 @@ if (!doNotTrack) {
   </footer>
 </article>
 </li>
-      
-      <li><article class="li">
+        
+        <li><article class="li">
   <header>
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-13T18:00:00JST">Jul 13, 2019</time></li>
@@ -197,8 +198,8 @@ if (!doNotTrack) {
   </footer>
 </article>
 </li>
-      
-      <li><article class="li">
+        
+        <li><article class="li">
   <header>
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-12T18:00:00JST">Jul 12, 2019</time></li>
@@ -216,8 +217,8 @@ if (!doNotTrack) {
   </footer>
 </article>
 </li>
-      
-      <li><article class="li">
+        
+        <li><article class="li">
   <header>
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-05T18:00:00JST">Jul 5, 2019</time></li>
@@ -228,15 +229,15 @@ if (!doNotTrack) {
   </header>
 
   
-  <div class="summary">lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &lt;stdio.h&gt; void sample1() { printf(&quot;sample 1\n&quot;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ clang -g sample.cpp -o</div>
+  <div class="summary">lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &lt;stdio.h&gt; void sample1() { printf(&#34;sample 1\n&#34;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ clang -g sample.cpp -o</div>
 
   <footer>
     <a href="https://yokaze.github.io/2019/07/05/" title="lldb で関数の呼び出し履歴を表示する">Read More…</a>
   </footer>
 </article>
 </li>
-      
-      <li><article class="li">
+        
+        <li><article class="li">
   <header>
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-04T21:00:00JST">Jul 4, 2019</time></li>
@@ -247,15 +248,15 @@ if (!doNotTrack) {
   </header>
 
   
-  <div class="summary">ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &lt;algorithm&gt; sample.cpp #include &quot;sample.h&quot; int main(void) { printf(&quot;%d\n&quot;, std::min&lt;int&gt;(1, 2)); return 0; } -MF オプションで出力先を指定で</div>
+  <div class="summary">ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &lt;algorithm&gt;sample.cpp #include &#34;sample.h&#34; int main(void) { printf(&#34;%d\n&#34;, std::min&lt;int&gt;(1, 2)); return 0; } -MF オプションで出力先を指定でき</div>
 
   <footer>
     <a href="https://yokaze.github.io/2019/07/04/" title="clang でソースコードが依存するヘッダー一覧を表示する">Read More…</a>
   </footer>
 </article>
 </li>
-      
-      <li><article class="li">
+        
+        <li><article class="li">
   <header>
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-02T21:00:00JST">Jul 2, 2019</time></li>
@@ -273,6 +274,7 @@ if (!doNotTrack) {
   </footer>
 </article>
 </li>
+        
       
     </ul>
 
@@ -376,7 +378,7 @@ if (!doNotTrack) {
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

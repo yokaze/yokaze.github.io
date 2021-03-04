@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -16,21 +16,21 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
     <title>clang でソースコードが依存するヘッダー一覧を表示する - yokaze.github.io</title>
     
-<meta name="description" content="ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &amp;lt;algorithm&amp;gt; sample.cpp #include &amp;quot;sample.h&amp;quot; int main(void) { printf(&amp;quot;%d\n&amp;quot;, std::min&amp;lt;int&amp;gt;(1, 2)); return 0; } -MF オプションで出力先を指定で">
+<meta name="description" content="ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &amp;lt;algorithm&amp;gt;sample.cpp #include &amp;#34;sample.h&amp;#34; int main(void) { printf(&amp;#34;%d\n&amp;#34;, std::min&amp;lt;int&amp;gt;(1, 2)); return 0; } -MF オプションで出力先を指定でき">
 
 <meta property="og:title" content="clang でソースコードが依存するヘッダー一覧を表示する - yokaze.github.io">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://yokaze.github.io/2019/07/04/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &amp;lt;algorithm&amp;gt; sample.cpp #include &amp;quot;sample.h&amp;quot; int main(void) { printf(&amp;quot;%d\n&amp;quot;, std::min&amp;lt;int&amp;gt;(1, 2)); return 0; } -MF オプションで出力先を指定で">
+<meta property="og:description" content="ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &amp;lt;algorithm&amp;gt;sample.cpp #include &amp;#34;sample.h&amp;#34; int main(void) { printf(&amp;#34;%d\n&amp;#34;, std::min&amp;lt;int&amp;gt;(1, 2)); return 0; } -MF オプションで出力先を指定でき">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
 <meta name="twitter:url" content="https://yokaze.github.io/2019/07/04/">
 <meta name="twitter:title" content="clang でソースコードが依存するヘッダー一覧を表示する - yokaze.github.io">
-<meta name="twitter:description" content="ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &amp;lt;algorithm&amp;gt; sample.cpp #include &amp;quot;sample.h&amp;quot; int main(void) { printf(&amp;quot;%d\n&amp;quot;, std::min&amp;lt;int&amp;gt;(1, 2)); return 0; } -MF オプションで出力先を指定で">
+<meta name="twitter:description" content="ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &amp;lt;algorithm&amp;gt;sample.cpp #include &amp;#34;sample.h&amp;#34; int main(void) { printf(&amp;#34;%d\n&amp;#34;, std::min&amp;lt;int&amp;gt;(1, 2)); return 0; } -MF オプションで出力先を指定でき">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "clang でソースコードが依存するヘッダー一覧を表示する - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,12 +60,12 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
     },
-    "description": "ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &lt;algorithm&gt; sample.cpp #include &quot;sample.h&quot; int main(void) { printf(&quot;%d\n&quot;, std::min&lt;int&gt;(1, 2)); return 0; } -MF オプションで出力先を指定で"
+    "description": "ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include \u0026lt;algorithm\u0026gt;sample.cpp #include \u0026#34;sample.h\u0026#34; int main(void) { printf(\u0026#34;%d\\n\u0026#34;, std::min\u0026lt;int\u0026gt;(1, 2)); return 0; } -MF オプションで出力先を指定でき"
   }
 </script>
 
@@ -149,30 +149,20 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p>ソースコードが依存するヘッダー一覧を表示するには、<code>-MD</code> オプションを使います。</p>
-
+  <div class="article-body"><p>ソースコードが依存するヘッダー一覧を表示するには、<code>-MD</code> オプションを使います。</p>
 <p><code>sample.h</code></p>
-
-<pre><code class="language-cpp">#pragma once
-#include &lt;algorithm&gt;
-</code></pre>
-
-<p><code>sample.cpp</code></p>
-
-<pre><code class="language-cpp">#include &quot;sample.h&quot;
-
-int main(void)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#pragma once
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span></code></pre></div><p><code>sample.cpp</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;sample.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
 {
-    printf(&quot;%d\n&quot;, std::min&lt;int&gt;(1, 2));
-    return 0;
+    printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, std<span style="color:#f92672">::</span>min<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>));
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<p><code>-MF</code> オプションで出力先を指定できます。</p>
-
-<pre><code class="language-shell">$ clang sample.cpp -MD -MF sample.d
+</code></pre></div><p><code>-MF</code> オプションで出力先を指定できます。</p>
+<pre><code class="language-console" data-lang="console">$ clang sample.cpp -MD -MF sample.d
 $ cat sample.d
 sample.o: sample.cpp sample.h \
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/algorithm \
@@ -182,23 +172,16 @@ sample.o: sample.cpp sample.h \
 $ # この例では、ヘッダーとして 84 ファイルが include されます。
 $ cat sample.d | wc -l
       84
-</code></pre>
-
-<p><code>-MMD</code> オプションを使うと、ユーザー定義ファイルのみの一覧を表示することができます。</p>
-
-<pre><code class="language-shell">$ clang sample.cpp -MMD -MF sample.d
+</code></pre><p><code>-MMD</code> オプションを使うと、ユーザー定義ファイルのみの一覧を表示することができます。</p>
+<pre><code class="language-console" data-lang="console">$ clang sample.cpp -MMD -MF sample.d
 $ cat sample.d
 sample.o: sample.cpp sample.h
-</code></pre>
-
-<p>
+</code></pre><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考資料">参考資料</h2>
-
 <ul>
 <li>Clang command line argument reference<br />
 <span style="word-break: break-all;">
@@ -318,7 +301,7 @@ sample.o: sample.cpp sample.h
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

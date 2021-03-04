@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
     "headline": "mac で PIL (Python Imaging Library) を使う - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,12 +60,12 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
     },
-    "description": "Ubuntu 環境にはデフォルトで入っていることが多い PIL (Pillow) ですが、mac にはプリインストールされないため別途インストールが必要です。 $ # macOS Mojave (10.14) + Homebrew $ python Python"
+    "description": "Ubuntu 環境にはデフォルトで入っていることが多い PIL (Pillow) ですが、mac にはプリインストールされないため別途インストールが必要です。 $ # macOS Mojave (10.14) \u002b Homebrew $ python Python"
   }
 </script>
 
@@ -149,11 +149,8 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p>Ubuntu 環境にはデフォルトで入っていることが多い PIL (Pillow) ですが、mac にはプリインストールされないため別途インストールが必要です。</p>
-
-<pre><code class="language-shell">$ # macOS Mojave (10.14) + Homebrew
+  <div class="article-body"><p>Ubuntu 環境にはデフォルトで入っていることが多い PIL (Pillow) ですが、mac にはプリインストールされないため別途インストールが必要です。</p>
+<pre><code class="language-console" data-lang="console">$ # macOS Mojave (10.14) + Homebrew
 $ python
 Python 2.7.10 (default, Aug 17 2018, 17:41:52)
 [GCC 4.2.1 Compatible Apple LLVM 10.0.0 (clang-1000.0.42)] on darwin
@@ -163,11 +160,8 @@ Traceback (most recent call last):
   File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
 ImportError: No module named PIL
 &gt;&gt;&gt;
-</code></pre>
-
-<p>オリジナルの PIL は開発が中断されているため、後継プロジェクトの Pillow パッケージをインストールします。</p>
-
-<pre><code class="language-shell">$ # macOS Mojave (10.14) + Homebrew
+</code></pre><p>オリジナルの PIL は開発が中断されているため、後継プロジェクトの Pillow パッケージをインストールします。</p>
+<pre><code class="language-console" data-lang="console">$ # macOS Mojave (10.14) + Homebrew
 $ sudo pip install pillow
 　（中略）
 Installing collected packages: pillow
@@ -175,50 +169,49 @@ Successfully installed pillow-6.1.0
 $ python
 &gt;&gt;&gt; import PIL
 &gt;&gt;&gt;
-</code></pre>
-
-<p>Pillow を Python 3 で使う場合は <code>pip3</code> コマンドでインストールします。</p>
-
-<pre><code class="language-shell">$ # macOS Mojave (10.14) + Homebrew
+</code></pre><p>Pillow を Python 3 で使う場合は <code>pip3</code> コマンドでインストールします。</p>
+<pre><code class="language-console" data-lang="console">$ # macOS Mojave (10.14) + Homebrew
 $ pip3 install pillow
 $ python3
 &gt;&gt;&gt; import PIL
 &gt;&gt;&gt;
-</code></pre>
-
-<p>
+</code></pre><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考資料">参考資料</h2>
-
 <ul>
-<li><p>Pythonの画像処理ライブラリPillow(PIL)の使い方<br />
+<li>
+<p>Pythonの画像処理ライブラリPillow(PIL)の使い方<br />
 <span style="word-break: break-all;">
 <a href="https://note.nkmk.me/python-pillow-basic/">https://note.nkmk.me/python-pillow-basic/</a>
-</span></p></li>
-
-<li><p>Pillow (PIL Fork) Documentation<br />
+</span></p>
+</li>
+<li>
+<p>Pillow (PIL Fork) Documentation<br />
 <span style="word-break: break-all;">
 <a href="https://pillow.readthedocs.io/en/stable/">https://pillow.readthedocs.io/en/stable/</a>
-</span></p></li>
-
-<li><p>Which packages are installed on Ubuntu desktop by default?<br />
+</span></p>
+</li>
+<li>
+<p>Which packages are installed on Ubuntu desktop by default?<br />
 <span style="word-break: break-all;">
 <a href="https://askubuntu.com/questions/548085/which-packages-are-installed-on-ubuntu-desktop-by-default">https://askubuntu.com/questions/548085/which-packages-are-installed-on-ubuntu-desktop-by-default</a>
-</span></p></li>
-
-<li><p>Ubuntu 18.04 にプリインストールされているパッケージのリスト<br />
+</span></p>
+</li>
+<li>
+<p>Ubuntu 18.04 にプリインストールされているパッケージのリスト<br />
 <span style="word-break: break-all;">
 <a href="http://releases.ubuntu.com/18.04/ubuntu-18.04.2-desktop-amd64.manifest">http://releases.ubuntu.com/18.04/ubuntu-18.04.2-desktop-amd64.manifest</a>
-</span></p></li>
-
-<li><p>Ubuntu &gt; パッケージ &gt; bionic (18.04LTS) &gt; python &gt; python3-pil<br />
+</span></p>
+</li>
+<li>
+<p>Ubuntu &gt; パッケージ &gt; bionic (18.04LTS) &gt; python &gt; python3-pil<br />
 <span style="word-break: break-all;">
 <a href="https://packages.ubuntu.com/bionic/python/python3-pil">https://packages.ubuntu.com/bionic/python/python3-pil</a>
-</span></p></li>
+</span></p>
+</li>
 </ul>
 </div>
  
@@ -333,7 +326,7 @@ $ python3
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>

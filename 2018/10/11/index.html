@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.48" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 
@@ -40,12 +40,12 @@
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":"https://yokaze.github.io/"
+      "@id":"https:\/\/yokaze.github.io\/"
     },
-    "headline": "CMake &#43; Visual Studio で特定の警告を無視する - yokaze.github.io",
+    "headline": "CMake \u002b Visual Studio で特定の警告を無視する - yokaze.github.io",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yokaze.github.io/images/default.png",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
       "height": 800,
       "width": 800
     },
@@ -60,12 +60,12 @@
       "name": "yokaze.github.io",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yokaze.github.io/images/logo.png",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
         "width": 600,
         "height": 60
       }
     },
-    "description": "CMake と Visual Studio を併用する際、特定の警告を無視するには /wd オプションを指定します。 次の例では、通常 x の初期化に関する警告が出力されます。 #include &lt;stdio.h&gt; int main(void) { int x;"
+    "description": "CMake と Visual Studio を併用する際、特定の警告を無視するには \/wd オプションを指定します。 次の例では、通常 x の初期化に関する警告が出力されます。 #include \u0026lt;stdio.h\u0026gt; int main(void) { int x;"
   }
 </script>
 
@@ -149,50 +149,38 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body">
-
-<p>CMake と Visual Studio を併用する際、特定の警告を無視するには <code>/wd</code> オプションを指定します。</p>
-
+  <div class="article-body"><p>CMake と Visual Studio を併用する際、特定の警告を無視するには <code>/wd</code> オプションを指定します。</p>
 <p>次の例では、通常 <code>x</code> の初期化に関する警告が出力されます。</p>
-
-<pre><code class="language-cpp">#include &lt;stdio.h&gt;
-
-int main(void)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
 {
-    int x;
-    printf(&quot;%d\n&quot;, x);
-    return 0;
+    <span style="color:#66d9ef">int</span> x;
+    printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<pre><code class="language-no-highlight">1&gt;------ すべてのリビルド開始: プロジェクト:ZERO_CHECK, 構成: Debug x64 ------
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">1&gt;------ すべてのリビルド開始: プロジェクト:ZERO_CHECK, 構成: Debug x64 ------
 1&gt;Checking Build System
 1&gt;CMake does not need to re-run because /path/to/directory/CMakeFiles/generate.stamp is up-to-date.
 2&gt;------ すべてのリビルド開始: プロジェクト:Sample, 構成: Debug x64 ------
 2&gt;Building Custom Rule /path/to/directory/CMakeLists.txt
 2&gt;CMake does not need to re-run because /path/to/directory/CMakeFiles/generate.stamp is up-to-date.
 2&gt;sample.cpp
-2&gt;/path/to/directory/sample.cpp(6): warning C4700: 初期化されていないローカル変数 'x' が使用されます
+2&gt;/path/to/directory/sample.cpp(6): warning C4700: 初期化されていないローカル変数 &#39;x&#39; が使用されます
 2&gt;Sample.vcxproj -&gt; /path/to/directory/Debug/Sample.exe
 2&gt;Sample.vcxproj -&gt; /path/to/directory/Debug/Sample.pdb (Full PDB)
-2&gt;プロジェクト &quot;Sample.vcxproj&quot; のビルドが終了しました。
+2&gt;プロジェクト &#34;Sample.vcxproj&#34; のビルドが終了しました。
 3&gt;------ [すべてリビルド] のスキップ: プロジェクト:ALL_BUILD, 構成: Debug x64 ------
 3&gt;プロジェクトはこのソリューション構成に対してビルドするように選択されていません。
 ========== すべてリビルド: 2 正常終了、0 失敗、1 スキップ ==========
-</code></pre>
-
-<h2 id="警告の無効化">警告の無効化</h2>
-
+</code></pre></div><h2 id="警告の無効化">警告の無効化</h2>
 <p>上記のコードを <code>CMake</code> でプロジェクト化する際、<code>add_compile_options</code> コマンドで <code>/wd</code> オプションを指定すると特定の警告を無視することができます。</p>
-
-<pre><code class="language-no-highlight">cmake_minimum_required(VERSION 3.12)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">cmake_minimum_required(VERSION 3.12)
 project(Sample)
 
 add_compile_options(/wd4700)
 add_executable(Sample sample.cpp)
-</code></pre>
-
-<pre><code class="language-no-highlight">1&gt;------ すべてのリビルド開始: プロジェクト:ZERO_CHECK, 構成: Debug x64 ------
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">1&gt;------ すべてのリビルド開始: プロジェクト:ZERO_CHECK, 構成: Debug x64 ------
 1&gt;Checking Build System
 1&gt;CMake does not need to re-run because /path/to/directory/CMakeFiles/generate.stamp is up-to-date.
 2&gt;------ すべてのリビルド開始: プロジェクト:Sample, 構成: Debug x64 ------
@@ -204,36 +192,37 @@ add_executable(Sample sample.cpp)
 3&gt;------ [すべてリビルド] のスキップ: プロジェクト:ALL_BUILD, 構成: Debug x64 ------
 3&gt;プロジェクトはこのソリューション構成に対してビルドするように選択されていません。
 ========== すべてリビルド: 2 正常終了、0 失敗、1 スキップ ==========
-</code></pre>
-
-<p>
+</code></pre></div><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
 
-
 <h2 id="参考資料">参考資料</h2>
-
 <ul>
-<li><p>CMake<br />
+<li>
+<p>CMake<br />
 <span style="word-break: break-all;">
 <a href="https://cmake.org/">https://cmake.org/</a>
-</span></p></li>
-
-<li><p>CMake を使ったクロスプラットフォーム開発環境<br />
+</span></p>
+</li>
+<li>
+<p>CMake を使ったクロスプラットフォーム開発環境<br />
 <span style="word-break: break-all;">
 <a href="https://engineering.linecorp.com/ja/blog/detail/103">https://engineering.linecorp.com/ja/blog/detail/103</a>
-</span></p></li>
-
-<li><p>コンパイラの警告 (レベル 1 およびレベル 4) C4700<br />
+</span></p>
+</li>
+<li>
+<p>コンパイラの警告 (レベル 1 およびレベル 4) C4700<br />
 <span style="word-break: break-all;">
 <a href="https://msdn.microsoft.com/ja-jp/library/axhfhh6x.aspx">https://msdn.microsoft.com/ja-jp/library/axhfhh6x.aspx</a>
-</span></p></li>
-
-<li><p>warning<br />
+</span></p>
+</li>
+<li>
+<p>warning<br />
 <span style="word-break: break-all;">
 <a href="https://msdn.microsoft.com/ja-jp/library/2c8f766e.aspx">https://msdn.microsoft.com/ja-jp/library/2c8f766e.aspx</a>
-</span></p></li>
+</span></p>
+</li>
 </ul>
 </div>
  
@@ -348,7 +337,7 @@ add_executable(Sample sample.cpp)
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
   </body>
