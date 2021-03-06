@@ -157,7 +157,7 @@ if (!doNotTrack) {
   </header>
 
   
-  <div class="summary">clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; return 0; } $ # macOS Sierra (10.12) $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion</div>
+  <div class="summary">clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; return 0; } $ # Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0</div>
 
   <footer>
     <a href="https://yokaze.github.io/2018/01/17/" title="clang で 暗黙の符号変換を警告する (-Wsign-conversion)">Read More…</a>
@@ -233,7 +233,7 @@ if (!doNotTrack) {
   </header>
 
   
-  <div class="summary">clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # macOS Sierra (10.12) + Homebrew $ clang sample.cpp -Wunused-macros sample.cpp:1:9: warning: macro is not used [-Wunused-macros]</div>
+  <div class="summary">clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0 $ clang sample.cpp -Wunused-macros sample.cpp:1:9:</div>
 
   <footer>
     <a href="https://yokaze.github.io/2017/10/06/" title="clang で未使用のマクロを警告する (-Wunused-macros)">Read More…</a>

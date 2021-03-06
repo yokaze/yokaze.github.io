@@ -59,7 +59,7 @@
       <pubDate>Fri, 06 Oct 2017 17:51:02 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2017/10/06/</guid>
-      <description>clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # macOS Sierra (10.12) + Homebrew $ clang sample.cpp -Wunused-macros sample.cpp:1:9: warning: macro is not used [-Wunused-macros]</description>
+      <description>clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0 $ clang sample.cpp -Wunused-macros sample.cpp:1:9:</description>
     </item>
     
     <item>
@@ -104,7 +104,7 @@
       <pubDate>Thu, 21 Sep 2017 18:00:00 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/21/</guid>
-      <description>clang でマクロの再定義を警告するには、-Wmacro-redefined オプションを指定します。 #define MY_DEFINE 111 #define MY_DEFINE 222 int main(void) { return 0; } $ # macOS Sierra (10.12) + Homebrew $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9:</description>
+      <description>clang でマクロの再定義を警告するには、-Wmacro-redefined オプションを指定します。 #define MY_DEFINE 111 #define MY_DEFINE 222 int main(void) { return 0; } $ # Intel Mac + macOS Big Sur (11.2) + Apple clang</description>
     </item>
     
     <item>
@@ -167,7 +167,7 @@
       <pubDate>Thu, 07 Sep 2017 18:27:23 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/07/</guid>
-      <description>bind, baseURL オプションを指定して hugo server を起動する。 $ hugo server --bind=&amp;quot;0.0.0.0&amp;quot; --baseURL=&amp;quot;http://[HOSTNAME]/&amp;quot; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドするためのもので、hugo を</description>
+      <description>bind, baseURL オプションを指定して hugo server を起動する。 $ # Intel Mac + macOS Big Sur (11.2) + Hugo 0.81.0 $ hugo server --bind=&amp;quot;0.0.0.0&amp;quot; --baseURL=&amp;quot;http://[HOSTNAME]/&amp;quot; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドする</description>
     </item>
     
     <item>

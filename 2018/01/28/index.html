@@ -50,7 +50,7 @@
       "width": 800
     },
     "datePublished": "2018-01-28T19:48:59JST",
-    "dateModified": "2018-01-28T19:48:59JST",
+    "dateModified": "2021-03-06T00:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -139,7 +139,7 @@ if (!doNotTrack) {
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-28T19:48:59JST">Jan 28, 2018</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2021-03-06T00:00:00JST">Mar 6, 2021</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
     </ul>
@@ -167,12 +167,18 @@ if (!doNotTrack) {
     }
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre></div><pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12)
-$ clang sample.cpp -std=c++11 -lc++ -o sample -Wrange-loop-analysis
-sample.cpp:11:37: warning: loop variable 'kv' has type 'const std::pair&lt;int, int&gt; &amp;' but is initialized with type 'value_type' (aka 'pair&lt;const int, int&gt;') resulting in a copy [-Wrange-loop-analysis]
+</code></pre></div><pre><code class="language-console" data-lang="console">$ # Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0
+$ clang sample.cpp -std=c++17 -lc++ -o sample -Wrange-loop-analysis
+sample.cpp:11:37: warning: loop variable 'kv' has type 'const std::pair&lt;int, int&gt; &amp;' but is initialized with type
+      'std::__1::__map_iterator&lt;std::__1::__tree_iterator&lt;std::__1::__value_type&lt;int, int&gt;,
+      std::__1::__tree_node&lt;std::__1::__value_type&lt;int, int&gt;, void *&gt; *, long&gt; &gt;::value_type' (aka 'pair&lt;const int, int&gt;') resulting
+      in a copy [-Wrange-loop-analysis]
     for (const std::pair&lt;int, int&gt;&amp; kv : m)
                                     ^
-sample.cpp:11:10: note: use non-reference type 'std::pair&lt;int, int&gt;' to keep the copy or type 'const value_type &amp;' (aka 'const pair&lt;const int, int&gt; &amp;') to prevent copying
+sample.cpp:11:10: note: use non-reference type 'std::pair&lt;int, int&gt;' to keep the copy or type 'const
+      std::__1::__map_iterator&lt;std::__1::__tree_iterator&lt;std::__1::__value_type&lt;int, int&gt;,
+      std::__1::__tree_node&lt;std::__1::__value_type&lt;int, int&gt;, void *&gt; *, long&gt; &gt;::value_type &amp;' (aka 'const pair&lt;const int, int&gt; &amp;')
+      to prevent copying
     for (const std::pair&lt;int, int&gt;&amp; kv : m)
          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 1 warning generated.
@@ -199,13 +205,13 @@ $ ./sample
     }
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre></div><pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12)
-$ clang sample.cpp -std=c++11 -lc++ -o sample -Wrange-loop-analysis
+</code></pre></div><pre><code class="language-console" data-lang="console">$ # Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0
+$ clang sample.cpp -std=c++17 -lc++ -o sample -Wrange-loop-analysis
 </code></pre><h2 id="警告を抑制する">警告を抑制する</h2>
 <p>逆に、警告を抑制したい場合は <code>-Wno-range-loop-analysis</code> オプションを指定します。
 このオプションを指定することで、既に指定されたオプションを打ち消すことができます。</p>
-<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12)
-$ clang sample.cpp -std=c++11 -lc++ -o sample -Wno-range-loop-analysis
+<pre><code class="language-console" data-lang="console">$ # Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0
+$ clang sample.cpp -std=c++17 -lc++ -o sample -Wno-range-loop-analysis
 </code></pre><h2 id="xcode-での取り扱い">Xcode での取り扱い</h2>
 <p>この警告は、Xcode 上で &ldquo;Range-based For Loops&rdquo; (<code>CLANG_WARN_RANGE_LOOP_ANALYSIS</code>) という名前で表示されます。</p>
 <p>
@@ -228,7 +234,7 @@ $ clang sample.cpp -std=c++11 -lc++ -o sample -Wno-range-loop-analysis
 </span></p>
 </li>
 <li>
-<p>Clang 6 documentation — DIAGNOSTIC FLAGS IN CLANG<br />
+<p>Clang 12 documentation — DIAGNOSTIC FLAGS IN CLANG<br />
 <span style="word-break: break-all;">
 <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wrange-loop-analysis">https://clang.llvm.org/docs/DiagnosticsReference.html#wrange-loop-analysis</a>
 </span></p>
