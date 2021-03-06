@@ -50,7 +50,7 @@
       "width": 800
     },
     "datePublished": "2018-01-29T00:17:55JST",
-    "dateModified": "2018-01-29T00:17:55JST",
+    "dateModified": "2021-03-06T00:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -139,7 +139,7 @@ if (!doNotTrack) {
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-29T00:17:55JST">Jan 29, 2018</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2021-03-06T00:00:00JST">Mar 6, 2021</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
     </ul>
@@ -162,7 +162,7 @@ if (!doNotTrack) {
 }
 </code></pre></div><p>シフト幅が左辺の整数型のビット数を超えた場合の動作は未定義です。
 したがって、意図しない演算結果となることがあります。</p>
-<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12)
+<pre><code class="language-console" data-lang="console">$ # Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0
 $ clang sample.cpp -o sample
 sample.cpp:6:15: warning: shift count &gt;= width of type [-Wshift-count-overflow]
     int y = x &lt;&lt; 33;
@@ -172,7 +172,7 @@ $
 $ ./sample
 16
 </code></pre><p><code>-Wshift-count-overflow</code> は <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wshift-count-overflow">デフォルトで有効になっている</a> ため、警告は自動的に表示されます。</p>
-<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12)
+<pre><code class="language-console" data-lang="console">$ # Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0
 $ clang sample.cpp
 sample.cpp:6:15: warning: shift count &gt;= width of type [-Wshift-count-overflow]
     int y = x &lt;&lt; 33;
@@ -180,7 +180,7 @@ sample.cpp:6:15: warning: shift count &gt;= width of type [-Wshift-count-overflo
 1 warning generated.
 </code></pre><h2 id="警告を抑制する">警告を抑制する</h2>
 <p>逆に、警告を抑制したい場合は <code>-Wno-shift-count-overflow</code> を指定します。</p>
-<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12)
+<pre><code class="language-console" data-lang="console">$ # Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0
 $ clang sample.cpp -Wno-shift-count-overflow
 </code></pre><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
@@ -190,7 +190,7 @@ $ clang sample.cpp -Wno-shift-count-overflow
 <h2 id="参考資料">参考資料</h2>
 <ul>
 <li>
-<p>Clang 6 documentation — DIAGNOSTIC FLAGS IN CLANG<br />
+<p>Clang 12 documentation — DIAGNOSTIC FLAGS IN CLANG<br />
 <span style="word-break: break-all;">
 <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wshift-count-overflow">https://clang.llvm.org/docs/DiagnosticsReference.html#wshift-count-overflow</a>
 </span></p>

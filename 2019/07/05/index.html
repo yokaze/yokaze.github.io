@@ -16,21 +16,21 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
     <title>lldb で関数の呼び出し履歴を表示する - yokaze.github.io</title>
     
-<meta name="description" content="lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &amp;lt;stdio.h&amp;gt; void sample1() { printf(&amp;#34;sample 1\n&amp;#34;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ clang -g sample.cpp -o">
+<meta name="description" content="lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &amp;lt;stdio.h&amp;gt; void sample1() { printf(&amp;#34;sample 1\n&amp;#34;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ # Intel Mac &#43;">
 
 <meta property="og:title" content="lldb で関数の呼び出し履歴を表示する - yokaze.github.io">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://yokaze.github.io/2019/07/05/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &amp;lt;stdio.h&amp;gt; void sample1() { printf(&amp;#34;sample 1\n&amp;#34;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ clang -g sample.cpp -o">
+<meta property="og:description" content="lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &amp;lt;stdio.h&amp;gt; void sample1() { printf(&amp;#34;sample 1\n&amp;#34;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ # Intel Mac &#43;">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
 <meta name="twitter:url" content="https://yokaze.github.io/2019/07/05/">
 <meta name="twitter:title" content="lldb で関数の呼び出し履歴を表示する - yokaze.github.io">
-<meta name="twitter:description" content="lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &amp;lt;stdio.h&amp;gt; void sample1() { printf(&amp;#34;sample 1\n&amp;#34;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ clang -g sample.cpp -o">
+<meta name="twitter:description" content="lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &amp;lt;stdio.h&amp;gt; void sample1() { printf(&amp;#34;sample 1\n&amp;#34;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ # Intel Mac &#43;">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -50,7 +50,7 @@
       "width": 800
     },
     "datePublished": "2019-07-05T18:00:00JST",
-    "dateModified": "2019-07-05T18:00:00JST",
+    "dateModified": "2021-03-06T00:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include \u0026lt;stdio.h\u0026gt; void sample1() { printf(\u0026#34;sample 1\\n\u0026#34;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ clang -g sample.cpp -o"
+    "description": "lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include \u0026lt;stdio.h\u0026gt; void sample1() { printf(\u0026#34;sample 1\\n\u0026#34;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ # Intel Mac \u002b"
   }
 </script>
 
@@ -139,7 +139,7 @@ if (!doNotTrack) {
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-05T18:00:00JST">Jul 5, 2019</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2021-03-06T00:00:00JST">Mar 6, 2021</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2019/">2019</a></li>
       
     </ul>
@@ -172,32 +172,34 @@ if (!doNotTrack) {
     sample3();
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre></div><pre><code class="language-console" data-lang="console">$ clang -g sample.cpp -o sample
+</code></pre></div><pre><code class="language-console" data-lang="console">$ # Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0
+$ clang -g sample.cpp -o sample
 $ lldb sample
 (lldb) target create &quot;sample&quot;
-Current executable set to 'sample' (x86_64).
+Current executable set to '/path/to/sample' (x86_64).
 (lldb) b sample1
-Breakpoint 1: where = sample`sample1() + 15 at sample.cpp:5, address = 0x0000000100000f3f
+Breakpoint 1: where = sample`sample1() + 4 at sample.cpp:5:5, address = 0x0000000100003f34
 (lldb) run
-Process 2060 launched: '/path/to/directory/sample' (x86_64)
-Process 2060 stopped
+Process 2220 launched: '/path/to/sample' (x86_64)
+Process 2220 stopped
 * thread #1, queue = 'com.apple.main-thread', stop reason = breakpoint 1.1
-    frame #0: 0x0000000100000f3f sample`sample1() at sample.cpp:5
-   2
+    frame #0: 0x0000000100003f34 sample`sample1() at sample.cpp:5:5
+   2   	
    3   	void sample1()
    4   	{
 -&gt; 5   	    printf(&quot;sample 1\n&quot;);
    6   	}
-   7
+   7   	
    8   	void sample2()
 Target 0: (sample) stopped.
 (lldb) bt
 * thread #1, queue = 'com.apple.main-thread', stop reason = breakpoint 1.1
-  * frame #0: 0x0000000100000f3f sample`sample1() at sample.cpp:5
-    frame #1: 0x0000000100000f59 sample`sample2() at sample.cpp:10
-    frame #2: 0x0000000100000f69 sample`sample3() at sample.cpp:15
-    frame #3: 0x0000000100000f84 sample`main at sample.cpp:20
-    frame #4: 0x00007fff51562015 libdyld.dylib`start + 1
+  * frame #0: 0x0000000100003f34 sample`sample1() at sample.cpp:5:5
+    frame #1: 0x0000000100003f59 sample`sample2() at sample.cpp:10:5
+    frame #2: 0x0000000100003f69 sample`sample3() at sample.cpp:15:5
+    frame #3: 0x0000000100003f84 sample`main at sample.cpp:20:5
+    frame #4: 0x00007fff204f3621 libdyld.dylib`start + 1
+    frame #5: 0x00007fff204f3621 libdyld.dylib`start + 1
 </code></pre><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

@@ -50,7 +50,7 @@
       "width": 800
     },
     "datePublished": "2018-01-16T21:24:17JST",
-    "dateModified": "2019-07-16T00:00:00JST",
+    "dateModified": "2021-03-06T00:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -139,7 +139,7 @@ if (!doNotTrack) {
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-16T00:00:00JST">Jul 16, 2019</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2021-03-06T00:00:00JST">Mar 6, 2021</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
     </ul>
@@ -159,17 +159,17 @@ if (!doNotTrack) {
 
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre></div><pre><code class="language-console" data-lang="console">$ # macOS Mojave (10.14)
+</code></pre></div><pre><code class="language-console" data-lang="console">$ # Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0
 $ clang sample.cpp -Wshorten-64-to-32
-sample.cpp:6:17: warning: implicit conversion loses integer precision: 'int64_t'
-      (aka 'long long') to 'int32_t' (aka 'int') [-Wshorten-64-to-32]
+sample.cpp:6:17: warning: implicit conversion loses integer precision: 'int64_t' (aka 'long long') to 'int32_t' (aka 'int')
+      [-Wshorten-64-to-32]
     int32_t y = x;
             ~   ^
 1 warning generated.
 </code></pre><h2 id="警告を抑制する">警告を抑制する</h2>
 <p>逆に、警告を抑制したい場合は <code>-Wno-shorten-64-to-32</code> オプションを指定します。
 このオプションを指定することで、既に指定されたオプションを打ち消すことができます。</p>
-<pre><code class="language-console" data-lang="console">$ # macOS Mojave (10.14)
+<pre><code class="language-console" data-lang="console">$ # Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0
 $ clang sample.cpp -Wshorten-64-to-32 -Wno-shorten-64-to-32
 </code></pre><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>

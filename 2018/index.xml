@@ -203,7 +203,7 @@
       <pubDate>Mon, 22 Jan 2018 22:07:42 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2018/01/22/</guid>
-      <description>swiftc コマンドで Hello world プログラムをビルドします。 print(&amp;#34;Hello world!&amp;#34;) $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもできます。 $ swift sample.swift Hello world! Tweet 参考資料</description>
+      <description>swiftc コマンドで Hello world プログラムをビルドします。 print(&amp;#34;Hello world!&amp;#34;) $ # Intel Mac + macOS Big Sur (11.2) + Apple Swift 5.3.2 $ swiftc sample.swift $ ./sample Hello world! swift コマンドを使うとコンソールから直接実行することもでき</description>
     </item>
     
     <item>
