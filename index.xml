@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Sun, 07 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 08 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>kind 環境に Grafana をデプロイする</title>
+      <link>https://yokaze.github.io/2021/03/08/</link>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://yokaze.github.io/2021/03/08/</guid>
+      <description>kind で作った Kubernetes クラスタに Grafana をデプロイする方法を解説します。 Prometheus のデプロイ 前回の記事 の内容に沿って kind クラスタを立ち上げ、Prometheus をデプ</description>
+    </item>
+    
     <item>
       <title>kind 環境に Prometheus をデプロイする</title>
       <link>https://yokaze.github.io/2021/03/07/</link>
