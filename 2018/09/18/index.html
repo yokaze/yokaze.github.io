@@ -14,7 +14,7 @@
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
     <title>pybind11 で print 文を使う - yokaze.github.io</title>
     
 <meta name="description" content="pybind11 でオブジェクトの値を表示するには、pybind11::print を使います。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&amp;#34;sys&amp;#34;); py::print(sys_module); return 0; } $ # macOS High Sierra (10.13) $ clang sample.cpp -std=c&#43;&#43;11 -lc&#43;&#43;">
