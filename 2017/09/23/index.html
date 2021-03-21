@@ -17,21 +17,21 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
     <title>mac で PIL (Python Imaging Library) を使う - yokaze.github.io</title>
     
-<meta name="description" content="Ubuntu 環境にはデフォルトで入っていることが多い PIL (Pillow) ですが、mac にはプリインストールされないため別途インストールが必要です。 $ # macOS Mojave (10.14) &#43; Homebrew $ python Python">
+<meta name="description" content="Ubuntu 環境にはデフォルトで入っている PIL (Pillow) ですが、mac にはプリインストールされていないため別途インストールが必要です。 $ # Intel Mac &#43; macOS Big Sur (11.2) &#43; Python 3.8.2 &#43;">
 
 <meta property="og:title" content="mac で PIL (Python Imaging Library) を使う - yokaze.github.io">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://yokaze.github.io/2017/09/23/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="Ubuntu 環境にはデフォルトで入っていることが多い PIL (Pillow) ですが、mac にはプリインストールされないため別途インストールが必要です。 $ # macOS Mojave (10.14) &#43; Homebrew $ python Python">
+<meta property="og:description" content="Ubuntu 環境にはデフォルトで入っている PIL (Pillow) ですが、mac にはプリインストールされていないため別途インストールが必要です。 $ # Intel Mac &#43; macOS Big Sur (11.2) &#43; Python 3.8.2 &#43;">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
 <meta name="twitter:url" content="https://yokaze.github.io/2017/09/23/">
 <meta name="twitter:title" content="mac で PIL (Python Imaging Library) を使う - yokaze.github.io">
-<meta name="twitter:description" content="Ubuntu 環境にはデフォルトで入っていることが多い PIL (Pillow) ですが、mac にはプリインストールされないため別途インストールが必要です。 $ # macOS Mojave (10.14) &#43; Homebrew $ python Python">
+<meta name="twitter:description" content="Ubuntu 環境にはデフォルトで入っている PIL (Pillow) ですが、mac にはプリインストールされていないため別途インストールが必要です。 $ # Intel Mac &#43; macOS Big Sur (11.2) &#43; Python 3.8.2 &#43;">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -51,7 +51,7 @@
       "width": 800
     },
     "datePublished": "2017-09-23T10:00:00JST",
-    "dateModified": "2019-07-16T00:00:00JST",
+    "dateModified": "2021-03-21T00:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -66,7 +66,7 @@
         "height": 60
       }
     },
-    "description": "Ubuntu 環境にはデフォルトで入っていることが多い PIL (Pillow) ですが、mac にはプリインストールされないため別途インストールが必要です。 $ # macOS Mojave (10.14) \u002b Homebrew $ python Python"
+    "description": "Ubuntu 環境にはデフォルトで入っている PIL (Pillow) ですが、mac にはプリインストールされていないため別途インストールが必要です。 $ # Intel Mac \u002b macOS Big Sur (11.2) \u002b Python 3.8.2 \u002b"
   }
 </script>
 
@@ -140,7 +140,7 @@ if (!doNotTrack) {
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-16T00:00:00JST">Jul 16, 2019</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2021-03-21T00:00:00JST">Mar 21, 2021</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
       
     </ul>
@@ -150,29 +150,30 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body"><p>Ubuntu 環境にはデフォルトで入っていることが多い PIL (Pillow) ですが、mac にはプリインストールされないため別途インストールが必要です。</p>
-<pre><code class="language-console" data-lang="console">$ # macOS Mojave (10.14) + Homebrew
-$ python
-Python 2.7.10 (default, Aug 17 2018, 17:41:52)
-[GCC 4.2.1 Compatible Apple LLVM 10.0.0 (clang-1000.0.42)] on darwin
+  <div class="article-body"><p>Ubuntu 環境にはデフォルトで入っている PIL (Pillow) ですが、mac にはプリインストールされていないため別途インストールが必要です。</p>
+<pre><code class="language-console" data-lang="console">$ # Intel Mac + macOS Big Sur (11.2) + Python 3.8.2 + pip 21.0.1
+$ python3
+Python 3.8.2 (default, Dec 21 2020, 15:06:04) 
+[Clang 12.0.0 (clang-1200.0.32.29)] on darwin
 Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
 &gt;&gt;&gt; import PIL
 Traceback (most recent call last):
   File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
-ImportError: No module named PIL
+ModuleNotFoundError: No module named 'PIL'
 &gt;&gt;&gt;
 </code></pre><p>オリジナルの PIL は開発が中断されているため、後継プロジェクトの Pillow パッケージをインストールします。</p>
-<pre><code class="language-console" data-lang="console">$ # macOS Mojave (10.14) + Homebrew
-$ sudo pip install pillow
-　（中略）
+<pre><code class="language-console" data-lang="console">$ # Python のパッケージインストーラを最新版に更新する
+$ python3 -m pip install --upgrade pip
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: pip in /Users/username/Library/Python/3.8/lib/python/site-packages (21.0.1)
+
+$ # Pillow をインストールする
+$ python3 -m pip install pillow
+Defaulting to user installation because normal site-packages is not writeable
+Collecting pillow
+  Using cached Pillow-8.1.2-cp38-cp38-macosx_10_10_x86_64.whl (2.2 MB)
 Installing collected packages: pillow
-Successfully installed pillow-6.1.0
-$ python
-&gt;&gt;&gt; import PIL
-&gt;&gt;&gt;
-</code></pre><p>Pillow を Python 3 で使う場合は <code>pip3</code> コマンドでインストールします。</p>
-<pre><code class="language-console" data-lang="console">$ # macOS Mojave (10.14) + Homebrew
-$ pip3 install pillow
+Successfully installed pillow-8.1.2
 $ python3
 &gt;&gt;&gt; import PIL
 &gt;&gt;&gt;
@@ -184,15 +185,27 @@ $ python3
 <h2 id="参考資料">参考資料</h2>
 <ul>
 <li>
-<p>Pythonの画像処理ライブラリPillow(PIL)の使い方<br />
+<p>macOS Installation | Pillow (PIL Fork) documentation<br />
 <span style="word-break: break-all;">
-<a href="https://note.nkmk.me/python-pillow-basic/">https://note.nkmk.me/python-pillow-basic/</a>
+<a href="https://pillow.readthedocs.io/en/stable/installation.html#macos-installation">https://pillow.readthedocs.io/en/stable/installation.html#macos-installation</a>
 </span></p>
 </li>
 <li>
-<p>Pillow (PIL Fork) Documentation<br />
+<p>pip: Python 環境構築ガイド - python.jp<br />
 <span style="word-break: break-all;">
-<a href="https://pillow.readthedocs.io/en/stable/">https://pillow.readthedocs.io/en/stable/</a>
+<a href="https://www.python.jp/install/windows/pip.html">https://www.python.jp/install/windows/pip.html</a>
+</span></p>
+</li>
+<li>
+<p>Python：pip における管理者権限と user install - pyてよn日記<br />
+<span style="word-break: break-all;">
+<a href="https://pyteyon.hatenablog.com/entry/2019/05/24/003924">https://pyteyon.hatenablog.com/entry/2019/05/24/003924</a>
+</span></p>
+</li>
+<li>
+<p>Pythonの画像処理ライブラリPillow(PIL)の使い方<br />
+<span style="word-break: break-all;">
+<a href="https://note.nkmk.me/python-pillow-basic/">https://note.nkmk.me/python-pillow-basic/</a>
 </span></p>
 </li>
 <li>
@@ -202,15 +215,15 @@ $ python3
 </span></p>
 </li>
 <li>
-<p>Ubuntu 18.04 にプリインストールされているパッケージのリスト<br />
+<p>Ubuntu 20.04 にプリインストールされているパッケージのリスト<br />
 <span style="word-break: break-all;">
-<a href="http://releases.ubuntu.com/18.04/ubuntu-18.04.2-desktop-amd64.manifest">http://releases.ubuntu.com/18.04/ubuntu-18.04.2-desktop-amd64.manifest</a>
+<a href="http://releases.ubuntu.com/20.04/ubuntu-20.04.2.0-desktop-amd64.manifest">http://releases.ubuntu.com/20.04/ubuntu-20.04.2.0-desktop-amd64.manifest</a>
 </span></p>
 </li>
 <li>
-<p>Ubuntu &gt; パッケージ &gt; bionic (18.04LTS) &gt; python &gt; python3-pil<br />
+<p>Ubuntu &gt; パッケージ &gt; focal (20.04LTS) &gt; python &gt; python3-pil<br />
 <span style="word-break: break-all;">
-<a href="https://packages.ubuntu.com/bionic/python/python3-pil">https://packages.ubuntu.com/bionic/python/python3-pil</a>
+<a href="https://packages.ubuntu.com/focal/python/python3-pil">https://packages.ubuntu.com/focal/python/python3-pil</a>
 </span></p>
 </li>
 </ul>

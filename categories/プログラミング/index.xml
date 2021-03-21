@@ -302,7 +302,7 @@
       <pubDate>Sat, 23 Sep 2017 10:00:00 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/23/</guid>
-      <description>Ubuntu 環境にはデフォルトで入っていることが多い PIL (Pillow) ですが、mac にはプリインストールされないため別途インストールが必要です。 $ # macOS Mojave (10.14) + Homebrew $ python Python</description>
+      <description>Ubuntu 環境にはデフォルトで入っている PIL (Pillow) ですが、mac にはプリインストールされていないため別途インストールが必要です。 $ # Intel Mac + macOS Big Sur (11.2) + Python 3.8.2 +</description>
     </item>
     
     <item>
