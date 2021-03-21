@@ -320,7 +320,7 @@
       <pubDate>Tue, 19 Sep 2017 21:30:00 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/19/</guid>
-      <description>pdb, pip などのインストール済みモジュールを直接デバッグする方法。 モジュールの動作を細かく調べたい時に役立ちます。 $ # 強引に書くとおこられる $ python3 -m</description>
+      <description>Python でインストール済みモジュールの動作を調べたい時は、-m pdb オプションに続けて -m &amp;lt;Module Name&amp;gt; を指定します。 この機能は Python 3.7 以降 で使えます。 $ # Intel Mac + macOS Big</description>
     </item>
     
     <item>

@@ -17,21 +17,21 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
     <title>Python でインストール済みモジュールをデバッグする - yokaze.github.io</title>
     
-<meta name="description" content="pdb, pip などのインストール済みモジュールを直接デバッグする方法。 モジュールの動作を細かく調べたい時に役立ちます。 $ # 強引に書くとおこられる $ python3 -m">
+<meta name="description" content="Python でインストール済みモジュールの動作を調べたい時は、-m pdb オプションに続けて -m &amp;lt;Module Name&amp;gt; を指定します。 この機能は Python 3.7 以降 で使えます。 $ # Intel Mac &#43; macOS Big">
 
 <meta property="og:title" content="Python でインストール済みモジュールをデバッグする - yokaze.github.io">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://yokaze.github.io/2017/09/19/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="pdb, pip などのインストール済みモジュールを直接デバッグする方法。 モジュールの動作を細かく調べたい時に役立ちます。 $ # 強引に書くとおこられる $ python3 -m">
+<meta property="og:description" content="Python でインストール済みモジュールの動作を調べたい時は、-m pdb オプションに続けて -m &amp;lt;Module Name&amp;gt; を指定します。 この機能は Python 3.7 以降 で使えます。 $ # Intel Mac &#43; macOS Big">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
 <meta name="twitter:url" content="https://yokaze.github.io/2017/09/19/">
 <meta name="twitter:title" content="Python でインストール済みモジュールをデバッグする - yokaze.github.io">
-<meta name="twitter:description" content="pdb, pip などのインストール済みモジュールを直接デバッグする方法。 モジュールの動作を細かく調べたい時に役立ちます。 $ # 強引に書くとおこられる $ python3 -m">
+<meta name="twitter:description" content="Python でインストール済みモジュールの動作を調べたい時は、-m pdb オプションに続けて -m &amp;lt;Module Name&amp;gt; を指定します。 この機能は Python 3.7 以降 で使えます。 $ # Intel Mac &#43; macOS Big">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -51,7 +51,7 @@
       "width": 800
     },
     "datePublished": "2017-09-19T21:30:00JST",
-    "dateModified": "2017-09-19T21:30:00JST",
+    "dateModified": "2021-03-21T00:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -66,7 +66,7 @@
         "height": 60
       }
     },
-    "description": "pdb, pip などのインストール済みモジュールを直接デバッグする方法。 モジュールの動作を細かく調べたい時に役立ちます。 $ # 強引に書くとおこられる $ python3 -m"
+    "description": "Python でインストール済みモジュールの動作を調べたい時は、-m pdb オプションに続けて -m \u0026lt;Module Name\u0026gt; を指定します。 この機能は Python 3.7 以降 で使えます。 $ # Intel Mac \u002b macOS Big"
   }
 </script>
 
@@ -140,7 +140,7 @@ if (!doNotTrack) {
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-09-19T21:30:00JST">Sep 19, 2017</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2021-03-21T00:00:00JST">Mar 21, 2021</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
       
     </ul>
@@ -150,52 +150,46 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body"><p><code>pdb</code>, <code>pip</code> などのインストール済みモジュールを直接デバッグする方法。<br />
-モジュールの動作を細かく調べたい時に役立ちます。</p>
-<pre><code class="language-console" data-lang="console">$ # 強引に書くとおこられる
-$ python3 -m pdb -m pip
-Traceback (most recent call last):
-  （中略）
-getopt.GetoptError: option -m not recognized
+  <div class="article-body"><p>Python でインストール済みモジュールの動作を調べたい時は、<code>-m pdb</code> オプションに続けて <code>-m &lt;Module Name&gt;</code> を指定します。</p>
+<p>この機能は <a href="https://docs.python.org/3/library/pdb.html">Python 3.7 以降</a> で使えます。</p>
+<pre><code class="language-console" data-lang="console">$ # Intel Mac + macOS Big Sur (11.2) + Python 3.8.2
+$ python3 -m pdb -m pip list
+&gt; /Users/username/Library/Python/3.8/lib/python/site-packages/pip/__main__.py(1)&lt;module&gt;()
+-&gt; import os
 </code></pre><h2 id="-m-オプションの意味">-m オプションの意味</h2>
 <p><code>python -m</code> は、該当のモジュールを <code>sys.path</code> から探し、見つかったファイルをスクリプトとして直接実行するコマンドです。<br />
 <span style="word-break: break-all;">
 <a href="https://docs.python.jp/3/using/cmdline.html#cmdoption-m">https://docs.python.jp/3/using/cmdline.html#cmdoption-m</a>
 </span></p>
-<p>したがって、次のコードはすべて同じ動作になります。</p>
-<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12) + Homebrew
-$ pip3 freeze
-$ python3 -m pip freeze
-$ python3 /usr/local/lib/python3.6/site-packages/pip/__init__.py freeze
-</code></pre><p>モジュールのファイルを探してきて <code>-m pdb</code> するとよさそうです。</p>
-<h2 id="モジュールの探し方">モジュールの探し方</h2>
+<p>したがって、次のコードはどちらも同じ動作になります。</p>
+<pre><code class="language-console" data-lang="console">$ python3 -m pip list
+$ python3 /Users/username/Library/Python/3.8/lib/python/site-packages/pip/__main__.py list
+</code></pre><h2 id="モジュールの探し方">モジュールの探し方</h2>
 <p><code>pip</code> などでインストールしたモジュールであれば <code>pip show</code> が使えます。</p>
-<pre><code class="language-console" data-lang="console">$ pip3 show pip
+<pre><code class="language-console" data-lang="console">$ python3 -m pip show pip
 Name: pip
-Version: 9.0.1
+Version: 21.0.1
 Summary: The PyPA recommended tool for installing Python packages.
 Home-page: https://pip.pypa.io/
 Author: The pip developers
-Author-email: python-virtualenv@groups.google.com
+Author-email: distutils-sig@python.org
 License: MIT
-Location: /usr/local/lib/python3.6/site-packages
+Location: /Users/username/Library/Python/3.8/lib/python/site-packages
 Requires:
+Required-by:
 </code></pre><p>また、モジュールの <code>__file__</code> 属性を調べることもできます。</p>
 <pre><code class="language-console" data-lang="console">$ python3
 &gt;&gt;&gt; import pip
 &gt;&gt;&gt; pip.__file__
-'/usr/local/lib/python3.6/site-packages/pip/__init__.py'
-</code></pre><p>モジュールのインストールパスの詳細は次の記事をご参照ください。<br />
-<a href="https://yokaze.github.io/2017/09/17/">https://yokaze.github.io/2017/09/17/</a></p>
-<h2 id="インストール済みモジュールをデバッグする">インストール済みモジュールをデバッグする</h2>
-<p>スクリプトファイルは <code>python -m pdb</code> でデバッグできるので、パスが分かればインストール済みモジュールをデバッグすることもできます。</p>
-<pre><code class="language-console" data-lang="console">$ python3 -m pdb /usr/local/lib/python3.6/site-packages/pip/__init__.py freeze
-</code></pre><p><a href="https://github.com/inducer/pudb">PuDB</a> などの高機能デバッガを使うとしあわせになれるかもしれません。</p>
-<pre><code class="language-console" data-lang="console">$ # pudb をインストール
-$ pip3 install pudb
-$
-$ # pdb のかわりに pudb をつかう
-$ python3 -m pudb /usr/local/lib/python3.6/site-packages/pip/__init__.py freeze
+'/Users/username/Library/Python/3.8/lib/python/site-packages/pip/__init__.py'
+</code></pre><h2 id="pudb-を使う">PuDB を使う</h2>
+<p><a href="https://github.com/inducer/pudb">PuDB</a> を使うとインタラクティブな CUI デバッガを起動することができます。</p>
+<pre><code class="language-console" data-lang="console">$ # Intel Mac + macOS Big Sur (11.2) + Python 3.8.2 + PuDB 2020.1
+$ # pudb をインストール
+$ python3 -m pip install pudb
+
+$ # pdb のかわりに pudb を使う
+$ python3 -m pudb -m pip list
 </code></pre><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -219,6 +213,12 @@ $ python3 -m pudb /usr/local/lib/python3.6/site-packages/pip/__init__.py freeze
 <p>Full-screen console debugger for Python<br />
 <span style="word-break: break-all;">
 <a href="https://github.com/inducer/pudb">https://github.com/inducer/pudb</a>
+</span></p>
+</li>
+<li>
+<p>Python の CUI デバッガ「PuDB」の紹介と使い方<br />
+<span style="word-break: break-all;">
+<a href="https://qiita.com/Kernel_OGSun/items/144c8502ce2eaa5e4410">https://qiita.com/Kernel_OGSun/items/144c8502ce2eaa5e4410</a>
 </span></p>
 </li>
 <li>
