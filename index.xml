@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Mon, 08 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 17 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>yq コマンドで Kubernetes の YAML を操作する</title>
+      <link>https://yokaze.github.io/2021/04/17/</link>
+      <pubDate>Sat, 17 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://yokaze.github.io/2021/04/17/</guid>
+      <description>yq は YAML を操作できるコマンドラインツールで、Kubernetes 用のマニフェストの確認やクラスタの状態確認に利用できます。 この記事では yq の基本</description>
+    </item>
+    
     <item>
       <title>kind 環境に Grafana をデプロイする</title>
       <link>https://yokaze.github.io/2021/03/08/</link>

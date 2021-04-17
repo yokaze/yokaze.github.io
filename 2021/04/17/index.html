@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="content-language" content="ja">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.81.0" />
+
+
+
+<link rel="canonical" href="https://yokaze.github.io/2021/04/17/">
+
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
+    <title>yq コマンドで Kubernetes の YAML を操作する - yokaze.github.io</title>
+    
+<meta name="description" content="yq は YAML を操作できるコマンドラインツールで、Kubernetes 用のマニフェストの確認やクラスタの状態確認に利用できます。 この記事では yq の基本">
+
+<meta property="og:title" content="yq コマンドで Kubernetes の YAML を操作する - yokaze.github.io">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yokaze.github.io/2021/04/17/">
+<meta property="og:image" content="https://yokaze.github.io/images/default.png">
+<meta property="og:site_name" content="yokaze.github.io">
+<meta property="og:description" content="yq は YAML を操作できるコマンドラインツールで、Kubernetes 用のマニフェストの確認やクラスタの状態確認に利用できます。 この記事では yq の基本">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="yokaze.github.io">
+<meta name="twitter:url" content="https://yokaze.github.io/2021/04/17/">
+<meta name="twitter:title" content="yq コマンドで Kubernetes の YAML を操作する - yokaze.github.io">
+<meta name="twitter:description" content="yq は YAML を操作できるコマンドラインツールで、Kubernetes 用のマニフェストの確認やクラスタの状態確認に利用できます。 この記事では yq の基本">
+<meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"https:\/\/yokaze.github.io\/"
+    },
+    "headline": "yq コマンドで Kubernetes の YAML を操作する - yokaze.github.io",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https:\/\/yokaze.github.io\/images\/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "2021-04-17T00:00:00JST",
+    "dateModified": "2021-04-17T00:00:00JST",
+    "author": {
+      "@type": "Person",
+      "name": "yokaze.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "yokaze.github.io",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https:\/\/yokaze.github.io\/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "yq は YAML を操作できるコマンドラインツールで、Kubernetes 用のマニフェストの確認やクラスタの状態確認に利用できます。 この記事では yq の基本"
+  }
+</script>
+
+
+    <link href="https://yokaze.github.io/css/styles.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-83271338-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+
+    <header class="l-header">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
+          </div>
+
+          
+          <div id="navbar" class="collapse navbar-collapse">
+            
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/about/">About</a></li>
+              
+              
+              
+              <li><a href="/software/">Software</a></li>
+              
+              
+            </ul>
+            
+          </div>
+          
+
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        
+<div class="row">
+  <div class="col-md-8">
+
+    
+
+    <article class="single">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2021-04-17T00:00:00JST">Apr 17, 2021</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2021/">2021</a></li>
+      
+    </ul>
+
+    <h1 class="title">yq コマンドで Kubernetes の YAML を操作する</h1>
+  </header>
+
+  
+
+  <div class="article-body"><p><a href="https://github.com/mikefarah/yq">yq</a> は YAML を操作できるコマンドラインツールで、Kubernetes 用のマニフェストの確認やクラスタの状態確認に利用できます。
+この記事では yq の基本的な使い方と Kubernetes 環境での応用方法を紹介します。</p>
+<h2 id="基本的な使い方">基本的な使い方</h2>
+<p><code>yq eval</code> に続けて評価式を書くことで YAML の一部を表示したり編集したりすることができます。</p>
+<pre><code class="language-console" data-lang="console">$ yq eval [expression] [yaml_file] [flags]
+</code></pre><p><code>eval</code> コマンドは <code>e</code> と書くこともできます。</p>
+<p><code>yq</code> は構文を色付けするので、次のように書くと <code>kubectl</code> の出力を色付けできます。</p>
+<pre><code class="language-console" data-lang="console">$ kubectl get pod sample -o yaml | yq e . -
+</code></pre><h3 id="値の表示と配列アクセス">値の表示と配列アクセス</h3>
+<p>評価式にフィールド名を指定すると、そのフィールドだけを抜き出して表示できます。<br />
+Kubernetes リソースの <code>.spec</code> フィールドだけを表示する、といった使い方ができます。</p>
+<h4 id="alpineyaml">alpine.yaml</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">alpine</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">containers</span>:
+    - <span style="color:#f92672">command</span>:
+        - <span style="color:#ae81ff">sleep</span>
+        - <span style="color:#ae81ff">inf</span>
+      <span style="color:#f92672">image</span>: <span style="color:#ae81ff">alpine:3.13.3</span>
+      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">alpine</span>
+</code></pre></div><pre><code class="language-console" data-lang="console">$ yq e .spec alpine.yaml 
+containers:
+  - command:
+      - sleep
+      - inf
+    image: alpine:3.13.3
+    name: alpine
+
+$ yq e .spec.containers[0].name alpine.yaml
+alpine
+</code></pre><h3 id="パイプとフィルタ">パイプとフィルタ</h3>
+<p>評価式はパイプ <code>|</code> で連結できます。</p>
+<pre><code class="language-console" data-lang="console">$ yq e '.spec.containers | .[0] | .image' alpine.yaml 
+alpine:3.13.3
+</code></pre><p><code>[]</code> を使うと配列の全ての要素に対して後続の処理を実行します。</p>
+<pre><code class="language-console" data-lang="console">$ # kind 環境を起動する
+$ kind create cluster
+
+$ kubectl get pod -n kube-system -o yaml | yq e '.items[].metadata.name' -
+coredns-f9fd979d6-brw2g
+coredns-f9fd979d6-mg9vv
+etcd-kind-control-plane
+kindnet-m4zzj
+kube-apiserver-kind-control-plane
+kube-controller-manager-kind-control-plane
+kube-proxy-bnd47
+kube-scheduler-kind-control-plane
+</code></pre><p><code>select</code> を使うと条件を満たす要素を取り出せます。</p>
+<pre><code class="language-console" data-lang="console">$ kubectl get pod -n kube-system -o yaml | yq e '.items[].metadata.name | select(.==&quot;kube*&quot;)' -
+kube-apiserver-kind-control-plane
+kube-controller-manager-kind-control-plane
+kube-proxy-bnd47
+kube-scheduler-kind-control-plane
+</code></pre><h2 id="便利なコマンド">便利なコマンド</h2>
+<p>Kubernetes クラスタの管理に使える便利なコマンドをまとめました。</p>
+<h4 id="特定の種類のリソースだけを表示する">特定の種類のリソースだけを表示する</h4>
+<p>複雑な YAML ファイルに含まれる特定の種類のリソースだけを表示できます。</p>
+<pre><code class="language-console" data-lang="console">$ yq e 'select(.kind==&quot;Deployment&quot;)' manifest.yaml 
+</code></pre><h4 id="一部のフィールドを除いて表示する">一部のフィールドを除いて表示する</h4>
+<p>CRD を含む大きな YAML ファイルの概略を掴むのに便利です。</p>
+<pre><code class="language-console" data-lang="console">$ yq e 'del(.spec)' manifest.yaml
+</code></pre><h4 id="yaml-の内容をソートする">YAML の内容をソートする</h4>
+<p>YAML の差分を効率的に確認できます。</p>
+<pre><code class="language-console" data-lang="console">$ yq e 'sortKeys(..)' manifest.yaml
+</code></pre><h4 id="ラベルやアノテーションのキー一覧を表示する">ラベルやアノテーションのキー一覧を表示する</h4>
+<pre><code class="language-console" data-lang="console">$ kubectl get pod -n kube-system kube-apiserver-kind-control-plane -o yaml | yq e '.metadata.labels | keys | .[]' -
+component
+tier
+</code></pre><h4 id="ラベルやアノテーションの値を表示する">ラベルやアノテーションの値を表示する</h4>
+<pre><code class="language-console" data-lang="console">$ kubectl get pod -n kube-system kube-apiserver-kind-control-plane -o yaml | yq e '.metadata.labels[&quot;component&quot;]' -
+kube-apiserver
+</code></pre><h4 id="pod-に付いているラベルをすべて表示する">Pod に付いているラベルをすべて表示する</h4>
+<pre><code class="language-console" data-lang="console">$ kubectl get pod -A -o yaml | yq e '.items[].metadata | . as $i ireduce({}; . * {$i.namespace: {$i.name: $i.labels}})' -
+kube-system:
+  coredns-f9fd979d6-brw2g:
+    k8s-app: kube-dns
+    pod-template-hash: f9fd979d6
+  coredns-f9fd979d6-mg9vv:
+    k8s-app: kube-dns
+    pod-template-hash: f9fd979d6
+  etcd-kind-control-plane:
+    component: etcd
+    tier: control-plane
+  kindnet-m4zzj:
+    app: kindnet
+    controller-revision-hash: 869899dbb6
+    k8s-app: kindnet
+    pod-template-generation: &quot;1&quot;
+    tier: node
+  kube-apiserver-kind-control-plane:
+    component: kube-apiserver
+    tier: control-plane
+  kube-controller-manager-kind-control-plane:
+    component: kube-controller-manager
+    tier: control-plane
+  kube-proxy-bnd47:
+    controller-revision-hash: 6fbb4864f
+    k8s-app: kube-proxy
+    pod-template-generation: &quot;1&quot;
+  kube-scheduler-kind-control-plane:
+    component: kube-scheduler
+    tier: control-plane
+local-path-storage:
+  local-path-provisioner-78776bfc44-bmtw9:
+    app: local-path-provisioner
+    pod-template-hash: 78776bfc44
+</code></pre><p><code>ireduce</code> を使うと aggregation が書けます。</p>
+<pre><code class="language-console" data-lang="console">$ echo '[1, 2, 3]' | yq e '.[] as $i ireduce(0; . + $i)' -
+6
+</code></pre><h4 id="特定の-user-や-serviceaccount-に紐付いた-rolebinding-を一覧表示する">特定の User や ServiceAccount に紐付いた RoleBinding を一覧表示する</h4>
+<pre><code class="language-console" data-lang="console">$ kubectl get rolebinding -n kube-system -o yaml | yq e '.items[] | select(.subjects[] as $i ireduce(false; . or ($i.kind==&quot;User&quot; and $i.name==&quot;system:kube-controller-manager&quot;))) | .metadata.name' -
+system::extension-apiserver-authentication-reader
+system::leader-locking-kube-controller-manager
+</code></pre><p>マニアックすぎですがこれは次のコマンドの応用です。</p>
+<pre><code class="language-console" data-lang="console">$ echo '[true, false]' | yq e 'select(.[] as $i ireduce(false; . or $i))' -
+[true, false]
+$ echo '[false, false]' | yq e 'select(.[] as $i ireduce(false; . or $i))' -
+$
+</code></pre><h4 id="特定の-user-や-serviceaccount-に紐付いた-clusterrolebinding-を一覧表示する">特定の User や ServiceAccount に紐付いた ClusterRoleBinding を一覧表示する</h4>
+<pre><code class="language-console" data-lang="console">$ kubectl get clusterrolebinding -o yaml | yq e '.items[] | select(.subjects[] as $i ireduce(false; . or ($i.kind==&quot;User&quot; and $i.name==&quot;system:kube-scheduler&quot;))) | .metadata.name' -
+system:kube-scheduler
+system:volume-scheduler
+</code></pre><p><code>roleRef</code> を参照して <code>ClusterRole</code> を直接表示することもできます。</p>
+<pre><code class="language-console" data-lang="console">$ kubectl get clusterrolebinding -o yaml | yq e '.items[] | select(.subjects[] as $i ireduce(false; . or ($i.kind==&quot;User&quot; and $i.name==&quot;system:kube-scheduler&quot;))) | .roleRef.name' - | sort | uniq
+system:kube-scheduler
+system:volume-scheduler
+</code></pre><h4 id="全クラスタリソースと全-namespace-リソースを表示する">全クラスタリソースと全 namespace リソースを表示する</h4>
+<p>本番環境でやると大変なことになりそう。
+小規模なテスト環境で実行すると色々勉強になります。</p>
+<pre><code class="language-console" data-lang="console">$ kubectl get $(kubectl api-resources -o name | paste -sd ,) -A -o yaml 2&gt;/dev/null | yq e '.items[] | . as $i ireduce({}; . *+ {$i.metadata.namespace: {$i.kind: [$i.metadata.name]}})' -
+</code></pre><h4 id="apigroupversion-付き">APIGroup/Version 付き</h4>
+<pre><code class="language-console" data-lang="console">$ kubectl get $(kubectl api-resources -o name | paste -sd ,) -A -o yaml 2&gt;/dev/null | yq e '.items[] | . as $i ireduce({}; . *+ {$i.metadata.namespace: {$i.apiVersion: {$i.kind: [$i.metadata.name]}}})' -
+</code></pre><h4 id="特定の-namespace-の全リソースを表示する">特定の namespace の全リソースを表示する</h4>
+<p>APIGroup</p>
+<pre><code class="language-console" data-lang="console">$ kubectl get $(kubectl api-resources --namespaced -o name | paste -sd ,) -n kube-system -o yaml 2&gt;/dev/null | yq e '.items[] | . as $i ireduce({}; . *+ {$i.kind: [$i.metadata.name]})' -
+</code></pre><h4 id="apigroupversion-付き-1">APIGroup/Version 付き</h4>
+<pre><code class="language-console" data-lang="console">$ kubectl get $(kubectl api-resources --namespaced -o name | paste -sd ,) -n kube-system -o yaml 2&gt;/dev/null | yq e '.items[] | . as $i ireduce({}; . *+ {$i.apiVersion: {$i.kind: [$i.metadata.name]}})' -
+</code></pre><h2 id="複数ドキュメントの操作">複数ドキュメントの操作</h2>
+<h4 id="yaml-ファイルの複数ドキュメントを配列にする">YAML ファイルの複数ドキュメントを配列にする</h4>
+<pre><code class="language-console" data-lang="console">$ echo -e &quot;dog\n---\ncat&quot; | yq ea '. as $i ireduce ([]; . + $i)' -
+- dog
+- cat
+</code></pre><p><code>ea</code> は <code>eval-all</code> の略で、ファイルに含まれる YAML ドキュメントをまとめて読み込みます。</p>
+<h4 id="yaml-ファイルに含まれるドキュメントの数を数える">YAML ファイルに含まれるドキュメントの数を数える</h4>
+<pre><code class="language-console" data-lang="console">$ echo -e &quot;dog\n---\ncat&quot; | yq ea '. as $i ireduce ([]; . + $i) | length' -
+2
+</code></pre><h4 id="配列を複数のドキュメントに分割する">配列を複数のドキュメントに分割する</h4>
+<pre><code class="language-console" data-lang="console">$ echo '[&quot;dog&quot;, &quot;cat&quot;]' | yq e '.[] | splitDoc' -
+echo '[&quot;dog&quot;, &quot;cat&quot;]' | yq e '.[] | splitDoc' -
+dog
+---
+cat
+</code></pre><p><code>jsonnet</code> でリソースの配列を作り、<code>yq</code> でリソースごとのドキュメントに分割して YAML を出力する、というようなこともできます。</p>
+<h2 id="yaml-と-json-の相互変換">YAML と JSON の相互変換</h2>
+<p><code>yq</code> コマンドは JSON を直接読み込めます。
+<code>-P</code> オプションを付けると YAML に整形して出力します。</p>
+<pre><code class="language-console" data-lang="console">$ echo '{&quot;kind&quot;: &quot;dog&quot;}' | yq e . - -P
+kind: dog
+</code></pre><p><code>-j</code> オプションを使うと読み込んだ YAML を JSON に変換します。</p>
+<pre><code class="language-console" data-lang="console">$ yq e . sample.yaml -j
+{
+  &quot;animal&quot;: {
+    &quot;type&quot;: &quot;word&quot;,
+    &quot;members&quot;: [
+      &quot;dog&quot;,
+      &quot;cat&quot;
+    ]
+  }
+}
+</code></pre><h4 id="yq-でマニフェストを-json-に変換しjq-のコマンドを使う">yq でマニフェストを JSON に変換し、jq のコマンドを使う</h4>
+<p><code>yq</code> には <code>printf</code> 関数がありませんが、<code>jq</code> と組み合わせて使うことができます。</p>
+<pre><code class="language-console" data-lang="console">$ yq e . manifest.yaml -j | jq -r '&quot;\(.kind): \(.metadata.namespace)/\(.metadata.name)&quot;'
+Pod: default/sample
+</code></pre><h4 id="jq-で処理した結果を-yaml-に変換する"><code>jq</code> で処理した結果を YAML に変換する</h4>
+<p>JSON を <code>jq</code> のフィルタで処理し、結果を YAML で確認できます。</p>
+<pre><code class="language-console" data-lang="console">$ kubectl get pod alpine -o json | jq .spec | yq e . - -P
+</code></pre><h2 id="その他のコマンド">その他のコマンド</h2>
+<p><code>yq</code> には他にも色々なコマンドがあります。
+詳細は公式マニュアルの <a href="https://mikefarah.gitbook.io/yq/operators">Operators</a> をご確認ください。</p>
+<p>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</p>
+
+<h2 id="参考資料">参考資料</h2>
+<ul>
+<li>
+<p>yq<br />
+<span style="word-break: break-all;">
+<a href="https://mikefarah.gitbook.io/yq/">https://mikefarah.gitbook.io/yq/</a>
+</span></p>
+</li>
+<li>
+<p>jq Manual<br />
+<span style="word-break: break-all;">
+<a href="https://stedolan.github.io/jq/manual/">https://stedolan.github.io/jq/manual/</a>
+</span></p>
+</li>
+<li>
+<p>kind<br />
+<span style="word-break: break-all;">
+<a href="https://kind.sigs.k8s.io/">https://kind.sigs.k8s.io/</a>
+</span></p>
+</li>
+</ul>
+</div>
+ 
+  <br />
+
+  <footer class="article-footer">
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">CATEGORIES</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/">プログラミング</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+  </footer>
+
+</article>
+
+
+    
+  </div>
+
+  <div class="col-md-4">
+    
+<aside class="l-sidebar">
+
+  
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">RELATED POSTS</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://yokaze.github.io/2021/03/08/" class="list-group-item">kind 環境に Grafana をデプロイする</a>
+      
+      <a href="https://yokaze.github.io/2021/03/07/" class="list-group-item">kind 環境に Prometheus をデプロイする</a>
+      
+      <a href="https://yokaze.github.io/2019/07/05/" class="list-group-item">lldb で関数の呼び出し履歴を表示する</a>
+      
+      <a href="https://yokaze.github.io/2019/07/04/" class="list-group-item">clang でソースコードが依存するヘッダー一覧を表示する</a>
+      
+      <a href="https://yokaze.github.io/2019/07/02/" class="list-group-item">carthage のバージョンを確認する</a>
+      
+      <a href="https://yokaze.github.io/2018/10/13/" class="list-group-item">CMake &#43; Visual Studio でモジュール定義ファイル (.def) を使う</a>
+      
+      <a href="https://yokaze.github.io/2018/10/11/" class="list-group-item">CMake &#43; Visual Studio で特定の警告を無視する</a>
+      
+      <a href="https://yokaze.github.io/2018/10/04/" class="list-group-item">lldb の source info コマンドの使い方</a>
+      
+      <a href="https://yokaze.github.io/2018/09/26/" class="list-group-item">clang で初期化されていない変数を使った場合に警告を出す (-Wuninitialized)</a>
+      
+      <a href="https://yokaze.github.io/2018/09/25/" class="list-group-item">lldb のコマンドのオプションを読み解く</a>
+      
+    </div>
+  </section>
+  
+
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">CATEGORY</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
+      
+      <a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="list-group-item">機械学習</a>
+      
+      <a href="https://yokaze.github.io/categories/%E5%86%99%E7%9C%9F" class="list-group-item">写真</a>
+      
+    </div>
+  </section>
+  
+
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">AUTHOR</div>
+    </div>
+    <div class="list-group">
+      <a href="https://yokaze.github.io//about/" class="list-group-item">Rue Yokaze&ensp;<i class="fa fa-camera-retro" aria-hidden="true"></i></a>
+    </div>
+  </section>
+
+</aside>
+
+  </div>
+</div>
+
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="container">
+        <p>&copy; <a href="https://yokaze.github.io//about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i>&nbsp;<i class="fa fa-instagram" aria-hidden="true"></i></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
