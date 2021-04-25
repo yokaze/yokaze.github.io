@@ -286,7 +286,6 @@ system:volume-scheduler
 </code></pre><h4 id="apigroupversion-付き">APIGroup/Version 付き</h4>
 <pre><code class="language-console" data-lang="console">$ kubectl get $(kubectl api-resources -o name | paste -sd ,) -A -o yaml 2&gt;/dev/null | yq e '.items[] | . as $i ireduce({}; . *+ {$i.metadata.namespace: {$i.apiVersion: {$i.kind: [$i.metadata.name]}}})' -
 </code></pre><h4 id="特定の-namespace-の全リソースを表示する">特定の namespace の全リソースを表示する</h4>
-<p>APIGroup</p>
 <pre><code class="language-console" data-lang="console">$ kubectl get $(kubectl api-resources --namespaced -o name | paste -sd ,) -n kube-system -o yaml 2&gt;/dev/null | yq e '.items[] | . as $i ireduce({}; . *+ {$i.kind: [$i.metadata.name]})' -
 </code></pre><h4 id="apigroupversion-付き-1">APIGroup/Version 付き</h4>
 <pre><code class="language-console" data-lang="console">$ kubectl get $(kubectl api-resources --namespaced -o name | paste -sd ,) -n kube-system -o yaml 2&gt;/dev/null | yq e '.items[] | . as $i ireduce({}; . *+ {$i.apiVersion: {$i.kind: [$i.metadata.name]}})' -
