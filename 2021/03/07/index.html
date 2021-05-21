@@ -51,7 +51,7 @@
       "width": 800
     },
     "datePublished": "2021-03-07T00:00:00JST",
-    "dateModified": "2021-03-07T00:00:00JST",
+    "dateModified": "2021-05-21T00:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -140,7 +140,7 @@ if (!doNotTrack) {
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2021-03-07T00:00:00JST">Mar 7, 2021</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2021-05-21T00:00:00JST">May 21, 2021</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2021/">2021</a></li>
       
     </ul>
@@ -161,10 +161,10 @@ if (!doNotTrack) {
 - <span style="color:#f92672">role</span>: <span style="color:#ae81ff">worker</span>
 - <span style="color:#f92672">role</span>: <span style="color:#ae81ff">worker</span>
 - <span style="color:#f92672">role</span>: <span style="color:#ae81ff">worker</span>
-</code></pre></div><pre><code class="language-console" data-lang="console">$ # kind 0.9.0 + Kubernetes 1.19.1
-$ kind create cluster --config cluster.yaml
+</code></pre></div><pre><code class="language-console" data-lang="console">$ # kind 0.11.0 + Kubernetes 1.21.1
+$ kind create cluster --config cluster/cluster.yaml
 Creating cluster &quot;kind&quot; ...
- ✓ Ensuring node image (kindest/node:v1.19.1) 🖼 
+ ✓ Ensuring node image (kindest/node:v1.21.1) 🖼
  ✓ Preparing nodes 📦 📦 📦 📦  
  ✓ Writing configuration 📜 
  ✓ Starting control-plane 🕹️ 
@@ -176,16 +176,17 @@ You can now use your cluster with:
 
 kubectl cluster-info --context kind-kind
 
-Have a nice day! 👋
+Thanks for using kind! 😊
 </code></pre><pre><code class="language-console" data-lang="console">$ kubectl get nodes
-NAME                 STATUS   ROLES    AGE     VERSION
-kind-control-plane   Ready    master   2m44s   v1.19.1
-kind-worker          Ready    &lt;none&gt;   2m9s    v1.19.1
-kind-worker2         Ready    &lt;none&gt;   2m4s    v1.19.1
-kind-worker3         Ready    &lt;none&gt;   2m8s    v1.19.1
+NAME                 STATUS   ROLES                  AGE     VERSION
+kind-control-plane   Ready    control-plane,master   2m14s   v1.21.1
+kind-worker          Ready    &lt;none&gt;                 106s    v1.21.1
+kind-worker2         Ready    &lt;none&gt;                 106s    v1.21.1
+kind-worker3         Ready    &lt;none&gt;                 106s    v1.21.1
 </code></pre><h3 id="prometheus-の設定ファイルをデプロイする">Prometheus の設定ファイルをデプロイする</h3>
 <p>次に、Prometheus の設定ファイルを <code>ConfigMap</code> の形でデプロイします。
 この YAML を編集すると Prometheus の動作を変えられます。</p>
+<p><code>prometheus.yml</code> の書き方は <a href="https://prometheus.io/docs/prometheus/latest/configuration/configuration/">公式マニュアル</a> をご参照ください。</p>
 <h4 id="prometheus-configyaml">prometheus-config.yaml</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
 <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
@@ -202,7 +203,7 @@ kind-worker3         Ready    &lt;none&gt;   2m8s    v1.19.1
 configmap/prometheus created
 </code></pre><h3 id="prometheus-の-pod-をデプロイする">Prometheus の Pod をデプロイする</h3>
 <p>次に Prometheus の Pod をデプロイします。
-Prometheus の <a href="https://hub.docker.com/layers/prom/prometheus/main/images/sha256-e6a93aa5c9f8cb23d102414087a400759d12a68302bc41f48919862067411937?context=explore">公式イメージの設定</a> で、デフォルトの設定ファイルの読み込みパスは <code>/etc/prometheus/prometheus.yml</code> になっています。</p>
+Prometheus の <a href="https://hub.docker.com/r/prom/prometheus/tags">公式イメージの設定</a> で、デフォルトの設定ファイルの読み込みパスは <code>/etc/prometheus/prometheus.yml</code> になっています。</p>
 <h4 id="prometheusyaml">prometheus.yaml</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
 <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
@@ -213,7 +214,7 @@ Prometheus の <a href="https://hub.docker.com/layers/prom/prometheus/main/image
 <span style="color:#f92672">spec</span>:
   <span style="color:#f92672">containers</span>:
     - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">prometheus</span>
-      <span style="color:#f92672">image</span>: <span style="color:#ae81ff">prom/prometheus:v2.25.0</span>
+      <span style="color:#f92672">image</span>: <span style="color:#ae81ff">prom/prometheus:v2.27.1</span>
       <span style="color:#f92672">volumeMounts</span>:
         - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config</span>
           <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/etc/prometheus</span>
@@ -272,6 +273,12 @@ Forwarding from [::1]:9090 -&gt; 9090
 <p>First steps | Prometheus / Starting Prometheus<br />
 <span style="word-break: break-all;">
 <a href="https://prometheus.io/docs/introduction/first_steps/#starting-prometheus">https://prometheus.io/docs/introduction/first_steps/#starting-prometheus</a>
+</span></p>
+</li>
+<li>
+<p>Configuration | Prometheus<br />
+<span style="word-break: break-all;">
+<a href="https://prometheus.io/docs/prometheus/latest/configuration/configuration/">https://prometheus.io/docs/prometheus/latest/configuration/configuration/</a>
 </span></p>
 </li>
 <li>
