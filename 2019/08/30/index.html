@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.81.0" />
+<meta name="generator" content="Hugo 0.83.1" />
 
 
 
@@ -91,7 +91,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
     
 
     <header class="l-header">
@@ -318,21 +317,18 @@ use_adam <span style="color:#f92672">=</span> True
 動作環境は macOS Mojave (10.14) + TensorFlow 2.0.0rc0 です。</p>
 <h3 id="em-アルゴリズム">EM アルゴリズム</h3>
 <p>閉形式の更新式を使っているため、イテレーション毎に必ず尤度が上がります。
-<figure class="center">
-    <img src="/2019/08/30/em.png"/> 
+<figure class="center"><img src="/2019/08/30/em.png"/>
 </figure>
 </p>
 <h3 id="adam">Adam</h3>
 <p>モーメンタムと各種の調整項によってパラメータを滑らかに更新します。
 ハイパーパラメータの設定によっては、ゆらゆらと揺れるような動きになります。
-<figure class="center">
-    <img src="/2019/08/30/adam.png"/> 
+<figure class="center"><img src="/2019/08/30/adam.png"/>
 </figure>
 </p>
 <h3 id="rmsprop">RMSprop</h3>
 <p>モーメンタム項がなく、更新によってパラメータが振動しています。
-<figure class="center">
-    <img src="/2019/08/30/rmsprop.png"/> 
+<figure class="center"><img src="/2019/08/30/rmsprop.png"/>
 </figure>
 </p>
 <h3 id="追記centered-rmsprop">追記：Centered RMSprop</h3>
@@ -340,8 +336,7 @@ use_adam <span style="color:#f92672">=</span> True
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">opt <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>RMSprop(learning_rate<span style="color:#f92672">=.</span><span style="color:#ae81ff">03</span>, centered<span style="color:#f92672">=</span>True)
 </code></pre></div><p>RMSprop, Centered RMSprop とも中央のコンポーネントが左右どちらに振れるかは試行によってまちまちなのですが、
 左のコンポーネントが収束する速さはほぼこのアニメーション通りになります。
-<figure class="center">
-    <img src="/2019/08/30/centered_rmsprop.png"/> 
+<figure class="center"><img src="/2019/08/30/centered_rmsprop.png"/>
 </figure>
 </p>
 <p>

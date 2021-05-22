@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.81.0" />
+<meta name="generator" content="Hugo 0.83.1" />
 
 
 
@@ -91,7 +91,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
     
 
     <header class="l-header">
@@ -195,8 +194,7 @@ Radon 変換は方向ベクトル $\theta$ の直交補空間を積分消去す�
 Wasserstein 距離は適切な勾配を持ち、また問題の大域最適解を発見できている。
 2次元の Wasserstein 距離は計算できないため、X 軸方向の損失のみ計算している。（<a href="https://github.com/yokaze/swgmm/blob/31529131039cd27a126ed523acd3415c712e4c0d/fig1.py">ソースコード</a>）
 </small></font>
-<figure class="center">
-    <img src="/2019/09/12/loss.png"/> 
+<figure class="center"><img src="/2019/09/12/loss.png"/>
 </figure>
 
 </div></p>
@@ -328,8 +326,7 @@ $\tilde{Q}^{-1}(x)$ が計算できる。
 図: 離散分布と連続分布のアライメント。
 </small></font>
 <center>
-<figure class="center">
-    <img src="/2019/09/12/map.png"/> 
+<figure class="center"><img src="/2019/09/12/map.png"/>
 </figure>
 
 </center>
@@ -720,8 +717,7 @@ pl<span style="color:#f92672">.</span>show()
 この値はグラフを作成するために推論プロセス外で別途計算しています。</p>
 <p>右側のグラフは推論で使用した SW 距離の近似値の履歴を表示しています。</p>
 <center>
-<figure class="center">
-    <img src="/2019/09/12/swgmm.png"/> 
+<figure class="center"><img src="/2019/09/12/swgmm.png"/>
 </figure>
 
 </center>
@@ -729,8 +725,7 @@ pl<span style="color:#f92672">.</span>show()
 <p>Sliced Wasserstein 距離はサンプリングされた方向に沿ってパラメータの勾配を与えるため、
 X 軸のみを与え続けると Y 軸方向の学習が進みません。</p>
 <center>
-<figure class="center">
-    <img src="/2019/09/12/xaxis.png"/> 
+<figure class="center"><img src="/2019/09/12/xaxis.png"/>
 </figure>
 
 </center>
@@ -739,15 +734,13 @@ X 軸のみを与え続けると Y 軸方向の学習が進みません。</p>
 このため、推論の過程では観測データの次元数より多くの方向ベクトルを使う必要があります。
 W2 では上手く検証できなかったので、この図のみ W1 距離で作成しています。</p>
 <center>
-<figure class="center">
-    <img src="/2019/09/12/xyaxis.png"/> 
+<figure class="center"><img src="/2019/09/12/xyaxis.png"/>
 </figure>
 
 </center>
 <p>X 軸、Y 軸に加え斜めの軸を追加すると推論はほぼ正しく進みます。</p>
 <center>
-<figure class="center">
-    <img src="/2019/09/12/xyaaxis.png"/> 
+<figure class="center"><img src="/2019/09/12/xyaaxis.png"/>
 </figure>
 
 </center>
