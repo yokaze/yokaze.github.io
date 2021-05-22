@@ -563,7 +563,7 @@
       <pubDate>Mon, 01 Jan 2001 00:00:00 +0900</pubDate>
       
       <guid>https://yokaze.github.io/software/</guid>
-      <description>各種自作ソフトを公開しています。鋭意作成中。 Sirius マルチプラットフォームで動作するバイナリエディタです。 electron + React で開発しています。 https://github.com/yokaze/sirius pyscience11 C++ から NumPy, SciPy, Matplotlib</description>
+      <description>各種自作ソフトを公開しています。 Sirius マルチプラットフォームで動作するバイナリエディタです。 electron + React で開発しています。 https://github.com/yokaze/sirius pyscience11 C++ から NumPy, SciPy, Matplotlib にアクセスす</description>
     </item>
     
   </channel>
