@@ -161,7 +161,7 @@ if (!doNotTrack) {
 - <span style="color:#f92672">role</span>: <span style="color:#ae81ff">worker</span>
 - <span style="color:#f92672">role</span>: <span style="color:#ae81ff">worker</span>
 </code></pre></div><pre><code class="language-console" data-lang="console">$ # kind 0.11.0 + Kubernetes 1.21.1
-$ kind create cluster --config cluster/cluster.yaml
+$ kind create cluster --config cluster.yaml
 Creating cluster &quot;kind&quot; ...
  ✓ Ensuring node image (kindest/node:v1.21.1) 🖼
  ✓ Preparing nodes 📦 📦 📦 📦  
@@ -183,7 +183,7 @@ kind-worker          Ready    &lt;none&gt;                 106s    v1.21.1
 kind-worker2         Ready    &lt;none&gt;                 106s    v1.21.1
 kind-worker3         Ready    &lt;none&gt;                 106s    v1.21.1
 </code></pre><h3 id="prometheus-の設定ファイルをデプロイする">Prometheus の設定ファイルをデプロイする</h3>
-<p>次に、Prometheus の設定ファイルを <code>ConfigMap</code> の形でデプロイします。
+<p>次に、Prometheus の設定ファイルを ConfigMap の形でデプロイします。
 この YAML を編集すると Prometheus の動作を変えられます。</p>
 <p><code>prometheus.yml</code> の書き方は <a href="https://prometheus.io/docs/prometheus/latest/configuration/configuration/">公式マニュアル</a> をご参照ください。</p>
 <h4 id="prometheus-configyaml">prometheus-config.yaml</h4>
@@ -237,8 +237,8 @@ tcp        0      0 :::9090                 :::*                    LISTEN
 &lt;!doctype html&gt;
 ...
 </code></pre><h3 id="prometheus-の-service-をデプロイする">Prometheus の Service をデプロイする</h3>
-<p>Prometheus をクラスタ内から利用するため、<code>Service</code> をデプロイします。
-<code>Pod</code> には <code>app: prometheus</code> というラベルを付けておいたので、このラベルでフィルターします。</p>
+<p>Prometheus をクラスタ内から利用するため、Service をデプロイします。
+Pod には <code>app: prometheus</code> というラベルを付けておいたので、このラベルを使って Pod を選択します。</p>
 <h4 id="prometheus-serviceyaml">prometheus-service.yaml</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
 <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
@@ -255,7 +255,8 @@ service/prometheus created
 <pre><code class="language-console" data-lang="console">$ kubectl port-forward service/prometheus 9090
 Forwarding from 127.0.0.1:9090 -&gt; 9090
 Forwarding from [::1]:9090 -&gt; 9090
-</code></pre><p>
+</code></pre><p><a href="/2021/03/08">kind 環境に Grafana をデプロイする</a> に続きます。</p>
+<p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>

@@ -153,9 +153,12 @@ if (!doNotTrack) {
 <h3 id="prometheus-のデプロイ">Prometheus のデプロイ</h3>
 <p><a href="/2021/03/07/">前回の記事</a> の内容に沿って kind クラスタを立ち上げ、Prometheus をデプロイします。</p>
 <h3 id="grafana-の管理者パスワードを-secret-としてデプロイする">Grafana の管理者パスワードを Secret としてデプロイする</h3>
-<p>Grafana の管理者のユーザー名とパスワードを <code>Secret</code> としてデプロイします。
+<p>Grafana の管理者のユーザー名とパスワードを Secret としてデプロイします。
 ここでは管理者名を <code>admin</code>、パスワードを <code>password</code> としています。</p>
-<h4 id="grafana-secretyaml">grafana-secret.yaml</h4>
+<p>Secret にはデータを <a href="https://kubernetes.io/ja/docs/concepts/configuration/secret/">base64 エンコードした値</a> を入力します。</p>
+<pre><code class="language-console" data-lang="console">$ echo -n admin | base64
+YWRtaW4=
+</code></pre><h4 id="grafana-secretyaml">grafana-secret.yaml</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
 <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Secret</span>
 <span style="color:#f92672">metadata</span>:
@@ -164,13 +167,13 @@ if (!doNotTrack) {
 <span style="color:#f92672">data</span>:
   <span style="color:#f92672">username</span>: <span style="color:#ae81ff">YWRtaW4=</span>
   <span style="color:#f92672">password</span>: <span style="color:#ae81ff">cGFzc3dvcmQ=</span>
-</code></pre></div><pre><code class="language-console" data-lang="console">$ # kind 0.9.0 + Kubernetes 1.19.1
+</code></pre></div><pre><code class="language-console" data-lang="console">$ # kind 0.11.0 + Kubernetes 1.21.1
 $ kubectl apply -f grafana-secret.yaml 
 secret/grafana created
 </code></pre><h3 id="grafana-の-datasource-の設定をデプロイする">Grafana の DataSource の設定をデプロイする</h3>
 <p>Grafana から Prometheus にアクセスするため、DataSource を設定します。
-Grafana の <a href="https://grafana.com/docs/grafana/latest/administration/provisioning/">Provisioning 機能</a> を使うと、DataSource を設定ファイルの形で管理することができます。</p>
-<p>Prometheus には <code>Pod</code> の IP アドレスでもアクセスできますが、<code>Service</code> が動作していればサービス名でアクセスできます。</p>
+DataSource は <a href="https://grafana.com/docs/grafana/latest/datasources/add-a-data-source/">Web UI</a> から追加することもできますが、<a href="https://grafana.com/docs/grafana/latest/administration/provisioning/">Provisioning 機能</a> を使って設定ファイルの形で管理することもできます。</p>
+<p>Prometheus には Pod の IP アドレスでもアクセスできますが、Service が動作していればサービス名でアクセスできます。</p>
 <h4 id="grafana-datasourceyaml">grafana-datasource.yaml</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
 <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
@@ -188,7 +191,7 @@ Grafana の <a href="https://grafana.com/docs/grafana/latest/administration/prov
 configmap/grafana-datasource created
 </code></pre><h3 id="grafana-の-pod-をデプロイする">Grafana の Pod をデプロイする</h3>
 <p>Grafana を実行するための Pod をデプロイします。
-ユーザー名とパスワードを <code>Secret</code> から、DataSource の設定を <code>ConfigMap</code> から読み込みます。</p>
+ユーザー名とパスワードを Secret から、DataSource の設定を ConfigMap から読み込みます。</p>
 <p>Provisioning の設定ファイルのサンプルは <code>/usr/share/grafana/conf/provisioning</code> にあるので、ディレクトリをマウントして同じ場所に配置しています。</p>
 <h4 id="grafanayaml">grafana.yaml</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
@@ -198,7 +201,7 @@ configmap/grafana-datasource created
 <span style="color:#f92672">spec</span>:
   <span style="color:#f92672">containers</span>:
     - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">grafana</span>
-      <span style="color:#f92672">image</span>: <span style="color:#ae81ff">grafana/grafana:7.4.3</span>
+      <span style="color:#f92672">image</span>: <span style="color:#ae81ff">grafana/grafana:7.5.7</span>
       <span style="color:#f92672">env</span>:
         - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">GF_SECURITY_ADMIN_USER</span>
           <span style="color:#f92672">valueFrom</span>:
@@ -248,7 +251,8 @@ tcp        0      0 :::3000                 :::*                    LISTEN
 <pre><code class="language-console" data-lang="console">$ kubectl port-forward grafana 3000
 Forwarding from 127.0.0.1:3000 -&gt; 3000
 Forwarding from [::1]:3000 -&gt; 3000
-</code></pre><h3 id="補足">補足</h3>
+</code></pre><p>Grafana の <a href="https://grafana.com/docs/grafana/latest/explore/">Explore</a> タブを開き、<a href="https://prometheus.io/docs/prometheus/latest/querying/basics/">PromQL</a> クエリを入力すると収集した Prometheus のメトリクスを確認できます。</p>
+<h3 id="補足">補足</h3>
 <p>Grafana コンテナの設定ファイルの構成は次の方法で確認できます。</p>
 <pre><code class="language-console" data-lang="console">$ docker run -it --rm --entrypoint=&quot;/bin/sh&quot; grafana/grafana:7.4.3
 /usr/share/grafana $ find conf -type d
