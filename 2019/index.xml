@@ -92,10 +92,10 @@
     <item>
       <title>carthage のバージョンを確認する</title>
       <link>https://yokaze.github.io/2019/07/02/</link>
-      <pubDate>Tue, 02 Jul 2019 21:00:00 +0900</pubDate>
+      <pubDate>Tue, 02 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2019/07/02/</guid>
-      <description>carthage のバージョンを確認するには、carthage version コマンドを使います。 $ # Intel Mac + macOS Big Sur (11.2) + Carthage 0.37.0 $ carthage version 0.37.0 Tweet 参考資料 Carthage https://github.com/Carthage/Carthage carthage 本体を更新する https://yokaze.github.io/2017/10/23/</description>
+      <description>carthage のバージョンを確認するには、carthage version コマンドを使います。 $ # M1 Mac (Monterey) + Carthage 0.38.0 $ carthage version 0.38.0 Tweet 参考資料 Carthage https://github.com/Carthage/Carthage carthage 本体を更新する https://yokaze.github.io/2017/10/23/</description>
     </item>
     
   </channel>

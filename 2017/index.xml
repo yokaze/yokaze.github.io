@@ -56,10 +56,10 @@
     <item>
       <title>clang で未使用のマクロを警告する (-Wunused-macros)</title>
       <link>https://yokaze.github.io/2017/10/06/</link>
-      <pubDate>Fri, 06 Oct 2017 17:51:02 +0900</pubDate>
+      <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/10/06/</guid>
-      <description>clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0 $ clang sample.cpp -Wunused-macros sample.cpp:1:9:</description>
+      <description>clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # M1 Mac (Monterey) + Apple clang 13.1.6 $ clang sample.cpp -Wunused-macros sample.cpp:1:9: warning: macro is not</description>
     </item>
     
     <item>
