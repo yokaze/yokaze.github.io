@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 
@@ -150,7 +150,7 @@ if (!doNotTrack) {
   
 
   <div class="article-body"><p><code>boost::extents</code> は、<code>boost::multi_array</code> の各次元の有効なインデックス範囲を指定するためのオブジェクトです。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;boost/multi_array.hpp&gt;</span><span style="color:#75715e">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;boost/multi_array.hpp&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
@@ -159,7 +159,7 @@ if (!doNotTrack) {
 }
 </code></pre></div><p>また、<code>extent_range</code> オブジェクトを使うことで最小の添字を指定することができます。<br />
 <code>boost::multi_array</code> では、各次元の添字の範囲は整数の区間で表現されます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;boost/multi_array.hpp&gt;</span><span style="color:#75715e">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;boost/multi_array.hpp&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
@@ -176,18 +176,18 @@ if (!doNotTrack) {
 </span><span style="color:#75715e"></span>    printf(<span style="color:#e6db74">&#34;%f</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, arr[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]);
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre></div><pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12) + Homebrew
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Sierra (10.12) + Homebrew</span>
 $ clang sample.cpp -o sample -I /usr/local/include/ -lc++
 $ ./sample
 [0] 2, 3
 [1] 0, 10
 Assertion failed: (idx - index_bases[0] &gt;= 0), function access, file /usr/local/include/boost/multi_array/base.hpp, line 135.
 Abort trap: 6
-</code></pre><p>※ Boost.MultiArray ではデフォルトで添字の範囲チェックが行われます。<br />
+</code></pre></div><p>※ Boost.MultiArray ではデフォルトで添字の範囲チェックが行われます。<br />
 <a href="/2017/08/18/">Boost.MultiArray の添字演算子について</a></p>
 <h2 id="boostextents-の実装">boost::extents の実装</h2>
 <p><code>boost::extents</code> は、<code>&lt;boost/multi_array/base.hpp&gt;</code> で <code>boost::detail::multi_array::extent_gen&lt;0&gt;</code> 型のグローバルオブジェクトとして定義されています。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">//  説明に必要な部分のみ抜粋
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">//  説明に必要な部分のみ抜粋
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">namespace</span> boost {
     <span style="color:#66d9ef">namespace</span> multi_array_types {
         <span style="color:#66d9ef">typedef</span> detail<span style="color:#f92672">::</span>multi_array<span style="color:#f92672">::</span>extent_gen<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span><span style="color:#f92672">&gt;</span> extent_gen;
@@ -200,7 +200,7 @@ https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/b
 </a>
 </div>
 <p><code>extent_gen</code> は以下の実装になっています。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">//  説明に必要な部分のみ抜粋
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">//  説明に必要な部分のみ抜粋
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">namespace</span> boost<span style="color:#f92672">::</span>detail<span style="color:#f92672">::</span>multi_array {
 
 <span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span>size_t NumRanges<span style="color:#f92672">&gt;</span>
@@ -255,7 +255,7 @@ https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/e
 </div>
 <p><code>extent_range</code> は次元ごとの添字の範囲を表現します。
 <code>extent_gen&lt;N&gt;::range</code> は</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">extent_gen<span style="color:#f92672">&lt;</span>N<span style="color:#f92672">&gt;::</span>range <span style="color:#f92672">=</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">extent_gen<span style="color:#f92672">&lt;</span>N<span style="color:#f92672">&gt;::</span>range <span style="color:#f92672">=</span>
 boost<span style="color:#f92672">::</span>detail<span style="color:#f92672">::</span>multi_array<span style="color:#f92672">::</span>extent_range<span style="color:#f92672">&lt;</span>
     boost<span style="color:#f92672">::</span>detail<span style="color:#f92672">::</span>multi_array<span style="color:#f92672">::</span>index,
     boost<span style="color:#f92672">::</span>detail<span style="color:#f92672">::</span>multi_array<span style="color:#f92672">::</span>size_type
@@ -271,7 +271,7 @@ https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/t
 <p>と展開されるため、<code>extent_range</code> のテンプレートパラメータは <code>extent_range&lt;ptrdiff_t, size_t&gt;</code> となります。
 したがって、<code>extent_range</code> のメモリ配置は次のとおり <code>std::pair&lt;ptrdiff_t, ptrdiff_t&gt;</code> と同じです。</p>
 <p><code>extent_range</code> には 3 つのコンストラクタと 3 つのメンバ関数があります。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">namespace</span> boost<span style="color:#f92672">::</span>detail<span style="color:#f92672">::</span>multi_array {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">namespace</span> boost<span style="color:#f92672">::</span>detail<span style="color:#f92672">::</span>multi_array {
 
 <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> Extent, <span style="color:#66d9ef">typename</span> SizeType<span style="color:#f92672">&gt;</span>
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">extent_range</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">private</span> std<span style="color:#f92672">::</span>pair<span style="color:#f92672">&lt;</span>Extent, Extent<span style="color:#f92672">&gt;</span> {
@@ -304,7 +304,7 @@ https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/e
 <p><code>multi_array</code>, <code>multi_array_ref</code>, <code>const_multi_array_ref</code> のコンストラクタでは、
 <code>extent_gen&lt;N&gt;::ranges_</code> フィールドに直接アクセスすることで配列の範囲を取得しています。</p>
 <p>以下は、<code>const_multi_array_ref</code> のコンストラクタのひとつです。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">namespace</span> boost {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">namespace</span> boost {
 
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">const_multi_array_ref</span> <span style="color:#f92672">:</span>
 <span style="color:#66d9ef">public</span> detail<span style="color:#f92672">::</span>multi_array<span style="color:#f92672">::</span>multi_array_impl_base<span style="color:#f92672">&lt;</span>T, NumDims<span style="color:#f92672">&gt;</span>
@@ -354,7 +354,7 @@ https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array/m
 </a>
 </div>
 <h2 id="ソースコードのライセンス">ソースコードのライセンス</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// Copyright 2002 The Trustees of Indiana University.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// Copyright 2002 The Trustees of Indiana University.
 </span><span style="color:#75715e"></span>
 <span style="color:#75715e">// Use, modification and distribution is subject to the Boost Software
 </span><span style="color:#75715e">// License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at

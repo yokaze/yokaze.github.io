@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 
@@ -150,15 +150,15 @@ if (!doNotTrack) {
   
 
   <div class="article-body"><p>Python 向け Lint ツール <code>flake8</code> のプラグインとして使える <code>hacking</code> ですが、警告がかなり厳しいため一時的に無効にしたいことがあります。</p>
-<pre><code class="language-console" data-lang="console">$ # flake8, hacking をインストール
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># flake8, hacking をインストール</span>
 $ pip install flake8
 $ pip install hacking
 $
-$ # flake8 + hacking でソースコードをテスト
+$ <span style="color:#75715e"># flake8 + hacking でソースコードをテスト</span>
 $ flake8 source_file.py
-</code></pre><p>hacking の警告だけを無効にする場合は、<code>flake8 --ignore=&quot;H&quot;</code> と入力します。</p>
-<pre><code class="language-console" data-lang="console">$ flake8 source_file.py --ignore=&quot;H&quot;
-</code></pre><p>
+</code></pre></div><p>hacking の警告だけを無効にする場合は、<code>flake8 --ignore=&quot;H&quot;</code> と入力します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ flake8 source_file.py --ignore<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;H&#34;</span>
+</code></pre></div><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>

@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 
@@ -182,7 +182,7 @@ NDEBUG は関係なさそうだ。</p>
 <h2 id="実装を確認する">実装を確認する</h2>
 <p><a href="https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array.hpp">&lt;boost/multi_array.hpp&gt;</a> の実装を調べた結果も載せておく。</p>
 <p>boost::multi_array の継承関係は以下のようになっている。（名前空間名は省略）</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">+ multi_array&lt;T, NumDims, Allocator&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">+ multi_array&lt;T, NumDims, Allocator&gt;
   + multi_array_ref&lt;T, NumDims&gt;
     + const_multi_array_ref&lt;T, NumDims, TPtr = T*&gt;
       + multi_array_impl_base&lt;T, NumDims&gt;
@@ -199,7 +199,7 @@ NDEBUG は関係なさそうだ。</p>
 テンプレートで実装されているため、次元に関するループはコンパイル時に展開される。
 また、boost::multi_array では各次元の添字の始点を設定できるため、この値をメモリから読み込む処理が必要になる。</p>
 <p>処理の疑似コードは以下の通り。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// &lt;boost/multi_array/base.hpp&gt; より引用・改変
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// &lt;boost/multi_array/base.hpp&gt; より引用・改変
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span>size_t NumDims<span style="color:#f92672">&gt;</span>
 <span style="color:#66d9ef">const</span> T<span style="color:#f92672">&amp;</span> get_element(<span style="color:#66d9ef">const</span> T<span style="color:#f92672">*</span> data,
@@ -232,7 +232,7 @@ NDEBUG は関係なさそうだ。</p>
 こちらはなんと NDEBUG または BOOST_DISABLE_ASSERTS のどちらかが定義されていれば境界チェックをスキップしてしまう。
 NDEBUG のみ指定された環境では、添字演算子 [] のみ境界チェックをするということになり、std::vector と逆の動きをする点に注意。</p>
 <p>こちらは次元に関して for でループを回している。処理の疑似コードは以下の通り。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// &lt;boost/multi_array/base.hpp&gt; より引用・改変
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// &lt;boost/multi_array/base.hpp&gt; より引用・改変
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span>size_t NumDims<span style="color:#f92672">&gt;</span>
 <span style="color:#66d9ef">const</span> T<span style="color:#f92672">&amp;</span> get_element(<span style="color:#66d9ef">const</span> T<span style="color:#f92672">*</span> data,

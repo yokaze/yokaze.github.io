@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 
@@ -360,10 +360,10 @@ $$
 ここでは簡単のため、共分散行列の対角成分のみを推定しています。
 混合率と精度の対数 $\ln \pi_k, \ln \Lambda_k$ を変数とすることで、これらの変数が負の値にならないことを保証しています。
 </div></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
-<span style="color:#f92672">import</span> scipy <span style="color:#f92672">as</span> sp
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+<span style="color:#f92672">import</span> scipy <span style="color:#66d9ef">as</span> sp
 <span style="color:#f92672">import</span> subprocess
-<span style="color:#f92672">import</span> tensorflow <span style="color:#f92672">as</span> tf
+<span style="color:#f92672">import</span> tensorflow <span style="color:#66d9ef">as</span> tf
 <span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> pyplot <span style="color:#66d9ef">as</span> pl
 
 <span style="color:#75715e"># PRML の Old Faithful 間欠泉データを取得します。</span>
@@ -383,8 +383,8 @@ $$
 
 <span style="color:#75715e"># オプティマイザの動作を改善するため、観測データを正規化します。</span>
 faithful <span style="color:#f92672">=</span> get_faithful_data()
-faithful <span style="color:#f92672">-=</span> np<span style="color:#f92672">.</span>mean(faithful, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)[None, :]
-faithful <span style="color:#f92672">/=</span> np<span style="color:#f92672">.</span>std(faithful, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)[None, :]
+faithful <span style="color:#f92672">-=</span> np<span style="color:#f92672">.</span>mean(faithful, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)[<span style="color:#66d9ef">None</span>, :]
+faithful <span style="color:#f92672">/=</span> np<span style="color:#f92672">.</span>std(faithful, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)[<span style="color:#66d9ef">None</span>, :]
 
 <span style="color:#75715e"># 二次元の散布図とガウス分布をレンタリングするためのコードです。</span>
 <span style="color:#75715e"># ガウス分布の等高線を陰関数として描画します。</span>
@@ -398,28 +398,28 @@ faithful <span style="color:#f92672">/=</span> np<span style="color:#f92672">.</
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">draw_directions</span>(directions):
     <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(directions)):
         d <span style="color:#f92672">=</span> directions[i]
-        pl<span style="color:#f92672">.</span>plot([d[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>, d[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>], [d[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>, d[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>], <span style="color:#e6db74">&#39;b-&#39;</span>, alpha<span style="color:#f92672">=.</span><span style="color:#ae81ff">125</span>)
+        pl<span style="color:#f92672">.</span>plot([d[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>, d[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>], [d[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>, d[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>], <span style="color:#e6db74">&#39;b-&#39;</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">.125</span>)
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">draw</span>(pi, mu, var, directions):
     draw_directions(directions)
-    pl<span style="color:#f92672">.</span>plot(faithful[:, <span style="color:#ae81ff">0</span>], faithful[:, <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;b+&#39;</span>, alpha<span style="color:#f92672">=.</span><span style="color:#ae81ff">5</span>)
+    pl<span style="color:#f92672">.</span>plot(faithful[:, <span style="color:#ae81ff">0</span>], faithful[:, <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;b+&#39;</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">.5</span>)
     pl<span style="color:#f92672">.</span>plot(mu[:, <span style="color:#ae81ff">0</span>], mu[:, <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;go&#39;</span>)
     <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(mu)):
         draw_ring(mu[i], np<span style="color:#f92672">.</span>sqrt(var[i]))
-        draw_ring(mu[i], np<span style="color:#f92672">.</span>sqrt(pi[i] <span style="color:#f92672">/</span> pi<span style="color:#f92672">.</span>mean()) <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>sqrt(var[i]), alpha<span style="color:#f92672">=.</span><span style="color:#ae81ff">25</span>)
+        draw_ring(mu[i], np<span style="color:#f92672">.</span>sqrt(pi[i] <span style="color:#f92672">/</span> pi<span style="color:#f92672">.</span>mean()) <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>sqrt(var[i]), alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">.25</span>)
     pl<span style="color:#f92672">.</span>xlim(<span style="color:#f92672">-</span><span style="color:#ae81ff">2.5</span>, <span style="color:#ae81ff">2.5</span>)
     pl<span style="color:#f92672">.</span>ylim(<span style="color:#f92672">-</span><span style="color:#ae81ff">2.5</span>, <span style="color:#ae81ff">2.5</span>)
 
 <span style="color:#75715e"># ガウス積分を計算します。</span>
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">integrate_emx2</span>(a, b):
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">.</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>sqrt(np<span style="color:#f92672">.</span>pi) <span style="color:#f92672">*</span> (tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>erf(b) <span style="color:#f92672">-</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>erf(a))
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>sqrt(np<span style="color:#f92672">.</span>pi) <span style="color:#f92672">*</span> (tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>erf(b) <span style="color:#f92672">-</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>erf(a))
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">integrate_xemx2</span>(a, b):
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">.</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> (tf<span style="color:#f92672">.</span>exp(<span style="color:#f92672">-</span>a <span style="color:#f92672">*</span> a) <span style="color:#f92672">-</span> tf<span style="color:#f92672">.</span>exp(<span style="color:#f92672">-</span>b <span style="color:#f92672">*</span> b))
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> (tf<span style="color:#f92672">.</span>exp(<span style="color:#f92672">-</span>a <span style="color:#f92672">*</span> a) <span style="color:#f92672">-</span> tf<span style="color:#f92672">.</span>exp(<span style="color:#f92672">-</span>b <span style="color:#f92672">*</span> b))
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">integrate_x2emx2</span>(a, b):
-    A <span style="color:#f92672">=</span> <span style="color:#f92672">.</span><span style="color:#ae81ff">25</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>sqrt(np<span style="color:#f92672">.</span>pi) <span style="color:#f92672">*</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>erf(a) <span style="color:#f92672">-</span> <span style="color:#f92672">.</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> a <span style="color:#f92672">*</span> tf<span style="color:#f92672">.</span>exp(<span style="color:#f92672">-</span>a <span style="color:#f92672">*</span> a)
-    B <span style="color:#f92672">=</span> <span style="color:#f92672">.</span><span style="color:#ae81ff">25</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>sqrt(np<span style="color:#f92672">.</span>pi) <span style="color:#f92672">*</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>erf(b) <span style="color:#f92672">-</span> <span style="color:#f92672">.</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> b <span style="color:#f92672">*</span> tf<span style="color:#f92672">.</span>exp(<span style="color:#f92672">-</span>b <span style="color:#f92672">*</span> b)
+    A <span style="color:#f92672">=</span> <span style="color:#ae81ff">.25</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>sqrt(np<span style="color:#f92672">.</span>pi) <span style="color:#f92672">*</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>erf(a) <span style="color:#f92672">-</span> <span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> a <span style="color:#f92672">*</span> tf<span style="color:#f92672">.</span>exp(<span style="color:#f92672">-</span>a <span style="color:#f92672">*</span> a)
+    B <span style="color:#f92672">=</span> <span style="color:#ae81ff">.25</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>sqrt(np<span style="color:#f92672">.</span>pi) <span style="color:#f92672">*</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>erf(b) <span style="color:#f92672">-</span> <span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> b <span style="color:#f92672">*</span> tf<span style="color:#f92672">.</span>exp(<span style="color:#f92672">-</span>b <span style="color:#f92672">*</span> b)
     <span style="color:#66d9ef">return</span> B <span style="color:#f92672">-</span> A
 
 <span style="color:#75715e"># EM アルゴリズムの M ステップを実行します。</span>
@@ -427,9 +427,9 @@ faithful <span style="color:#f92672">/=</span> np<span style="color:#f92672">.</
 <span style="color:#75715e"># https://yokaze.github.io/2019/08/30/</span>
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">calc_mstep</span>(z):
     pi <span style="color:#f92672">=</span> z<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">/</span> z<span style="color:#f92672">.</span>sum()
-    mu <span style="color:#f92672">=</span> (z[:, :, None] <span style="color:#f92672">*</span> faithful[:, None, :])<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">/</span> z<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>)[:, None]
-    var <span style="color:#f92672">=</span> (z[:, :, None] <span style="color:#f92672">*</span> ((faithful[:, None, :] <span style="color:#f92672">-</span> mu[None, :, :]) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>))<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>)
-    var <span style="color:#f92672">/=</span> z<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>)[:, None]
+    mu <span style="color:#f92672">=</span> (z[:, :, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">*</span> faithful[:, <span style="color:#66d9ef">None</span>, :])<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">/</span> z<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>)[:, <span style="color:#66d9ef">None</span>]
+    var <span style="color:#f92672">=</span> (z[:, :, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">*</span> ((faithful[:, <span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">-</span> mu[<span style="color:#66d9ef">None</span>, :, :]) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>))<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>)
+    var <span style="color:#f92672">/=</span> z<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>)[:, <span style="color:#66d9ef">None</span>]
     <span style="color:#66d9ef">return</span> pi, mu, var
 
 <span style="color:#75715e"># 負担率を一様乱数で初期化し、潜在変数の初期値を作ります。</span>
@@ -449,8 +449,8 @@ faithful <span style="color:#f92672">/=</span> np<span style="color:#f92672">.</
 
 <span style="color:#75715e"># Sliced Wasserstein 距離を近似するための方向ベクトル集合を作成します。</span>
 <span style="color:#75715e"># fixed パラメータが指定されている場合、戻り値の一部を固定します。</span>
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sample_directions</span>(ndirection, fixed<span style="color:#f92672">=</span>None):
-    <span style="color:#66d9ef">if</span> (fixed <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None):
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sample_directions</span>(ndirection, fixed<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+    <span style="color:#66d9ef">if</span> (fixed <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>):
         <span style="color:#66d9ef">assert</span> len(fixed) <span style="color:#f92672">&lt;=</span> ndirection
         ret <span style="color:#f92672">=</span> list(fixed)
     <span style="color:#66d9ef">else</span>:
@@ -464,15 +464,15 @@ faithful <span style="color:#f92672">/=</span> np<span style="color:#f92672">.</
 <span style="color:#75715e"># 入力ベクトルと方向ベクトルの内積を計算し、ベクトルを射影した座標を計算します。</span>
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">project_vector</span>(x, direction):
     <span style="color:#66d9ef">if</span> (x<span style="color:#f92672">.</span>shape<span style="color:#f92672">.</span>rank <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>):
-        x <span style="color:#f92672">=</span> x[None, :]
-    ret <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>reduce_sum(x <span style="color:#f92672">*</span> direction[None, :], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+        x <span style="color:#f92672">=</span> x[<span style="color:#66d9ef">None</span>, :]
+    ret <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>reduce_sum(x <span style="color:#f92672">*</span> direction[<span style="color:#66d9ef">None</span>, :], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
     <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>squeeze(ret)
 
 <span style="color:#75715e"># 対角分散行列 diag(V) を指定した方向に射影した時の分散を計算します。</span>
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">project_variance</span>(var, direction):
     <span style="color:#66d9ef">if</span> (var<span style="color:#f92672">.</span>shape<span style="color:#f92672">.</span>rank <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>):
-        var <span style="color:#f92672">=</span> var[None, :]
-    ret <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>reduce_sum(var <span style="color:#f92672">*</span> (direction <span style="color:#f92672">*</span> direction)[None, :], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+        var <span style="color:#f92672">=</span> var[<span style="color:#66d9ef">None</span>, :]
+    ret <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>reduce_sum(var <span style="color:#f92672">*</span> (direction <span style="color:#f92672">*</span> direction)[<span style="color:#66d9ef">None</span>, :], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
     <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>squeeze(ret)
 
 <span style="color:#75715e"># 1 次元ガウス分布の密度関数です。</span>
@@ -481,13 +481,13 @@ faithful <span style="color:#f92672">/=</span> np<span style="color:#f92672">.</
     mu <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>convert_to_tensor(mu, dtype<span style="color:#f92672">=</span>tf<span style="color:#f92672">.</span>float64)
     prec <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.</span> <span style="color:#f92672">/</span> tf<span style="color:#f92672">.</span>convert_to_tensor(var, dtype<span style="color:#f92672">=</span>tf<span style="color:#f92672">.</span>float64)
     <span style="color:#66d9ef">if</span> (x<span style="color:#f92672">.</span>shape<span style="color:#f92672">.</span>rank <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>):
-        x <span style="color:#f92672">=</span> x[None]
+        x <span style="color:#f92672">=</span> x[<span style="color:#66d9ef">None</span>]
     <span style="color:#66d9ef">if</span> (mu<span style="color:#f92672">.</span>shape<span style="color:#f92672">.</span>rank <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>):
-        mu <span style="color:#f92672">=</span> mu[None]
-        prec <span style="color:#f92672">=</span> prec[None]
-    ret <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>sqrt(<span style="color:#f92672">.</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> prec[None, :] <span style="color:#f92672">/</span> np<span style="color:#f92672">.</span>pi)
-    ret <span style="color:#f92672">*=</span> tf<span style="color:#f92672">.</span>exp(<span style="color:#f92672">-.</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> prec[None, :] <span style="color:#f92672">*</span> (x[:, None] <span style="color:#f92672">-</span> mu[None, :]) <span style="color:#f92672">*</span>
-                  (x[:, None] <span style="color:#f92672">-</span> mu[None, :]))
+        mu <span style="color:#f92672">=</span> mu[<span style="color:#66d9ef">None</span>]
+        prec <span style="color:#f92672">=</span> prec[<span style="color:#66d9ef">None</span>]
+    ret <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>sqrt(<span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> prec[<span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">/</span> np<span style="color:#f92672">.</span>pi)
+    ret <span style="color:#f92672">*=</span> tf<span style="color:#f92672">.</span>exp(<span style="color:#f92672">-</span><span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> prec[<span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">*</span> (x[:, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">-</span> mu[<span style="color:#66d9ef">None</span>, :]) <span style="color:#f92672">*</span>
+                  (x[:, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">-</span> mu[<span style="color:#66d9ef">None</span>, :]))
     <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>squeeze(ret)
 
 <span style="color:#75715e"># 1 次元ガウス分布の累積密度関数です。</span>
@@ -496,33 +496,33 @@ faithful <span style="color:#f92672">/=</span> np<span style="color:#f92672">.</
     mu <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>convert_to_tensor(mu, dtype<span style="color:#f92672">=</span>tf<span style="color:#f92672">.</span>float64)
     var <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>convert_to_tensor(var, dtype<span style="color:#f92672">=</span>tf<span style="color:#f92672">.</span>float64)
     <span style="color:#66d9ef">if</span> (x<span style="color:#f92672">.</span>shape<span style="color:#f92672">.</span>rank <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>):
-        x <span style="color:#f92672">=</span> x[None]
+        x <span style="color:#f92672">=</span> x[<span style="color:#66d9ef">None</span>]
     <span style="color:#66d9ef">if</span> (mu<span style="color:#f92672">.</span>shape<span style="color:#f92672">.</span>rank <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>):
-        mu <span style="color:#f92672">=</span> mu[None]
-    ret <span style="color:#f92672">=</span> <span style="color:#f92672">.</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>erf((x[:, None] <span style="color:#f92672">-</span> mu[None, :]) <span style="color:#f92672">/</span> tf<span style="color:#f92672">.</span>sqrt(<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> var)))
+        mu <span style="color:#f92672">=</span> mu[<span style="color:#66d9ef">None</span>]
+    ret <span style="color:#f92672">=</span> <span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>erf((x[:, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">-</span> mu[<span style="color:#66d9ef">None</span>, :]) <span style="color:#f92672">/</span> tf<span style="color:#f92672">.</span>sqrt(<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> var)))
     <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>squeeze(ret)
 
 <span style="color:#75715e"># 1 次元混合ガウス分布の密度関数です。</span>
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">gaussian_mixture_pdf</span>(x, pi, mu, var):
     pi <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>convert_to_tensor(pi, dtype<span style="color:#f92672">=</span>tf<span style="color:#f92672">.</span>float64)
-    <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>reduce_sum(pi[None, :] <span style="color:#f92672">*</span> gaussian_pdf(x, mu, var), axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+    <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>reduce_sum(pi[<span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">*</span> gaussian_pdf(x, mu, var), axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
 
 <span style="color:#75715e"># 1 次元混合ガウス分布の累積密度関数です。</span>
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">gaussian_mixture_cdf</span>(x, pi, mu, var):
     pi <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>convert_to_tensor(pi, dtype<span style="color:#f92672">=</span>tf<span style="color:#f92672">.</span>float64)
-    <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>reduce_sum(pi[None, :] <span style="color:#f92672">*</span> gaussian_cdf(x, mu, var), axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+    <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>reduce_sum(pi[<span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">*</span> gaussian_cdf(x, mu, var), axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
 
 <span style="color:#75715e"># 1 次元混合ガウス分布の累積密度関数の逆関数を計算します。</span>
 <span style="color:#75715e"># この値は解析的に求まらないため、関数が単調増加であることを利用してバイナリサーチを実行します。</span>
 <span style="color:#75715e"># この操作により計算グラフが分断されるため、tf.custom_gradient を実装して自動微分に対応します。</span>
-<span style="color:#a6e22e">@tf.custom_gradient</span>
+<span style="color:#a6e22e">@tf</span><span style="color:#f92672">.</span>custom_gradient
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">gaussian_mixture_cdfinv</span>(r, pi, mu, var):
     r <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>convert_to_tensor(r, dtype<span style="color:#f92672">=</span>tf<span style="color:#f92672">.</span>float64)
     pi <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>convert_to_tensor(pi, dtype<span style="color:#f92672">=</span>tf<span style="color:#f92672">.</span>float64)
     mu <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>convert_to_tensor(mu, dtype<span style="color:#f92672">=</span>tf<span style="color:#f92672">.</span>float64)
     var <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>convert_to_tensor(var, dtype<span style="color:#f92672">=</span>tf<span style="color:#f92672">.</span>float64)
     <span style="color:#66d9ef">if</span> (r<span style="color:#f92672">.</span>shape<span style="color:#f92672">.</span>rank <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>):
-        r <span style="color:#f92672">=</span> r[None]
+        r <span style="color:#f92672">=</span> r[<span style="color:#66d9ef">None</span>]
     xmin <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
     xmax <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
     <span style="color:#66d9ef">while</span> (tf<span style="color:#f92672">.</span>reduce_sum(pi <span style="color:#f92672">*</span> gaussian_cdf(xmin, mu, var)) <span style="color:#f92672">&gt;</span> r[<span style="color:#ae81ff">0</span>]):
@@ -532,24 +532,24 @@ faithful <span style="color:#f92672">/=</span> np<span style="color:#f92672">.</
     xmin <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>tile(tf<span style="color:#f92672">.</span>convert_to_tensor([xmin], dtype<span style="color:#f92672">=</span>tf<span style="color:#f92672">.</span>float64), r<span style="color:#f92672">.</span>shape)
     xmax <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>tile(tf<span style="color:#f92672">.</span>convert_to_tensor([xmax], dtype<span style="color:#f92672">=</span>tf<span style="color:#f92672">.</span>float64), r<span style="color:#f92672">.</span>shape)
     <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">50</span>):
-        xmid <span style="color:#f92672">=</span> (xmin <span style="color:#f92672">+</span> xmax) <span style="color:#f92672">*</span> <span style="color:#f92672">.</span><span style="color:#ae81ff">5</span>
-        cur_ratio <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>reduce_sum(pi[None, :] <span style="color:#f92672">*</span> gaussian_cdf(xmid, mu, var), axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+        xmid <span style="color:#f92672">=</span> (xmin <span style="color:#f92672">+</span> xmax) <span style="color:#f92672">*</span> <span style="color:#ae81ff">.5</span>
+        cur_ratio <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>reduce_sum(pi[<span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">*</span> gaussian_cdf(xmid, mu, var), axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
         mask <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>cast(r <span style="color:#f92672">&lt;</span> cur_ratio, tf<span style="color:#f92672">.</span>float64)
         xmin <span style="color:#f92672">=</span> xmin <span style="color:#f92672">*</span> mask <span style="color:#f92672">+</span> xmid <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> mask)
         xmax <span style="color:#f92672">=</span> xmid <span style="color:#f92672">*</span> mask <span style="color:#f92672">+</span> xmax <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> mask)
-    ret <span style="color:#f92672">=</span> (xmin <span style="color:#f92672">+</span> xmax) <span style="color:#f92672">*</span> <span style="color:#f92672">.</span><span style="color:#ae81ff">5</span>
+    ret <span style="color:#f92672">=</span> (xmin <span style="color:#f92672">+</span> xmax) <span style="color:#f92672">*</span> <span style="color:#ae81ff">.5</span>
 
     <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">grad</span>(_dx):
         gpdf <span style="color:#f92672">=</span> gaussian_pdf(ret, mu, var)
         gmpdf <span style="color:#f92672">=</span> gaussian_mixture_pdf(ret, pi, mu, var)
         _dr <span style="color:#f92672">=</span> _dx <span style="color:#f92672">/</span> gaussian_mixture_pdf(ret, pi, mu, var)
-        _dpi <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>tf<span style="color:#f92672">.</span>reduce_sum(_dx[:, None] <span style="color:#f92672">*</span> gaussian_cdf(ret, mu, var) <span style="color:#f92672">/</span>
-                              gmpdf[:, None], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
-        _dmu <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>reduce_sum(_dx[:, None] <span style="color:#f92672">*</span> pi[None, :] <span style="color:#f92672">*</span> gpdf <span style="color:#f92672">/</span>
-                             gmpdf[:, None], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
-        _dvar <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>reduce_sum(_dx[:, None] <span style="color:#f92672">*</span> pi[None, :] <span style="color:#f92672">/</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> var[None, :]) <span style="color:#f92672">*</span>
-                              (ret[:, None] <span style="color:#f92672">-</span> mu[None, :]) <span style="color:#f92672">*</span> gpdf <span style="color:#f92672">/</span>
-                              gmpdf[:, None], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+        _dpi <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>tf<span style="color:#f92672">.</span>reduce_sum(_dx[:, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">*</span> gaussian_cdf(ret, mu, var) <span style="color:#f92672">/</span>
+                              gmpdf[:, <span style="color:#66d9ef">None</span>], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+        _dmu <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>reduce_sum(_dx[:, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">*</span> pi[<span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">*</span> gpdf <span style="color:#f92672">/</span>
+                             gmpdf[:, <span style="color:#66d9ef">None</span>], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+        _dvar <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>reduce_sum(_dx[:, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">*</span> pi[<span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">/</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> var[<span style="color:#66d9ef">None</span>, :]) <span style="color:#f92672">*</span>
+                              (ret[:, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">-</span> mu[<span style="color:#66d9ef">None</span>, :]) <span style="color:#f92672">*</span> gpdf <span style="color:#f92672">/</span>
+                              gmpdf[:, <span style="color:#66d9ef">None</span>], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
         <span style="color:#66d9ef">return</span> [_dr, _dpi, _dmu, _dvar]
     <span style="color:#66d9ef">return</span> ret, grad
 
@@ -573,45 +573,45 @@ faithful <span style="color:#f92672">/=</span> np<span style="color:#f92672">.</
     partition_mid <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>minimum(tf<span style="color:#f92672">.</span>maximum(partition_left, x), partition_right)
 
     <span style="color:#75715e"># 積分のため変数変換を行います。</span>
-    integral_left <span style="color:#f92672">=</span> (partition_left[:, None] <span style="color:#f92672">-</span> mu[None, :]) <span style="color:#f92672">*</span> \
-        tf<span style="color:#f92672">.</span>sqrt(<span style="color:#f92672">.</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> prec)[None, :]
-    integral_mid <span style="color:#f92672">=</span> (partition_mid[:, None] <span style="color:#f92672">-</span> mu[None, :]) <span style="color:#f92672">*</span> \
-        tf<span style="color:#f92672">.</span>sqrt(<span style="color:#f92672">.</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> prec)[None, :]
-    integral_right <span style="color:#f92672">=</span> (partition_right[:, None] <span style="color:#f92672">-</span> mu[None, :]) <span style="color:#f92672">*</span> \
-        tf<span style="color:#f92672">.</span>sqrt(<span style="color:#f92672">.</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> prec)[None, :]
+    integral_left <span style="color:#f92672">=</span> (partition_left[:, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">-</span> mu[<span style="color:#66d9ef">None</span>, :]) <span style="color:#f92672">*</span> \
+        tf<span style="color:#f92672">.</span>sqrt(<span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> prec)[<span style="color:#66d9ef">None</span>, :]
+    integral_mid <span style="color:#f92672">=</span> (partition_mid[:, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">-</span> mu[<span style="color:#66d9ef">None</span>, :]) <span style="color:#f92672">*</span> \
+        tf<span style="color:#f92672">.</span>sqrt(<span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> prec)[<span style="color:#66d9ef">None</span>, :]
+    integral_right <span style="color:#f92672">=</span> (partition_right[:, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">-</span> mu[<span style="color:#66d9ef">None</span>, :]) <span style="color:#f92672">*</span> \
+        tf<span style="color:#f92672">.</span>sqrt(<span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> prec)[<span style="color:#66d9ef">None</span>, :]
 
     <span style="color:#66d9ef">if</span> (order <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>):
-        loss_left <span style="color:#f92672">=</span> (x[:, None] <span style="color:#f92672">-</span> mu[None, :]) <span style="color:#f92672">*</span> \
+        loss_left <span style="color:#f92672">=</span> (x[:, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">-</span> mu[<span style="color:#66d9ef">None</span>, :]) <span style="color:#f92672">*</span> \
             integrate_emx2(integral_left, integral_mid)
-        loss_left <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1.</span> <span style="color:#f92672">/</span> tf<span style="color:#f92672">.</span>sqrt(<span style="color:#f92672">.</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> prec[None, :]) <span style="color:#f92672">*</span> \
+        loss_left <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1.</span> <span style="color:#f92672">/</span> tf<span style="color:#f92672">.</span>sqrt(<span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> prec[<span style="color:#66d9ef">None</span>, :]) <span style="color:#f92672">*</span> \
             integrate_xemx2(integral_left, integral_mid)
         loss_left <span style="color:#f92672">*=</span> tf<span style="color:#f92672">.</span>cast(<span style="color:#ae81ff">1.</span> <span style="color:#f92672">/</span> tf<span style="color:#f92672">.</span>sqrt(np<span style="color:#f92672">.</span>pi), tf<span style="color:#f92672">.</span>float64)
-        loss_right <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.</span> <span style="color:#f92672">/</span> tf<span style="color:#f92672">.</span>sqrt(<span style="color:#f92672">.</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> prec[None, :]) <span style="color:#f92672">*</span> \
+        loss_right <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.</span> <span style="color:#f92672">/</span> tf<span style="color:#f92672">.</span>sqrt(<span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> prec[<span style="color:#66d9ef">None</span>, :]) <span style="color:#f92672">*</span> \
             integrate_xemx2(integral_mid, integral_right)
-        loss_right <span style="color:#f92672">-=</span> (x[:, None] <span style="color:#f92672">-</span> mu[None, :]) <span style="color:#f92672">*</span> \
+        loss_right <span style="color:#f92672">-=</span> (x[:, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">-</span> mu[<span style="color:#66d9ef">None</span>, :]) <span style="color:#f92672">*</span> \
             integrate_emx2(integral_mid, integral_right)
         loss_right <span style="color:#f92672">*=</span> tf<span style="color:#f92672">.</span>cast(<span style="color:#ae81ff">1.</span> <span style="color:#f92672">/</span> tf<span style="color:#f92672">.</span>sqrt(np<span style="color:#f92672">.</span>pi), tf<span style="color:#f92672">.</span>float64)
-        <span style="color:#66d9ef">return</span> pi[None, :] <span style="color:#f92672">*</span> (loss_left <span style="color:#f92672">+</span> loss_right)
+        <span style="color:#66d9ef">return</span> pi[<span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">*</span> (loss_left <span style="color:#f92672">+</span> loss_right)
     <span style="color:#66d9ef">elif</span> (order <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>):
-        diff <span style="color:#f92672">=</span> x[:, None] <span style="color:#f92672">-</span> mu[None, :]
+        diff <span style="color:#f92672">=</span> x[:, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">-</span> mu[<span style="color:#66d9ef">None</span>, :]
         loss <span style="color:#f92672">=</span> (diff <span style="color:#f92672">*</span> diff) <span style="color:#f92672">*</span> integrate_emx2(integral_left, integral_right)
-        loss <span style="color:#f92672">-=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> diff <span style="color:#f92672">/</span> tf<span style="color:#f92672">.</span>sqrt(<span style="color:#f92672">.</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> prec[None, :]) <span style="color:#f92672">*</span> \
+        loss <span style="color:#f92672">-=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> diff <span style="color:#f92672">/</span> tf<span style="color:#f92672">.</span>sqrt(<span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> prec[<span style="color:#66d9ef">None</span>, :]) <span style="color:#f92672">*</span> \
             integrate_xemx2(integral_left, integral_right)
-        loss <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1.</span> <span style="color:#f92672">/</span> (<span style="color:#f92672">.</span><span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> prec[None, :]) <span style="color:#f92672">*</span> \
+        loss <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1.</span> <span style="color:#f92672">/</span> (<span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> prec[<span style="color:#66d9ef">None</span>, :]) <span style="color:#f92672">*</span> \
             integrate_x2emx2(integral_left, integral_right)
         loss <span style="color:#f92672">*=</span> tf<span style="color:#f92672">.</span>cast(<span style="color:#ae81ff">1.</span> <span style="color:#f92672">/</span> tf<span style="color:#f92672">.</span>sqrt(np<span style="color:#f92672">.</span>pi), tf<span style="color:#f92672">.</span>float64)
-        <span style="color:#66d9ef">return</span> pi[None, :] <span style="color:#f92672">*</span> loss
+        <span style="color:#66d9ef">return</span> pi[<span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">*</span> loss
     <span style="color:#66d9ef">else</span>:
-        <span style="color:#66d9ef">assert</span> False
+        <span style="color:#66d9ef">assert</span> <span style="color:#66d9ef">False</span>
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">estimate</span>(nstep, ndirection, fixed_directions<span style="color:#f92672">=</span>None, order<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, use_adam<span style="color:#f92672">=</span>True):
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">estimate</span>(nstep, ndirection, fixed_directions<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>, order<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, use_adam<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>):
     faith <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(faithful)
     lpi, mu, lv <span style="color:#f92672">=</span> sample_init_parameter()
 
     <span style="color:#66d9ef">if</span> use_adam:
-        opt <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>Adam(learning_rate<span style="color:#f92672">=.</span><span style="color:#ae81ff">2</span>)
+        opt <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>Adam(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">.2</span>)
     <span style="color:#66d9ef">else</span>:
-        opt <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>RMSprop(learning_rate<span style="color:#f92672">=.</span><span style="color:#ae81ff">05</span>, centered<span style="color:#f92672">=</span>True)
+        opt <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>RMSprop(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">.05</span>, centered<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
 
     loss_history <span style="color:#f92672">=</span> []
     <span style="color:#66d9ef">for</span> istep <span style="color:#f92672">in</span> range(nstep):
@@ -648,7 +648,7 @@ faithful <span style="color:#f92672">/=</span> np<span style="color:#f92672">.</
             var_proj <span style="color:#f92672">=</span> project_variance(tf<span style="color:#f92672">.</span>exp(lv), direction)
             loss <span style="color:#f92672">=</span> gaussian_mixture_wasserstein_loss(faith_proj, pi, mu_proj, var_proj, order<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
             loss <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>reduce_sum(loss, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
-            pl<span style="color:#f92672">.</span>plot(faith_proj, loss, <span style="color:#e6db74">&#39;b+&#39;</span>, alpha<span style="color:#f92672">=.</span><span style="color:#ae81ff">5</span>)
+            pl<span style="color:#f92672">.</span>plot(faith_proj, loss, <span style="color:#e6db74">&#39;b+&#39;</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">.5</span>)
             pl<span style="color:#f92672">.</span>xlim(<span style="color:#f92672">-</span><span style="color:#ae81ff">2.5</span>, <span style="color:#ae81ff">2.5</span>)
             pl<span style="color:#f92672">.</span>ylim(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0.01</span>)
 
@@ -679,7 +679,7 @@ faithful <span style="color:#f92672">/=</span> np<span style="color:#f92672">.</
         draw_figure()
         <span style="color:#66d9ef">if</span> (istep <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>):
             draw_figure()
-        pl<span style="color:#f92672">.</span>pause(<span style="color:#f92672">.</span><span style="color:#ae81ff">1</span>)
+        pl<span style="color:#f92672">.</span>pause(<span style="color:#ae81ff">.1</span>)
 
 <span style="color:#75715e"># グラフの大きさを設定します。</span>
 pl<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>[<span style="color:#ae81ff">7.5</span>, <span style="color:#ae81ff">5</span>])
@@ -693,7 +693,7 @@ nstep <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span
 ndirection <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
 
 <span style="color:#75715e"># Sliced Wasserstein 距離の計算に固定の積分方向を加える場合はここで入力します。</span>
-fixed_directions <span style="color:#f92672">=</span> None
+fixed_directions <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
 <span style="color:#75715e"># fixed_directions = [[1, 0]]</span>
 <span style="color:#75715e"># fixed_directions = [[1, 0], [0, 1]]</span>
 <span style="color:#75715e"># fixed_directions = [[1., 0.], [0., 1.], [np.sqrt(2), np.sqrt(2)]]</span>
@@ -703,7 +703,7 @@ fixed_directions <span style="color:#f92672">=</span> None
 order <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
 
 <span style="color:#75715e"># Adam と RMSprop どちらを使うかを選択し、推論を行います。</span>
-use_adam <span style="color:#f92672">=</span> True
+use_adam <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
 estimate(nstep, ndirection, fixed_directions, order, use_adam)
 
 <span style="color:#75715e"># 推論が終わったらグラフを表示して停止します。</span>

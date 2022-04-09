@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 
@@ -153,33 +153,33 @@ if (!doNotTrack) {
 <h2 id="最新の-numpy-をインストールする">最新の NumPy をインストールする</h2>
 <p><code>python3 -m pip install --upgrade</code> コマンドを使い、最新の NumPy をインストールします。</p>
 <p><code>--upgrade</code> オプションは必須ではありませんが、既に古いバージョンがインストールされている場合は新しいバージョンに更新できます。</p>
-<pre><code class="language-console" data-lang="console">$ # Intel Mac + macOS Big Sur (11.2) + Python 3.8.2 + pip 21.0.1
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># Intel Mac + macOS Big Sur (11.2) + Python 3.8.2 + pip 21.0.1</span>
 $ python3 -m pip install --upgrade numpy
 Defaulting to user installation because normal site-packages is not writeable
 Collecting numpy
   Using cached numpy-1.20.1-cp38-cp38-macosx_10_9_x86_64.whl (16.0 MB)
 Installing collected packages: numpy
-  WARNING: The scripts f2py, f2py3 and f2py3.8 are installed in '/Users/username/Library/Python/3.8/bin' which is not on PATH.
+  WARNING: The scripts f2py, f2py3 and f2py3.8 are installed in &#39;/Users/username/Library/Python/3.8/bin&#39; which is not on PATH.
   Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
 Successfully installed numpy-1.20.1
-</code></pre><p>SciPy, matplotlib も同じ方法でインストールできます。</p>
-<pre><code class="language-console" data-lang="console">$ python3 -m pip install --upgrade scipy
+</code></pre></div><p>SciPy, matplotlib も同じ方法でインストールできます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ python3 -m pip install --upgrade scipy
 $ python3 -m pip install --upgrade matplotlib
-</code></pre><h2 id="動作検証">動作検証</h2>
+</code></pre></div><h2 id="動作検証">動作検証</h2>
 <p>Python を起動し、NumPy を読み込みます。
 <code>__file__</code> フィールドを参照するとパッケージのインストールパスが分かります。</p>
-<pre><code class="language-console" data-lang="console">$ python3
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ python3
 Python 3.8.2 (default, Dec 21 2020, 15:06:04) 
 [Clang 12.0.0 (clang-1200.0.32.29)] on darwin
-Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+Type &#34;help&#34;, &#34;copyright&#34;, &#34;credits&#34; or &#34;license&#34; for more information.
 &gt;&gt;&gt; import numpy
 &gt;&gt;&gt; numpy.__file__
-'/Users/username/Library/Python/3.8/lib/python/site-packages/numpy/__init__.py'
-&gt;&gt;&gt; numpy.arange(4) * numpy.arange(4)
+&#39;/Users/username/Library/Python/3.8/lib/python/site-packages/numpy/__init__.py&#39;
+&gt;&gt;&gt; numpy.arange<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span> * numpy.arange<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span>
 array([0, 1, 4, 9])
-</code></pre><h2 id="アンインストール">アンインストール</h2>
+</code></pre></div><h2 id="アンインストール">アンインストール</h2>
 <p><code>python3 -m pip uninstall</code> コマンドを使うとパッケージをアンインストールできます。</p>
-<pre><code class="language-console" data-lang="console">$ python3 -m pip uninstall numpy     
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ python3 -m pip uninstall numpy     
 Found existing installation: numpy 1.20.1
 Uninstalling numpy-1.20.1:
   Would remove:
@@ -190,10 +190,10 @@ Uninstalling numpy-1.20.1:
     /Users/username/Library/Python/3.8/lib/python/site-packages/numpy/*
 Proceed (y/n)? y
   Successfully uninstalled numpy-1.20.1
-
-$ python3 -m pip show numpy
+<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>$ python3 -m pip show numpy
 WARNING: Package(s) not found: numpy
-</code></pre><p>
+</code></pre></div><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>

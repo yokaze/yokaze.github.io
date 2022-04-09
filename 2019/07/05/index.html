@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 
@@ -150,7 +150,7 @@ if (!doNotTrack) {
   
 
   <div class="article-body"><p>lldb で関数の呼び出し履歴（バックトレース）を表示するには、<code>bt</code> コマンドを使います。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sample1</span>()
 {
@@ -172,35 +172,35 @@ if (!doNotTrack) {
     sample3();
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre></div><pre><code class="language-console" data-lang="console">$ # Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0</span>
 $ clang -g sample.cpp -o sample
 $ lldb sample
-(lldb) target create &quot;sample&quot;
-Current executable set to '/path/to/sample' (x86_64).
+(lldb) target create &#34;sample&#34;
+Current executable set to &#39;/path/to/sample&#39; (x86_64).
 (lldb) b sample1
 Breakpoint 1: where = sample`sample1() + 4 at sample.cpp:5:5, address = 0x0000000100003f34
 (lldb) run
-Process 2220 launched: '/path/to/sample' (x86_64)
+Process 2220 launched: &#39;/path/to/sample&#39; (x86_64)
 Process 2220 stopped
-* thread #1, queue = 'com.apple.main-thread', stop reason = breakpoint 1.1
+* thread #1, queue = &#39;com.apple.main-thread&#39;, stop reason = breakpoint 1.1
     frame #0: 0x0000000100003f34 sample`sample1() at sample.cpp:5:5
    2   	
    3   	void sample1()
    4   	{
--&gt; 5   	    printf(&quot;sample 1\n&quot;);
+-&gt; 5   	    printf(&#34;sample 1\n&#34;);
    6   	}
    7   	
    8   	void sample2()
 Target 0: (sample) stopped.
 (lldb) bt
-* thread #1, queue = 'com.apple.main-thread', stop reason = breakpoint 1.1
+* thread #1, queue = &#39;com.apple.main-thread&#39;, stop reason = breakpoint 1.1
   * frame #0: 0x0000000100003f34 sample`sample1() at sample.cpp:5:5
     frame #1: 0x0000000100003f59 sample`sample2() at sample.cpp:10:5
     frame #2: 0x0000000100003f69 sample`sample3() at sample.cpp:15:5
     frame #3: 0x0000000100003f84 sample`main at sample.cpp:20:5
     frame #4: 0x00007fff204f3621 libdyld.dylib`start + 1
     frame #5: 0x00007fff204f3621 libdyld.dylib`start + 1
-</code></pre><p>
+</code></pre></div><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>

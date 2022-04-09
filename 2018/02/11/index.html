@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 
@@ -150,7 +150,7 @@ if (!doNotTrack) {
   
 
   <div class="article-body"><p>pybind11 の <code>pybind11::scoped_interpreter</code> を使うと、C++ から Python インタプリタを起動することができます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">namespace</span> py <span style="color:#f92672">=</span> pybind11;
@@ -165,18 +165,16 @@ if (!doNotTrack) {
 </code></pre></div><p>コンパイルには <code>Python.h</code> が必要です。
 端末上に複数の Python 環境がある場合は、リンクする Python のバージョンに合ったヘッダファイルを使う必要があります。
 次の例では、Homebrew でインストールした Python 3.6 にリンクしています。</p>
-<pre><code class="language-console" data-lang="console">$ # macOS Mojave (10.14) + Homebrew
-$ clang sample.cpp -std=c++11 -I/usr/local/Cellar/python/3.7.4/Frameworks/Python.framework/Versions/3.7/include/python3.7m -L/usr/local/Cellar/python/3.7.4/Frameworks/Python.framework/Versions/3.7/lib -lc++ -lpython3.7m -o sample
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Mojave (10.14) + Homebrew</span>
+$ clang sample.cpp -std<span style="color:#f92672">=</span>c++11 -I/usr/local/Cellar/python/3.7.4/Frameworks/Python.framework/Versions/3.7/include/python3.7m -L/usr/local/Cellar/python/3.7.4/Frameworks/Python.framework/Versions/3.7/lib -lc++ -lpython3.7m -o sample
 $ ./sample
 Hello, world!
-</code></pre><p>pybind11 の動作に影響するため、<code>Py_Initialize</code> と <code>Py_Finalize</code> を直接使うことはできません。</p>
+</code></pre></div><p>pybind11 の動作に影響するため、<code>Py_Initialize</code> と <code>Py_Finalize</code> を直接使うことはできません。</p>
 <blockquote>
 <p>Do not use the raw CPython API functions Py_Initialize and Py_Finalize as these do not properly handle the lifetime of pybind11’s internal data.</p>
-<p><br />
-引用: Embedding the interpreter &ndash; pybind11 2.3.dev0 documentation<br />
-<span style="word-break: break-all;">
-<a href="http://pybind11.readthedocs.io/en/master/advanced/embedding.html">http://pybind11.readthedocs.io/en/master/advanced/embedding.html</a>
-</span></p>
+<br />
+引用: Embedding the interpreter &mdash; pybind11  documentation<br />
+<a href="https://pybind11.readthedocs.io/en/stable/advanced/embedding.html">https://pybind11.readthedocs.io/en/stable/advanced/embedding.html</a>
 </blockquote>
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
@@ -192,9 +190,9 @@ Hello, world!
 </span></p>
 </li>
 <li>
-<p>Embedding the interpreter &ndash; pybind11 2.3.dev0 documentation<br />
+<p>Embedding the interpreter — pybind11  documentation<br />
 <span style="word-break: break-all;">
-<a href="http://pybind11.readthedocs.io/en/master/advanced/embedding.html">http://pybind11.readthedocs.io/en/master/advanced/embedding.html</a>
+<a href="https://pybind11.readthedocs.io/en/stable/advanced/embedding.html">https://pybind11.readthedocs.io/en/stable/advanced/embedding.html</a>
 </span></p>
 </li>
 </ul>

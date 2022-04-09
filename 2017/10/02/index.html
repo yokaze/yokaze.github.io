@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 
@@ -150,14 +150,14 @@ if (!doNotTrack) {
   
 
   <div class="article-body"><p><code>pipdeptree</code> を使うと、<code>pip</code> でインストールしたパッケージの依存関係を調べることができます。</p>
-<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12) + Homebrew
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Sierra (10.12) + Homebrew</span>
 $
-$ # Python2 用のソフトウェアをインストール
+$ <span style="color:#75715e"># Python2 用のソフトウェアをインストール</span>
 $ pip install pipdeptree
 $
-$ # Python3 用のソフトウェアをインストール
+$ <span style="color:#75715e"># Python3 用のソフトウェアをインストール</span>
 $ pip3 install pipdeptree
-</code></pre><pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12) + Homebrew
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Sierra (10.12) + Homebrew</span>
 $ pipdeptree
 matplotlib==2.0.2
   - cycler [required: &gt;=0.10, installed: 0.10.0]
@@ -174,21 +174,21 @@ scipy==0.19.1
   - numpy [required: &gt;=1.8.2, installed: 1.13.3]
 setuptools==36.5.0
 wheel==0.30.0
-</code></pre><p>しかし、<code>pipdeptree</code> はコマンドラインツールなので、このままでは Python の複数バージョンに同時にインストールすることができません。</p>
+</code></pre></div><p>しかし、<code>pipdeptree</code> はコマンドラインツールなので、このままでは Python の複数バージョンに同時にインストールすることができません。</p>
 <h2 id="モジュールとして実行する">モジュールとして実行する</h2>
 <p>実は、<code>pipdeptree</code> は Python のモジュールとして実行できます。
 この方法であれば、複数バージョンにインストールして使うことができます。</p>
-<pre><code class="language-console" data-lang="console">$ # Python 2 の pip モジュールを調べる
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># Python 2 の pip モジュールを調べる</span>
 $ python -m pipdeptree
 $
-$ # Python 3 の pip モジュールを調べる
+$ <span style="color:#75715e"># Python 3 の pip モジュールを調べる</span>
 $ python3 -m pipdeptree
-</code></pre><p>コマンドラインツールを残したい方を後からインストールします。</p>
-<pre><code class="language-console" data-lang="console">$ # 複数バージョンを同時にインストールする
-$ # この順番でインストールすると、コマンドラインツールは Python 3 用になります。
+</code></pre></div><p>コマンドラインツールを残したい方を後からインストールします。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># 複数バージョンを同時にインストールする</span>
+$ <span style="color:#75715e"># この順番でインストールすると、コマンドラインツールは Python 3 用になります。</span>
 $ pip install pipdeptree
 $ pip3 install pipdeptree
-</code></pre><p>
+</code></pre></div><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>

@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 
@@ -153,7 +153,7 @@ if (!doNotTrack) {
 このライブラリは Header-Only で、C++ から NumPy, SciPy, Matplotlib を手軽に使うことができます。
 動作には <a href="https://github.com/pybind/pybind11">pybind11</a> が必要です。</p>
 <p>次の例では、pybind11 の組み込み Python 環境で誤差関数 (erf) を表示しています。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pyscience11/matplotlib.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pyscience11/matplotlib/pyplot.h&gt;</span><span style="color:#75715e">
@@ -191,16 +191,16 @@ if (!doNotTrack) {
 }
 </code></pre></div><p>Python を実行ファイルに組み込むため、Python 3.6 にリンクしています。
 また、pybind11 と pyscience11 のヘッダファイルのパスを指定しています。</p>
-<pre><code class="language-console" data-lang="console">$ # macOS Sierra (10.12)
-$ clang sample.cpp -std=c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -I/usr/local/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
-</code></pre><p>このプログラムを実行すると、次の通りグラフが表示されます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
+$ clang sample.cpp -std<span style="color:#f92672">=</span>c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -I/usr/local/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
+</code></pre></div><p>このプログラムを実行すると、次の通りグラフが表示されます。</p>
 <figure class="center"><img src="/2018/04/12/erf.png" width="100%"/>
 </figure>
 
 <h2 id="stl-との連携">STL との連携</h2>
 <p>pyscience11 では、pybind11 の STL 連携機能を使うことができます。
 <code>pybind11/stl.h</code> をインクルードすると、<code>std::vector</code> などを引数として Matplotlib を呼び出すことができます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/stl.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pyscience11/matplotlib.h&gt;</span><span style="color:#75715e">
@@ -242,12 +242,12 @@ $ clang sample.cpp -std=c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Pyt
 <h2 id="インストール">インストール</h2>
 <p>このライブラリは Header-Only なので、pybind11 と pyscience11 のヘッダファイルをダウンロードするだけで使えます。
 <code>pip</code> を使いシステムディレクトリにインストールすることもできます。</p>
-<pre><code class="language-console" data-lang="console">$ # pybind11 をインストールする（pyscience 11 の実行に必要です）
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># pybind11 をインストールする（pyscience 11 の実行に必要です）</span>
 $ pip install pybind11
 $
-$ # pyscience11 をインストールする
+$ <span style="color:#75715e"># pyscience11 をインストールする</span>
 $ pip install pyscience11
-</code></pre><p>
+</code></pre></div><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>

@@ -374,7 +374,7 @@
       <pubDate>Thu, 07 Sep 2017 18:27:23 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/07/</guid>
-      <description>bind, baseURL オプションを指定して hugo server を起動する。 $ # Intel Mac + macOS Big Sur (11.2) + Hugo 0.81.0 $ hugo server --bind=&amp;quot;0.0.0.0&amp;quot; --baseURL=&amp;quot;http://[HOSTNAME]/&amp;quot; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドする</description>
+      <description>bind, baseURL オプションを指定して hugo server を起動する。 $ # Intel Mac + macOS Big Sur (11.2) + Hugo 0.81.0 $ hugo server --bind=&amp;#34;0.0.0.0&amp;#34; --baseURL=&amp;#34;http://[HOSTNAME]/&amp;#34; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドする</description>
     </item>
     
     <item>

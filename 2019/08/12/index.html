@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 
@@ -166,9 +166,9 @@ $$
 </p>
 <p>$W$ と $H$ の推定値がマイナスになると厄介なので、今回は $\ln W$ と $\ln H$ を推定します。</p>
 <h2 id="ソースコード">ソースコード</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> librosa
-<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
-<span style="color:#f92672">import</span> tensorflow <span style="color:#f92672">as</span> tf
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> librosa
+<span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+<span style="color:#f92672">import</span> tensorflow <span style="color:#66d9ef">as</span> tf
 <span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> pyplot <span style="color:#66d9ef">as</span> pl
 <span style="color:#f92672">from</span> matplotlib.gridspec <span style="color:#f92672">import</span> GridSpec
 
@@ -179,7 +179,7 @@ $$
 <span style="color:#75715e"># 楽曲全体を NMF にかけるとかなりの時間がかかるので、先頭 30 秒だけを分析します。</span>
 <span style="color:#75715e"># 信号は絶対値の平均値が 1 となるよう正規化しておきます。</span>
 nsecond <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span>
-sig, fs <span style="color:#f92672">=</span> librosa<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#39;sample.wav&#39;</span>, mono<span style="color:#f92672">=</span>True)
+sig, fs <span style="color:#f92672">=</span> librosa<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#39;sample.wav&#39;</span>, mono<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
 sig <span style="color:#f92672">=</span> sig[:fs <span style="color:#f92672">*</span> nsecond]
 sig_stft <span style="color:#f92672">=</span> abs(librosa<span style="color:#f92672">.</span>stft(sig)<span style="color:#f92672">.</span>T)
 sig_stft <span style="color:#f92672">/=</span> sig_stft<span style="color:#f92672">.</span>mean()
@@ -199,7 +199,7 @@ lw <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Va
 lh <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(tf<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal([nbasis, nbin]))
 
 <span style="color:#75715e"># グラフを準備します。乖離度 (loss), W, H, WH のための subplot を作ります。</span>
-fig <span style="color:#f92672">=</span> pl<span style="color:#f92672">.</span>figure(constrained_layout<span style="color:#f92672">=</span>True)
+fig <span style="color:#f92672">=</span> pl<span style="color:#f92672">.</span>figure(constrained_layout<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
 gs <span style="color:#f92672">=</span> GridSpec(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>, figure<span style="color:#f92672">=</span>fig)
 axl <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(gs[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>])
 axw <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(gs[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>:])
@@ -209,7 +209,7 @@ axs <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>
 <span style="color:#75715e"># オプティマイザを作成します。Adam のデフォルトの学習率は 0.001 ですが、</span>
 <span style="color:#75715e"># NMF は 0.1 でも動作しました。逆に、これ位にしないと学習時間がかかりすぎるようです。</span>
 <span style="color:#75715e"># ニューラルネットに比べて loss の複雑度が低いのかもしれません。</span>
-opt <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>Adam(learning_rate<span style="color:#f92672">=.</span><span style="color:#ae81ff">1</span>)
+opt <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>Adam(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">.1</span>)
 
 history <span style="color:#f92672">=</span> []
 <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10000</span>):
@@ -218,7 +218,7 @@ history <span style="color:#f92672">=</span> []
         wh <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>matmul(tf<span style="color:#f92672">.</span>exp(lw), tf<span style="color:#f92672">.</span>exp(lh))
         <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>reduce_sum((x <span style="color:#f92672">-</span> wh) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>)
     <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">loss_idiv</span>():
-        lwh <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>reduce_logsumexp(lw[:, :, None] <span style="color:#f92672">+</span> lh[None, :, :], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+        lwh <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>reduce_logsumexp(lw[:, :, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">+</span> lh[<span style="color:#66d9ef">None</span>, :, :], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
         <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>reduce_sum(x <span style="color:#f92672">*</span> (lx <span style="color:#f92672">-</span> lwh <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> tf<span style="color:#f92672">.</span>exp(lwh))
 
     <span style="color:#75715e"># Adam で変数の値を更新します。</span>
@@ -252,7 +252,7 @@ history <span style="color:#f92672">=</span> []
     axw<span style="color:#f92672">.</span>imshow(lw_display<span style="color:#f92672">.</span>T, aspect<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;auto&#39;</span>)
     axh<span style="color:#f92672">.</span>imshow(lh_display<span style="color:#f92672">.</span>T, aspect<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;auto&#39;</span>, origin<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;lower&#39;</span>)
     axs<span style="color:#f92672">.</span>imshow(lwh_display<span style="color:#f92672">.</span>T, aspect<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;auto&#39;</span>, origin<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;lower&#39;</span>)
-    pl<span style="color:#f92672">.</span>pause(<span style="color:#f92672">.</span><span style="color:#ae81ff">1</span>)
+    pl<span style="color:#f92672">.</span>pause(<span style="color:#ae81ff">.1</span>)
 </code></pre></div><h2 id="実行結果">実行結果</h2>
 <p>上のスクリプトの実行結果です。
 $W$ （右上）と $H$ （左下）が推定できています。

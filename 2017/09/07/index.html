@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 
@@ -17,21 +17,21 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
     <title>ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法 - yokaze.github.io</title>
     
-<meta name="description" content="bind, baseURL オプションを指定して hugo server を起動する。 $ # Intel Mac &#43; macOS Big Sur (11.2) &#43; Hugo 0.81.0 $ hugo server --bind=&amp;quot;0.0.0.0&amp;quot; --baseURL=&amp;quot;http://[HOSTNAME]/&amp;quot; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドする">
+<meta name="description" content="bind, baseURL オプションを指定して hugo server を起動する。 $ # Intel Mac &#43; macOS Big Sur (11.2) &#43; Hugo 0.81.0 $ hugo server --bind=&amp;#34;0.0.0.0&amp;#34; --baseURL=&amp;#34;http://[HOSTNAME]/&amp;#34; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドする">
 
 <meta property="og:title" content="ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法 - yokaze.github.io">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://yokaze.github.io/2017/09/07/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="bind, baseURL オプションを指定して hugo server を起動する。 $ # Intel Mac &#43; macOS Big Sur (11.2) &#43; Hugo 0.81.0 $ hugo server --bind=&amp;quot;0.0.0.0&amp;quot; --baseURL=&amp;quot;http://[HOSTNAME]/&amp;quot; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドする">
+<meta property="og:description" content="bind, baseURL オプションを指定して hugo server を起動する。 $ # Intel Mac &#43; macOS Big Sur (11.2) &#43; Hugo 0.81.0 $ hugo server --bind=&amp;#34;0.0.0.0&amp;#34; --baseURL=&amp;#34;http://[HOSTNAME]/&amp;#34; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドする">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
 <meta name="twitter:url" content="https://yokaze.github.io/2017/09/07/">
 <meta name="twitter:title" content="ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法 - yokaze.github.io">
-<meta name="twitter:description" content="bind, baseURL オプションを指定して hugo server を起動する。 $ # Intel Mac &#43; macOS Big Sur (11.2) &#43; Hugo 0.81.0 $ hugo server --bind=&amp;quot;0.0.0.0&amp;quot; --baseURL=&amp;quot;http://[HOSTNAME]/&amp;quot; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドする">
+<meta name="twitter:description" content="bind, baseURL オプションを指定して hugo server を起動する。 $ # Intel Mac &#43; macOS Big Sur (11.2) &#43; Hugo 0.81.0 $ hugo server --bind=&amp;#34;0.0.0.0&amp;#34; --baseURL=&amp;#34;http://[HOSTNAME]/&amp;#34; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドする">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -66,7 +66,7 @@
         "height": 60
       }
     },
-    "description": "bind, baseURL オプションを指定して hugo server を起動する。 $ # Intel Mac \u002b macOS Big Sur (11.2) \u002b Hugo 0.81.0 $ hugo server --bind=\u0026quot;0.0.0.0\u0026quot; --baseURL=\u0026quot;http:\/\/[HOSTNAME]\/\u0026quot; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドする"
+    "description": "bind, baseURL オプションを指定して hugo server を起動する。 $ # Intel Mac \u002b macOS Big Sur (11.2) \u002b Hugo 0.81.0 $ hugo server --bind=\u0026#34;0.0.0.0\u0026#34; --baseURL=\u0026#34;http:\/\/[HOSTNAME]\/\u0026#34; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドする"
   }
 </script>
 
@@ -150,9 +150,9 @@ if (!doNotTrack) {
   
 
   <div class="article-body"><p><code>bind</code>, <code>baseURL</code> オプションを指定して hugo server を起動する。</p>
-<pre><code class="language-console" data-lang="console">$ # Intel Mac + macOS Big Sur (11.2) + Hugo 0.81.0
-$ hugo server --bind=&quot;0.0.0.0&quot; --baseURL=&quot;http://[HOSTNAME]/&quot;
-</code></pre><p>HOSTNAME には自分のマシンの名前を入れてください。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># Intel Mac + macOS Big Sur (11.2) + Hugo 0.81.0</span>
+$ hugo server --bind<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0.0.0.0&#34;</span> --baseURL<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://[HOSTNAME]/&#34;</span>
+</code></pre></div><p>HOSTNAME には自分のマシンの名前を入れてください。</p>
 <p>config.toml は Web サイトをビルドするためのもので、hugo をローカル起動する際のオプションは設定できないそうです。<br />
 詳しくはリンク先をご確認ください。</p>
 <p>

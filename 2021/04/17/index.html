@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 
@@ -153,15 +153,15 @@ if (!doNotTrack) {
 この記事では yq の基本的な使い方と Kubernetes 環境での応用方法を紹介します。</p>
 <h2 id="基本的な使い方">基本的な使い方</h2>
 <p><code>yq eval</code> に続けて評価式を書くことで YAML の一部を表示したり編集したりすることができます。</p>
-<pre><code class="language-console" data-lang="console">$ yq eval [expression] [yaml_file] [flags]
-</code></pre><p><code>eval</code> コマンドは <code>e</code> と書くこともできます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ yq eval <span style="color:#f92672">[</span>expression<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>yaml_file<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>flags<span style="color:#f92672">]</span>
+</code></pre></div><p><code>eval</code> コマンドは <code>e</code> と書くこともできます。</p>
 <p><code>yq</code> は構文を色付けするので、次のように書くと <code>kubectl</code> の出力を色付けできます。</p>
-<pre><code class="language-console" data-lang="console">$ kubectl get pod sample -o yaml | yq e . -
-</code></pre><h3 id="値の表示と配列アクセス">値の表示と配列アクセス</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ kubectl get pod sample -o yaml | yq e . -
+</code></pre></div><h3 id="値の表示と配列アクセス">値の表示と配列アクセス</h3>
 <p>評価式にフィールド名を指定すると、そのフィールドだけを抜き出して表示できます。<br />
 Kubernetes リソースの <code>.spec</code> フィールドだけを表示する、といった使い方ができます。</p>
 <h4 id="alpineyaml">alpine.yaml</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
 <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
 <span style="color:#f92672">metadata</span>:
   <span style="color:#f92672">name</span>: <span style="color:#ae81ff">alpine</span>
@@ -172,25 +172,25 @@ Kubernetes リソースの <code>.spec</code> フィールドだけを表示す�
         - <span style="color:#ae81ff">inf</span>
       <span style="color:#f92672">image</span>: <span style="color:#ae81ff">alpine:3.13.3</span>
       <span style="color:#f92672">name</span>: <span style="color:#ae81ff">alpine</span>
-</code></pre></div><pre><code class="language-console" data-lang="console">$ yq e .spec alpine.yaml 
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ yq e .spec alpine.yaml 
 containers:
   - command:
       - sleep
       - inf
     image: alpine:3.13.3
     name: alpine
-
-$ yq e .spec.containers[0].name alpine.yaml
+<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>$ yq e .spec.containers<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span>.name alpine.yaml
 alpine
-</code></pre><h3 id="パイプとフィルタ">パイプとフィルタ</h3>
+</code></pre></div><h3 id="パイプとフィルタ">パイプとフィルタ</h3>
 <p>評価式はパイプ <code>|</code> で連結できます。</p>
-<pre><code class="language-console" data-lang="console">$ yq e '.spec.containers | .[0] | .image' alpine.yaml 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ yq e <span style="color:#e6db74">&#39;.spec.containers | .[0] | .image&#39;</span> alpine.yaml 
 alpine:3.13.3
-</code></pre><p><code>[]</code> を使うと配列の全ての要素に対して後続の処理を実行します。</p>
-<pre><code class="language-console" data-lang="console">$ # kind 環境を起動する
+</code></pre></div><p><code>[]</code> を使うと配列の全ての要素に対して後続の処理を実行します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># kind 環境を起動する</span>
 $ kind create cluster
-
-$ kubectl get pod -n kube-system -o yaml | yq e '.items[].metadata.name' -
+<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>$ kubectl get pod -n kube-system -o yaml | yq e <span style="color:#e6db74">&#39;.items[].metadata.name&#39;</span> -
 coredns-f9fd979d6-brw2g
 coredns-f9fd979d6-mg9vv
 etcd-kind-control-plane
@@ -199,32 +199,32 @@ kube-apiserver-kind-control-plane
 kube-controller-manager-kind-control-plane
 kube-proxy-bnd47
 kube-scheduler-kind-control-plane
-</code></pre><p><code>select</code> を使うと条件を満たす要素を取り出せます。</p>
-<pre><code class="language-console" data-lang="console">$ kubectl get pod -n kube-system -o yaml | yq e '.items[].metadata.name | select(.==&quot;kube*&quot;)' -
+</code></pre></div><p><code>select</code> を使うと条件を満たす要素を取り出せます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ kubectl get pod -n kube-system -o yaml | yq e <span style="color:#e6db74">&#39;.items[].metadata.name | select(.==&#34;kube*&#34;)&#39;</span> -
 kube-apiserver-kind-control-plane
 kube-controller-manager-kind-control-plane
 kube-proxy-bnd47
 kube-scheduler-kind-control-plane
-</code></pre><h2 id="便利なコマンド">便利なコマンド</h2>
+</code></pre></div><h2 id="便利なコマンド">便利なコマンド</h2>
 <p>Kubernetes クラスタの管理に使える便利なコマンドをまとめました。</p>
 <h4 id="特定の種類のリソースだけを表示する">特定の種類のリソースだけを表示する</h4>
 <p>複雑な YAML ファイルに含まれる特定の種類のリソースだけを表示できます。</p>
-<pre><code class="language-console" data-lang="console">$ yq e 'select(.kind==&quot;Deployment&quot;)' manifest.yaml 
-</code></pre><h4 id="一部のフィールドを除いて表示する">一部のフィールドを除いて表示する</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ yq e <span style="color:#e6db74">&#39;select(.kind==&#34;Deployment&#34;)&#39;</span> manifest.yaml 
+</code></pre></div><h4 id="一部のフィールドを除いて表示する">一部のフィールドを除いて表示する</h4>
 <p>CRD を含む大きな YAML ファイルの概略を掴むのに便利です。</p>
-<pre><code class="language-console" data-lang="console">$ yq e 'del(.spec)' manifest.yaml
-</code></pre><h4 id="yaml-の内容をソートする">YAML の内容をソートする</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ yq e <span style="color:#e6db74">&#39;del(.spec)&#39;</span> manifest.yaml
+</code></pre></div><h4 id="yaml-の内容をソートする">YAML の内容をソートする</h4>
 <p>YAML の差分を効率的に確認できます。</p>
-<pre><code class="language-console" data-lang="console">$ yq e 'sortKeys(..)' manifest.yaml
-</code></pre><h4 id="ラベルやアノテーションのキー一覧を表示する">ラベルやアノテーションのキー一覧を表示する</h4>
-<pre><code class="language-console" data-lang="console">$ kubectl get pod -n kube-system kube-apiserver-kind-control-plane -o yaml | yq e '.metadata.labels | keys | .[]' -
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ yq e <span style="color:#e6db74">&#39;sortKeys(..)&#39;</span> manifest.yaml
+</code></pre></div><h4 id="ラベルやアノテーションのキー一覧を表示する">ラベルやアノテーションのキー一覧を表示する</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ kubectl get pod -n kube-system kube-apiserver-kind-control-plane -o yaml | yq e <span style="color:#e6db74">&#39;.metadata.labels | keys | .[]&#39;</span> -
 component
 tier
-</code></pre><h4 id="ラベルやアノテーションの値を表示する">ラベルやアノテーションの値を表示する</h4>
-<pre><code class="language-console" data-lang="console">$ kubectl get pod -n kube-system kube-apiserver-kind-control-plane -o yaml | yq e '.metadata.labels[&quot;component&quot;]' -
+</code></pre></div><h4 id="ラベルやアノテーションの値を表示する">ラベルやアノテーションの値を表示する</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ kubectl get pod -n kube-system kube-apiserver-kind-control-plane -o yaml | yq e <span style="color:#e6db74">&#39;.metadata.labels[&#34;component&#34;]&#39;</span> -
 kube-apiserver
-</code></pre><h4 id="pod-に付いているラベルをすべて表示する">Pod に付いているラベルをすべて表示する</h4>
-<pre><code class="language-console" data-lang="console">$ kubectl get pod -A -o yaml | yq e '.items[].metadata | . as $i ireduce({}; . * {$i.namespace: {$i.name: $i.labels}})' -
+</code></pre></div><h4 id="pod-に付いているラベルをすべて表示する">Pod に付いているラベルをすべて表示する</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ kubectl get pod -A -o yaml | yq e <span style="color:#e6db74">&#39;.items[].metadata | . as $i ireduce({}; . * {$i.namespace: {$i.name: $i.labels}})&#39;</span> -
 kube-system:
   coredns-f9fd979d6-brw2g:
     k8s-app: kube-dns
@@ -239,7 +239,7 @@ kube-system:
     app: kindnet
     controller-revision-hash: 869899dbb6
     k8s-app: kindnet
-    pod-template-generation: &quot;1&quot;
+    pod-template-generation: &#34;1&#34;
     tier: node
   kube-apiserver-kind-control-plane:
     component: kube-apiserver
@@ -250,7 +250,7 @@ kube-system:
   kube-proxy-bnd47:
     controller-revision-hash: 6fbb4864f
     k8s-app: kube-proxy
-    pod-template-generation: &quot;1&quot;
+    pod-template-generation: &#34;1&#34;
   kube-scheduler-kind-control-plane:
     component: kube-scheduler
     tier: control-plane
@@ -258,76 +258,76 @@ local-path-storage:
   local-path-provisioner-78776bfc44-bmtw9:
     app: local-path-provisioner
     pod-template-hash: 78776bfc44
-</code></pre><p><code>ireduce</code> を使うと aggregation が書けます。</p>
-<pre><code class="language-console" data-lang="console">$ echo '[1, 2, 3]' | yq e '.[] as $i ireduce(0; . + $i)' -
+</code></pre></div><p><code>ireduce</code> を使うと aggregation が書けます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ echo <span style="color:#e6db74">&#39;[1, 2, 3]&#39;</span> | yq e <span style="color:#e6db74">&#39;.[] as $i ireduce(0; . + $i)&#39;</span> -
 6
-</code></pre><h4 id="特定の-user-や-serviceaccount-に紐付いた-rolebinding-を一覧表示する">特定の User や ServiceAccount に紐付いた RoleBinding を一覧表示する</h4>
-<pre><code class="language-console" data-lang="console">$ kubectl get rolebinding -n kube-system -o yaml | yq e '.items[] | select(.subjects[] as $i ireduce(false; . or ($i.kind==&quot;User&quot; and $i.name==&quot;system:kube-controller-manager&quot;))) | .metadata.name' -
+</code></pre></div><h4 id="特定の-user-や-serviceaccount-に紐付いた-rolebinding-を一覧表示する">特定の User や ServiceAccount に紐付いた RoleBinding を一覧表示する</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ kubectl get rolebinding -n kube-system -o yaml | yq e <span style="color:#e6db74">&#39;.items[] | select(.subjects[] as $i ireduce(false; . or ($i.kind==&#34;User&#34; and $i.name==&#34;system:kube-controller-manager&#34;))) | .metadata.name&#39;</span> -
 system::extension-apiserver-authentication-reader
 system::leader-locking-kube-controller-manager
-</code></pre><p>マニアックすぎですがこれは次のコマンドの応用です。</p>
-<pre><code class="language-console" data-lang="console">$ echo '[true, false]' | yq e 'select(.[] as $i ireduce(false; . or $i))' -
+</code></pre></div><p>マニアックすぎですがこれは次のコマンドの応用です。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ echo <span style="color:#e6db74">&#39;[true, false]&#39;</span> | yq e <span style="color:#e6db74">&#39;select(.[] as $i ireduce(false; . or $i))&#39;</span> -
 [true, false]
-$ echo '[false, false]' | yq e 'select(.[] as $i ireduce(false; . or $i))' -
+$ echo <span style="color:#e6db74">&#39;[false, false]&#39;</span> | yq e <span style="color:#e6db74">&#39;select(.[] as $i ireduce(false; . or $i))&#39;</span> -
 $
-</code></pre><h4 id="特定の-user-や-serviceaccount-に紐付いた-clusterrolebinding-を一覧表示する">特定の User や ServiceAccount に紐付いた ClusterRoleBinding を一覧表示する</h4>
-<pre><code class="language-console" data-lang="console">$ kubectl get clusterrolebinding -o yaml | yq e '.items[] | select(.subjects[] as $i ireduce(false; . or ($i.kind==&quot;User&quot; and $i.name==&quot;system:kube-scheduler&quot;))) | .metadata.name' -
+</code></pre></div><h4 id="特定の-user-や-serviceaccount-に紐付いた-clusterrolebinding-を一覧表示する">特定の User や ServiceAccount に紐付いた ClusterRoleBinding を一覧表示する</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ kubectl get clusterrolebinding -o yaml | yq e <span style="color:#e6db74">&#39;.items[] | select(.subjects[] as $i ireduce(false; . or ($i.kind==&#34;User&#34; and $i.name==&#34;system:kube-scheduler&#34;))) | .metadata.name&#39;</span> -
 system:kube-scheduler
 system:volume-scheduler
-</code></pre><p><code>roleRef</code> を参照して <code>ClusterRole</code> を直接表示することもできます。</p>
-<pre><code class="language-console" data-lang="console">$ kubectl get clusterrolebinding -o yaml | yq e '.items[] | select(.subjects[] as $i ireduce(false; . or ($i.kind==&quot;User&quot; and $i.name==&quot;system:kube-scheduler&quot;))) | .roleRef.name' - | sort | uniq
+</code></pre></div><p><code>roleRef</code> を参照して <code>ClusterRole</code> を直接表示することもできます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ kubectl get clusterrolebinding -o yaml | yq e <span style="color:#e6db74">&#39;.items[] | select(.subjects[] as $i ireduce(false; . or ($i.kind==&#34;User&#34; and $i.name==&#34;system:kube-scheduler&#34;))) | .roleRef.name&#39;</span> - | sort | uniq
 system:kube-scheduler
 system:volume-scheduler
-</code></pre><h4 id="全クラスタリソースと全-namespace-リソースを表示する">全クラスタリソースと全 namespace リソースを表示する</h4>
+</code></pre></div><h4 id="全クラスタリソースと全-namespace-リソースを表示する">全クラスタリソースと全 namespace リソースを表示する</h4>
 <p>本番環境でやると大変なことになりそう。
 小規模なテスト環境で実行すると色々勉強になります。</p>
-<pre><code class="language-console" data-lang="console">$ kubectl get $(kubectl api-resources -o name | paste -sd ,) -A -o yaml 2&gt;/dev/null | yq e '.items[] | . as $i ireduce({}; . *+ {$i.metadata.namespace: {$i.kind: [$i.metadata.name]}})' -
-</code></pre><h4 id="apigroupversion-付き">APIGroup/Version 付き</h4>
-<pre><code class="language-console" data-lang="console">$ kubectl get $(kubectl api-resources -o name | paste -sd ,) -A -o yaml 2&gt;/dev/null | yq e '.items[] | . as $i ireduce({}; . *+ {$i.metadata.namespace: {$i.apiVersion: {$i.kind: [$i.metadata.name]}}})' -
-</code></pre><h4 id="特定の-namespace-の全リソースを表示する">特定の namespace の全リソースを表示する</h4>
-<pre><code class="language-console" data-lang="console">$ kubectl get $(kubectl api-resources --namespaced -o name | paste -sd ,) -n kube-system -o yaml 2&gt;/dev/null | yq e '.items[] | . as $i ireduce({}; . *+ {$i.kind: [$i.metadata.name]})' -
-</code></pre><h4 id="apigroupversion-付き-1">APIGroup/Version 付き</h4>
-<pre><code class="language-console" data-lang="console">$ kubectl get $(kubectl api-resources --namespaced -o name | paste -sd ,) -n kube-system -o yaml 2&gt;/dev/null | yq e '.items[] | . as $i ireduce({}; . *+ {$i.apiVersion: {$i.kind: [$i.metadata.name]}})' -
-</code></pre><h2 id="複数ドキュメントの操作">複数ドキュメントの操作</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ kubectl get <span style="color:#66d9ef">$(</span>kubectl api-resources -o name | paste -sd ,<span style="color:#66d9ef">)</span> -A -o yaml 2&gt;/dev/null | yq e <span style="color:#e6db74">&#39;.items[] | . as $i ireduce({}; . *+ {$i.metadata.namespace: {$i.kind: [$i.metadata.name]}})&#39;</span> -
+</code></pre></div><h4 id="apigroupversion-付き">APIGroup/Version 付き</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ kubectl get <span style="color:#66d9ef">$(</span>kubectl api-resources -o name | paste -sd ,<span style="color:#66d9ef">)</span> -A -o yaml 2&gt;/dev/null | yq e <span style="color:#e6db74">&#39;.items[] | . as $i ireduce({}; . *+ {$i.metadata.namespace: {$i.apiVersion: {$i.kind: [$i.metadata.name]}}})&#39;</span> -
+</code></pre></div><h4 id="特定の-namespace-の全リソースを表示する">特定の namespace の全リソースを表示する</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ kubectl get <span style="color:#66d9ef">$(</span>kubectl api-resources --namespaced -o name | paste -sd ,<span style="color:#66d9ef">)</span> -n kube-system -o yaml 2&gt;/dev/null | yq e <span style="color:#e6db74">&#39;.items[] | . as $i ireduce({}; . *+ {$i.kind: [$i.metadata.name]})&#39;</span> -
+</code></pre></div><h4 id="apigroupversion-付き-1">APIGroup/Version 付き</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ kubectl get <span style="color:#66d9ef">$(</span>kubectl api-resources --namespaced -o name | paste -sd ,<span style="color:#66d9ef">)</span> -n kube-system -o yaml 2&gt;/dev/null | yq e <span style="color:#e6db74">&#39;.items[] | . as $i ireduce({}; . *+ {$i.apiVersion: {$i.kind: [$i.metadata.name]}})&#39;</span> -
+</code></pre></div><h2 id="複数ドキュメントの操作">複数ドキュメントの操作</h2>
 <h4 id="yaml-ファイルの複数ドキュメントを配列にする">YAML ファイルの複数ドキュメントを配列にする</h4>
-<pre><code class="language-console" data-lang="console">$ echo -e &quot;dog\n---\ncat&quot; | yq ea '. as $i ireduce ([]; . + $i)' -
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ echo -e <span style="color:#e6db74">&#34;dog\n---\ncat&#34;</span> | yq ea <span style="color:#e6db74">&#39;. as $i ireduce ([]; . + $i)&#39;</span> -
 - dog
 - cat
-</code></pre><p><code>ea</code> は <code>eval-all</code> の略で、ファイルに含まれる YAML ドキュメントをまとめて読み込みます。</p>
+</code></pre></div><p><code>ea</code> は <code>eval-all</code> の略で、ファイルに含まれる YAML ドキュメントをまとめて読み込みます。</p>
 <h4 id="yaml-ファイルに含まれるドキュメントの数を数える">YAML ファイルに含まれるドキュメントの数を数える</h4>
-<pre><code class="language-console" data-lang="console">$ echo -e &quot;dog\n---\ncat&quot; | yq ea '. as $i ireduce ([]; . + $i) | length' -
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ echo -e <span style="color:#e6db74">&#34;dog\n---\ncat&#34;</span> | yq ea <span style="color:#e6db74">&#39;. as $i ireduce ([]; . + $i) | length&#39;</span> -
 2
-</code></pre><h4 id="配列を複数のドキュメントに分割する">配列を複数のドキュメントに分割する</h4>
-<pre><code class="language-console" data-lang="console">$ echo '[&quot;dog&quot;, &quot;cat&quot;]' | yq e '.[] | splitDoc' -
-echo '[&quot;dog&quot;, &quot;cat&quot;]' | yq e '.[] | splitDoc' -
+</code></pre></div><h4 id="配列を複数のドキュメントに分割する">配列を複数のドキュメントに分割する</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ echo <span style="color:#e6db74">&#39;[&#34;dog&#34;, &#34;cat&#34;]&#39;</span> | yq e <span style="color:#e6db74">&#39;.[] | splitDoc&#39;</span> -
+echo &#39;[&#34;dog&#34;, &#34;cat&#34;]&#39; | yq e &#39;.[] | splitDoc&#39; -
 dog
 ---
 cat
-</code></pre><p><code>jsonnet</code> でリソースの配列を作り、<code>yq</code> でリソースごとのドキュメントに分割して YAML を出力する、というようなこともできます。</p>
+</code></pre></div><p><code>jsonnet</code> でリソースの配列を作り、<code>yq</code> でリソースごとのドキュメントに分割して YAML を出力する、というようなこともできます。</p>
 <h2 id="yaml-と-json-の相互変換">YAML と JSON の相互変換</h2>
 <p><code>yq</code> コマンドは JSON を直接読み込めます。
 <code>-P</code> オプションを付けると YAML に整形して出力します。</p>
-<pre><code class="language-console" data-lang="console">$ echo '{&quot;kind&quot;: &quot;dog&quot;}' | yq e . - -P
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ echo <span style="color:#e6db74">&#39;{&#34;kind&#34;: &#34;dog&#34;}&#39;</span> | yq e . - -P
 kind: dog
-</code></pre><p><code>-j</code> オプションを使うと読み込んだ YAML を JSON に変換します。</p>
-<pre><code class="language-console" data-lang="console">$ yq e . sample.yaml -j
+</code></pre></div><p><code>-j</code> オプションを使うと読み込んだ YAML を JSON に変換します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ yq e . sample.yaml -j
 {
-  &quot;animal&quot;: {
-    &quot;type&quot;: &quot;word&quot;,
-    &quot;members&quot;: [
-      &quot;dog&quot;,
-      &quot;cat&quot;
+  &#34;animal&#34;: {
+    &#34;type&#34;: &#34;word&#34;,
+    &#34;members&#34;: [
+      &#34;dog&#34;,
+      &#34;cat&#34;
     ]
   }
 }
-</code></pre><h4 id="yq-でマニフェストを-json-に変換しjq-のコマンドを使う">yq でマニフェストを JSON に変換し、jq のコマンドを使う</h4>
+</code></pre></div><h4 id="yq-でマニフェストを-json-に変換しjq-のコマンドを使う">yq でマニフェストを JSON に変換し、jq のコマンドを使う</h4>
 <p><code>yq</code> には <code>printf</code> 関数がありませんが、<code>jq</code> と組み合わせて使うことができます。</p>
-<pre><code class="language-console" data-lang="console">$ yq e . manifest.yaml -j | jq -r '&quot;\(.kind): \(.metadata.namespace)/\(.metadata.name)&quot;'
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ yq e . manifest.yaml -j | jq -r <span style="color:#e6db74">&#39;&#34;\(.kind): \(.metadata.namespace)/\(.metadata.name)&#34;&#39;</span>
 Pod: default/sample
-</code></pre><h4 id="jq-で処理した結果を-yaml-に変換する"><code>jq</code> で処理した結果を YAML に変換する</h4>
+</code></pre></div><h4 id="jq-で処理した結果を-yaml-に変換する"><code>jq</code> で処理した結果を YAML に変換する</h4>
 <p>JSON を <code>jq</code> のフィルタで処理し、結果を YAML で確認できます。</p>
-<pre><code class="language-console" data-lang="console">$ kubectl get pod alpine -o json | jq .spec | yq e . - -P
-</code></pre><h2 id="その他のコマンド">その他のコマンド</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ kubectl get pod alpine -o json | jq .spec | yq e . - -P
+</code></pre></div><h2 id="その他のコマンド">その他のコマンド</h2>
 <p><code>yq</code> には他にも色々なコマンドがあります。
 詳細は公式マニュアルの <a href="https://mikefarah.gitbook.io/yq/operators">Operators</a> をご確認ください。</p>
 <p>
