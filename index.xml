@@ -299,7 +299,7 @@
     <item>
       <title>clang でシフト演算のビット数超過を警告する (-Wshift-count-overflow)</title>
       <link>https://yokaze.github.io/2018/01/29/</link>
-      <pubDate>Mon, 29 Jan 2018 00:17:55 +0900</pubDate>
+      <pubDate>Mon, 29 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/01/29/</guid>
       <description>clang でシフト演算のビット数超過を警告するには、-Wshift-count-overflow オプションを指定します。 #include &amp;lt;stdio.h&amp;gt; int main() { int x = 8; int y = x &amp;lt;&amp;lt;</description>
