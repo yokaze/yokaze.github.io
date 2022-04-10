@@ -209,7 +209,7 @@
     <item>
       <title>clang で負のビットシフトを警告する (-Wshift-count-negative)</title>
       <link>https://yokaze.github.io/2018/01/18/</link>
-      <pubDate>Thu, 18 Jan 2018 22:55:39 +0900</pubDate>
+      <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/01/18/</guid>
       <description>clang で負のビットシフトを警告するには、-Wshift-count-negative オプションを指定します。 #include &amp;lt;stdio.h&amp;gt; int main() { int x = 8; int y = x &amp;lt;&amp;lt; -1; printf(&amp;#34;%d\n&amp;#34;, y); return</description>

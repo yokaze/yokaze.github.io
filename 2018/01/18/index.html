@@ -50,8 +50,8 @@
       "height": 800,
       "width": 800
     },
-    "datePublished": "2018-01-18T22:55:39JST",
-    "dateModified": "2021-03-06T00:00:00JST",
+    "datePublished": "2018-01-18T00:00:00JST",
+    "dateModified": "2022-04-10T00:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -139,7 +139,7 @@ if (!doNotTrack) {
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2021-03-06T00:00:00JST">Mar 6, 2021</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2022-04-10T00:00:00JST">Apr 10, 2022</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
       
     </ul>
@@ -162,17 +162,17 @@ if (!doNotTrack) {
 }
 </code></pre></div><p>負の値を指定してビットシフトを行った場合の動作は未定義です。
 したがって、意図しない演算結果となることがあります。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
 $ clang sample.cpp -o sample -Wshift-count-negative
 sample.cpp:6:15: warning: shift count is negative [-Wshift-count-negative]
     int y = x &lt;&lt; -1;
               ^  ~~
 1 warning generated.
-$
-$ ./sample
-0
+<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>$ ./sample
+8
 </code></pre></div><p><code>-Wshift-count-negative</code> は <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wshift-count-negative">デフォルトで有効になっている</a> ため、警告は自動的に表示されます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
 $ clang sample.cpp
 sample.cpp:6:15: warning: shift count is negative [-Wshift-count-negative]
     int y = x &lt;&lt; -1;
@@ -180,8 +180,9 @@ sample.cpp:6:15: warning: shift count is negative [-Wshift-count-negative]
 1 warning generated.
 </code></pre></div><h2 id="警告を抑制する">警告を抑制する</h2>
 <p>逆に、警告を抑制したい場合は <code>-Wno-shift-count-negative</code> を指定します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
 $ clang sample.cpp -Wno-shift-count-negative
+$
 </code></pre></div><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -190,7 +191,7 @@ $ clang sample.cpp -Wno-shift-count-negative
 <h2 id="参考資料">参考資料</h2>
 <ul>
 <li>
-<p>Clang 12 documentation — DIAGNOSTIC FLAGS IN CLANG<br />
+<p>Clang documentation — DIAGNOSTIC FLAGS IN CLANG<br />
 <span style="word-break: break-all;">
 <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wshift-count-negative">https://clang.llvm.org/docs/DiagnosticsReference.html#wshift-count-negative</a>
 </span></p>
