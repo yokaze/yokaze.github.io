@@ -191,7 +191,7 @@
     <item>
       <title>clang で range-based for の暗黙コピーを警告する (-Wrange-loop-analysis)</title>
       <link>https://yokaze.github.io/2018/01/28/</link>
-      <pubDate>Sun, 28 Jan 2018 19:48:59 +0900</pubDate>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/01/28/</guid>
       <description>clang で range-based for の暗黙コピーを警告するには、-Wrange-loop-analysis オプションを指定します。 次の例では const pair&amp;lt;const int, int&amp;gt;&amp;amp; で値を受け取るべきと</description>
