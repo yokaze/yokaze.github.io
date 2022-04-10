@@ -335,10 +335,10 @@
     <item>
       <title>clang で 暗黙の符号変換を警告する (-Wsign-conversion)</title>
       <link>https://yokaze.github.io/2018/01/17/</link>
-      <pubDate>Wed, 17 Jan 2018 20:41:18 +0900</pubDate>
+      <pubDate>Wed, 17 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/01/17/</guid>
-      <description>clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; return 0; } $ # Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0</description>
+      <description>clang で暗黙の符号変換を警告するには、-Wsign-conversion オプションを指定します。 int main() { unsigned int x = -1; return 0; } $ # M1 Mac (Monterey) + Apple clang 13.1.6 $ clang sample.cpp -Wsign-conversion</description>
     </item>
     
     <item>
@@ -470,10 +470,10 @@
     <item>
       <title>clang でマクロの再定義を警告する (-Wmacro-redefined)</title>
       <link>https://yokaze.github.io/2017/09/21/</link>
-      <pubDate>Thu, 21 Sep 2017 18:00:00 +0900</pubDate>
+      <pubDate>Thu, 21 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/21/</guid>
-      <description>clang でマクロの再定義を警告するには、-Wmacro-redefined オプションを指定します。 #define MY_DEFINE 111 #define MY_DEFINE 222 int main(void) { return 0; } $ # Intel Mac + macOS Big Sur (11.2) + Apple clang</description>
+      <description>clang でマクロの再定義を警告するには、-Wmacro-redefined オプションを指定します。 #define MY_DEFINE 111 #define MY_DEFINE 222 int main(void) { return 0; } $ # M1 Mac (Monterey) + Apple clang 13.1.6 $ clang sample.cpp</description>
     </item>
     
     <item>

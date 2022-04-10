@@ -17,21 +17,21 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
     <title>clang でマクロの再定義を警告する (-Wmacro-redefined) - yokaze.github.io</title>
     
-<meta name="description" content="clang でマクロの再定義を警告するには、-Wmacro-redefined オプションを指定します。 #define MY_DEFINE 111 #define MY_DEFINE 222 int main(void) { return 0; } $ # Intel Mac &#43; macOS Big Sur (11.2) &#43; Apple clang">
+<meta name="description" content="clang でマクロの再定義を警告するには、-Wmacro-redefined オプションを指定します。 #define MY_DEFINE 111 #define MY_DEFINE 222 int main(void) { return 0; } $ # M1 Mac (Monterey) &#43; Apple clang 13.1.6 $ clang sample.cpp">
 
 <meta property="og:title" content="clang でマクロの再定義を警告する (-Wmacro-redefined) - yokaze.github.io">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://yokaze.github.io/2017/09/21/">
 <meta property="og:image" content="https://yokaze.github.io/images/default.png">
 <meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="clang でマクロの再定義を警告するには、-Wmacro-redefined オプションを指定します。 #define MY_DEFINE 111 #define MY_DEFINE 222 int main(void) { return 0; } $ # Intel Mac &#43; macOS Big Sur (11.2) &#43; Apple clang">
+<meta property="og:description" content="clang でマクロの再定義を警告するには、-Wmacro-redefined オプションを指定します。 #define MY_DEFINE 111 #define MY_DEFINE 222 int main(void) { return 0; } $ # M1 Mac (Monterey) &#43; Apple clang 13.1.6 $ clang sample.cpp">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="yokaze.github.io">
 <meta name="twitter:url" content="https://yokaze.github.io/2017/09/21/">
 <meta name="twitter:title" content="clang でマクロの再定義を警告する (-Wmacro-redefined) - yokaze.github.io">
-<meta name="twitter:description" content="clang でマクロの再定義を警告するには、-Wmacro-redefined オプションを指定します。 #define MY_DEFINE 111 #define MY_DEFINE 222 int main(void) { return 0; } $ # Intel Mac &#43; macOS Big Sur (11.2) &#43; Apple clang">
+<meta name="twitter:description" content="clang でマクロの再定義を警告するには、-Wmacro-redefined オプションを指定します。 #define MY_DEFINE 111 #define MY_DEFINE 222 int main(void) { return 0; } $ # M1 Mac (Monterey) &#43; Apple clang 13.1.6 $ clang sample.cpp">
 <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
 
 
@@ -50,8 +50,8 @@
       "height": 800,
       "width": 800
     },
-    "datePublished": "2017-09-21T18:00:00JST",
-    "dateModified": "2021-03-06T00:00:00JST",
+    "datePublished": "2017-09-21T00:00:00JST",
+    "dateModified": "2022-04-10T00:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -66,7 +66,7 @@
         "height": 60
       }
     },
-    "description": "clang でマクロの再定義を警告するには、-Wmacro-redefined オプションを指定します。 #define MY_DEFINE 111 #define MY_DEFINE 222 int main(void) { return 0; } $ # Intel Mac \u002b macOS Big Sur (11.2) \u002b Apple clang"
+    "description": "clang でマクロの再定義を警告するには、-Wmacro-redefined オプションを指定します。 #define MY_DEFINE 111 #define MY_DEFINE 222 int main(void) { return 0; } $ # M1 Mac (Monterey) \u002b Apple clang 13.1.6 $ clang sample.cpp"
   }
 </script>
 
@@ -139,7 +139,7 @@ if (!doNotTrack) {
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2021-03-06T00:00:00JST">Mar 6, 2021</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2022-04-10T00:00:00JST">Apr 10, 2022</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
       
     </ul>
@@ -157,7 +157,7 @@ if (!doNotTrack) {
 {
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
 $ clang sample.cpp -Wmacro-redefined
 sample.cpp:2:9: warning: &#39;MY_DEFINE&#39; macro redefined [-Wmacro-redefined]
 #define MY_DEFINE   <span style="color:#ae81ff">222</span>
@@ -168,7 +168,7 @@ sample.cpp:1:9: note: previous definition is here
 1 warning generated.
 </code></pre></div><p><code>-Wmacro-redefined</code> は <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wmacro-redefined">デフォルトで有効になっている</a> ため、警告は自動的に表示されます。<br />
 Xcode などの開発環境の設定によって、<code>-Wmacro-redefined</code> を個別に設定しなければならない場合もあります。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
 $ clang sample.cpp
 sample.cpp:2:9: warning: &#39;MY_DEFINE&#39; macro redefined [-Wmacro-redefined]
 #define MY_DEFINE   <span style="color:#ae81ff">222</span>
@@ -179,15 +179,16 @@ sample.cpp:1:9: note: previous definition is here
 1 warning generated.
 </code></pre></div><h2 id="警告を抑制する">警告を抑制する</h2>
 <p>逆に、警告を抑制したい場合は <code>-Wno-macro-redefined</code> を指定します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># Intel Mac + macOS Big Sur (11.2) + Apple clang 12.0.0</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
 $ clang sample.cpp -Wno-macro-redefined
+$
 </code></pre></div><h2 id="gcc-のオプション">gcc のオプション</h2>
 <p><code>-Wmacro-redefined</code> は gcc でも使うことができます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># Intel Mac + macOS Big Sur (11.2) + gcc 10.2.0</span>
-$ gcc-10 sample.cpp
-sample.cpp:2: warning: &#34;MY_DEFINE&#34; redefined
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + gcc 11.2.0</span>
+$ gcc-11 sample.cpp
+$sample.cpp:2: warning: <span style="color:#e6db74">&#34;MY_DEFINE&#34;</span> redefined
     2 | #define MY_DEFINE   222
-      |
+      | 
 sample.cpp:1: note: this is the location of the previous definition
     1 | #define MY_DEFINE   111
       |
@@ -198,7 +199,7 @@ sample.cpp:1: note: this is the location of the previous definition
 
 <h2 id="参考資料">参考資料</h2>
 <ul>
-<li>Clang 12 documentation — DIAGNOSTIC FLAGS IN CLANG<br />
+<li>Clang documentation — DIAGNOSTIC FLAGS IN CLANG<br />
 <span style="word-break: break-all;">
 <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wmacro-redefined">https://clang.llvm.org/docs/DiagnosticsReference.html#wmacro-redefined</a>
 </span></li>

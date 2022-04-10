@@ -101,10 +101,10 @@
     <item>
       <title>clang でマクロの再定義を警告する (-Wmacro-redefined)</title>
       <link>https://yokaze.github.io/2017/09/21/</link>
-      <pubDate>Thu, 21 Sep 2017 18:00:00 +0900</pubDate>
+      <pubDate>Thu, 21 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/21/</guid>
-      <description>clang でマクロの再定義を警告するには、-Wmacro-redefined オプションを指定します。 #define MY_DEFINE 111 #define MY_DEFINE 222 int main(void) { return 0; } $ # Intel Mac + macOS Big Sur (11.2) + Apple clang</description>
+      <description>clang でマクロの再定義を警告するには、-Wmacro-redefined オプションを指定します。 #define MY_DEFINE 111 #define MY_DEFINE 222 int main(void) { return 0; } $ # M1 Mac (Monterey) + Apple clang 13.1.6 $ clang sample.cpp</description>
     </item>
     
     <item>
