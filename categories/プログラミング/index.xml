@@ -119,10 +119,10 @@
     <item>
       <title>clang でループ式が実行されない場合に警告を出す (-Wunreachable-code-loop-increment)</title>
       <link>https://yokaze.github.io/2018/09/07/</link>
-      <pubDate>Fri, 07 Sep 2018 21:00:00 +0900</pubDate>
+      <pubDate>Fri, 07 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/09/07/</guid>
-      <description>clang でループ式が実行されない場合に警告を出すには、-Wunreachable-code-loop-increment オプションを指定します。 int</description>
+      <description>clang でループ式が実行されない場合に警告を出すには、-Wunreachable-code-loop-increment オプションを指定します。 sample.cpp</description>
     </item>
     
     <item>
