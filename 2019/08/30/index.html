@@ -1,190 +1,145 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+
+<head>
     <meta charset="utf-8">
-<meta http-equiv="content-language" content="ja">
-<meta name="pinterest" content="nopin">
-<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.95.0" />
-
-
-
-<link rel="canonical" href="https://yokaze.github.io/2019/08/30/">
-
-
+    <meta http-equiv="content-language" content="ja">
+    <meta name="pinterest" content="nopin">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <meta name="generator" content="Hugo 0.95.0" />
+    <link rel="canonical" href="https://yokaze.github.io/2019/08/30/">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
     <title>TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する - yokaze.github.io</title>
-    
-<meta name="description" content="TensorFlow 2.0 の練習を兼ねて、混合ガウス分布 (GMM) を実装しました。 ページの末尾 に EM, Adam, RMSprop の比較アニメーションを載せています。 問題設定 GMM は実数値の観測データ X">
+    <meta name="description" content="TensorFlow 2.0 の練習を兼ねて、混合ガウス分布 (GMM) を実装しました。 ページの末尾 に EM, Adam, RMSprop の比較アニメーションを載せています。 問題設定 GMM は実数値の観測データ X">
+    <meta property="og:title" content="TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する - yokaze.github.io">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yokaze.github.io/2019/08/30/">
+    <meta property="og:image" content="https://yokaze.github.io/images/default.png">
+    <meta property="og:site_name" content="yokaze.github.io">
+    <meta property="og:description" content="TensorFlow 2.0 の練習を兼ねて、混合ガウス分布 (GMM) を実装しました。 ページの末尾 に EM, Adam, RMSprop の比較アニメーションを載せています。 問題設定 GMM は実数値の観測データ X">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="yokaze.github.io">
+    <meta name="twitter:url" content="https://yokaze.github.io/2019/08/30/">
+    <meta name="twitter:title" content="TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する - yokaze.github.io">
+    <meta name="twitter:description" content="TensorFlow 2.0 の練習を兼ねて、混合ガウス分布 (GMM) を実装しました。 ページの末尾 に EM, Adam, RMSprop の比較アニメーションを載せています。 問題設定 GMM は実数値の観測データ X">
+    <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https:\/\/yokaze.github.io\/"
+            },
+            "headline": "TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する - yokaze.github.io",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/yokaze.github.io\/images\/default.png",
+                "height": 800,
+                "width": 800
+            },
+            "datePublished": "2019-08-30T21:00:00JST",
+            "dateModified": "2019-08-30T21:00:00JST",
+            "author": {
+                "@type": "Person",
+                "name": "yokaze.github.io"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "yokaze.github.io",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/yokaze.github.io\/images/logo.png",
+                    "width": 600,
+                    "height": 60
+                }
+            },
+            "description": "TensorFlow 2.0 の練習を兼ねて、混合ガウス分布 (GMM) を実装しました。 ページの末尾 に EM, Adam, RMSprop の比較アニメーションを載せています。 問題設定 GMM は実数値の観測データ X"
+        }
 
-<meta property="og:title" content="TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する - yokaze.github.io">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2019/08/30/">
-<meta property="og:image" content="https://yokaze.github.io/images/default.png">
-<meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="TensorFlow 2.0 の練習を兼ねて、混合ガウス分布 (GMM) を実装しました。 ページの末尾 に EM, Adam, RMSprop の比較アニメーションを載せています。 問題設定 GMM は実数値の観測データ X">
-<meta property="og:locale" content="ja_JP">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2019/08/30/">
-<meta name="twitter:title" content="TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する - yokaze.github.io">
-<meta name="twitter:description" content="TensorFlow 2.0 の練習を兼ねて、混合ガウス分布 (GMM) を実装しました。 ページの末尾 に EM, Adam, RMSprop の比較アニメーションを載せています。 問題設定 GMM は実数値の観測データ X">
-<meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
-
-
-<script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "NewsArticle",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id":"https:\/\/yokaze.github.io\/"
-    },
-    "headline": "TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する - yokaze.github.io",
-    "image": {
-      "@type": "ImageObject",
-      "url": "https:\/\/yokaze.github.io\/images\/default.png",
-      "height": 800,
-      "width": 800
-    },
-    "datePublished": "2019-08-30T21:00:00JST",
-    "dateModified": "2019-08-30T21:00:00JST",
-    "author": {
-      "@type": "Person",
-      "name": "yokaze.github.io"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "yokaze.github.io",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https:\/\/yokaze.github.io\/images/logo.png",
-        "width": 600,
-        "height": 60
-      }
-    },
-    "description": "TensorFlow 2.0 の練習を兼ねて、混合ガウス分布 (GMM) を実装しました。 ページの末尾 に EM, Adam, RMSprop の比較アニメーションを載せています。 問題設定 GMM は実数値の観測データ X"
-  }
-</script>
-
-
+    </script>
     <link href="https://yokaze.github.io/css/styles.css" rel="stylesheet">
-    
+</head>
 
-  </head>
+<body>
+    <script type="application/javascript">
+        var doNotTrack = false;
+        if (!doNotTrack) {
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-83271338-1', 'auto');
+            ga('send', 'pageview');
+        }
 
-  <body>
-    
-    
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-83271338-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-    
-
+    </script>
     <header class="l-header">
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
-          </div>
-
-          
-          <div id="navbar" class="collapse navbar-collapse">
-            
-            <ul class="nav navbar-nav navbar-right">
-              
-              
-              <li><a href="/about/">About</a></li>
-              
-              
-              
-              <li><a href="/software/">Software</a></li>
-              
-              
-            </ul>
-            
-          </div>
-          
-
-        </div>
-      </nav>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/software/">Software</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-
     <main>
-      <div class="container">
-        
-<div class="row">
-  <div class="col-md-8">
-
-    
-
-    <article class="single">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-08-30T21:00:00JST">Aug 30, 2019</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2019/">2019</a></li>
-      
-      
-    </ul>
-    <h1 class="title">TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する</h1>
-  </header>
-
-  
-
-  <div class="article-body"><p>TensorFlow 2.0 の練習を兼ねて、混合ガウス分布 (GMM) を実装しました。</p>
-<p><a href="#result">ページの末尾</a> に EM, Adam, RMSprop の比較アニメーションを載せています。</p>
-<h2 id="問題設定">問題設定</h2>
-<p><div>
-GMM は実数値の観測データ $X = [ x_1 \cdots x_N ]$ の真の分布を多次元ガウス分布の混合和
-<div style="overflow-x: auto;">
-$$
-\begin{align*}
-p(X|\pi, \mu, \Lambda) &= \prod_{n = 1}^N \sum_{k = 1}^K \pi_k \mathcal{N}(x_n | \mu_k, \Lambda_k^{-1})
-\end{align*}
-$$
-</div>
-としてモデル化し、モデルパラメータ $\pi, \mu, \Lambda$ を推定する問題です。
-$\pi$ の成分は各ガウス分布の重みで、$\mu$ と $\Lambda$ が各分布の平均ベクトルと精度行列をあらわします。
-</div></p>
-<p><div>
-EM アルゴリズムでは補助確率変数 $Z$ を導入し、完全同時分布を作ることで各パラメータを解析的に更新します。
-<div style="overflow-x: auto;">
-$$
-p(X, Z|\pi, \mu, \Lambda) = \prod_{n = 1}^N \prod_{k = 1}^K \left\{ \pi_k \mathcal{N}(x_n | \mu_k, \Lambda_k^{-1}) \right\}^{z_{nk}}
-$$
-</div>
-</div></p>
-<p><div>
-最急降下法を使う場合、尤度の対数を数値微分することでパラメータを更新します。
-$\pi$ の各成分を自由に更新すると混合率の総和が 1 から外れてしまうため、$\pi$ を正規化されていない変数と考え損失関数の計算時に正規化を行います。
-</div></p>
-<p><div>
-また、損失関数にペナルティ項 $|\sum_k \pi_k - 1|$ を追加することで $\pi$ の総和が 1 から大きく外れないようにしました。
-</div></p>
-<p><div>
-ここでは簡単のため、精度行列の対角成分のみを推定しています。
-混合率と精度の対数 $\ln \pi_k, \ln \Lambda_k$ を変数とすることで、これらの変数が負の値にならないことを保証しています。
-</div></p>
-<h2 id="ソースコード">ソースコード</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <article class="single">
+                        <header>
+                            <ul class="p-facts">
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-08-30T21:00:00JST">Aug 30, 2019</time></li>
+                                <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2019/">2019</a></li>
+                            </ul>
+                            <h1 class="title">TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する</h1>
+                        </header>
+                        <div class="article-body">
+                            <p>TensorFlow 2.0 の練習を兼ねて、混合ガウス分布 (GMM) を実装しました。</p>
+                            <p><a href="#result">ページの末尾</a> に EM, Adam, RMSprop の比較アニメーションを載せています。</p>
+                            <h2 id="問題設定">問題設定</h2>
+                            <p>
+                            <div> GMM は実数値の観測データ $X = [ x_1 \cdots x_N ]$ の真の分布を多次元ガウス分布の混合和 <div style="overflow-x: auto;"> $$ \begin{align*} p(X|\pi, \mu, \Lambda) &= \prod_{n = 1}^N \sum_{k = 1}^K \pi_k \mathcal{N}(x_n | \mu_k, \Lambda_k^{-1}) \end{align*} $$ </div> としてモデル化し、モデルパラメータ $\pi, \mu, \Lambda$ を推定する問題です。 $\pi$ の成分は各ガウス分布の重みで、$\mu$ と $\Lambda$ が各分布の平均ベクトルと精度行列をあらわします。 </div>
+                            </p>
+                            <p>
+                            <div> EM アルゴリズムでは補助確率変数 $Z$ を導入し、完全同時分布を作ることで各パラメータを解析的に更新します。 <div style="overflow-x: auto;"> $$ p(X, Z|\pi, \mu, \Lambda) = \prod_{n = 1}^N \prod_{k = 1}^K \left\{ \pi_k \mathcal{N}(x_n | \mu_k, \Lambda_k^{-1}) \right\}^{z_{nk}} $$ </div>
+                            </div>
+                            </p>
+                            <p>
+                            <div> 最急降下法を使う場合、尤度の対数を数値微分することでパラメータを更新します。 $\pi$ の各成分を自由に更新すると混合率の総和が 1 から外れてしまうため、$\pi$ を正規化されていない変数と考え損失関数の計算時に正規化を行います。 </div>
+                            </p>
+                            <p>
+                            <div> また、損失関数にペナルティ項 $|\sum_k \pi_k - 1|$ を追加することで $\pi$ の総和が 1 から大きく外れないようにしました。 </div>
+                            </p>
+                            <p>
+                            <div> ここでは簡単のため、精度行列の対角成分のみを推定しています。 混合率と精度の対数 $\ln \pi_k, \ln \Lambda_k$ を変数とすることで、これらの変数が負の値にならないことを保証しています。 </div>
+                            </p>
+                            <h2 id="ソースコード">ソースコード</h2>
+                            <div class="highlight">
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> scipy <span style="color:#66d9ef">as</span> sp
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> subprocess
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> tensorflow <span style="color:#66d9ef">as</span> tf
@@ -311,214 +266,182 @@ $\pi$ の各成分を自由に更新すると混合率の総和が 1 から外�
 </span></span><span style="display:flex;"><span>    process_em(z, nstep)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
 </span></span><span style="display:flex;"><span>    process_sgd(z, nstep, use_adam)
-</span></span></code></pre></div><p><a name="result"></a></p>
-<h2 id="実行結果">実行結果</h2>
-<p>スクリプトの実行結果です。
-動作環境は macOS Mojave (10.14) + TensorFlow 2.0.0rc0 です。</p>
-<h3 id="em-アルゴリズム">EM アルゴリズム</h3>
-<p>閉形式の更新式を使っているため、イテレーション毎に必ず尤度が上がります。
-<figure class="center"><img src="/2019/08/30/em.png"/>
-</figure>
-</p>
-<h3 id="adam">Adam</h3>
-<p>モーメンタムと各種の調整項によってパラメータを滑らかに更新します。
-ハイパーパラメータの設定によっては、ゆらゆらと揺れるような動きになります。
-<figure class="center"><img src="/2019/08/30/adam.png"/>
-</figure>
-</p>
-<h3 id="rmsprop">RMSprop</h3>
-<p>モーメンタム項がなく、更新によってパラメータが振動しています。
-<figure class="center"><img src="/2019/08/30/rmsprop.png"/>
-</figure>
-</p>
-<h3 id="追記centered-rmsprop">追記：Centered RMSprop</h3>
-<p>Centered RMSprop を使うと収束が改善します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>opt <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>RMSprop(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">.03</span>, centered<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
-</span></span></code></pre></div><p>RMSprop, Centered RMSprop とも中央のコンポーネントが左右どちらに振れるかは試行によってまちまちなのですが、
-左のコンポーネントが収束する速さはほぼこのアニメーション通りになります。
-<figure class="center"><img src="/2019/08/30/centered_rmsprop.png"/>
-</figure>
-</p>
-<p>
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</p>
-
-<h2 id="参考文献">参考文献</h2>
-<ul>
-<li>
-<p>TensorFlow<br />
-<span style="word-break: break-all;">
-<a href="https://www.tensorflow.org/">https://www.tensorflow.org/</a>
-</span></p>
-</li>
-<li>
-<p>tf.keras.optimizers.Optimizer | TensorFlow Core r2.0<br />
-<span style="word-break: break-all;">
-<a href="https://www.tensorflow.org/versions/r2.0/api_docs/python/tf/keras/optimizers/Optimizer">https://www.tensorflow.org/versions/r2.0/api_docs/python/tf/keras/optimizers/Optimizer</a>
-</span></p>
-</li>
-<li>
-<p>tf.keras.optimizers.Adam | TensorFlow Core r2.0<br />
-<span style="word-break: break-all;">
-<a href="https://www.tensorflow.org/versions/r2.0/api_docs/python/tf/keras/optimizers/Adam">https://www.tensorflow.org/versions/r2.0/api_docs/python/tf/keras/optimizers/Adam</a>
-</span></p>
-</li>
-<li>
-<p>tf.keras.optimizers.RMSprop | TensorFlow Core r2.0<br />
-<span style="word-break: break-all;">
-<a href="https://www.tensorflow.org/versions/r2.0/api_docs/python/tf/keras/optimizers/RMSprop">https://www.tensorflow.org/versions/r2.0/api_docs/python/tf/keras/optimizers/RMSprop</a>
-</span></p>
-</li>
-<li>
-<p>EM アルゴリズム<br />
-<span style="word-break: break-all;">
-<a href="https://yokaze.github.io/2017/10/11/">https://yokaze.github.io/2017/10/11/</a>
-</span></p>
-</li>
-<li>
-<p>TensorFlow 2.0 で非負値行列因子分解 (NMF) を解く<br />
-<span style="word-break: break-all;">
-<a href="https://yokaze.github.io/2019/08/12/">https://yokaze.github.io/2019/08/12/</a>
-</span></p>
-</li>
-<li>
-<p>ワンライナーで平均と標準偏差を計算する - Qiita<br />
-<span style="word-break: break-all;">
-<a href="https://qiita.com/haruyosh/items/93a794e51512f7efaaa3">https://qiita.com/haruyosh/items/93a794e51512f7efaaa3</a>
-</span></p>
-</li>
-<li>
-<p>ラグランジュ緩和問題 - 数理計画用語集<br />
-<span style="word-break: break-all;">
-<a href="http://www.msi.co.jp/nuopt/glossary/term_c4995faa151e2d66d8ea36c8eaff94885d60c19f.html">http://www.msi.co.jp/nuopt/glossary/term_c4995faa151e2d66d8ea36c8eaff94885d60c19f.html</a>
-</span></p>
-</li>
-</ul>
-</div>
- 
-  <br />
-
-  <footer class="article-footer">
-    
-    
-    
-    <section class="bordered">
-      <header>
-        <div class="panel-title">CATEGORIES</div>
-      </header>
-      <div>
-        <ul class="p-terms">
-          
-          <li><a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/">機械学習</a></li>
-          
-        </ul>
-      </div>
-    </section>
-    
-    
-  </footer>
-
-</article>
-
-
-    
-  </div>
-
-  <div class="col-md-4">
-    
-<aside class="l-sidebar">
-
-  
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">RELATED POSTS</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://yokaze.github.io/2019/08/12/" class="list-group-item">TensorFlow 2.0 で非負値行列因子分解 (NMF) を解く</a>
-      
-      <a href="https://yokaze.github.io/2019/08/07/" class="list-group-item">TensorFlow 2.0 で Variable を ndarray に変換する</a>
-      
-      <a href="https://yokaze.github.io/2019/09/12/" class="list-group-item">Sliced Wasserstein GMM を実装してみた</a>
-      
-      <a href="https://yokaze.github.io/2017/09/27/" class="list-group-item">mac に最新の NumPy (SciPy) をインストールする</a>
-      
-      <a href="https://yokaze.github.io/2017/09/17/" class="list-group-item">mac に SciPy がプリインストールされているか調べる</a>
-      
-      <a href="https://yokaze.github.io/2019/08/23/" class="list-group-item">線形位相空間の原点の近傍が併呑集合であることを証明する</a>
-      
-      <a href="https://yokaze.github.io/2019/07/13/" class="list-group-item">Monge-Kantorovich の問題を SciPy で解く</a>
-      
-      <a href="https://yokaze.github.io/2019/07/12/" class="list-group-item">Wasserstein 計量が距離関数になることを証明する</a>
-      
-      <a href="https://yokaze.github.io/2018/04/12/" class="list-group-item">pyscience11 で C&#43;&#43; から SciPy と Matplotlib を使う</a>
-      
-      <a href="https://yokaze.github.io/2018/01/13/" class="list-group-item">論文紹介: Feature Learning for Chord Recognition: The Deep Chroma Extractor</a>
-      
-    </div>
-  </section>
-  
-
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">CATEGORY</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
-      
-      <a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="list-group-item">機械学習</a>
-      
-      <a href="https://yokaze.github.io/categories/%E5%86%99%E7%9C%9F" class="list-group-item">写真</a>
-      
-    </div>
-  </section>
-  
-
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">AUTHOR</div>
-    </div>
-    <div class="list-group">
-      <a href="https://twitter.com/chrofieyue" class="list-group-item">夜風&ensp;<font color="#00acee" /><i class="fa fa-twitter" aria-hidden="true"></i></font></a>
-    </div>
-  </section>
-
-</aside>
-
-  </div>
-</div>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config
+</span></span></code></pre>
+                            </div>
+                            <p><a name="result"></a></p>
+                            <h2 id="実行結果">実行結果</h2>
+                            <p>スクリプトの実行結果です。 動作環境は macOS Mojave (10.14) + TensorFlow 2.0.0rc0 です。</p>
+                            <h3 id="em-アルゴリズム">EM アルゴリズム</h3>
+                            <p>閉形式の更新式を使っているため、イテレーション毎に必ず尤度が上がります。
+                            <figure class="center"><img src="/2019/08/30/em.png" />
+                            </figure>
+                            </p>
+                            <h3 id="adam">Adam</h3>
+                            <p>モーメンタムと各種の調整項によってパラメータを滑らかに更新します。 ハイパーパラメータの設定によっては、ゆらゆらと揺れるような動きになります。
+                            <figure class="center"><img src="/2019/08/30/adam.png" />
+                            </figure>
+                            </p>
+                            <h3 id="rmsprop">RMSprop</h3>
+                            <p>モーメンタム項がなく、更新によってパラメータが振動しています。
+                            <figure class="center"><img src="/2019/08/30/rmsprop.png" />
+                            </figure>
+                            </p>
+                            <h3 id="追記centered-rmsprop">追記：Centered RMSprop</h3>
+                            <p>Centered RMSprop を使うと収束が改善します。</p>
+                            <div class="highlight">
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>opt <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>RMSprop(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">.03</span>, centered<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span></code></pre>
+                            </div>
+                            <p>RMSprop, Centered RMSprop とも中央のコンポーネントが左右どちらに振れるかは試行によってまちまちなのですが、 左のコンポーネントが収束する速さはほぼこのアニメーション通りになります。
+                            <figure class="center"><img src="/2019/08/30/centered_rmsprop.png" />
+                            </figure>
+                            </p>
+                            <p>
+                                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            </p>
+                            <h2 id="参考文献">参考文献</h2>
+                            <ul>
+                                <li>
+                                    <p>TensorFlow<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://www.tensorflow.org/">https://www.tensorflow.org/</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>tf.keras.optimizers.Optimizer | TensorFlow Core r2.0<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://www.tensorflow.org/versions/r2.0/api_docs/python/tf/keras/optimizers/Optimizer">https://www.tensorflow.org/versions/r2.0/api_docs/python/tf/keras/optimizers/Optimizer</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>tf.keras.optimizers.Adam | TensorFlow Core r2.0<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://www.tensorflow.org/versions/r2.0/api_docs/python/tf/keras/optimizers/Adam">https://www.tensorflow.org/versions/r2.0/api_docs/python/tf/keras/optimizers/Adam</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>tf.keras.optimizers.RMSprop | TensorFlow Core r2.0<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://www.tensorflow.org/versions/r2.0/api_docs/python/tf/keras/optimizers/RMSprop">https://www.tensorflow.org/versions/r2.0/api_docs/python/tf/keras/optimizers/RMSprop</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>EM アルゴリズム<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://yokaze.github.io/2017/10/11/">https://yokaze.github.io/2017/10/11/</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>TensorFlow 2.0 で非負値行列因子分解 (NMF) を解く<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://yokaze.github.io/2019/08/12/">https://yokaze.github.io/2019/08/12/</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>ワンライナーで平均と標準偏差を計算する - Qiita<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://qiita.com/haruyosh/items/93a794e51512f7efaaa3">https://qiita.com/haruyosh/items/93a794e51512f7efaaa3</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>ラグランジュ緩和問題 - 数理計画用語集<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="http://www.msi.co.jp/nuopt/glossary/term_c4995faa151e2d66d8ea36c8eaff94885d60c19f.html">http://www.msi.co.jp/nuopt/glossary/term_c4995faa151e2d66d8ea36c8eaff94885d60c19f.html</a>
+                                        </span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <br />
+                        <footer class="article-footer">
+                            <section class="bordered">
+                                <header>
+                                    <div class="panel-title">CATEGORIES</div>
+                                </header>
+                                <div>
+                                    <ul class="p-terms">
+                                        <li><a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/">機械学習</a></li>
+                                    </ul>
+                                </div>
+                            </section>
+                        </footer>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <aside class="l-sidebar">
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">RELATED POSTS</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://yokaze.github.io/2019/08/12/" class="list-group-item">TensorFlow 2.0 で非負値行列因子分解 (NMF) を解く</a>
+                                <a href="https://yokaze.github.io/2019/08/07/" class="list-group-item">TensorFlow 2.0 で Variable を ndarray に変換する</a>
+                                <a href="https://yokaze.github.io/2019/09/12/" class="list-group-item">Sliced Wasserstein GMM を実装してみた</a>
+                                <a href="https://yokaze.github.io/2017/09/27/" class="list-group-item">mac に最新の NumPy (SciPy) をインストールする</a>
+                                <a href="https://yokaze.github.io/2017/09/17/" class="list-group-item">mac に SciPy がプリインストールされているか調べる</a>
+                                <a href="https://yokaze.github.io/2019/08/23/" class="list-group-item">線形位相空間の原点の近傍が併呑集合であることを証明する</a>
+                                <a href="https://yokaze.github.io/2019/07/13/" class="list-group-item">Monge-Kantorovich の問題を SciPy で解く</a>
+                                <a href="https://yokaze.github.io/2019/07/12/" class="list-group-item">Wasserstein 計量が距離関数になることを証明する</a>
+                                <a href="https://yokaze.github.io/2018/04/12/" class="list-group-item">pyscience11 で C&#43;&#43; から SciPy と Matplotlib を使う</a>
+                                <a href="https://yokaze.github.io/2018/01/13/" class="list-group-item">論文紹介: Feature Learning for Chord Recognition: The Deep Chroma Extractor</a>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">CATEGORY</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
+                                <a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="list-group-item">機械学習</a>
+                                <a href="https://yokaze.github.io/categories/%E5%86%99%E7%9C%9F" class="list-group-item">写真</a>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">AUTHOR</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://twitter.com/chrofieyue" class="list-group-item">夜風&ensp;
+                                    <font color="#00acee" /><i class="fa fa-twitter" aria-hidden="true"></i></font>
+                                </a>
+                            </div>
+                        </section>
+                    </aside>
+                </div>
+            </div>
+            <script type="text/x-mathjax-config"> MathJax.Hub.Config
   ({
     tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processEscapes: true },
     TeX: { equationNumbers: { autoNumber: "AMS" }}
   });
 </script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_SVG"></script>
-
-
-      </div>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_SVG"></script>
+        </div>
     </main>
-
     <footer class="l-footer">
-      <div class="container">
-        <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
-        <aside>
-          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
-          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
-        </aside>
-      </div>
+        <div class="container">
+            <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
+            <aside>
+                <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+                <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+            </aside>
+        </div>
     </footer>
-
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
-    
-    <script>hljs.initHighlightingOnLoad();</script>
-  </body>
+    <script>
+        hljs.initHighlightingOnLoad();
+
+    </script>
+</body>
+
 </html>

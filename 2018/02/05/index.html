@@ -1,167 +1,139 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+
+<head>
     <meta charset="utf-8">
-<meta http-equiv="content-language" content="ja">
-<meta name="pinterest" content="nopin">
-<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.95.0" />
-
-
-
-<link rel="canonical" href="https://yokaze.github.io/2018/02/05/">
-
-
+    <meta http-equiv="content-language" content="ja">
+    <meta name="pinterest" content="nopin">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <meta name="generator" content="Hugo 0.95.0" />
+    <link rel="canonical" href="https://yokaze.github.io/2018/02/05/">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
     <title>mac に pybind11 をインストールする - yokaze.github.io</title>
-    
-<meta name="description" content="pybind11 は Homebrew, pip3, Anaconda のいずれかの方法でインストールできます。 Homebrew でインストール Homebrew は mac 環境の汎用パッケージマネージャーです。 Homebrew を使って pybind11 をインストールする">
+    <meta name="description" content="pybind11 は Homebrew, pip3, Anaconda のいずれかの方法でインストールできます。 Homebrew でインストール Homebrew は mac 環境の汎用パッケージマネージャーです。 Homebrew を使って pybind11 をインストールする">
+    <meta property="og:title" content="mac に pybind11 をインストールする - yokaze.github.io">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yokaze.github.io/2018/02/05/">
+    <meta property="og:image" content="https://yokaze.github.io/images/default.png">
+    <meta property="og:site_name" content="yokaze.github.io">
+    <meta property="og:description" content="pybind11 は Homebrew, pip3, Anaconda のいずれかの方法でインストールできます。 Homebrew でインストール Homebrew は mac 環境の汎用パッケージマネージャーです。 Homebrew を使って pybind11 をインストールする">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="yokaze.github.io">
+    <meta name="twitter:url" content="https://yokaze.github.io/2018/02/05/">
+    <meta name="twitter:title" content="mac に pybind11 をインストールする - yokaze.github.io">
+    <meta name="twitter:description" content="pybind11 は Homebrew, pip3, Anaconda のいずれかの方法でインストールできます。 Homebrew でインストール Homebrew は mac 環境の汎用パッケージマネージャーです。 Homebrew を使って pybind11 をインストールする">
+    <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https:\/\/yokaze.github.io\/"
+            },
+            "headline": "mac に pybind11 をインストールする - yokaze.github.io",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/yokaze.github.io\/images\/default.png",
+                "height": 800,
+                "width": 800
+            },
+            "datePublished": "2018-02-05T22:36:44JST",
+            "dateModified": "2018-02-05T22:36:44JST",
+            "author": {
+                "@type": "Person",
+                "name": "yokaze.github.io"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "yokaze.github.io",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/yokaze.github.io\/images/logo.png",
+                    "width": 600,
+                    "height": 60
+                }
+            },
+            "description": "pybind11 は Homebrew, pip3, Anaconda のいずれかの方法でインストールできます。 Homebrew でインストール Homebrew は mac 環境の汎用パッケージマネージャーです。 Homebrew を使って pybind11 をインストールする"
+        }
 
-<meta property="og:title" content="mac に pybind11 をインストールする - yokaze.github.io">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2018/02/05/">
-<meta property="og:image" content="https://yokaze.github.io/images/default.png">
-<meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="pybind11 は Homebrew, pip3, Anaconda のいずれかの方法でインストールできます。 Homebrew でインストール Homebrew は mac 環境の汎用パッケージマネージャーです。 Homebrew を使って pybind11 をインストールする">
-<meta property="og:locale" content="ja_JP">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2018/02/05/">
-<meta name="twitter:title" content="mac に pybind11 をインストールする - yokaze.github.io">
-<meta name="twitter:description" content="pybind11 は Homebrew, pip3, Anaconda のいずれかの方法でインストールできます。 Homebrew でインストール Homebrew は mac 環境の汎用パッケージマネージャーです。 Homebrew を使って pybind11 をインストールする">
-<meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
-
-
-<script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "NewsArticle",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id":"https:\/\/yokaze.github.io\/"
-    },
-    "headline": "mac に pybind11 をインストールする - yokaze.github.io",
-    "image": {
-      "@type": "ImageObject",
-      "url": "https:\/\/yokaze.github.io\/images\/default.png",
-      "height": 800,
-      "width": 800
-    },
-    "datePublished": "2018-02-05T22:36:44JST",
-    "dateModified": "2018-02-05T22:36:44JST",
-    "author": {
-      "@type": "Person",
-      "name": "yokaze.github.io"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "yokaze.github.io",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https:\/\/yokaze.github.io\/images/logo.png",
-        "width": 600,
-        "height": 60
-      }
-    },
-    "description": "pybind11 は Homebrew, pip3, Anaconda のいずれかの方法でインストールできます。 Homebrew でインストール Homebrew は mac 環境の汎用パッケージマネージャーです。 Homebrew を使って pybind11 をインストールする"
-  }
-</script>
-
-
+    </script>
     <link href="https://yokaze.github.io/css/styles.css" rel="stylesheet">
-    
+</head>
 
-  </head>
+<body>
+    <script type="application/javascript">
+        var doNotTrack = false;
+        if (!doNotTrack) {
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-83271338-1', 'auto');
+            ga('send', 'pageview');
+        }
 
-  <body>
-    
-    
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-83271338-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-    
-
+    </script>
     <header class="l-header">
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
-          </div>
-
-          
-          <div id="navbar" class="collapse navbar-collapse">
-            
-            <ul class="nav navbar-nav navbar-right">
-              
-              
-              <li><a href="/about/">About</a></li>
-              
-              
-              
-              <li><a href="/software/">Software</a></li>
-              
-              
-            </ul>
-            
-          </div>
-          
-
-        </div>
-      </nav>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/software/">Software</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-
     <main>
-      <div class="container">
-        
-<div class="row">
-  <div class="col-md-8">
-
-    
-
-    <article class="single">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-02-05T22:36:44JST">Feb 5, 2018</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
-      
-      
-    </ul>
-    <h1 class="title">mac に pybind11 をインストールする</h1>
-  </header>
-
-  
-
-  <div class="article-body"><p>pybind11 は Homebrew, pip3, Anaconda のいずれかの方法でインストールできます。</p>
-<h2 id="homebrew-でインストール">Homebrew でインストール</h2>
-<p>Homebrew は mac 環境の汎用パッケージマネージャーです。
-Homebrew を使って pybind11 をインストールするには、<code>brew install pybind11</code> と入力します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <article class="single">
+                        <header>
+                            <ul class="p-facts">
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-02-05T22:36:44JST">Feb 5, 2018</time></li>
+                                <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
+                            </ul>
+                            <h1 class="title">mac に pybind11 をインストールする</h1>
+                        </header>
+                        <div class="article-body">
+                            <p>pybind11 は Homebrew, pip3, Anaconda のいずれかの方法でインストールできます。</p>
+                            <h2 id="homebrew-でインストール">Homebrew でインストール</h2>
+                            <p>Homebrew は mac 環境の汎用パッケージマネージャーです。 Homebrew を使って pybind11 をインストールするには、<code>brew install pybind11</code> と入力します。</p>
+                            <div class="highlight">
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
 </span></span><span style="display:flex;"><span>$ brew install pybind11
 </span></span><span style="display:flex;"><span>==&gt; Downloading https://homebrew.bintray.com/bottles/pybind11-2.2.1_1.sierra.bottle.tar.gz
 </span></span><span style="display:flex;"><span>==&gt; Pouring pybind11-2.2.1_1.sierra.bottle.tar.gz
 </span></span><span style="display:flex;"><span>🍺  /usr/local/Cellar/pybind11/2.2.1_1: 33 files, 540.4KB
-</span></span></code></pre></div><p>pybind11 は <code>/usr/local/include/pybind11</code> にインストールされます。</p>
-<h2 id="pip-でインストール">pip でインストール</h2>
-<p>pip は python の汎用パッケージマネージャーですが、pybind11 をインストールする際は注意が必要です。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
+</span></span></code></pre>
+                            </div>
+                            <p>pybind11 は <code>/usr/local/include/pybind11</code> にインストールされます。</p>
+                            <h2 id="pip-でインストール">pip でインストール</h2>
+                            <p>pip は python の汎用パッケージマネージャーですが、pybind11 をインストールする際は注意が必要です。</p>
+                            <div class="highlight">
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
 </span></span><span style="display:flex;"><span>$ sudo -H pip install pybind11
 </span></span><span style="display:flex;"><span>Collecting pybind11
 </span></span><span style="display:flex;"><span>  Downloading pybind11-2.2.1-py2.py3-none-any.whl (143kB)
@@ -175,9 +147,12 @@ Homebrew を使って pybind11 をインストールするには、<code>brew in
 </span></span><span style="display:flex;"><span>  File &#34;/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/os.py&#34;, line 157, in makedirs
 </span></span><span style="display:flex;"><span>    mkdir(name, mode)
 </span></span><span style="display:flex;"><span>OSError: [Errno 1] Operation not permitted: &#39;/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pybind11&#39;
-</span></span></code></pre></div><p><span style="word-break: break-all;"><code>/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7</code></span> は SIP (System Integrity Protection) の対象ディレクトリであり、管理者権限でもファイルを書き込むことができません。</p>
-<p>こうなってしまった場合は、一旦不完全なファイルをアンインストールします。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
+</span></span></code></pre>
+                            </div>
+                            <p><span style="word-break: break-all;"><code>/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7</code></span> は SIP (System Integrity Protection) の対象ディレクトリであり、管理者権限でもファイルを書き込むことができません。</p>
+                            <p>こうなってしまった場合は、一旦不完全なファイルをアンインストールします。</p>
+                            <div class="highlight">
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
 </span></span><span style="display:flex;"><span>$ sudo -H pip uninstall pybind11
 </span></span><span style="display:flex;"><span>Uninstalling pybind11-2.2.1:
 </span></span><span style="display:flex;"><span>  /Library/Python/2.7/site-packages/pybind11-2.2.1.dist-info/DESCRIPTION.rst
@@ -194,165 +169,134 @@ Homebrew を使って pybind11 をインストールするには、<code>brew in
 </span></span><span style="display:flex;"><span>  /Library/Python/2.7/site-packages/pybind11/_version.pyc
 </span></span><span style="display:flex;"><span>Proceed (y/n)? y
 </span></span><span style="display:flex;"><span>  Successfully uninstalled pybind11-2.2.1
-</span></span></code></pre></div><h2 id="pip3-でインストール">pip3 でインストール</h2>
-<p>Homebrew から python3 をインストールした場合は <code>pip3</code> を使って pybind11 をインストールすることができます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
+</span></span></code></pre>
+                            </div>
+                            <h2 id="pip3-でインストール">pip3 でインストール</h2>
+                            <p>Homebrew から python3 をインストールした場合は <code>pip3</code> を使って pybind11 をインストールすることができます。</p>
+                            <div class="highlight">
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
 </span></span><span style="display:flex;"><span>$ pip3 install pybind11
 </span></span><span style="display:flex;"><span>Collecting pybind11
 </span></span><span style="display:flex;"><span>  Using cached pybind11-2.2.1-py2.py3-none-any.whl
 </span></span><span style="display:flex;"><span>Installing collected packages: pybind11
 </span></span><span style="display:flex;"><span>Successfully installed pybind11-2.2.1
-</span></span></code></pre></div><p>pybind11 は <code>/usr/local/include/python3.6m/pybind11/</code> にインストールされます。</p>
-<h2 id="anaconda-でインストール">Anaconda でインストール</h2>
-<p>Anaconda を使う場合は、<code>conda install -c conda-forge pybind11</code> でインストールすることができます。</p>
-<p>参考: <span style="word-break: break-all;"><a href="https://anaconda.org/conda-forge/pybind11">https://anaconda.org/conda-forge/pybind11</a></span></p>
-<p>
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</p>
-
-<h2 id="参考資料">参考資料</h2>
-<ul>
-<li>
-<p>GitHub - pybind/pybind11: Seamless operability between C++11 and Python<br />
-<span style="word-break: break-all;">
-<a href="https://github.com/pybind/pybind11">https://github.com/pybind/pybind11</a>
-</span></p>
-</li>
-<li>
-<p>Mac のシステム整合性保護について<br />
-<span style="word-break: break-all;">
-<a href="https://support.apple.com/ja-jp/HT204899">https://support.apple.com/ja-jp/HT204899</a>
-</span></p>
-</li>
-<li>
-<p>Anaconda - python.jp<br />
-<span style="word-break: break-all;">
-<a href="https://www.python.jp/install/windows/anaconda/install_anaconda.html">https://www.python.jp/install/windows/anaconda/install_anaconda.html</a>
-</span></p>
-</li>
-<li>
-<p>Anaconda で Python 環境をインストールする<br />
-<span style="word-break: break-all;">
-<a href="https://qiita.com/t2y/items/2a3eb58103e85d8064b6">https://qiita.com/t2y/items/2a3eb58103e85d8064b6</a>
-</span></p>
-</li>
-</ul>
-</div>
- 
-  <br />
-
-  <footer class="article-footer">
-    
-    
-    
-    <section class="bordered">
-      <header>
-        <div class="panel-title">CATEGORIES</div>
-      </header>
-      <div>
-        <ul class="p-terms">
-          
-          <li><a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/">プログラミング</a></li>
-          
-        </ul>
-      </div>
-    </section>
-    
-    
-  </footer>
-
-</article>
-
-
-    
-  </div>
-
-  <div class="col-md-4">
-    
-<aside class="l-sidebar">
-
-  
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">RELATED POSTS</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://yokaze.github.io/2018/09/18/" class="list-group-item">pybind11 で print 文を使う</a>
-      
-      <a href="https://yokaze.github.io/2018/03/08/" class="list-group-item">pybind11 でキーワード引数 (kwargs) を使う</a>
-      
-      <a href="https://yokaze.github.io/2018/03/05/" class="list-group-item">pybind11 で main モジュール上に関数を定義する</a>
-      
-      <a href="https://yokaze.github.io/2018/02/24/" class="list-group-item">pybind11 上の matplotlib で macosx バックエンドを使う</a>
-      
-      <a href="https://yokaze.github.io/2018/02/11/" class="list-group-item">pybind11 で C&#43;&#43; から Python インタプリタを実行する</a>
-      
-      <a href="https://yokaze.github.io/2017/09/15/" class="list-group-item">Homebrew で python3 用の Boost.Python をインストールする</a>
-      
-      <a href="https://yokaze.github.io/2018/04/12/" class="list-group-item">pyscience11 で C&#43;&#43; から SciPy と Matplotlib を使う</a>
-      
-      <a href="https://yokaze.github.io/2018/02/04/" class="list-group-item">pip のディストリビューションがインストールしたファイルの一覧を表示する</a>
-      
-      <a href="https://yokaze.github.io/2017/10/02/" class="list-group-item">pipdeptree を Python 2 と Python 3 に同時にインストールする</a>
-      
-      <a href="https://yokaze.github.io/2017/09/23/" class="list-group-item">mac で PIL (Python Imaging Library) を使う</a>
-      
-    </div>
-  </section>
-  
-
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">CATEGORY</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
-      
-      <a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="list-group-item">機械学習</a>
-      
-      <a href="https://yokaze.github.io/categories/%E5%86%99%E7%9C%9F" class="list-group-item">写真</a>
-      
-    </div>
-  </section>
-  
-
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">AUTHOR</div>
-    </div>
-    <div class="list-group">
-      <a href="https://twitter.com/chrofieyue" class="list-group-item">夜風&ensp;<font color="#00acee" /><i class="fa fa-twitter" aria-hidden="true"></i></font></a>
-    </div>
-  </section>
-
-</aside>
-
-  </div>
-</div>
-
-
-      </div>
+</span></span></code></pre>
+                            </div>
+                            <p>pybind11 は <code>/usr/local/include/python3.6m/pybind11/</code> にインストールされます。</p>
+                            <h2 id="anaconda-でインストール">Anaconda でインストール</h2>
+                            <p>Anaconda を使う場合は、<code>conda install -c conda-forge pybind11</code> でインストールすることができます。</p>
+                            <p>参考: <span style="word-break: break-all;"><a href="https://anaconda.org/conda-forge/pybind11">https://anaconda.org/conda-forge/pybind11</a></span></p>
+                            <p>
+                                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            </p>
+                            <h2 id="参考資料">参考資料</h2>
+                            <ul>
+                                <li>
+                                    <p>GitHub - pybind/pybind11: Seamless operability between C++11 and Python<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://github.com/pybind/pybind11">https://github.com/pybind/pybind11</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>Mac のシステム整合性保護について<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://support.apple.com/ja-jp/HT204899">https://support.apple.com/ja-jp/HT204899</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>Anaconda - python.jp<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://www.python.jp/install/windows/anaconda/install_anaconda.html">https://www.python.jp/install/windows/anaconda/install_anaconda.html</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>Anaconda で Python 環境をインストールする<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://qiita.com/t2y/items/2a3eb58103e85d8064b6">https://qiita.com/t2y/items/2a3eb58103e85d8064b6</a>
+                                        </span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <br />
+                        <footer class="article-footer">
+                            <section class="bordered">
+                                <header>
+                                    <div class="panel-title">CATEGORIES</div>
+                                </header>
+                                <div>
+                                    <ul class="p-terms">
+                                        <li><a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/">プログラミング</a></li>
+                                    </ul>
+                                </div>
+                            </section>
+                        </footer>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <aside class="l-sidebar">
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">RELATED POSTS</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://yokaze.github.io/2018/09/18/" class="list-group-item">pybind11 で print 文を使う</a>
+                                <a href="https://yokaze.github.io/2018/03/08/" class="list-group-item">pybind11 でキーワード引数 (kwargs) を使う</a>
+                                <a href="https://yokaze.github.io/2018/03/05/" class="list-group-item">pybind11 で main モジュール上に関数を定義する</a>
+                                <a href="https://yokaze.github.io/2018/02/24/" class="list-group-item">pybind11 上の matplotlib で macosx バックエンドを使う</a>
+                                <a href="https://yokaze.github.io/2018/02/11/" class="list-group-item">pybind11 で C&#43;&#43; から Python インタプリタを実行する</a>
+                                <a href="https://yokaze.github.io/2017/09/15/" class="list-group-item">Homebrew で python3 用の Boost.Python をインストールする</a>
+                                <a href="https://yokaze.github.io/2018/04/12/" class="list-group-item">pyscience11 で C&#43;&#43; から SciPy と Matplotlib を使う</a>
+                                <a href="https://yokaze.github.io/2018/02/04/" class="list-group-item">pip のディストリビューションがインストールしたファイルの一覧を表示する</a>
+                                <a href="https://yokaze.github.io/2017/10/02/" class="list-group-item">pipdeptree を Python 2 と Python 3 に同時にインストールする</a>
+                                <a href="https://yokaze.github.io/2017/09/23/" class="list-group-item">mac で PIL (Python Imaging Library) を使う</a>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">CATEGORY</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
+                                <a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="list-group-item">機械学習</a>
+                                <a href="https://yokaze.github.io/categories/%E5%86%99%E7%9C%9F" class="list-group-item">写真</a>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">AUTHOR</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://twitter.com/chrofieyue" class="list-group-item">夜風&ensp;
+                                    <font color="#00acee" /><i class="fa fa-twitter" aria-hidden="true"></i></font>
+                                </a>
+                            </div>
+                        </section>
+                    </aside>
+                </div>
+            </div>
+        </div>
     </main>
-
     <footer class="l-footer">
-      <div class="container">
-        <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
-        <aside>
-          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
-          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
-        </aside>
-      </div>
+        <div class="container">
+            <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
+            <aside>
+                <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+                <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+            </aside>
+        </div>
     </footer>
-
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
-    
-    <script>hljs.initHighlightingOnLoad();</script>
-  </body>
+    <script>
+        hljs.initHighlightingOnLoad();
+
+    </script>
+</body>
+
 </html>

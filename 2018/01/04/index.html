@@ -1,335 +1,262 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+
+<head>
     <meta charset="utf-8">
-<meta http-equiv="content-language" content="ja">
-<meta name="pinterest" content="nopin">
-<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.95.0" />
-
-
-
-<link rel="canonical" href="https://yokaze.github.io/2018/01/04/">
-
-
+    <meta http-equiv="content-language" content="ja">
+    <meta name="pinterest" content="nopin">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <meta name="generator" content="Hugo 0.95.0" />
+    <link rel="canonical" href="https://yokaze.github.io/2018/01/04/">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
     <title>論文紹介: Music Emotion Recognition: A State of the Art Review - yokaze.github.io</title>
-    
-<meta name="description" content="表題のとおり、音楽感情認識のレビュー論文を読みました。 日本語の資料が少ないので、分かったことを簡単にまとめたいと思います。 章立て この論文は次">
+    <meta name="description" content="表題のとおり、音楽感情認識のレビュー論文を読みました。 日本語の資料が少ないので、分かったことを簡単にまとめたいと思います。 章立て この論文は次">
+    <meta property="og:title" content="論文紹介: Music Emotion Recognition: A State of the Art Review - yokaze.github.io">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yokaze.github.io/2018/01/04/">
+    <meta property="og:image" content="https://yokaze.github.io/images/default.png">
+    <meta property="og:site_name" content="yokaze.github.io">
+    <meta property="og:description" content="表題のとおり、音楽感情認識のレビュー論文を読みました。 日本語の資料が少ないので、分かったことを簡単にまとめたいと思います。 章立て この論文は次">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="yokaze.github.io">
+    <meta name="twitter:url" content="https://yokaze.github.io/2018/01/04/">
+    <meta name="twitter:title" content="論文紹介: Music Emotion Recognition: A State of the Art Review - yokaze.github.io">
+    <meta name="twitter:description" content="表題のとおり、音楽感情認識のレビュー論文を読みました。 日本語の資料が少ないので、分かったことを簡単にまとめたいと思います。 章立て この論文は次">
+    <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https:\/\/yokaze.github.io\/"
+            },
+            "headline": "論文紹介: Music Emotion Recognition: A State of the Art Review - yokaze.github.io",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/yokaze.github.io\/images\/default.png",
+                "height": 800,
+                "width": 800
+            },
+            "datePublished": "2018-01-04T22:14:22JST",
+            "dateModified": "2018-01-04T22:14:22JST",
+            "author": {
+                "@type": "Person",
+                "name": "yokaze.github.io"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "yokaze.github.io",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/yokaze.github.io\/images/logo.png",
+                    "width": 600,
+                    "height": 60
+                }
+            },
+            "description": "表題のとおり、音楽感情認識のレビュー論文を読みました。 日本語の資料が少ないので、分かったことを簡単にまとめたいと思います。 章立て この論文は次"
+        }
 
-<meta property="og:title" content="論文紹介: Music Emotion Recognition: A State of the Art Review - yokaze.github.io">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2018/01/04/">
-<meta property="og:image" content="https://yokaze.github.io/images/default.png">
-<meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="表題のとおり、音楽感情認識のレビュー論文を読みました。 日本語の資料が少ないので、分かったことを簡単にまとめたいと思います。 章立て この論文は次">
-<meta property="og:locale" content="ja_JP">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2018/01/04/">
-<meta name="twitter:title" content="論文紹介: Music Emotion Recognition: A State of the Art Review - yokaze.github.io">
-<meta name="twitter:description" content="表題のとおり、音楽感情認識のレビュー論文を読みました。 日本語の資料が少ないので、分かったことを簡単にまとめたいと思います。 章立て この論文は次">
-<meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
-
-
-<script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "NewsArticle",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id":"https:\/\/yokaze.github.io\/"
-    },
-    "headline": "論文紹介: Music Emotion Recognition: A State of the Art Review - yokaze.github.io",
-    "image": {
-      "@type": "ImageObject",
-      "url": "https:\/\/yokaze.github.io\/images\/default.png",
-      "height": 800,
-      "width": 800
-    },
-    "datePublished": "2018-01-04T22:14:22JST",
-    "dateModified": "2018-01-04T22:14:22JST",
-    "author": {
-      "@type": "Person",
-      "name": "yokaze.github.io"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "yokaze.github.io",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https:\/\/yokaze.github.io\/images/logo.png",
-        "width": 600,
-        "height": 60
-      }
-    },
-    "description": "表題のとおり、音楽感情認識のレビュー論文を読みました。 日本語の資料が少ないので、分かったことを簡単にまとめたいと思います。 章立て この論文は次"
-  }
-</script>
-
-
+    </script>
     <link href="https://yokaze.github.io/css/styles.css" rel="stylesheet">
-    
+</head>
 
-  </head>
+<body>
+    <script type="application/javascript">
+        var doNotTrack = false;
+        if (!doNotTrack) {
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-83271338-1', 'auto');
+            ga('send', 'pageview');
+        }
 
-  <body>
-    
-    
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-83271338-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-    
-
+    </script>
     <header class="l-header">
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
-          </div>
-
-          
-          <div id="navbar" class="collapse navbar-collapse">
-            
-            <ul class="nav navbar-nav navbar-right">
-              
-              
-              <li><a href="/about/">About</a></li>
-              
-              
-              
-              <li><a href="/software/">Software</a></li>
-              
-              
-            </ul>
-            
-          </div>
-          
-
-        </div>
-      </nav>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/software/">Software</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-
     <main>
-      <div class="container">
-        
-<div class="row">
-  <div class="col-md-8">
-
-    
-
-    <article class="single">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-04T22:14:22JST">Jan 4, 2018</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
-      
-      
-    </ul>
-    <h1 class="title">論文紹介: Music Emotion Recognition: A State of the Art Review</h1>
-  </header>
-
-  
-
-  <div class="article-body"><p>表題のとおり、音楽感情認識のレビュー論文を読みました。
-日本語の資料が少ないので、分かったことを簡単にまとめたいと思います。</p>
-<h3 id="章立て">章立て</h3>
-<p>この論文は次のような章立てになっています。</p>
-<ol>
-<li>イントロダクション</li>
-<li>音楽感情認識と心理学の関係</li>
-<li>感情認識システムの設計</li>
-<li>人手による正解データの作成</li>
-<li>テキスト情報を使った音楽感情認識</li>
-<li>音響特徴量を使った音楽感情認識</li>
-<li>複数ドメインの特徴量の組み合わせ</li>
-<li>結論</li>
-</ol>
-<p>分かりやすくするために、若干の意訳が入っています。
-正確な各章のタイトルは論文をご参照ください。</p>
-<h3 id="心理学に基づく音楽感情の取り扱い">心理学に基づく音楽感情の取り扱い</h3>
-<p>はじめに、音楽感情のどういった側面を分析するのかについて述べられています。
-著者らは音楽に関係した感情を</p>
-<ul>
-<li>音楽によって表現される感情</li>
-<li>音楽から知覚される感情</li>
-<li>音楽が誘発する感情</li>
-</ul>
-<p>の三種類にまとめ、このうち、音楽によって表現される感情に主眼を置くことを宣言しています。
-音楽から知覚される感情と、音楽が誘発する感情の違いは [Juslin and Luakka, 2004] に詳しく書かれています。
-これはおそらく、「怒り」の感情を知覚することで「共感」を覚える、というような違いのことだと思われます。</p>
-<p>次に、音楽感情を計算機上でどう取り扱うかが説明されます。ここではカテゴリー分類の例として MIREX の 5 分類が、連続空間モデルの例としてラッセルの円環モデル（Valence-Arousal; VA 空間モデル）が紹介されます。</p>
-<h3 id="音楽感情の計算機的取り扱い">音楽感情の計算機的取り扱い</h3>
-<p>計算機による音楽感情認識がクラス推定・回帰問題のいずれかとなることを指摘した上で、各論に入ります。</p>
-<p>4章は正解データの作り方について。人手による方法、Last.fm を参照する方法などが説明されています。</p>
-<p>5-7章は、テキスト情報・音響特徴量・これらの組み合わせによる感情認識研究の網羅的なサーベイとなっています。
-8章は結論で、研究分野の将来展望などが述べられています。</p>
-<p>全体としてはとても面白く、音楽感情認識の基本が詰まった論文という印象でした。</p>
-<p>
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</p>
-
-<h2 id="参考文献">参考文献</h2>
-<ul>
-<li>
-<p>Y. E. Kim et. al., &ldquo;Music emotion recognition: A state of the art review&rdquo;, in <em>Proc. ISMIR</em>, 2010, pp. 255-266.<br />
-<span style="word-break: break-all;">
-<a href="http://ismir2010.ismir.net/proceedings/ismir2010-45.pdf">http://ismir2010.ismir.net/proceedings/ismir2010-45.pdf</a>
-</span></p>
-</li>
-<li>
-<p>P. Juslin and P. Luakka, &ldquo;Expression, perception, and induction of musical emotions: A review and questionnaire study of everyday listening&rdquo;, <em>Journal of New Music Research</em>, vol. 33, no. 3, pp. 217-238, 2004.<br />
-<span style="word-break: break-all;">
-<a href="http://www.tandfonline.com/doi/abs/10.1080/0929821042000317813">http://www.tandfonline.com/doi/abs/10.1080/0929821042000317813</a>
-</span></p>
-</li>
-<li>
-<p>MIREX 2017: Audio Classification (Train/Test) Tasks<br />
-<span style="word-break: break-all;">
-<a href="http://www.music-ir.org/mirex/wiki/2017:Audio_Classification_(Train/Test)_Tasks">http://www.music-ir.org/mirex/wiki/2017:Audio_Classification_(Train/Test)_Tasks</a>
-</span></p>
-</li>
-<li>
-<p>J. A. Russell, &ldquo;A circumplex model of affect&rdquo;, <em>Journal of Psychology and Social Psychology</em>, vol. 39, no. 6, pp. 1161-1178, 1980.<br />
-<span style="word-break: break-all;">
-<a href="http://psycnet.apa.org/record/1981-25062-001">http://psycnet.apa.org/record/1981-25062-001</a>
-</span></p>
-</li>
-</ul>
-</div>
- 
-  <br />
-
-  <footer class="article-footer">
-    
-    
-    
-    <section class="bordered">
-      <header>
-        <div class="panel-title">CATEGORIES</div>
-      </header>
-      <div>
-        <ul class="p-terms">
-          
-          <li><a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/">機械学習</a></li>
-          
-        </ul>
-      </div>
-    </section>
-    
-    
-  </footer>
-
-</article>
-
-
-    
-  </div>
-
-  <div class="col-md-4">
-    
-<aside class="l-sidebar">
-
-  
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">RELATED POSTS</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://yokaze.github.io/2018/01/13/" class="list-group-item">論文紹介: Feature Learning for Chord Recognition: The Deep Chroma Extractor</a>
-      
-      <a href="https://yokaze.github.io/2019/09/12/" class="list-group-item">Sliced Wasserstein GMM を実装してみた</a>
-      
-      <a href="https://yokaze.github.io/2019/08/30/" class="list-group-item">TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する</a>
-      
-      <a href="https://yokaze.github.io/2019/08/23/" class="list-group-item">線形位相空間の原点の近傍が併呑集合であることを証明する</a>
-      
-      <a href="https://yokaze.github.io/2019/08/12/" class="list-group-item">TensorFlow 2.0 で非負値行列因子分解 (NMF) を解く</a>
-      
-      <a href="https://yokaze.github.io/2019/08/07/" class="list-group-item">TensorFlow 2.0 で Variable を ndarray に変換する</a>
-      
-      <a href="https://yokaze.github.io/2019/07/13/" class="list-group-item">Monge-Kantorovich の問題を SciPy で解く</a>
-      
-      <a href="https://yokaze.github.io/2019/07/12/" class="list-group-item">Wasserstein 計量が距離関数になることを証明する</a>
-      
-      <a href="https://yokaze.github.io/2017/10/13/" class="list-group-item">機械学習で役立つ数学参考書のリスト</a>
-      
-      <a href="https://yokaze.github.io/2017/10/11/" class="list-group-item">EM アルゴリズム</a>
-      
-    </div>
-  </section>
-  
-
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">CATEGORY</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
-      
-      <a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="list-group-item">機械学習</a>
-      
-      <a href="https://yokaze.github.io/categories/%E5%86%99%E7%9C%9F" class="list-group-item">写真</a>
-      
-    </div>
-  </section>
-  
-
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">AUTHOR</div>
-    </div>
-    <div class="list-group">
-      <a href="https://twitter.com/chrofieyue" class="list-group-item">夜風&ensp;<font color="#00acee" /><i class="fa fa-twitter" aria-hidden="true"></i></font></a>
-    </div>
-  </section>
-
-</aside>
-
-  </div>
-</div>
-
-
-      </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <article class="single">
+                        <header>
+                            <ul class="p-facts">
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-04T22:14:22JST">Jan 4, 2018</time></li>
+                                <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
+                            </ul>
+                            <h1 class="title">論文紹介: Music Emotion Recognition: A State of the Art Review</h1>
+                        </header>
+                        <div class="article-body">
+                            <p>表題のとおり、音楽感情認識のレビュー論文を読みました。 日本語の資料が少ないので、分かったことを簡単にまとめたいと思います。</p>
+                            <h3 id="章立て">章立て</h3>
+                            <p>この論文は次のような章立てになっています。</p>
+                            <ol>
+                                <li>イントロダクション</li>
+                                <li>音楽感情認識と心理学の関係</li>
+                                <li>感情認識システムの設計</li>
+                                <li>人手による正解データの作成</li>
+                                <li>テキスト情報を使った音楽感情認識</li>
+                                <li>音響特徴量を使った音楽感情認識</li>
+                                <li>複数ドメインの特徴量の組み合わせ</li>
+                                <li>結論</li>
+                            </ol>
+                            <p>分かりやすくするために、若干の意訳が入っています。 正確な各章のタイトルは論文をご参照ください。</p>
+                            <h3 id="心理学に基づく音楽感情の取り扱い">心理学に基づく音楽感情の取り扱い</h3>
+                            <p>はじめに、音楽感情のどういった側面を分析するのかについて述べられています。 著者らは音楽に関係した感情を</p>
+                            <ul>
+                                <li>音楽によって表現される感情</li>
+                                <li>音楽から知覚される感情</li>
+                                <li>音楽が誘発する感情</li>
+                            </ul>
+                            <p>の三種類にまとめ、このうち、音楽によって表現される感情に主眼を置くことを宣言しています。 音楽から知覚される感情と、音楽が誘発する感情の違いは [Juslin and Luakka, 2004] に詳しく書かれています。 これはおそらく、「怒り」の感情を知覚することで「共感」を覚える、というような違いのことだと思われます。</p>
+                            <p>次に、音楽感情を計算機上でどう取り扱うかが説明されます。ここではカテゴリー分類の例として MIREX の 5 分類が、連続空間モデルの例としてラッセルの円環モデル（Valence-Arousal; VA 空間モデル）が紹介されます。</p>
+                            <h3 id="音楽感情の計算機的取り扱い">音楽感情の計算機的取り扱い</h3>
+                            <p>計算機による音楽感情認識がクラス推定・回帰問題のいずれかとなることを指摘した上で、各論に入ります。</p>
+                            <p>4章は正解データの作り方について。人手による方法、Last.fm を参照する方法などが説明されています。</p>
+                            <p>5-7章は、テキスト情報・音響特徴量・これらの組み合わせによる感情認識研究の網羅的なサーベイとなっています。 8章は結論で、研究分野の将来展望などが述べられています。</p>
+                            <p>全体としてはとても面白く、音楽感情認識の基本が詰まった論文という印象でした。</p>
+                            <p>
+                                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            </p>
+                            <h2 id="参考文献">参考文献</h2>
+                            <ul>
+                                <li>
+                                    <p>Y. E. Kim et. al., &ldquo;Music emotion recognition: A state of the art review&rdquo;, in <em>Proc. ISMIR</em>, 2010, pp. 255-266.<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="http://ismir2010.ismir.net/proceedings/ismir2010-45.pdf">http://ismir2010.ismir.net/proceedings/ismir2010-45.pdf</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>P. Juslin and P. Luakka, &ldquo;Expression, perception, and induction of musical emotions: A review and questionnaire study of everyday listening&rdquo;, <em>Journal of New Music Research</em>, vol. 33, no. 3, pp. 217-238, 2004.<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="http://www.tandfonline.com/doi/abs/10.1080/0929821042000317813">http://www.tandfonline.com/doi/abs/10.1080/0929821042000317813</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>MIREX 2017: Audio Classification (Train/Test) Tasks<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="http://www.music-ir.org/mirex/wiki/2017:Audio_Classification_(Train/Test)_Tasks">http://www.music-ir.org/mirex/wiki/2017:Audio_Classification_(Train/Test)_Tasks</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>J. A. Russell, &ldquo;A circumplex model of affect&rdquo;, <em>Journal of Psychology and Social Psychology</em>, vol. 39, no. 6, pp. 1161-1178, 1980.<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="http://psycnet.apa.org/record/1981-25062-001">http://psycnet.apa.org/record/1981-25062-001</a>
+                                        </span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <br />
+                        <footer class="article-footer">
+                            <section class="bordered">
+                                <header>
+                                    <div class="panel-title">CATEGORIES</div>
+                                </header>
+                                <div>
+                                    <ul class="p-terms">
+                                        <li><a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/">機械学習</a></li>
+                                    </ul>
+                                </div>
+                            </section>
+                        </footer>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <aside class="l-sidebar">
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">RELATED POSTS</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://yokaze.github.io/2018/01/13/" class="list-group-item">論文紹介: Feature Learning for Chord Recognition: The Deep Chroma Extractor</a>
+                                <a href="https://yokaze.github.io/2019/09/12/" class="list-group-item">Sliced Wasserstein GMM を実装してみた</a>
+                                <a href="https://yokaze.github.io/2019/08/30/" class="list-group-item">TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する</a>
+                                <a href="https://yokaze.github.io/2019/08/23/" class="list-group-item">線形位相空間の原点の近傍が併呑集合であることを証明する</a>
+                                <a href="https://yokaze.github.io/2019/08/12/" class="list-group-item">TensorFlow 2.0 で非負値行列因子分解 (NMF) を解く</a>
+                                <a href="https://yokaze.github.io/2019/08/07/" class="list-group-item">TensorFlow 2.0 で Variable を ndarray に変換する</a>
+                                <a href="https://yokaze.github.io/2019/07/13/" class="list-group-item">Monge-Kantorovich の問題を SciPy で解く</a>
+                                <a href="https://yokaze.github.io/2019/07/12/" class="list-group-item">Wasserstein 計量が距離関数になることを証明する</a>
+                                <a href="https://yokaze.github.io/2017/10/13/" class="list-group-item">機械学習で役立つ数学参考書のリスト</a>
+                                <a href="https://yokaze.github.io/2017/10/11/" class="list-group-item">EM アルゴリズム</a>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">CATEGORY</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
+                                <a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="list-group-item">機械学習</a>
+                                <a href="https://yokaze.github.io/categories/%E5%86%99%E7%9C%9F" class="list-group-item">写真</a>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">AUTHOR</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://twitter.com/chrofieyue" class="list-group-item">夜風&ensp;
+                                    <font color="#00acee" /><i class="fa fa-twitter" aria-hidden="true"></i></font>
+                                </a>
+                            </div>
+                        </section>
+                    </aside>
+                </div>
+            </div>
+        </div>
     </main>
-
     <footer class="l-footer">
-      <div class="container">
-        <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
-        <aside>
-          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
-          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
-        </aside>
-      </div>
+        <div class="container">
+            <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
+            <aside>
+                <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+                <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+            </aside>
+        </div>
     </footer>
-
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
-    
-    <script>hljs.initHighlightingOnLoad();</script>
-  </body>
+    <script>
+        hljs.initHighlightingOnLoad();
+
+    </script>
+</body>
+
 </html>

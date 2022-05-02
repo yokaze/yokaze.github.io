@@ -1,165 +1,137 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+
+<head>
     <meta charset="utf-8">
-<meta http-equiv="content-language" content="ja">
-<meta name="pinterest" content="nopin">
-<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.95.0" />
-
-
-
-<link rel="canonical" href="https://yokaze.github.io/en/2017/09/21/">
-
-
+    <meta http-equiv="content-language" content="ja">
+    <meta name="pinterest" content="nopin">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <meta name="generator" content="Hugo 0.95.0" />
+    <link rel="canonical" href="https://yokaze.github.io/en/2017/09/21/">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
     <title>Warn redefined macros by clang (-Wmacro-redefined) - yokaze.github.io</title>
-    
-<meta name="description" content="Use -Wmacro-redefined flag to warn redefined macros by clang.#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Monterey) &#43; Apple clang 13.1.6 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: &amp;#39;MY_DEFINE&amp;#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default.">
+    <meta name="description" content="Use -Wmacro-redefined flag to warn redefined macros by clang.#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Monterey) &#43; Apple clang 13.1.6 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: &amp;#39;MY_DEFINE&amp;#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default.">
+    <meta property="og:title" content="Warn redefined macros by clang (-Wmacro-redefined) - yokaze.github.io">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yokaze.github.io/en/2017/09/21/">
+    <meta property="og:image" content="https://yokaze.github.io/images/default.png">
+    <meta property="og:site_name" content="yokaze.github.io">
+    <meta property="og:description" content="Use -Wmacro-redefined flag to warn redefined macros by clang.#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Monterey) &#43; Apple clang 13.1.6 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: &amp;#39;MY_DEFINE&amp;#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default.">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="yokaze.github.io">
+    <meta name="twitter:url" content="https://yokaze.github.io/en/2017/09/21/">
+    <meta name="twitter:title" content="Warn redefined macros by clang (-Wmacro-redefined) - yokaze.github.io">
+    <meta name="twitter:description" content="Use -Wmacro-redefined flag to warn redefined macros by clang.#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Monterey) &#43; Apple clang 13.1.6 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: &amp;#39;MY_DEFINE&amp;#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default.">
+    <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https:\/\/yokaze.github.io\/"
+            },
+            "headline": "Warn redefined macros by clang (-Wmacro-redefined) - yokaze.github.io",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/yokaze.github.io\/images\/default.png",
+                "height": 800,
+                "width": 800
+            },
+            "datePublished": "2017-09-21T00:00:00JST",
+            "dateModified": "2022-05-02T00:00:00JST",
+            "author": {
+                "@type": "Person",
+                "name": "yokaze.github.io"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "yokaze.github.io",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/yokaze.github.io\/images/logo.png",
+                    "width": 600,
+                    "height": 60
+                }
+            },
+            "description": "Use -Wmacro-redefined flag to warn redefined macros by clang.\n#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Monterey) \u002b Apple clang 13.1.6 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: \u0026#39;MY_DEFINE\u0026#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default."
+        }
 
-<meta property="og:title" content="Warn redefined macros by clang (-Wmacro-redefined) - yokaze.github.io">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/en/2017/09/21/">
-<meta property="og:image" content="https://yokaze.github.io/images/default.png">
-<meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="Use -Wmacro-redefined flag to warn redefined macros by clang.#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Monterey) &#43; Apple clang 13.1.6 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: &amp;#39;MY_DEFINE&amp;#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default.">
-<meta property="og:locale" content="ja_JP">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/en/2017/09/21/">
-<meta name="twitter:title" content="Warn redefined macros by clang (-Wmacro-redefined) - yokaze.github.io">
-<meta name="twitter:description" content="Use -Wmacro-redefined flag to warn redefined macros by clang.#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Monterey) &#43; Apple clang 13.1.6 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: &amp;#39;MY_DEFINE&amp;#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default.">
-<meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
-
-
-<script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "NewsArticle",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id":"https:\/\/yokaze.github.io\/"
-    },
-    "headline": "Warn redefined macros by clang (-Wmacro-redefined) - yokaze.github.io",
-    "image": {
-      "@type": "ImageObject",
-      "url": "https:\/\/yokaze.github.io\/images\/default.png",
-      "height": 800,
-      "width": 800
-    },
-    "datePublished": "2017-09-21T00:00:00JST",
-    "dateModified": "2022-05-02T00:00:00JST",
-    "author": {
-      "@type": "Person",
-      "name": "yokaze.github.io"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "yokaze.github.io",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https:\/\/yokaze.github.io\/images/logo.png",
-        "width": 600,
-        "height": 60
-      }
-    },
-    "description": "Use -Wmacro-redefined flag to warn redefined macros by clang.\n#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Monterey) \u002b Apple clang 13.1.6 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: \u0026#39;MY_DEFINE\u0026#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default."
-  }
-</script>
-
-
+    </script>
     <link href="https://yokaze.github.io/css/styles.css" rel="stylesheet">
-    
+</head>
 
-  </head>
+<body>
+    <script type="application/javascript">
+        var doNotTrack = false;
+        if (!doNotTrack) {
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-83271338-1', 'auto');
+            ga('send', 'pageview');
+        }
 
-  <body>
-    
-    
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-83271338-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-    
-
+    </script>
     <header class="l-header">
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="https://yokaze.github.io/en/">yokaze.github.io</a>
-          </div>
-
-          
-          <div id="navbar" class="collapse navbar-collapse">
-            
-            <ul class="nav navbar-nav navbar-right">
-              
-              
-              <li><a href="/about/">About</a></li>
-              
-              
-              
-              <li><a href="/software/">Software</a></li>
-              
-              
-            </ul>
-            
-          </div>
-          
-
-        </div>
-      </nav>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="https://yokaze.github.io/en/">yokaze.github.io</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/software/">Software</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-
     <main>
-      <div class="container">
-        
-<div class="row">
-  <div class="col-md-8">
-
-    
-
-    <article class="single">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2022-05-02T00:00:00JST">May 2, 2022</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/en/2017/">2017</a></li>
-      
-        <li><i class="fa fa-globe" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/09/21/">JA</a> | <a href="https://yokaze.github.io/en/2017/09/21/">EN</a></li>
-      
-      
-    </ul>
-    <h1 class="title">Warn redefined macros by clang (-Wmacro-redefined)</h1>
-  </header>
-
-  
-
-  <div class="article-body"><p>Use <code>-Wmacro-redefined</code> flag to warn redefined macros by clang.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#define MY_DEFINE   111
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <article class="single">
+                        <header>
+                            <ul class="p-facts">
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2022-05-02T00:00:00JST">May 2, 2022</time></li>
+                                <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/en/2017/">2017</a></li>
+                                <li><i class="fa fa-globe" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/09/21/">JA</a> | <a href="https://yokaze.github.io/en/2017/09/21/">EN</a></li>
+                            </ul>
+                            <h1 class="title">Warn redefined macros by clang (-Wmacro-redefined)</h1>
+                        </header>
+                        <div class="article-body">
+                            <p>Use <code>-Wmacro-redefined</code> flag to warn redefined macros by clang.</p>
+                            <div class="highlight">
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#define MY_DEFINE   111
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define MY_DEFINE   222
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+</span></span></code></pre>
+                            </div>
+                            <div class="highlight">
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
 </span></span><span style="display:flex;"><span>$ clang sample.cpp -Wmacro-redefined
 </span></span><span style="display:flex;"><span>sample.cpp:2:9: warning: &#39;MY_DEFINE&#39; macro redefined [-Wmacro-redefined]
 </span></span><span style="display:flex;"><span>#define MY_DEFINE   <span style="color:#ae81ff">222</span>
@@ -168,8 +140,11 @@ if (!doNotTrack) {
 </span></span><span style="display:flex;"><span>#define MY_DEFINE   <span style="color:#ae81ff">111</span>
 </span></span><span style="display:flex;"><span>        ^
 </span></span><span style="display:flex;"><span>1 warning generated.
-</span></span></code></pre></div><p>The warnings are displayed automatically: clang enables <code>-Wmacro-redefined</code> <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wmacro-redefined">by default</a>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+</span></span></code></pre>
+                            </div>
+                            <p>The warnings are displayed automatically: clang enables <code>-Wmacro-redefined</code> <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wmacro-redefined">by default</a>.</p>
+                            <div class="highlight">
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
 </span></span><span style="display:flex;"><span>$ clang sample.cpp
 </span></span><span style="display:flex;"><span>sample.cpp:2:9: warning: &#39;MY_DEFINE&#39; macro redefined [-Wmacro-redefined]
 </span></span><span style="display:flex;"><span>#define MY_DEFINE   <span style="color:#ae81ff">222</span>
@@ -178,14 +153,20 @@ if (!doNotTrack) {
 </span></span><span style="display:flex;"><span>#define MY_DEFINE   <span style="color:#ae81ff">111</span>
 </span></span><span style="display:flex;"><span>        ^
 </span></span><span style="display:flex;"><span>1 warning generated.
-</span></span></code></pre></div><h2 id="suppress-the-warnings">Suppress the warnings</h2>
-<p>Use <code>-Wno-macro-redefined</code> to suppress the warnings.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+</span></span></code></pre>
+                            </div>
+                            <h2 id="suppress-the-warnings">Suppress the warnings</h2>
+                            <p>Use <code>-Wno-macro-redefined</code> to suppress the warnings.</p>
+                            <div class="highlight">
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
 </span></span><span style="display:flex;"><span>$ clang sample.cpp -Wno-macro-redefined
 </span></span><span style="display:flex;"><span>$
-</span></span></code></pre></div><h2 id="gcc">GCC</h2>
-<p>GCC also accepts <code>-Wmacro-redefined</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + gcc 11.2.0</span>
+</span></span></code></pre>
+                            </div>
+                            <h2 id="gcc">GCC</h2>
+                            <p>GCC also accepts <code>-Wmacro-redefined</code>.</p>
+                            <div class="highlight">
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + gcc 11.2.0</span>
 </span></span><span style="display:flex;"><span>$ gcc-11 sample.cpp
 </span></span><span style="display:flex;"><span>$sample.cpp:2: warning: <span style="color:#e6db74">&#34;MY_DEFINE&#34;</span> redefined
 </span></span><span style="display:flex;"><span>    2 | #define MY_DEFINE   222
@@ -193,111 +174,85 @@ if (!doNotTrack) {
 </span></span><span style="display:flex;"><span>sample.cpp:1: note: this is the location of the previous definition
 </span></span><span style="display:flex;"><span>    1 | #define MY_DEFINE   111
 </span></span><span style="display:flex;"><span>      |
-</span></span></code></pre></div><p>
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="en" data-show-count="false">Tweet</a>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</p>
-
-<h2 id="references">References</h2>
-<ul>
-<li>Clang documentation — DIAGNOSTIC FLAGS IN CLANG<br />
-<span style="word-break: break-all;">
-<a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wmacro-redefined">https://clang.llvm.org/docs/DiagnosticsReference.html#wmacro-redefined</a>
-</span></li>
-</ul>
-</div>
- 
-  <br />
-
-  <footer class="article-footer">
-    
-    
-    
-    <section class="bordered">
-      <header>
-        <div class="panel-title">CATEGORIES</div>
-      </header>
-      <div>
-        <ul class="p-terms">
-          
-          <li><a href="https://yokaze.github.io/en/categories/programming/">Programming</a></li>
-          
-        </ul>
-      </div>
-    </section>
-    
-    
-  </footer>
-
-</article>
-
-
-    
-  </div>
-
-  <div class="col-md-4">
-    
-<aside class="l-sidebar">
-
-  
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">LATESTS</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://yokaze.github.io/en/2017/09/21/" class="list-group-item">Warn redefined macros by clang (-Wmacro-redefined)</a>
-      
-    </div>
-  </section>
-  
-
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">CATEGORY</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://yokaze.github.io/en/categories/programming" class="list-group-item">Programming</a>
-      
-    </div>
-  </section>
-  
-
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">AUTHOR</div>
-    </div>
-    <div class="list-group">
-      <a href="https://twitter.com/chrofieyue" class="list-group-item">Rue Yokaze&ensp;<font color="#00acee" /><i class="fa fa-twitter" aria-hidden="true"></i></font></a>
-    </div>
-  </section>
-
-</aside>
-
-  </div>
-</div>
-
-
-      </div>
+</span></span></code></pre>
+                            </div>
+                            <p>
+                                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="en" data-show-count="false">Tweet</a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            </p>
+                            <h2 id="references">References</h2>
+                            <ul>
+                                <li>Clang documentation — DIAGNOSTIC FLAGS IN CLANG<br />
+                                    <span style="word-break: break-all;">
+                                        <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wmacro-redefined">https://clang.llvm.org/docs/DiagnosticsReference.html#wmacro-redefined</a>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <br />
+                        <footer class="article-footer">
+                            <section class="bordered">
+                                <header>
+                                    <div class="panel-title">CATEGORIES</div>
+                                </header>
+                                <div>
+                                    <ul class="p-terms">
+                                        <li><a href="https://yokaze.github.io/en/categories/programming/">Programming</a></li>
+                                    </ul>
+                                </div>
+                            </section>
+                        </footer>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <aside class="l-sidebar">
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">LATESTS</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://yokaze.github.io/en/2017/09/21/" class="list-group-item">Warn redefined macros by clang (-Wmacro-redefined)</a>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">CATEGORY</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://yokaze.github.io/en/categories/programming" class="list-group-item">Programming</a>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">AUTHOR</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://twitter.com/chrofieyue" class="list-group-item">Rue Yokaze&ensp;
+                                    <font color="#00acee" /><i class="fa fa-twitter" aria-hidden="true"></i></font>
+                                </a>
+                            </div>
+                        </section>
+                    </aside>
+                </div>
+            </div>
+        </div>
     </main>
-
     <footer class="l-footer">
-      <div class="container">
-        <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
-        <aside>
-          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
-          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
-        </aside>
-      </div>
+        <div class="container">
+            <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
+            <aside>
+                <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+                <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+            </aside>
+        </div>
     </footer>
-
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
-    
-    <script>hljs.initHighlightingOnLoad();</script>
-  </body>
+    <script>
+        hljs.initHighlightingOnLoad();
+
+    </script>
+</body>
+
 </html>

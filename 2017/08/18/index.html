@@ -1,188 +1,147 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+
+<head>
     <meta charset="utf-8">
-<meta http-equiv="content-language" content="ja">
-<meta name="pinterest" content="nopin">
-<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.95.0" />
-
-
-
-<link rel="canonical" href="https://yokaze.github.io/2017/08/18/">
-
-
+    <meta http-equiv="content-language" content="ja">
+    <meta name="pinterest" content="nopin">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <meta name="generator" content="Hugo 0.95.0" />
+    <link rel="canonical" href="https://yokaze.github.io/2017/08/18/">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
     <title>Boost.MultiArray の添字演算子について - yokaze.github.io</title>
-    
-<meta name="description" content="Boost.MultiArray が添え字の境界チェックをしているのかよく分からなかったので、調べてみた。 リファレンスには次のように書かれている。 By default, the array access methods operator() and operator[] perform range checking. If">
+    <meta name="description" content="Boost.MultiArray が添え字の境界チェックをしているのかよく分からなかったので、調べてみた。 リファレンスには次のように書かれている。 By default, the array access methods operator() and operator[] perform range checking. If">
+    <meta property="og:title" content="Boost.MultiArray の添字演算子について - yokaze.github.io">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yokaze.github.io/2017/08/18/">
+    <meta property="og:image" content="https://yokaze.github.io/images/default.png">
+    <meta property="og:site_name" content="yokaze.github.io">
+    <meta property="og:description" content="Boost.MultiArray が添え字の境界チェックをしているのかよく分からなかったので、調べてみた。 リファレンスには次のように書かれている。 By default, the array access methods operator() and operator[] perform range checking. If">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="yokaze.github.io">
+    <meta name="twitter:url" content="https://yokaze.github.io/2017/08/18/">
+    <meta name="twitter:title" content="Boost.MultiArray の添字演算子について - yokaze.github.io">
+    <meta name="twitter:description" content="Boost.MultiArray が添え字の境界チェックをしているのかよく分からなかったので、調べてみた。 リファレンスには次のように書かれている。 By default, the array access methods operator() and operator[] perform range checking. If">
+    <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https:\/\/yokaze.github.io\/"
+            },
+            "headline": "Boost.MultiArray の添字演算子について - yokaze.github.io",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/yokaze.github.io\/images\/default.png",
+                "height": 800,
+                "width": 800
+            },
+            "datePublished": "2017-08-18T18:30:00JST",
+            "dateModified": "2017-08-18T18:30:00JST",
+            "author": {
+                "@type": "Person",
+                "name": "yokaze.github.io"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "yokaze.github.io",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/yokaze.github.io\/images/logo.png",
+                    "width": 600,
+                    "height": 60
+                }
+            },
+            "description": "Boost.MultiArray が添え字の境界チェックをしているのかよく分からなかったので、調べてみた。 リファレンスには次のように書かれている。 By default, the array access methods operator() and operator[] perform range checking. If"
+        }
 
-<meta property="og:title" content="Boost.MultiArray の添字演算子について - yokaze.github.io">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2017/08/18/">
-<meta property="og:image" content="https://yokaze.github.io/images/default.png">
-<meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="Boost.MultiArray が添え字の境界チェックをしているのかよく分からなかったので、調べてみた。 リファレンスには次のように書かれている。 By default, the array access methods operator() and operator[] perform range checking. If">
-<meta property="og:locale" content="ja_JP">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2017/08/18/">
-<meta name="twitter:title" content="Boost.MultiArray の添字演算子について - yokaze.github.io">
-<meta name="twitter:description" content="Boost.MultiArray が添え字の境界チェックをしているのかよく分からなかったので、調べてみた。 リファレンスには次のように書かれている。 By default, the array access methods operator() and operator[] perform range checking. If">
-<meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
-
-
-<script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "NewsArticle",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id":"https:\/\/yokaze.github.io\/"
-    },
-    "headline": "Boost.MultiArray の添字演算子について - yokaze.github.io",
-    "image": {
-      "@type": "ImageObject",
-      "url": "https:\/\/yokaze.github.io\/images\/default.png",
-      "height": 800,
-      "width": 800
-    },
-    "datePublished": "2017-08-18T18:30:00JST",
-    "dateModified": "2017-08-18T18:30:00JST",
-    "author": {
-      "@type": "Person",
-      "name": "yokaze.github.io"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "yokaze.github.io",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https:\/\/yokaze.github.io\/images/logo.png",
-        "width": 600,
-        "height": 60
-      }
-    },
-    "description": "Boost.MultiArray が添え字の境界チェックをしているのかよく分からなかったので、調べてみた。 リファレンスには次のように書かれている。 By default, the array access methods operator() and operator[] perform range checking. If"
-  }
-</script>
-
-
+    </script>
     <link href="https://yokaze.github.io/css/styles.css" rel="stylesheet">
-    
+</head>
 
-  </head>
+<body>
+    <script type="application/javascript">
+        var doNotTrack = false;
+        if (!doNotTrack) {
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-83271338-1', 'auto');
+            ga('send', 'pageview');
+        }
 
-  <body>
-    
-    
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-83271338-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-    
-
+    </script>
     <header class="l-header">
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
-          </div>
-
-          
-          <div id="navbar" class="collapse navbar-collapse">
-            
-            <ul class="nav navbar-nav navbar-right">
-              
-              
-              <li><a href="/about/">About</a></li>
-              
-              
-              
-              <li><a href="/software/">Software</a></li>
-              
-              
-            </ul>
-            
-          </div>
-          
-
-        </div>
-      </nav>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/software/">Software</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-
     <main>
-      <div class="container">
-        
-<div class="row">
-  <div class="col-md-8">
-
-    
-
-    <article class="single">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-08-18T18:30:00JST">Aug 18, 2017</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
-      
-      
-    </ul>
-    <h1 class="title">Boost.MultiArray の添字演算子について</h1>
-  </header>
-
-  
-
-  <div class="article-body"><p>Boost.MultiArray が添え字の境界チェックをしているのかよく分からなかったので、調べてみた。</p>
-<p>リファレンスには次のように書かれている。</p>
-<blockquote>
-<p>
-By default, the array access methods operator() and operator[] perform range checking.
-If a supplied index is out of the range defined for an array, an assertion will abort the program.
-To disable range checking (for performance reasons in production releases), define the BOOST_DISABLE_ASSERTS preprocessor macro prior to including multi_array.hpp in an application.
-</p>
-<p><a href="http://www.boost.org/doc/libs/1_64_0/libs/multi_array/doc/reference.html#range_checking">Boost.MultiArray Reference Manual</a>
-<br />
-<br /></p>
-<p>和訳</p>
-<p>明示的な指定がない場合、配列にアクセスするための () および [] 演算子は範囲の確認をおこないます。
-指定されたインデックスが配列の境界を超える場合、アサーションが発行されプログラムは終了します。
-（製品のリリース時など、性能上の観点から）境界チェックを無効にしたい場合は、アプリケーションが multi_array.hpp をインクルードする前に BOOST_DISABLE_ASSERTS マクロを定義してください。</p>
-</blockquote>
-<p>境界チェックには BOOST_ASSERT が使われている。これは <a href="https://github.com/boostorg/assert/blob/develop/include/boost/assert.hpp">&lt;boost/assert.hpp&gt;</a> で定義されていて、</p>
-<ol>
-<li>BOOST_DISABLE_ASSERTS が定義されている場合： <br />
-テストを行わない</li>
-<li>NDEBUG と BOOST_ENABLE_ASSERT_DEBUG_HANDLER が同時に定義されている場合： <br />
-テストを行わない</li>
-<li>BOOST_ENABLE_ASSERT_HANDLER が定義されているか、<br />
-NDEBUG が定義されておらず BOOST_ENABLE_ASSERT_DEBUG_HANDLER のみ定義されている場合： <br />
-ユーザーが定義した boost::assertion_failed ハンドラを呼び出す</li>
-<li>それ以外の場合： <br />
-&lt;assert.h&gt; を読み込み標準の assert を呼び出す。</li>
-</ol>
-<p>ややこしいのだが、境界チェックを外すためには BOOST_DISABLE_ASSERTS が必要とのこと。
-NDEBUG は関係なさそうだ。</p>
-<h2 id="実装を確認する">実装を確認する</h2>
-<p><a href="https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array.hpp">&lt;boost/multi_array.hpp&gt;</a> の実装を調べた結果も載せておく。</p>
-<p>boost::multi_array の継承関係は以下のようになっている。（名前空間名は省略）</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>+ multi_array&lt;T, NumDims, Allocator&gt;
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <article class="single">
+                        <header>
+                            <ul class="p-facts">
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-08-18T18:30:00JST">Aug 18, 2017</time></li>
+                                <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
+                            </ul>
+                            <h1 class="title">Boost.MultiArray の添字演算子について</h1>
+                        </header>
+                        <div class="article-body">
+                            <p>Boost.MultiArray が添え字の境界チェックをしているのかよく分からなかったので、調べてみた。</p>
+                            <p>リファレンスには次のように書かれている。</p>
+                            <blockquote>
+                                <p> By default, the array access methods operator() and operator[] perform range checking. If a supplied index is out of the range defined for an array, an assertion will abort the program. To disable range checking (for performance reasons in production releases), define the BOOST_DISABLE_ASSERTS preprocessor macro prior to including multi_array.hpp in an application. </p>
+                                <p><a href="http://www.boost.org/doc/libs/1_64_0/libs/multi_array/doc/reference.html#range_checking">Boost.MultiArray Reference Manual</a>
+                                    <br />
+                                    <br />
+                                </p>
+                                <p>和訳</p>
+                                <p>明示的な指定がない場合、配列にアクセスするための () および [] 演算子は範囲の確認をおこないます。 指定されたインデックスが配列の境界を超える場合、アサーションが発行されプログラムは終了します。 （製品のリリース時など、性能上の観点から）境界チェックを無効にしたい場合は、アプリケーションが multi_array.hpp をインクルードする前に BOOST_DISABLE_ASSERTS マクロを定義してください。</p>
+                            </blockquote>
+                            <p>境界チェックには BOOST_ASSERT が使われている。これは <a href="https://github.com/boostorg/assert/blob/develop/include/boost/assert.hpp">&lt;boost/assert.hpp&gt;</a> で定義されていて、</p>
+                            <ol>
+                                <li>BOOST_DISABLE_ASSERTS が定義されている場合： <br /> テストを行わない</li>
+                                <li>NDEBUG と BOOST_ENABLE_ASSERT_DEBUG_HANDLER が同時に定義されている場合： <br /> テストを行わない</li>
+                                <li>BOOST_ENABLE_ASSERT_HANDLER が定義されているか、<br /> NDEBUG が定義されておらず BOOST_ENABLE_ASSERT_DEBUG_HANDLER のみ定義されている場合： <br /> ユーザーが定義した boost::assertion_failed ハンドラを呼び出す</li>
+                                <li>それ以外の場合： <br /> &lt;assert.h&gt; を読み込み標準の assert を呼び出す。</li>
+                            </ol>
+                            <p>ややこしいのだが、境界チェックを外すためには BOOST_DISABLE_ASSERTS が必要とのこと。 NDEBUG は関係なさそうだ。</p>
+                            <h2 id="実装を確認する">実装を確認する</h2>
+                            <p><a href="https://github.com/boostorg/multi_array/blob/develop/include/boost/multi_array.hpp">&lt;boost/multi_array.hpp&gt;</a> の実装を調べた結果も載せておく。</p>
+                            <p>boost::multi_array の継承関係は以下のようになっている。（名前空間名は省略）</p>
+                            <div class="highlight">
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>+ multi_array&lt;T, NumDims, Allocator&gt;
 </span></span><span style="display:flex;"><span>  + multi_array_ref&lt;T, NumDims&gt;
 </span></span><span style="display:flex;"><span>    + const_multi_array_ref&lt;T, NumDims, TPtr = T*&gt;
 </span></span><span style="display:flex;"><span>      + multi_array_impl_base&lt;T, NumDims&gt;
@@ -193,13 +152,13 @@ NDEBUG は関係なさそうだ。</p>
 </span></span><span style="display:flex;"><span>          = choose_value_accessor_n&lt;T, NumDims&gt;::type
 </span></span><span style="display:flex;"><span>            = value_accessor_n&lt;T, NimDims&gt;
 </span></span><span style="display:flex;"><span>              + multi_array_base
-</span></span></code></pre></div><p>添え字演算子 [] の実装をしているのは value_accessor_one と value_accessor_n である。</p>
-<p><a href="https://github.com/boostorg/multi_array/blob/83493ba2316f48ffc56cf934e3164feb4aa1433f/include/boost/multi_array/base.hpp#L108">boost/multi_array/base.hpp:L108</a>
-近辺で BOOST_ASSERT が使われている。
-テンプレートで実装されているため、次元に関するループはコンパイル時に展開される。
-また、boost::multi_array では各次元の添字の始点を設定できるため、この値をメモリから読み込む処理が必要になる。</p>
-<p>処理の疑似コードは以下の通り。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// &lt;boost/multi_array/base.hpp&gt; より引用・改変
+</span></span></code></pre>
+                            </div>
+                            <p>添え字演算子 [] の実装をしているのは value_accessor_one と value_accessor_n である。</p>
+                            <p><a href="https://github.com/boostorg/multi_array/blob/83493ba2316f48ffc56cf934e3164feb4aa1433f/include/boost/multi_array/base.hpp#L108">boost/multi_array/base.hpp:L108</a> 近辺で BOOST_ASSERT が使われている。 テンプレートで実装されているため、次元に関するループはコンパイル時に展開される。 また、boost::multi_array では各次元の添字の始点を設定できるため、この値をメモリから読み込む処理が必要になる。</p>
+                            <p>処理の疑似コードは以下の通り。</p>
+                            <div class="highlight">
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// &lt;boost/multi_array/base.hpp&gt; より引用・改変
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span>size_t NumDims<span style="color:#f92672">&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> T<span style="color:#f92672">&amp;</span> get_element(<span style="color:#66d9ef">const</span> T<span style="color:#f92672">*</span> data,
@@ -225,14 +184,13 @@ NDEBUG は関係なさそうだ。</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">*</span>data;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><!--*-->
-<p>また、関数呼び出し演算子 () の実体は
-<a href="https://github.com/boostorg/multi_array/blob/83493ba2316f48ffc56cf934e3164feb4aa1433f/include/boost/multi_array/base.hpp#L297">multi_array_impl_base::access_element</a>
-である。
-こちらはなんと NDEBUG または BOOST_DISABLE_ASSERTS のどちらかが定義されていれば境界チェックをスキップしてしまう。
-NDEBUG のみ指定された環境では、添字演算子 [] のみ境界チェックをするということになり、std::vector と逆の動きをする点に注意。</p>
-<p>こちらは次元に関して for でループを回している。処理の疑似コードは以下の通り。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// &lt;boost/multi_array/base.hpp&gt; より引用・改変
+</span></span></code></pre>
+                            </div>
+                            <!--*-->
+                            <p>また、関数呼び出し演算子 () の実体は <a href="https://github.com/boostorg/multi_array/blob/83493ba2316f48ffc56cf934e3164feb4aa1433f/include/boost/multi_array/base.hpp#L297">multi_array_impl_base::access_element</a> である。 こちらはなんと NDEBUG または BOOST_DISABLE_ASSERTS のどちらかが定義されていれば境界チェックをスキップしてしまう。 NDEBUG のみ指定された環境では、添字演算子 [] のみ境界チェックをするということになり、std::vector と逆の動きをする点に注意。</p>
+                            <p>こちらは次元に関して for でループを回している。処理の疑似コードは以下の通り。</p>
+                            <div class="highlight">
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// &lt;boost/multi_array/base.hpp&gt; より引用・改変
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span>size_t NumDims<span style="color:#f92672">&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> T<span style="color:#f92672">&amp;</span> get_element(<span style="color:#66d9ef">const</span> T<span style="color:#f92672">*</span> data,
@@ -254,140 +212,102 @@ NDEBUG のみ指定された環境では、添字演算子 [] のみ境界チェ
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">*</span>data;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><!--*-->
-<h2 id="結論">結論</h2>
-<ul>
-<li>アサーションがあると分岐ペナルティが発生するため、BOOST_DISABLE_ASSERTS を設定することが望ましい。</li>
-<li>次元方向のループ展開はあまりパフォーマンスに影響しないので、添字演算子 [] と関数呼び出し演算子 () の選択はお好みで。</li>
-<li>最速を目指す場合はメモリアドレスを手動で計算し、添字の始点の取り扱いを省略する。</li>
-</ul>
-<p>
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</p>
-
-<h2 id="参考文献">参考文献</h2>
-<ol>
-<li><a href="http://www.boost.org/doc/libs/1_64_0/libs/assert/assert.html">assert.hpp (Reference)</a></li>
-<li><a href="http://www.boost.org/doc/libs/1_64_0/libs/multi_array/doc/reference.html">Boost.MultiArray Reference Manual</a></li>
-<li><a href="https://github.com/boostorg/assert">GitHub / boostorg / assert</a></li>
-<li><a href="https://github.com/boostorg/multi_array">GitHub / boostorg / multi_array</a></li>
-</ol>
-</div>
- 
-  <br />
-
-  <footer class="article-footer">
-    
-    
-    
-    <section class="bordered">
-      <header>
-        <div class="panel-title">CATEGORIES</div>
-      </header>
-      <div>
-        <ul class="p-terms">
-          
-          <li><a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/">プログラミング</a></li>
-          
-        </ul>
-      </div>
-    </section>
-    
-    
-  </footer>
-
-</article>
-
-
-    
-  </div>
-
-  <div class="col-md-4">
-    
-<aside class="l-sidebar">
-
-  
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">RELATED POSTS</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://yokaze.github.io/2017/09/15/" class="list-group-item">Homebrew で python3 用の Boost.Python をインストールする</a>
-      
-      <a href="https://yokaze.github.io/2017/09/13/" class="list-group-item">boost::indices の解説</a>
-      
-      <a href="https://yokaze.github.io/2017/09/11/" class="list-group-item">boost::extents の解説</a>
-      
-      <a href="https://yokaze.github.io/2017/10/06/" class="list-group-item">clang で未使用のマクロを警告する (-Wunused-macros)</a>
-      
-      <a href="https://yokaze.github.io/2017/09/21/" class="list-group-item">clang でマクロの再定義を警告する (-Wmacro-redefined)</a>
-      
-      <a href="https://yokaze.github.io/2019/07/05/" class="list-group-item">lldb で関数の呼び出し履歴を表示する</a>
-      
-      <a href="https://yokaze.github.io/2019/07/04/" class="list-group-item">clang でソースコードが依存するヘッダー一覧を表示する</a>
-      
-      <a href="https://yokaze.github.io/2018/10/13/" class="list-group-item">CMake &#43; Visual Studio でモジュール定義ファイル (.def) を使う</a>
-      
-      <a href="https://yokaze.github.io/2018/10/11/" class="list-group-item">CMake &#43; Visual Studio で特定の警告を無視する</a>
-      
-      <a href="https://yokaze.github.io/2018/10/04/" class="list-group-item">lldb の source info コマンドの使い方</a>
-      
-    </div>
-  </section>
-  
-
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">CATEGORY</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
-      
-      <a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="list-group-item">機械学習</a>
-      
-      <a href="https://yokaze.github.io/categories/%E5%86%99%E7%9C%9F" class="list-group-item">写真</a>
-      
-    </div>
-  </section>
-  
-
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">AUTHOR</div>
-    </div>
-    <div class="list-group">
-      <a href="https://twitter.com/chrofieyue" class="list-group-item">夜風&ensp;<font color="#00acee" /><i class="fa fa-twitter" aria-hidden="true"></i></font></a>
-    </div>
-  </section>
-
-</aside>
-
-  </div>
-</div>
-
-
-      </div>
+</span></span></code></pre>
+                            </div>
+                            <!--*-->
+                            <h2 id="結論">結論</h2>
+                            <ul>
+                                <li>アサーションがあると分岐ペナルティが発生するため、BOOST_DISABLE_ASSERTS を設定することが望ましい。</li>
+                                <li>次元方向のループ展開はあまりパフォーマンスに影響しないので、添字演算子 [] と関数呼び出し演算子 () の選択はお好みで。</li>
+                                <li>最速を目指す場合はメモリアドレスを手動で計算し、添字の始点の取り扱いを省略する。</li>
+                            </ul>
+                            <p>
+                                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            </p>
+                            <h2 id="参考文献">参考文献</h2>
+                            <ol>
+                                <li><a href="http://www.boost.org/doc/libs/1_64_0/libs/assert/assert.html">assert.hpp (Reference)</a></li>
+                                <li><a href="http://www.boost.org/doc/libs/1_64_0/libs/multi_array/doc/reference.html">Boost.MultiArray Reference Manual</a></li>
+                                <li><a href="https://github.com/boostorg/assert">GitHub / boostorg / assert</a></li>
+                                <li><a href="https://github.com/boostorg/multi_array">GitHub / boostorg / multi_array</a></li>
+                            </ol>
+                        </div>
+                        <br />
+                        <footer class="article-footer">
+                            <section class="bordered">
+                                <header>
+                                    <div class="panel-title">CATEGORIES</div>
+                                </header>
+                                <div>
+                                    <ul class="p-terms">
+                                        <li><a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/">プログラミング</a></li>
+                                    </ul>
+                                </div>
+                            </section>
+                        </footer>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <aside class="l-sidebar">
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">RELATED POSTS</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://yokaze.github.io/2017/09/15/" class="list-group-item">Homebrew で python3 用の Boost.Python をインストールする</a>
+                                <a href="https://yokaze.github.io/2017/09/13/" class="list-group-item">boost::indices の解説</a>
+                                <a href="https://yokaze.github.io/2017/09/11/" class="list-group-item">boost::extents の解説</a>
+                                <a href="https://yokaze.github.io/2017/10/06/" class="list-group-item">clang で未使用のマクロを警告する (-Wunused-macros)</a>
+                                <a href="https://yokaze.github.io/2017/09/21/" class="list-group-item">clang でマクロの再定義を警告する (-Wmacro-redefined)</a>
+                                <a href="https://yokaze.github.io/2019/07/05/" class="list-group-item">lldb で関数の呼び出し履歴を表示する</a>
+                                <a href="https://yokaze.github.io/2019/07/04/" class="list-group-item">clang でソースコードが依存するヘッダー一覧を表示する</a>
+                                <a href="https://yokaze.github.io/2018/10/13/" class="list-group-item">CMake &#43; Visual Studio でモジュール定義ファイル (.def) を使う</a>
+                                <a href="https://yokaze.github.io/2018/10/11/" class="list-group-item">CMake &#43; Visual Studio で特定の警告を無視する</a>
+                                <a href="https://yokaze.github.io/2018/10/04/" class="list-group-item">lldb の source info コマンドの使い方</a>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">CATEGORY</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
+                                <a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="list-group-item">機械学習</a>
+                                <a href="https://yokaze.github.io/categories/%E5%86%99%E7%9C%9F" class="list-group-item">写真</a>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">AUTHOR</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://twitter.com/chrofieyue" class="list-group-item">夜風&ensp;
+                                    <font color="#00acee" /><i class="fa fa-twitter" aria-hidden="true"></i></font>
+                                </a>
+                            </div>
+                        </section>
+                    </aside>
+                </div>
+            </div>
+        </div>
     </main>
-
     <footer class="l-footer">
-      <div class="container">
-        <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
-        <aside>
-          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
-          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
-        </aside>
-      </div>
+        <div class="container">
+            <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
+            <aside>
+                <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+                <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+            </aside>
+        </div>
     </footer>
-
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
-    
-    <script>hljs.initHighlightingOnLoad();</script>
-  </body>
+    <script>
+        hljs.initHighlightingOnLoad();
+
+    </script>
+</body>
+
 </html>

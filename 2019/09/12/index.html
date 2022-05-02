@@ -1,366 +1,202 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+
+<head>
     <meta charset="utf-8">
-<meta http-equiv="content-language" content="ja">
-<meta name="pinterest" content="nopin">
-<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.95.0" />
-
-
-
-<link rel="canonical" href="https://yokaze.github.io/2019/09/12/">
-
-
+    <meta http-equiv="content-language" content="ja">
+    <meta name="pinterest" content="nopin">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <meta name="generator" content="Hugo 0.95.0" />
+    <link rel="canonical" href="https://yokaze.github.io/2019/09/12/">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
     <title>Sliced Wasserstein GMM を実装してみた - yokaze.github.io</title>
-    
-<meta name="description" content="最近話題の Sliced Wasserstein Distance (SWD) [Deshpande 2018, Deshpande 2019] を理解するため、 Kolouri らの Sliced Wasserstein Distance for Learning Gaussian Mixture Models (SWGMM) を実装しました。 以前の記事で Wasserstein 距離の解説 を書いたので、こちらも是非ご参照く">
+    <meta name="description" content="最近話題の Sliced Wasserstein Distance (SWD) [Deshpande 2018, Deshpande 2019] を理解するため、 Kolouri らの Sliced Wasserstein Distance for Learning Gaussian Mixture Models (SWGMM) を実装しました。 以前の記事で Wasserstein 距離の解説 を書いたので、こちらも是非ご参照く">
+    <meta property="og:title" content="Sliced Wasserstein GMM を実装してみた - yokaze.github.io">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yokaze.github.io/2019/09/12/">
+    <meta property="og:image" content="https://yokaze.github.io/images/default.png">
+    <meta property="og:site_name" content="yokaze.github.io">
+    <meta property="og:description" content="最近話題の Sliced Wasserstein Distance (SWD) [Deshpande 2018, Deshpande 2019] を理解するため、 Kolouri らの Sliced Wasserstein Distance for Learning Gaussian Mixture Models (SWGMM) を実装しました。 以前の記事で Wasserstein 距離の解説 を書いたので、こちらも是非ご参照く">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="yokaze.github.io">
+    <meta name="twitter:url" content="https://yokaze.github.io/2019/09/12/">
+    <meta name="twitter:title" content="Sliced Wasserstein GMM を実装してみた - yokaze.github.io">
+    <meta name="twitter:description" content="最近話題の Sliced Wasserstein Distance (SWD) [Deshpande 2018, Deshpande 2019] を理解するため、 Kolouri らの Sliced Wasserstein Distance for Learning Gaussian Mixture Models (SWGMM) を実装しました。 以前の記事で Wasserstein 距離の解説 を書いたので、こちらも是非ご参照く">
+    <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https:\/\/yokaze.github.io\/"
+            },
+            "headline": "Sliced Wasserstein GMM を実装してみた - yokaze.github.io",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/yokaze.github.io\/images\/default.png",
+                "height": 800,
+                "width": 800
+            },
+            "datePublished": "2019-09-12T21:00:00JST",
+            "dateModified": "2019-09-12T21:00:00JST",
+            "author": {
+                "@type": "Person",
+                "name": "yokaze.github.io"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "yokaze.github.io",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/yokaze.github.io\/images/logo.png",
+                    "width": 600,
+                    "height": 60
+                }
+            },
+            "description": "最近話題の Sliced Wasserstein Distance (SWD) [Deshpande 2018, Deshpande 2019] を理解するため、 Kolouri らの Sliced Wasserstein Distance for Learning Gaussian Mixture Models (SWGMM) を実装しました。 以前の記事で Wasserstein 距離の解説 を書いたので、こちらも是非ご参照く"
+        }
 
-<meta property="og:title" content="Sliced Wasserstein GMM を実装してみた - yokaze.github.io">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2019/09/12/">
-<meta property="og:image" content="https://yokaze.github.io/images/default.png">
-<meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="最近話題の Sliced Wasserstein Distance (SWD) [Deshpande 2018, Deshpande 2019] を理解するため、 Kolouri らの Sliced Wasserstein Distance for Learning Gaussian Mixture Models (SWGMM) を実装しました。 以前の記事で Wasserstein 距離の解説 を書いたので、こちらも是非ご参照く">
-<meta property="og:locale" content="ja_JP">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2019/09/12/">
-<meta name="twitter:title" content="Sliced Wasserstein GMM を実装してみた - yokaze.github.io">
-<meta name="twitter:description" content="最近話題の Sliced Wasserstein Distance (SWD) [Deshpande 2018, Deshpande 2019] を理解するため、 Kolouri らの Sliced Wasserstein Distance for Learning Gaussian Mixture Models (SWGMM) を実装しました。 以前の記事で Wasserstein 距離の解説 を書いたので、こちらも是非ご参照く">
-<meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
-
-
-<script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "NewsArticle",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id":"https:\/\/yokaze.github.io\/"
-    },
-    "headline": "Sliced Wasserstein GMM を実装してみた - yokaze.github.io",
-    "image": {
-      "@type": "ImageObject",
-      "url": "https:\/\/yokaze.github.io\/images\/default.png",
-      "height": 800,
-      "width": 800
-    },
-    "datePublished": "2019-09-12T21:00:00JST",
-    "dateModified": "2019-09-12T21:00:00JST",
-    "author": {
-      "@type": "Person",
-      "name": "yokaze.github.io"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "yokaze.github.io",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https:\/\/yokaze.github.io\/images/logo.png",
-        "width": 600,
-        "height": 60
-      }
-    },
-    "description": "最近話題の Sliced Wasserstein Distance (SWD) [Deshpande 2018, Deshpande 2019] を理解するため、 Kolouri らの Sliced Wasserstein Distance for Learning Gaussian Mixture Models (SWGMM) を実装しました。 以前の記事で Wasserstein 距離の解説 を書いたので、こちらも是非ご参照く"
-  }
-</script>
-
-
+    </script>
     <link href="https://yokaze.github.io/css/styles.css" rel="stylesheet">
-    
+</head>
 
-  </head>
+<body>
+    <script type="application/javascript">
+        var doNotTrack = false;
+        if (!doNotTrack) {
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-83271338-1', 'auto');
+            ga('send', 'pageview');
+        }
 
-  <body>
-    
-    
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-83271338-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-    
-
+    </script>
     <header class="l-header">
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
-          </div>
-
-          
-          <div id="navbar" class="collapse navbar-collapse">
-            
-            <ul class="nav navbar-nav navbar-right">
-              
-              
-              <li><a href="/about/">About</a></li>
-              
-              
-              
-              <li><a href="/software/">Software</a></li>
-              
-              
-            </ul>
-            
-          </div>
-          
-
-        </div>
-      </nav>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/software/">Software</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-
     <main>
-      <div class="container">
-        
-<div class="row">
-  <div class="col-md-8">
-
-    
-
-    <article class="single">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-09-12T21:00:00JST">Sep 12, 2019</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2019/">2019</a></li>
-      
-      
-    </ul>
-    <h1 class="title">Sliced Wasserstein GMM を実装してみた</h1>
-  </header>
-
-  
-
-  <div class="article-body"><p>最近話題の Sliced Wasserstein Distance (SWD) [<a href="https://arxiv.org/abs/1803.11188">Deshpande 2018</a>,
-<a href="https://arxiv.org/abs/1904.05877">Deshpande 2019</a>] を理解するため、
-Kolouri らの <a href="https://arxiv.org/abs/1711.05376">Sliced Wasserstein Distance for Learning Gaussian Mixture Models</a>
-(SWGMM) を実装しました。</p>
-<p>以前の記事で <a href="/2019/07/12/">Wasserstein 距離の解説</a> を書いたので、こちらも是非ご参照ください。</p>
-<p><a href="https://github.com/yokaze/swgmm">GitHub</a> に実装を載せました。</p>
-<h2 id="あらすじ">あらすじ</h2>
-<ul>
-<li>
-<p>従来、観測データと生成モデルの分布を比較するために Kullback-Leibler (KL) 損失が使われてきた。
-しかし KL 損失を使うと勾配消失や局所解が発生するため、GAN などの高度なタスクでは上手く動かないことがある。</p>
-</li>
-<li>
-<p>近年の研究から、Wasserstein 距離が勾配消失に強く、色々なタスクに応用できることが分かってきた。
-しかし多次元空間で Wasserstein 距離を正確に計算する方法はなく、Kantorovich-Rubinstein 双対性 [<a href="http://proceedings.mlr.press/v70/arjovsky17a.html">Arjovsky 2017</a>] やエントロピー正則化 [<a href="http://proceedings.mlr.press/v84/genevay18a.html">Genevay 2018</a>] が必要になる。</p>
-</li>
-<li>
-<p>Wasserstein 距離の近似計算はそれ自体が新たなタスクになってしまうため、別の定式化を考えたい。
-実は Wasserstein 距離は空間が1次元の場合のみ累積密度関数のマッチングを取ることで厳密に計算できるという性質があり、
-これを応用したのが Sliced Wasserstein 距離 (SWD) である。</p>
-</li>
-<li>
-<p>観測値が $D$ 次元ユークリッド空間 $\mathbb{R}^D$ で表現されるとき、
-単位球 $\mathbb{S}^{D-1}$ 上の方向ベクトル $\theta$ を使って Radon 変換を行うと1次元の Wasserstein 距離が計算できる。
-Radon 変換は方向ベクトル $\theta$ の直交補空間を積分消去する操作で、
-ガウス分布や離散データ集合の Radon 変換は $\theta$ との内積として求まる。</p>
-</li>
-<li>
-<p>Sliced Wasserstein 距離は Radon 変換された1次元空間上の Wasserstein 距離を全方向ベクトル $\mathbb{S}^{D-1}$
-について積分した値である。この値は解析的に計算できないが、方向ベクトルをランダムにサンプリングすることで近似できる。
-この計算には学習やハイパーパラメータが存在しないため安定である。</p>
-</li>
-<li>
-<p>1次元空間における離散分布と混合ガウス分布の間の Wasserstein 距離はパラメータ $\pi, \mu, \Sigma$ に対して数値的に微分可能である。
-このため上の手順で近似した Sliced Wasserstein 距離も微分可能となり、パラメータに対する勾配が計算できる。
-このアルゴリズムが <a href="https://arxiv.org/abs/1711.05376">Kolouri らの論文</a> のテーマである。</p>
-</li>
-</ul>
-<p><div>
-<font color="gray"><small>
-図: 二つのガウス分布を使って観測データをモデル化し、左側のガウス分布の位置だけを移動した際の KL, Wasserstein-1, Wasserstein-2
-損失の比較。KL 損失を使うと勾配消失が発生する上、左側の局所解に捕まって動けなくなってしまう。
-Wasserstein 距離は適切な勾配を持ち、また問題の大域最適解を発見できている。
-2次元の Wasserstein 距離は計算できないため、X 軸方向の損失のみ計算している。（<a href="https://github.com/yokaze/swgmm/blob/31529131039cd27a126ed523acd3415c712e4c0d/fig1.py">ソースコード</a>）
-</small></font>
-<figure class="center"><img src="/2019/09/12/loss.png"/>
-</figure>
-
-</div></p>
-<h2 id="問題設定">問題設定</h2>
-<h3 id="経験分布と密度関数">経験分布と密度関数</h3>
-<p><div>
-観測されたデータ $X = [ x_1 \cdots x_N ]$ があり、これを多次元の混合ガウス分布 (GMM) でモデル化したい。
-$\delta_x$ を Dirac 測度とすると、観測データの経験分布は
-<div style="overflow-x: auto;">
-$$
-\begin{align*}
-P_\mathrm{r} = \frac{1}{N} \sum_{n=1}^N \delta_{x_n}
-\end{align*}
-$$
-</div>
-と書ける。
-$P_\mathrm{r}$ はルベーグ測度であり、$\mathbb{R}^D$ の部分集合 $A$ に対して $P_\mathrm{r}(A) = M/N$
-（$M$ は $A$ に含まれる観測値の数）となる。また、混合ガウス分布の密度関数は
-<div style="overflow-x: auto;">
-$$
-\begin{align*}
-P_\mathrm{g} = \sum_{k=1}^K \pi_k \mathcal{N}(\mu_k, \Sigma_k)
-\end{align*}
-$$
-</div>
-のように書ける。$P_\mathrm{g}$ は絶対連続な測度であり、$\mathbb{R}^D$ 上の関数として扱うことができる。
-<div style="overflow-x: auto;">
-$$
-\begin{align*}
-P_\mathrm{g}(x) &= \sum_{k=1}^K \pi_k \mathcal{N}(x | \mu_k, \Sigma_k) \\
-P_\mathrm{g}(A) &= \int_A \sum_{k=1}^K \pi_k \mathcal{N}(x | \mu_k, \Sigma_k) dx
-\end{align*}
-$$
-</div>
-</div></p>
-<h3 id="radon-変換">Radon 変換</h3>
-<p><div>
-$\theta$ を方向ベクトル、$\theta^\perp$ を $\theta$ の直交補空間とする。
-$t$ を $\theta$ 軸上の座標とすると、確率測度 $P$ の Radon 変換は次のように書ける。
-<div style="overflow-x: auto;">
-$$
-\begin{align*}
-\mathcal{R}P(t, \theta) &= \int_{\theta^\perp} P(t\theta + x) dx & (x \in \theta^\perp)\\
-\mathcal{R}P(T, \theta) &= P(T\theta + \theta^\perp) & (T \subset \mathbb{R})
-\end{align*}
-$$
-</div>
-この積分では $\theta$ 方向に沿った座標軸だけを残し、$D-1$ 次元の直交補空間 $\theta^\perp$ を積分消去している。
-たとえば、次の積分は X 軸方向への Radon 変換とみなせる。
-<div style="overflow-x: auto;">
-$$
-\begin{align*}
-P(x) = \iint P(x, y, z) dy dz
-\end{align*}
-$$
-</div>
-</div></p>
-<h3 id="離散分布と混合ガウス分布の-radon-変換">離散分布と混合ガウス分布の Radon 変換</h3>
-<p><div>
-$P_\mathrm{r}$ と $P_\mathrm{g}$ の $\theta$ 軸への Radon 変換は次のように書ける。$\langle \rangle$ は内積をあらわす。
-<div style="overflow-x: auto;">
-$$
-\begin{align*}
-\mathcal{R}P_\mathrm{r} &= \frac{1}{N} \sum_{n=1}^N \delta_{\langle \theta, x_n \rangle} \\
-\mathcal{R}P_\mathrm{g} &= \sum_{k=1}^K \pi_k \mathcal{N}(\langle \theta, \mu \rangle, \theta^\mathrm{T}\Sigma\theta)
-\end{align*}
-$$
-</div>
-</div></p>
-<h3 id="1次元-wasserstein-距離の性質">1次元 Wasserstein 距離の性質</h3>
-<p><div>
-確率測度 $P$ と $Q$ の Wasserstein 距離を計算する方法は主に 2 つあり、最適な輸送方法を考えて
-Wasserstein 距離の積分を計算する方法と、Kantorovich-Rubinstein 双対性を使って双対問題を解く方法がある。
-1次元の輸送問題では最適輸送を式で表現することができ、$P$ の点 $x_p$ における質量は
-$\tilde{Q}^{-1}(\tilde{P}(x_p))$ に輸送される。
-ここで $\tilde{P}, \tilde{Q}$ は $P, Q$ の累積密度関数である。
-これは、左の質量は左に、右の質量は右に、$P$ から $Q$ へ順序を保って輸送されるということを意味している。
-</div></p>
-<p><div>
-今回のように $P$ が離散分布、$Q$ が連続分布の場合もこの応用として考えられる。
-$P$ の確率が $x_1 \cdots x_N$ に $1/N$ ずつあるとすると、$x_n$ へ輸送されるのは $Q$ の密度のうち
-<div style="overflow-x: auto;">
-$$
-\begin{align*}
-\frac{n - 1}{N} < \int_{-\infty}^x Q(x) dx < \frac{n}{N}
-\end{align*}
-$$
-</div>
-を満たす範囲である。この範囲は $Q$ の累積密度関数の逆関数を使って
-<div style="overflow-x: auto;">
-$$
-\begin{align*}
-\tilde{Q}^{-1}\left(\frac{n - 1}{N}\right) < x < \tilde{Q}^{-1}\left(\frac{n}{N}\right)
-\end{align*}
-$$
-</div>
-とあらわすことができる。したがって、$P$ と $Q$ の Wasserstein 距離は
-<div style="overflow-x: auto;">
-$$
-\begin{align*}
-W_p(P, Q) = \left\{ \sum_{n=1}^N \int_{\tilde{Q}^{-1}((n-1)/N)}^{\tilde{Q}^{-1}(n/N)}
-|x - x_n|^p Q(x) dx \right\}^{1/p}
-\end{align*}
-$$
-</div>
-と書ける。
-特に、$Q$ が1次元ガウス分布、$p = 1, 2$ の場合は次の公式を使って積分できる。
-<div style="overflow-x: auto;">
-$$
-\begin{align*}
-\int_a^b e^{-x^2} dx &= \frac{\sqrt{\pi}}{2}\{ \mathrm{erf}(b) - \mathrm{erf}(a) \} \\
-\int_a^b x e^{-x^2} dx &= - \frac{1}{2}(e^{-b^2} - e^{-a^2}) \\
-\int_a^b x^2 e^{-x^2} dx &= \frac{\sqrt{\pi}}{4}\{\mathrm{erf}(b) - \mathrm{erf}(a) \}
-- \frac{1}{2}(b e^{-b^2} - a e^{-a^2})
-\end{align*}
-$$
-</div>
-</div></p>
-<p>$Q$ が混合ガウス分布の場合はさらに対応が必要である。
-GMM の累積密度関数の逆関数は簡単に計算できないため、累積密度関数が狭義単調増加であることを利用してバイナリサーチを使うと
-$\tilde{Q}^{-1}(x)$ が計算できる。
-また、累積密度関数の逆関数の微分が累積密度関数の微分の逆数であることを利用すると、自動微分に対応できる。</p>
-<h4 id="注意">注意</h4>
-<p>実際の推論で必要になるのは $W_p$ の積分値ではなく $W_p$ を各パラメータで微分した値なので、
-実はこの値を苦労して求める必要はありません。実際、元論文では $W_p$ を表現することなく微分形だけを書き下しています。
-また、積分形を計算してしまうことにより $p$ が整数の場合にしか対応できなくなるという問題も起こります（著者実装は全ての正の実数 $p$ に対応しています）。</p>
-<p><div>
-<font color="gray"><small>
-図: 離散分布と連続分布のアライメント。
-</small></font>
-<center>
-<figure class="center"><img src="/2019/09/12/map.png"/>
-</figure>
-
-</center>
-</div></p>
-<h3 id="sliced-wasserstein-距離">Sliced Wasserstein 距離</h3>
-<p><div>
-$W_p(P, Q)$ を確率測度 $P$ と $Q$ の $p$-Wasserstein 距離とする。
-このとき、$P$ と $Q$ の Sliced Wasserstein 距離を次の通り定義する。
-<div style="overflow-x: auto;">
-$$
-\begin{align*}
-SW_p(P, Q) =
-\left\{ \int_{\mathbb{S}^{D-1}} W_p(\mathcal{R}P(\cdot, \theta), \mathcal{R}Q(\cdot, \theta)) d\theta \right\}^\frac{1}{p}
-\end{align*}
-$$
-</div>
-このとき $SW_p$ は距離の定義を満たす。この値は直接計算することができないが、
-有限個の方向ベクトルをランダムにサンプリングすることで近似できる。
-<div style="overflow-x: auto;">
-$$
-\begin{align*}
-SW_p(P, Q) \simeq \frac{1}{L} \sum_{l=1}^L W_p(\mathcal{R}P(\cdot, \theta_l), \mathcal{R}Q(\cdot, \theta_l))
-\end{align*}
-$$
-</div>
-</div></p>
-<p>以上の定式化を使うと、$SW_p$ の近似値を計算グラフで表現することができる。
-したがって、この値を損失関数として各パラメータの勾配を計算することができる。</p>
-<h2 id="ソースコード">ソースコード</h2>
-<p><div>
-ここでは簡単のため、共分散行列の対角成分のみを推定しています。
-混合率と精度の対数 $\ln \pi_k, \ln \Lambda_k$ を変数とすることで、これらの変数が負の値にならないことを保証しています。
-</div></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <article class="single">
+                        <header>
+                            <ul class="p-facts">
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-09-12T21:00:00JST">Sep 12, 2019</time></li>
+                                <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2019/">2019</a></li>
+                            </ul>
+                            <h1 class="title">Sliced Wasserstein GMM を実装してみた</h1>
+                        </header>
+                        <div class="article-body">
+                            <p>最近話題の Sliced Wasserstein Distance (SWD) [<a href="https://arxiv.org/abs/1803.11188">Deshpande 2018</a>, <a href="https://arxiv.org/abs/1904.05877">Deshpande 2019</a>] を理解するため、 Kolouri らの <a href="https://arxiv.org/abs/1711.05376">Sliced Wasserstein Distance for Learning Gaussian Mixture Models</a> (SWGMM) を実装しました。</p>
+                            <p>以前の記事で <a href="/2019/07/12/">Wasserstein 距離の解説</a> を書いたので、こちらも是非ご参照ください。</p>
+                            <p><a href="https://github.com/yokaze/swgmm">GitHub</a> に実装を載せました。</p>
+                            <h2 id="あらすじ">あらすじ</h2>
+                            <ul>
+                                <li>
+                                    <p>従来、観測データと生成モデルの分布を比較するために Kullback-Leibler (KL) 損失が使われてきた。 しかし KL 損失を使うと勾配消失や局所解が発生するため、GAN などの高度なタスクでは上手く動かないことがある。</p>
+                                </li>
+                                <li>
+                                    <p>近年の研究から、Wasserstein 距離が勾配消失に強く、色々なタスクに応用できることが分かってきた。 しかし多次元空間で Wasserstein 距離を正確に計算する方法はなく、Kantorovich-Rubinstein 双対性 [<a href="http://proceedings.mlr.press/v70/arjovsky17a.html">Arjovsky 2017</a>] やエントロピー正則化 [<a href="http://proceedings.mlr.press/v84/genevay18a.html">Genevay 2018</a>] が必要になる。</p>
+                                </li>
+                                <li>
+                                    <p>Wasserstein 距離の近似計算はそれ自体が新たなタスクになってしまうため、別の定式化を考えたい。 実は Wasserstein 距離は空間が1次元の場合のみ累積密度関数のマッチングを取ることで厳密に計算できるという性質があり、 これを応用したのが Sliced Wasserstein 距離 (SWD) である。</p>
+                                </li>
+                                <li>
+                                    <p>観測値が $D$ 次元ユークリッド空間 $\mathbb{R}^D$ で表現されるとき、 単位球 $\mathbb{S}^{D-1}$ 上の方向ベクトル $\theta$ を使って Radon 変換を行うと1次元の Wasserstein 距離が計算できる。 Radon 変換は方向ベクトル $\theta$ の直交補空間を積分消去する操作で、 ガウス分布や離散データ集合の Radon 変換は $\theta$ との内積として求まる。</p>
+                                </li>
+                                <li>
+                                    <p>Sliced Wasserstein 距離は Radon 変換された1次元空間上の Wasserstein 距離を全方向ベクトル $\mathbb{S}^{D-1}$ について積分した値である。この値は解析的に計算できないが、方向ベクトルをランダムにサンプリングすることで近似できる。 この計算には学習やハイパーパラメータが存在しないため安定である。</p>
+                                </li>
+                                <li>
+                                    <p>1次元空間における離散分布と混合ガウス分布の間の Wasserstein 距離はパラメータ $\pi, \mu, \Sigma$ に対して数値的に微分可能である。 このため上の手順で近似した Sliced Wasserstein 距離も微分可能となり、パラメータに対する勾配が計算できる。 このアルゴリズムが <a href="https://arxiv.org/abs/1711.05376">Kolouri らの論文</a> のテーマである。</p>
+                                </li>
+                            </ul>
+                            <p>
+                            <div>
+                                <font color="gray"><small> 図: 二つのガウス分布を使って観測データをモデル化し、左側のガウス分布の位置だけを移動した際の KL, Wasserstein-1, Wasserstein-2 損失の比較。KL 損失を使うと勾配消失が発生する上、左側の局所解に捕まって動けなくなってしまう。 Wasserstein 距離は適切な勾配を持ち、また問題の大域最適解を発見できている。 2次元の Wasserstein 距離は計算できないため、X 軸方向の損失のみ計算している。（<a href="https://github.com/yokaze/swgmm/blob/31529131039cd27a126ed523acd3415c712e4c0d/fig1.py">ソースコード</a>） </small></font>
+                                <figure class="center"><img src="/2019/09/12/loss.png" />
+                                </figure>
+                            </div>
+                            </p>
+                            <h2 id="問題設定">問題設定</h2>
+                            <h3 id="経験分布と密度関数">経験分布と密度関数</h3>
+                            <p>
+                            <div> 観測されたデータ $X = [ x_1 \cdots x_N ]$ があり、これを多次元の混合ガウス分布 (GMM) でモデル化したい。 $\delta_x$ を Dirac 測度とすると、観測データの経験分布は <div style="overflow-x: auto;"> $$ \begin{align*} P_\mathrm{r} = \frac{1}{N} \sum_{n=1}^N \delta_{x_n} \end{align*} $$ </div> と書ける。 $P_\mathrm{r}$ はルベーグ測度であり、$\mathbb{R}^D$ の部分集合 $A$ に対して $P_\mathrm{r}(A) = M/N$ （$M$ は $A$ に含まれる観測値の数）となる。また、混合ガウス分布の密度関数は <div style="overflow-x: auto;"> $$ \begin{align*} P_\mathrm{g} = \sum_{k=1}^K \pi_k \mathcal{N}(\mu_k, \Sigma_k) \end{align*} $$ </div> のように書ける。$P_\mathrm{g}$ は絶対連続な測度であり、$\mathbb{R}^D$ 上の関数として扱うことができる。 <div style="overflow-x: auto;"> $$ \begin{align*} P_\mathrm{g}(x) &= \sum_{k=1}^K \pi_k \mathcal{N}(x | \mu_k, \Sigma_k) \\ P_\mathrm{g}(A) &= \int_A \sum_{k=1}^K \pi_k \mathcal{N}(x | \mu_k, \Sigma_k) dx \end{align*} $$ </div>
+                            </div>
+                            </p>
+                            <h3 id="radon-変換">Radon 変換</h3>
+                            <p>
+                            <div> $\theta$ を方向ベクトル、$\theta^\perp$ を $\theta$ の直交補空間とする。 $t$ を $\theta$ 軸上の座標とすると、確率測度 $P$ の Radon 変換は次のように書ける。 <div style="overflow-x: auto;"> $$ \begin{align*} \mathcal{R}P(t, \theta) &= \int_{\theta^\perp} P(t\theta + x) dx & (x \in \theta^\perp)\\ \mathcal{R}P(T, \theta) &= P(T\theta + \theta^\perp) & (T \subset \mathbb{R}) \end{align*} $$ </div> この積分では $\theta$ 方向に沿った座標軸だけを残し、$D-1$ 次元の直交補空間 $\theta^\perp$ を積分消去している。 たとえば、次の積分は X 軸方向への Radon 変換とみなせる。 <div style="overflow-x: auto;"> $$ \begin{align*} P(x) = \iint P(x, y, z) dy dz \end{align*} $$ </div>
+                            </div>
+                            </p>
+                            <h3 id="離散分布と混合ガウス分布の-radon-変換">離散分布と混合ガウス分布の Radon 変換</h3>
+                            <p>
+                            <div> $P_\mathrm{r}$ と $P_\mathrm{g}$ の $\theta$ 軸への Radon 変換は次のように書ける。$\langle \rangle$ は内積をあらわす。 <div style="overflow-x: auto;"> $$ \begin{align*} \mathcal{R}P_\mathrm{r} &= \frac{1}{N} \sum_{n=1}^N \delta_{\langle \theta, x_n \rangle} \\ \mathcal{R}P_\mathrm{g} &= \sum_{k=1}^K \pi_k \mathcal{N}(\langle \theta, \mu \rangle, \theta^\mathrm{T}\Sigma\theta) \end{align*} $$ </div>
+                            </div>
+                            </p>
+                            <h3 id="1次元-wasserstein-距離の性質">1次元 Wasserstein 距離の性質</h3>
+                            <p>
+                            <div> 確率測度 $P$ と $Q$ の Wasserstein 距離を計算する方法は主に 2 つあり、最適な輸送方法を考えて Wasserstein 距離の積分を計算する方法と、Kantorovich-Rubinstein 双対性を使って双対問題を解く方法がある。 1次元の輸送問題では最適輸送を式で表現することができ、$P$ の点 $x_p$ における質量は $\tilde{Q}^{-1}(\tilde{P}(x_p))$ に輸送される。 ここで $\tilde{P}, \tilde{Q}$ は $P, Q$ の累積密度関数である。 これは、左の質量は左に、右の質量は右に、$P$ から $Q$ へ順序を保って輸送されるということを意味している。 </div>
+                            </p>
+                            <p>
+                            <div> 今回のように $P$ が離散分布、$Q$ が連続分布の場合もこの応用として考えられる。 $P$ の確率が $x_1 \cdots x_N$ に $1/N$ ずつあるとすると、$x_n$ へ輸送されるのは $Q$ の密度のうち <div style="overflow-x: auto;"> $$ \begin{align*} \frac{n - 1}{N} < \int_{-\infty}^x Q(x) dx < \frac{n}{N} \end{align*} $$ </div> を満たす範囲である。この範囲は $Q$ の累積密度関数の逆関数を使って <div style="overflow-x: auto;"> $$ \begin{align*} \tilde{Q}^{-1}\left(\frac{n - 1}{N}\right) < x < \tilde{Q}^{-1}\left(\frac{n}{N}\right) \end{align*} $$ </div> とあらわすことができる。したがって、$P$ と $Q$ の Wasserstein 距離は <div style="overflow-x: auto;"> $$ \begin{align*} W_p(P, Q) = \left\{ \sum_{n=1}^N \int_{\tilde{Q}^{-1}((n-1)/N)}^{\tilde{Q}^{-1}(n/N)} |x - x_n|^p Q(x) dx \right\}^{1/p} \end{align*} $$ </div> と書ける。 特に、$Q$ が1次元ガウス分布、$p = 1, 2$ の場合は次の公式を使って積分できる。 <div style="overflow-x: auto;"> $$ \begin{align*} \int_a^b e^{-x^2} dx &= \frac{\sqrt{\pi}}{2}\{ \mathrm{erf}(b) - \mathrm{erf}(a) \} \\ \int_a^b x e^{-x^2} dx &= - \frac{1}{2}(e^{-b^2} - e^{-a^2}) \\ \int_a^b x^2 e^{-x^2} dx &= \frac{\sqrt{\pi}}{4}\{\mathrm{erf}(b) - \mathrm{erf}(a) \} - \frac{1}{2}(b e^{-b^2} - a e^{-a^2}) \end{align*} $$ </div>
+                                        </div>
+                                        </p>
+                                        <p>$Q$ が混合ガウス分布の場合はさらに対応が必要である。 GMM の累積密度関数の逆関数は簡単に計算できないため、累積密度関数が狭義単調増加であることを利用してバイナリサーチを使うと $\tilde{Q}^{-1}(x)$ が計算できる。 また、累積密度関数の逆関数の微分が累積密度関数の微分の逆数であることを利用すると、自動微分に対応できる。</p>
+                                        <h4 id="注意">注意</h4>
+                                        <p>実際の推論で必要になるのは $W_p$ の積分値ではなく $W_p$ を各パラメータで微分した値なので、 実はこの値を苦労して求める必要はありません。実際、元論文では $W_p$ を表現することなく微分形だけを書き下しています。 また、積分形を計算してしまうことにより $p$ が整数の場合にしか対応できなくなるという問題も起こります（著者実装は全ての正の実数 $p$ に対応しています）。</p>
+                                        <p>
+                                        <div>
+                                            <font color="gray"><small> 図: 離散分布と連続分布のアライメント。 </small></font>
+                                            <center>
+                                                <figure class="center"><img src="/2019/09/12/map.png" />
+                                                </figure>
+                                            </center>
+                                        </div>
+                                        </p>
+                                        <h3 id="sliced-wasserstein-距離">Sliced Wasserstein 距離</h3>
+                                        <p>
+                                        <div> $W_p(P, Q)$ を確率測度 $P$ と $Q$ の $p$-Wasserstein 距離とする。 このとき、$P$ と $Q$ の Sliced Wasserstein 距離を次の通り定義する。 <div style="overflow-x: auto;"> $$ \begin{align*} SW_p(P, Q) = \left\{ \int_{\mathbb{S}^{D-1}} W_p(\mathcal{R}P(\cdot, \theta), \mathcal{R}Q(\cdot, \theta)) d\theta \right\}^\frac{1}{p} \end{align*} $$ </div> このとき $SW_p$ は距離の定義を満たす。この値は直接計算することができないが、 有限個の方向ベクトルをランダムにサンプリングすることで近似できる。 <div style="overflow-x: auto;"> $$ \begin{align*} SW_p(P, Q) \simeq \frac{1}{L} \sum_{l=1}^L W_p(\mathcal{R}P(\cdot, \theta_l), \mathcal{R}Q(\cdot, \theta_l)) \end{align*} $$ </div>
+                                        </div>
+                                        </p>
+                                        <p>以上の定式化を使うと、$SW_p$ の近似値を計算グラフで表現することができる。 したがって、この値を損失関数として各パラメータの勾配を計算することができる。</p>
+                                        <h2 id="ソースコード">ソースコード</h2>
+                                        <p>
+                                        <div> ここでは簡単のため、共分散行列の対角成分のみを推定しています。 混合率と精度の対数 $\ln \pi_k, \ln \Lambda_k$ を変数とすることで、これらの変数が負の値にならないことを保証しています。 </div>
+                                        </p>
+                                        <div class="highlight">
+                                            <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> scipy <span style="color:#66d9ef">as</span> sp
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> subprocess
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> tensorflow <span style="color:#66d9ef">as</span> tf
@@ -708,228 +544,187 @@ $$
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 推論が終わったらグラフを表示して停止します。</span>
 </span></span><span style="display:flex;"><span>pl<span style="color:#f92672">.</span>show()
-</span></span></code></pre></div><h2 id="実行結果">実行結果</h2>
-<p>このプログラムを実行すると次の動作になります。</p>
-<p>本当は Sliced Wasserstein 距離の計算に使う方向ベクトルもレンタリングされるのですが、チカチカしすぎるので消しました…。
-著者実装と同じく 1 イテレーションにつき 5 つの方向ベクトルを使っています。</p>
-<p>各イテレーション毎に異なる方向ベクトルに沿った勾配が得られるため、各コンポーネントがゆらゆらと揺れています。</p>
-<p>左中央のグラフは X 軸に沿った各データ点ごとの輸送コスト、左下は累積密度関数のアライメントです。
-この値はグラフを作成するために推論プロセス外で別途計算しています。</p>
-<p>右側のグラフは推論で使用した SW 距離の近似値の履歴を表示しています。</p>
-<center>
-<figure class="center"><img src="/2019/09/12/swgmm.png"/>
-</figure>
-
-</center>
-<h3 id="sliced-wasserstein-距離の性質">Sliced Wasserstein 距離の性質</h3>
-<p>Sliced Wasserstein 距離はサンプリングされた方向に沿ってパラメータの勾配を与えるため、
-X 軸のみを与え続けると Y 軸方向の学習が進みません。</p>
-<center>
-<figure class="center"><img src="/2019/09/12/xaxis.png"/>
-</figure>
-
-</center>
-<p>また、観測データの次元数と同じ数の方向ベクトルを与えても上手くいかないことがあります。
-次の例では X 軸方向、Y 軸方向に射影した密度は推定できていますが、X 軸、Y 軸をあわせた同時分布の推論に失敗しています。
-このため、推論の過程では観測データの次元数より多くの方向ベクトルを使う必要があります。
-W2 では上手く検証できなかったので、この図のみ W1 距離で作成しています。</p>
-<center>
-<figure class="center"><img src="/2019/09/12/xyaxis.png"/>
-</figure>
-
-</center>
-<p>X 軸、Y 軸に加え斜めの軸を追加すると推論はほぼ正しく進みます。</p>
-<center>
-<figure class="center"><img src="/2019/09/12/xyaaxis.png"/>
-</figure>
-
-</center>
-<p>
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</p>
-
-<h2 id="参考文献">参考文献</h2>
-<ul>
-<li>
-<p>Gabriel Peyré and Marco Cuturi, &ldquo;Computational Optimal Transport&rdquo;, <em>Foundations and Trends in Machine Learning</em>, vol. 11, no. 5&ndash;6, pp. 355&ndash;607, 2019.<br />
-<span style="word-break: break-all;">
-<a href="https://arxiv.org/abs/1803.00567">https://arxiv.org/abs/1803.00567</a>
-</span></p>
-</li>
-<li>
-<p>Aude Genevay, Gabriel Peyré, Marco Cuturi, &ldquo;Learning Generative Models with Sinkhorn Divergences&rdquo;, in <em>Proc. AISTATS</em>, 2018, pp. 1608&ndash;1617.<br />
-<span style="word-break: break-all;">
-<a href="http://proceedings.mlr.press/v84/genevay18a.html">http://proceedings.mlr.press/v84/genevay18a.html</a>
-</span></p>
-</li>
-<li>
-<p>Martin Arjovsky, Soumith Chintala, and Léon Bottou, &ldquo;Wasserstein Generative Adversarial Networks&rdquo;, in <em>Proc. ICML</em>, 2017, pp. 214&ndash;223.<br />
-<span style="word-break: break-all;">
-<a href="http://proceedings.mlr.press/v70/arjovsky17a.html">http://proceedings.mlr.press/v70/arjovsky17a.html</a>
-</span></p>
-</li>
-<li>
-<p>Soheil Kolouri, Gustavo K. Rohde, Heiko Hoffmann, &ldquo;Sliced Wasserstein Distance for Learning Gaussian Mixture Models&rdquo;, in <em>Proc. CVPR</em>, 2018, pp. 3427&ndash;3436.<br />
-<span style="word-break: break-all;">
-<a href="https://arxiv.org/abs/1711.05376">https://arxiv.org/abs/1711.05376</a>
-</span></p>
-</li>
-<li>
-<p>Sliced Wasserstein Distance for Learning Gaussian Mixture Models （著者実装）<br />
-<span style="word-break: break-all;">
-<a href="https://github.com/skolouri/swgmm">https://github.com/skolouri/swgmm</a>
-</span></p>
-</li>
-<li>
-<p>Sliced Wasserstein Distance for Learning Gaussian Mixture Models | 2018/07/07 CV勉強会@関東CVPR論文読み会（後編）<br />
-<span style="word-break: break-all;">
-<a href="https://www.slideshare.net/FujimotoKeisuke/sliced-wasserstein-distance-for-learning-gaussian-mixture-models">https://www.slideshare.net/FujimotoKeisuke/sliced-wasserstein-distance-for-learning-gaussian-mixture-models</a>
-</span></p>
-</li>
-<li>
-<p>Ishan Deshpande, Ziyu Zhang, Alexander Schwing, &ldquo;Generative Modeling using the Sliced Wasserstein Distance&rdquo;, in <em>Proc. CVPR</em>, 2018, pp. 3483&ndash;3491.<br />
-<span style="word-break: break-all;">
-<a href="https://arxiv.org/abs/1803.11188">https://arxiv.org/abs/1803.11188</a>
-</span></p>
-</li>
-<li>
-<p>Ishan Deshpande, Yuan-Ting Hu, Ruoyu Sun, Ayis Pyrros, Nasir Siddiqui, Sanmi Koyejo, Zhizhen Zhao, David Forsyth, Alexander Schwing, &ldquo;Max-Sliced Wasserstein Distance and its use for GANs&rdquo;, in <em>Proc. CVPR</em>, 2019, pp. 10648&ndash;10656.<br />
-<span style="word-break: break-all;">
-<a href="https://arxiv.org/abs/1904.05877">https://arxiv.org/abs/1904.05877</a>
-</span></p>
-</li>
-<li>
-<p>Max-Sliced Wasserstein Distance and its use for GANs (SlideShare)<br />
-<span style="word-break: break-all;">
-<a href="https://www.slideshare.net/HidekiTsunashima/maxsliced-wasserstein-distance-and-its-use-for-gans">https://www.slideshare.net/HidekiTsunashima/maxsliced-wasserstein-distance-and-its-use-for-gans</a>
-</span></p>
-</li>
-</ul>
-</div>
- 
-  <br />
-
-  <footer class="article-footer">
-    
-    
-    
-    <section class="bordered">
-      <header>
-        <div class="panel-title">CATEGORIES</div>
-      </header>
-      <div>
-        <ul class="p-terms">
-          
-          <li><a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/">機械学習</a></li>
-          
-        </ul>
-      </div>
-    </section>
-    
-    
-  </footer>
-
-</article>
-
-
-    
-  </div>
-
-  <div class="col-md-4">
-    
-<aside class="l-sidebar">
-
-  
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">RELATED POSTS</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://yokaze.github.io/2019/07/13/" class="list-group-item">Monge-Kantorovich の問題を SciPy で解く</a>
-      
-      <a href="https://yokaze.github.io/2019/07/12/" class="list-group-item">Wasserstein 計量が距離関数になることを証明する</a>
-      
-      <a href="https://yokaze.github.io/2019/08/30/" class="list-group-item">TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する</a>
-      
-      <a href="https://yokaze.github.io/2019/08/23/" class="list-group-item">線形位相空間の原点の近傍が併呑集合であることを証明する</a>
-      
-      <a href="https://yokaze.github.io/2019/08/12/" class="list-group-item">TensorFlow 2.0 で非負値行列因子分解 (NMF) を解く</a>
-      
-      <a href="https://yokaze.github.io/2019/08/07/" class="list-group-item">TensorFlow 2.0 で Variable を ndarray に変換する</a>
-      
-      <a href="https://yokaze.github.io/2017/10/13/" class="list-group-item">機械学習で役立つ数学参考書のリスト</a>
-      
-      <a href="https://yokaze.github.io/2017/10/11/" class="list-group-item">EM アルゴリズム</a>
-      
-      <a href="https://yokaze.github.io/2018/01/13/" class="list-group-item">論文紹介: Feature Learning for Chord Recognition: The Deep Chroma Extractor</a>
-      
-      <a href="https://yokaze.github.io/2018/01/04/" class="list-group-item">論文紹介: Music Emotion Recognition: A State of the Art Review</a>
-      
-    </div>
-  </section>
-  
-
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">CATEGORY</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
-      
-      <a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="list-group-item">機械学習</a>
-      
-      <a href="https://yokaze.github.io/categories/%E5%86%99%E7%9C%9F" class="list-group-item">写真</a>
-      
-    </div>
-  </section>
-  
-
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">AUTHOR</div>
-    </div>
-    <div class="list-group">
-      <a href="https://twitter.com/chrofieyue" class="list-group-item">夜風&ensp;<font color="#00acee" /><i class="fa fa-twitter" aria-hidden="true"></i></font></a>
-    </div>
-  </section>
-
-</aside>
-
-  </div>
-</div>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config
+</span></span></code></pre>
+                                        </div>
+                                        <h2 id="実行結果">実行結果</h2>
+                                        <p>このプログラムを実行すると次の動作になります。</p>
+                                        <p>本当は Sliced Wasserstein 距離の計算に使う方向ベクトルもレンタリングされるのですが、チカチカしすぎるので消しました…。 著者実装と同じく 1 イテレーションにつき 5 つの方向ベクトルを使っています。</p>
+                                        <p>各イテレーション毎に異なる方向ベクトルに沿った勾配が得られるため、各コンポーネントがゆらゆらと揺れています。</p>
+                                        <p>左中央のグラフは X 軸に沿った各データ点ごとの輸送コスト、左下は累積密度関数のアライメントです。 この値はグラフを作成するために推論プロセス外で別途計算しています。</p>
+                                        <p>右側のグラフは推論で使用した SW 距離の近似値の履歴を表示しています。</p>
+                                        <center>
+                                            <figure class="center"><img src="/2019/09/12/swgmm.png" />
+                                            </figure>
+                                        </center>
+                                        <h3 id="sliced-wasserstein-距離の性質">Sliced Wasserstein 距離の性質</h3>
+                                        <p>Sliced Wasserstein 距離はサンプリングされた方向に沿ってパラメータの勾配を与えるため、 X 軸のみを与え続けると Y 軸方向の学習が進みません。</p>
+                                        <center>
+                                            <figure class="center"><img src="/2019/09/12/xaxis.png" />
+                                            </figure>
+                                        </center>
+                                        <p>また、観測データの次元数と同じ数の方向ベクトルを与えても上手くいかないことがあります。 次の例では X 軸方向、Y 軸方向に射影した密度は推定できていますが、X 軸、Y 軸をあわせた同時分布の推論に失敗しています。 このため、推論の過程では観測データの次元数より多くの方向ベクトルを使う必要があります。 W2 では上手く検証できなかったので、この図のみ W1 距離で作成しています。</p>
+                                        <center>
+                                            <figure class="center"><img src="/2019/09/12/xyaxis.png" />
+                                            </figure>
+                                        </center>
+                                        <p>X 軸、Y 軸に加え斜めの軸を追加すると推論はほぼ正しく進みます。</p>
+                                        <center>
+                                            <figure class="center"><img src="/2019/09/12/xyaaxis.png" />
+                                            </figure>
+                                        </center>
+                                        <p>
+                                            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
+                                            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                        </p>
+                                        <h2 id="参考文献">参考文献</h2>
+                                        <ul>
+                                            <li>
+                                                <p>Gabriel Peyré and Marco Cuturi, &ldquo;Computational Optimal Transport&rdquo;, <em>Foundations and Trends in Machine Learning</em>, vol. 11, no. 5&ndash;6, pp. 355&ndash;607, 2019.<br />
+                                                    <span style="word-break: break-all;">
+                                                        <a href="https://arxiv.org/abs/1803.00567">https://arxiv.org/abs/1803.00567</a>
+                                                    </span>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>Aude Genevay, Gabriel Peyré, Marco Cuturi, &ldquo;Learning Generative Models with Sinkhorn Divergences&rdquo;, in <em>Proc. AISTATS</em>, 2018, pp. 1608&ndash;1617.<br />
+                                                    <span style="word-break: break-all;">
+                                                        <a href="http://proceedings.mlr.press/v84/genevay18a.html">http://proceedings.mlr.press/v84/genevay18a.html</a>
+                                                    </span>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>Martin Arjovsky, Soumith Chintala, and Léon Bottou, &ldquo;Wasserstein Generative Adversarial Networks&rdquo;, in <em>Proc. ICML</em>, 2017, pp. 214&ndash;223.<br />
+                                                    <span style="word-break: break-all;">
+                                                        <a href="http://proceedings.mlr.press/v70/arjovsky17a.html">http://proceedings.mlr.press/v70/arjovsky17a.html</a>
+                                                    </span>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>Soheil Kolouri, Gustavo K. Rohde, Heiko Hoffmann, &ldquo;Sliced Wasserstein Distance for Learning Gaussian Mixture Models&rdquo;, in <em>Proc. CVPR</em>, 2018, pp. 3427&ndash;3436.<br />
+                                                    <span style="word-break: break-all;">
+                                                        <a href="https://arxiv.org/abs/1711.05376">https://arxiv.org/abs/1711.05376</a>
+                                                    </span>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>Sliced Wasserstein Distance for Learning Gaussian Mixture Models （著者実装）<br />
+                                                    <span style="word-break: break-all;">
+                                                        <a href="https://github.com/skolouri/swgmm">https://github.com/skolouri/swgmm</a>
+                                                    </span>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>Sliced Wasserstein Distance for Learning Gaussian Mixture Models | 2018/07/07 CV勉強会@関東CVPR論文読み会（後編）<br />
+                                                    <span style="word-break: break-all;">
+                                                        <a href="https://www.slideshare.net/FujimotoKeisuke/sliced-wasserstein-distance-for-learning-gaussian-mixture-models">https://www.slideshare.net/FujimotoKeisuke/sliced-wasserstein-distance-for-learning-gaussian-mixture-models</a>
+                                                    </span>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>Ishan Deshpande, Ziyu Zhang, Alexander Schwing, &ldquo;Generative Modeling using the Sliced Wasserstein Distance&rdquo;, in <em>Proc. CVPR</em>, 2018, pp. 3483&ndash;3491.<br />
+                                                    <span style="word-break: break-all;">
+                                                        <a href="https://arxiv.org/abs/1803.11188">https://arxiv.org/abs/1803.11188</a>
+                                                    </span>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>Ishan Deshpande, Yuan-Ting Hu, Ruoyu Sun, Ayis Pyrros, Nasir Siddiqui, Sanmi Koyejo, Zhizhen Zhao, David Forsyth, Alexander Schwing, &ldquo;Max-Sliced Wasserstein Distance and its use for GANs&rdquo;, in <em>Proc. CVPR</em>, 2019, pp. 10648&ndash;10656.<br />
+                                                    <span style="word-break: break-all;">
+                                                        <a href="https://arxiv.org/abs/1904.05877">https://arxiv.org/abs/1904.05877</a>
+                                                    </span>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>Max-Sliced Wasserstein Distance and its use for GANs (SlideShare)<br />
+                                                    <span style="word-break: break-all;">
+                                                        <a href="https://www.slideshare.net/HidekiTsunashima/maxsliced-wasserstein-distance-and-its-use-for-gans">https://www.slideshare.net/HidekiTsunashima/maxsliced-wasserstein-distance-and-its-use-for-gans</a>
+                                                    </span>
+                                                </p>
+                                            </li>
+                                        </ul>
+                                </div>
+                                <br />
+                                <footer class="article-footer">
+                                    <section class="bordered">
+                                        <header>
+                                            <div class="panel-title">CATEGORIES</div>
+                                        </header>
+                                        <div>
+                                            <ul class="p-terms">
+                                                <li><a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/">機械学習</a></li>
+                                            </ul>
+                                        </div>
+                                    </section>
+                                </footer>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <aside class="l-sidebar">
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">RELATED POSTS</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://yokaze.github.io/2019/07/13/" class="list-group-item">Monge-Kantorovich の問題を SciPy で解く</a>
+                                <a href="https://yokaze.github.io/2019/07/12/" class="list-group-item">Wasserstein 計量が距離関数になることを証明する</a>
+                                <a href="https://yokaze.github.io/2019/08/30/" class="list-group-item">TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する</a>
+                                <a href="https://yokaze.github.io/2019/08/23/" class="list-group-item">線形位相空間の原点の近傍が併呑集合であることを証明する</a>
+                                <a href="https://yokaze.github.io/2019/08/12/" class="list-group-item">TensorFlow 2.0 で非負値行列因子分解 (NMF) を解く</a>
+                                <a href="https://yokaze.github.io/2019/08/07/" class="list-group-item">TensorFlow 2.0 で Variable を ndarray に変換する</a>
+                                <a href="https://yokaze.github.io/2017/10/13/" class="list-group-item">機械学習で役立つ数学参考書のリスト</a>
+                                <a href="https://yokaze.github.io/2017/10/11/" class="list-group-item">EM アルゴリズム</a>
+                                <a href="https://yokaze.github.io/2018/01/13/" class="list-group-item">論文紹介: Feature Learning for Chord Recognition: The Deep Chroma Extractor</a>
+                                <a href="https://yokaze.github.io/2018/01/04/" class="list-group-item">論文紹介: Music Emotion Recognition: A State of the Art Review</a>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">CATEGORY</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
+                                <a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="list-group-item">機械学習</a>
+                                <a href="https://yokaze.github.io/categories/%E5%86%99%E7%9C%9F" class="list-group-item">写真</a>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">AUTHOR</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://twitter.com/chrofieyue" class="list-group-item">夜風&ensp;
+                                    <font color="#00acee" /><i class="fa fa-twitter" aria-hidden="true"></i></font>
+                                </a>
+                            </div>
+                        </section>
+                    </aside>
+                </div>
+            </div>
+            <script type="text/x-mathjax-config"> MathJax.Hub.Config
   ({
     tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processEscapes: true },
     TeX: { equationNumbers: { autoNumber: "AMS" }}
   });
 </script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_SVG"></script>
-
-
-      </div>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_SVG"></script>
+        </div>
     </main>
-
     <footer class="l-footer">
-      <div class="container">
-        <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
-        <aside>
-          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
-          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
-        </aside>
-      </div>
+        <div class="container">
+            <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
+            <aside>
+                <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+                <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+            </aside>
+        </div>
     </footer>
-
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
-    
-    <script>hljs.initHighlightingOnLoad();</script>
-  </body>
+    <script>
+        hljs.initHighlightingOnLoad();
+
+    </script>
+</body>
+
 </html>

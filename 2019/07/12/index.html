@@ -1,478 +1,312 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+
+<head>
     <meta charset="utf-8">
-<meta http-equiv="content-language" content="ja">
-<meta name="pinterest" content="nopin">
-<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.95.0" />
-
-
-
-<link rel="canonical" href="https://yokaze.github.io/2019/07/12/">
-
-
+    <meta http-equiv="content-language" content="ja">
+    <meta name="pinterest" content="nopin">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <meta name="generator" content="Hugo 0.95.0" />
+    <link rel="canonical" href="https://yokaze.github.io/2019/07/12/">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
     <title>Wasserstein 計量が距離関数になることを証明する - yokaze.github.io</title>
-    
-<meta name="description" content="ここでは Wasserstein 計量を最適輸送コストから計算し、この計量が距離の定義（補足 1）を満たすことを証明します。 また、Wasserstein 計量が元の空間">
+    <meta name="description" content="ここでは Wasserstein 計量を最適輸送コストから計算し、この計量が距離の定義（補足 1）を満たすことを証明します。 また、Wasserstein 計量が元の空間">
+    <meta property="og:title" content="Wasserstein 計量が距離関数になることを証明する - yokaze.github.io">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yokaze.github.io/2019/07/12/">
+    <meta property="og:image" content="https://yokaze.github.io/images/default.png">
+    <meta property="og:site_name" content="yokaze.github.io">
+    <meta property="og:description" content="ここでは Wasserstein 計量を最適輸送コストから計算し、この計量が距離の定義（補足 1）を満たすことを証明します。 また、Wasserstein 計量が元の空間">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="yokaze.github.io">
+    <meta name="twitter:url" content="https://yokaze.github.io/2019/07/12/">
+    <meta name="twitter:title" content="Wasserstein 計量が距離関数になることを証明する - yokaze.github.io">
+    <meta name="twitter:description" content="ここでは Wasserstein 計量を最適輸送コストから計算し、この計量が距離の定義（補足 1）を満たすことを証明します。 また、Wasserstein 計量が元の空間">
+    <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https:\/\/yokaze.github.io\/"
+            },
+            "headline": "Wasserstein 計量が距離関数になることを証明する - yokaze.github.io",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/yokaze.github.io\/images\/default.png",
+                "height": 800,
+                "width": 800
+            },
+            "datePublished": "2019-07-12T18:00:00JST",
+            "dateModified": "2019-07-12T18:00:00JST",
+            "author": {
+                "@type": "Person",
+                "name": "yokaze.github.io"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "yokaze.github.io",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/yokaze.github.io\/images/logo.png",
+                    "width": 600,
+                    "height": 60
+                }
+            },
+            "description": "ここでは Wasserstein 計量を最適輸送コストから計算し、この計量が距離の定義（補足 1）を満たすことを証明します。 また、Wasserstein 計量が元の空間"
+        }
 
-<meta property="og:title" content="Wasserstein 計量が距離関数になることを証明する - yokaze.github.io">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2019/07/12/">
-<meta property="og:image" content="https://yokaze.github.io/images/default.png">
-<meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="ここでは Wasserstein 計量を最適輸送コストから計算し、この計量が距離の定義（補足 1）を満たすことを証明します。 また、Wasserstein 計量が元の空間">
-<meta property="og:locale" content="ja_JP">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2019/07/12/">
-<meta name="twitter:title" content="Wasserstein 計量が距離関数になることを証明する - yokaze.github.io">
-<meta name="twitter:description" content="ここでは Wasserstein 計量を最適輸送コストから計算し、この計量が距離の定義（補足 1）を満たすことを証明します。 また、Wasserstein 計量が元の空間">
-<meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
-
-
-<script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "NewsArticle",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id":"https:\/\/yokaze.github.io\/"
-    },
-    "headline": "Wasserstein 計量が距離関数になることを証明する - yokaze.github.io",
-    "image": {
-      "@type": "ImageObject",
-      "url": "https:\/\/yokaze.github.io\/images\/default.png",
-      "height": 800,
-      "width": 800
-    },
-    "datePublished": "2019-07-12T18:00:00JST",
-    "dateModified": "2019-07-12T18:00:00JST",
-    "author": {
-      "@type": "Person",
-      "name": "yokaze.github.io"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "yokaze.github.io",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https:\/\/yokaze.github.io\/images/logo.png",
-        "width": 600,
-        "height": 60
-      }
-    },
-    "description": "ここでは Wasserstein 計量を最適輸送コストから計算し、この計量が距離の定義（補足 1）を満たすことを証明します。 また、Wasserstein 計量が元の空間"
-  }
-</script>
-
-
+    </script>
     <link href="https://yokaze.github.io/css/styles.css" rel="stylesheet">
-    
+</head>
 
-  </head>
+<body>
+    <script type="application/javascript">
+        var doNotTrack = false;
+        if (!doNotTrack) {
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-83271338-1', 'auto');
+            ga('send', 'pageview');
+        }
 
-  <body>
-    
-    
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-83271338-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-    
-
+    </script>
     <header class="l-header">
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
-          </div>
-
-          
-          <div id="navbar" class="collapse navbar-collapse">
-            
-            <ul class="nav navbar-nav navbar-right">
-              
-              
-              <li><a href="/about/">About</a></li>
-              
-              
-              
-              <li><a href="/software/">Software</a></li>
-              
-              
-            </ul>
-            
-          </div>
-          
-
-        </div>
-      </nav>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/software/">Software</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-
     <main>
-      <div class="container">
-        
-<div class="row">
-  <div class="col-md-8">
-
-    
-
-    <article class="single">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-12T18:00:00JST">Jul 12, 2019</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2019/">2019</a></li>
-      
-      
-    </ul>
-    <h1 class="title">Wasserstein 計量が距離関数になることを証明する</h1>
-  </header>
-
-  
-
-  <div class="article-body"><p>ここでは Wasserstein 計量を最適輸送コストから計算し、この計量が距離の定義（<a href="#appendix1">補足 1</a>）を満たすことを証明します。
-また、Wasserstein 計量が元の空間上の確率分布間の距離とみなせることを示します。</p>
-<p>本記事は <a href="https://arxiv.org/abs/1803.00567">Computational Optimal Transport</a> の命題 2.2 の解説です。
-簡単のため 1-Wasserstein の場合のみ証明します。</p>
-<p><a name="monge-kantorovich"></a></p>
-<h2 id="monge-kantorovich-の問題cot-23-節">Monge-Kantorovich の問題（COT 2.3 節）</h2>
-<p><div>
-複数の工場 $A_1 ... A_n$ で生産した量 $a_1 ... a_n$ の物資があり、これを別の場所 $B_1 ... B_m$ で利用することにしたい。
-物資は使い切るものとし、$B_j$ には $b_j$ の物資を割り当てる。
-したがって、$\sum_i a_i = \sum_j b_j$ が成り立つ。
-</div></p>
-<p><div>
-$A_i$ から $B_j$ へ物資を輸送するにあたって、単位量あたり $C_{ij}$ のコストがかかるものとする。
-$A_i$ から $B_j$ へ輸送する物資の量を $P_{ij}$ とすると、輸送にかかるコストは $\langle \mathbf{C}, \mathbf{P} \rangle = \sum_{ij} C_{ij} P_{ij}$ である。
-ここで、輸送コストを最小にする輸送方法を最適輸送と呼び、最適な輸送 $\mathbf{P}^* $ を求める問題を最適輸送問題という。
-問題設定から、$a_i = \sum_j P_{ij}$, $b_j = \sum_i P_{ij}$ が成り立つ。
-</div></p>
-<p><div>
-以下では、有効な輸送の全体を $\mathbf{U}(\mathbf{a}, \mathbf{b})$, 最適輸送コストを $L_\mathbf{C}(\mathbf{a}, \mathbf{b})$ であらわす。
-<div style="overflow-x: auto;">
-$$
-\mathbf{U}(\mathbf{a}, \mathbf{b}) = \left\{ \mathbf{P} \in \mathbb{R}_+^{n \times m} \middle|
-\mathbf{P}\mathbf{1}_m = \mathbf{a},
-\mathbf{P}^\mathrm{T}\mathbf{1}_n = \mathbf{b} \right\}
-$$
-$$
-L_\mathbf{C}(\mathbf{a}, \mathbf{b}) = \min_{\mathbf{P} \in \mathbf{U}(\mathbf{a}, \mathbf{b})} \langle \mathbf{C}, \mathbf{P} \rangle
-$$
-</div>
-</div></p>
-<p>最適輸送 $\mathbf{P}^* $ は線型計画法で計算できる（<a href="https://arxiv.org/abs/1803.00567">COT 2&ndash;3 章</a>）。</p>
-<h2 id="wasserstein-距離cot-24-節">Wasserstein 距離（COT 2.4 節）</h2>
-<p><div>
-次に、物資の生産と消費が同じ場所で行われるケースを考える（$[ A_1 ... A_n ] = [ B_1 ... B_n ]$）。
-また、地点間の輸送コストは距離の定義を満たすものとする（<a href="#appendix1">補足 1</a>）。
-輸送コスト行列 $\mathbf{D}$ はこの距離関数を行列の形で書き下したものである（$D_{ij} = d(A_i, A_j)$）。
-</div></p>
-<h3 id="命題-22-cot">命題 2.2 (COT)</h3>
-<p><div>
-資源量を正規化し、生産量 $\mathbf{a}$ と消費量 $\mathbf{b}$ を単体 $\Sigma_n$ 上に制限する（$\mathbf{a}, \mathbf{b} \in \Sigma_n$）。
-このとき $\Sigma_n$ 上に定義される $p$-Wasserstein 関数
-<div style="overflow-x: auto;">
-$$
-W_p(\mathbf{a}, \mathbf{b}) = \left[ L_{\mathbf{D}^p}(\mathbf{a}, \mathbf{b}) \right]^{\frac{1}{p}}
-$$
-</div>
-は $\Sigma_n$ 上の距離関数になる（$\Sigma_n$ は要素の和が 1 となるような非負値ベクトル全体の集合である）。
-</div></p>
-<h4 id="諸注意">諸注意</h4>
-<p>輸送コストは有限の地点間に定義されるが、$p$-Wasserstein は単体上の距離になる。
-$\Sigma_n$ はカテゴリー分布（<a href="#appendix2">補足 2</a>）のパラメータ空間と同等であるため、$p$-Wasserstein 関数は確率分布間の距離とみなすことができる。</p>
-<p><a href="http://proceedings.mlr.press/v70/arjovsky17a.html">Wasserstein GAN</a> (Arjovski et al., 2017) で使われているのは 1-Wasserstein である。
-この距離関数は Earth Mover&rsquo;s Distance（EM 距離）とも呼ばれている。</p>
-<h3 id="証明-p--1-の場合">証明 （p = 1 の場合）</h3>
-<ol>
-<li>$W(\mathbf{a}, \mathbf{a}) = 0$</li>
-</ol>
-<p><div>
-<div style="overflow-x: auto;">
-$$
-\begin{align*}
-W(\mathbf{a}, \mathbf{a})
-& = \min \langle \mathbf{D}, \mathbf{P} \rangle \\
-& \leq \langle \mathbf{D}, \mathrm{diag} (\mathbf{a}) \rangle & (\because \mathrm{diag} (\mathbf{a})
-\in \mathbf{U}(\mathbf{a}, \mathbf{a}))\\
-& = \sum_i D_{ii} a_i \\
-& = 0
-\end{align*}
-$$
-</div>
-Wasserstein 距離は最適な輸送方法を元に計算されるため、$\mathbf{U}(\mathbf{a}, \mathbf{b})$
-に含まれる任意の輸送 $\mathbf{P}$ について $W(\mathbf{a}, \mathbf{b})
-\leq \langle \mathbf{D}, \mathbf{P} \rangle$
-が成り立つことに注意する。
-</div></p>
-<ol start="2">
-<li>$W(\mathbf{a}, \mathbf{b}) > 0$　($\mathbf{a} \neq \mathbf{b}$)</li>
-</ol>
-<p><div>
-$\mathbf{a} \neq \mathbf{b}$ であるため、ある $k$ が存在し $a_k > b_k$ となる。
-任意の有効な輸送 $\mathbf{P}$ について $P_{kk} \leq b_k$, $\sum_j P_{kj} = a_k$ だから、
-<div style="overflow-x: auto;">
-$$
-\begin{align*}
-\sum_{j \neq k} P_{kj}
-& = a_k - P_{kk} \\
-& \geq a_k - b_k
-\end{align*}
-$$
-</div>
-が成り立つ。さらに $D^* = \min_{j \neq k}D_{kj}$ とすると、
-<div style="overflow-x: auto;">
-$$
-\begin{align*}
-\langle \mathbf{D}, \mathbf{P} \rangle
-& \geq \sum_{j \neq k} D_{kj} P_{kj} \\
-& \geq D^* \sum_{j \neq k} P_{kj} \\
-& \geq D^* (a_k - b_k) > 0
-\end{align*}
-$$
-</div>
-が成立する。
-$D^* (a_k - b_k)$ は $\mathbf{P}$ によらない定数なので、$W(\mathbf{a}, \mathbf{b}) > 0$ が成り立つ。
-</div></p>
-<ol start="3">
-<li>$W(\mathbf{a}, \mathbf{b}) = W(\mathbf{b}, \mathbf{a})$</li>
-</ol>
-<p><div>
-$W(\mathbf{a}, \mathbf{b})$, $W(\mathbf{b}, \mathbf{a})$ をあたえる最適輸送をそれぞれ
-$\mathbf{P}^* $, $\mathbf{Q}^* $ とする。このとき
-<div style="overflow-x: auto;">
-$$
-\begin{align*}
-W(\mathbf{a}, \mathbf{b})
-& = \langle \mathbf{D}, \mathbf{P}^* \rangle \\
-& \leq \langle \mathbf{D}, (\mathbf{Q}^* )^\mathrm{T} \rangle & (\because (\mathbf{Q}^* )^\mathrm{T}
-\in \mathbf{U}(\mathbf{a}, \mathbf{b})) \\
-& = \langle \mathbf{D}^\mathrm{T}, \mathbf{Q}^* \rangle \\
-& = \langle \mathbf{D}, \mathbf{Q}^* \rangle & (\because \mathbf{D} = \mathbf{D}^\mathrm{T}) \\
-& = W(\mathbf{b}, \mathbf{a})
-\end{align*}
-$$
-</div>
-逆も同等のため、$W(\mathbf{a}, \mathbf{b}) = W(\mathbf{b}, \mathbf{a})$ が成り立つ。
-</div></p>
-<ol start="4">
-<li>$W(\mathbf{a}, \mathbf{c}) \leq W(\mathbf{a}, \mathbf{b}) + W(\mathbf{b}, \mathbf{c})$</li>
-</ol>
-<p>この部分の証明は <a href="https://arxiv.org/abs/1803.00567">Computational Optimal Transport</a> に詳しく書かれているため省きます。</p>
-<p><a name="appendix1"></a></p>
-<h2 id="補足-1-距離の定義">補足 1. 距離の定義</h2>
-<p>距離関数とは、集合 $S$ 上で定義された実数値二値関数 $d$ で、次の条件を満たすものである。</p>
-<ol>
-<li>
-<p>$d(a, a) = 0$</p>
-</li>
-<li>
-<p>$d(a, b) &gt; 0$　($a \neq b$)</p>
-</li>
-<li>
-<p>$d(a, b) = d(b, a)$</p>
-</li>
-<li>
-<p>$d(a, c) \leq d(a, b) + d(b, c)$</p>
-</li>
-</ol>
-<p><a name="appendix2"></a></p>
-<h2 id="補足-2-カテゴリー分布">補足 2. カテゴリー分布</h2>
-<p><div>
-試行回数が 1 の多項分布を特別にカテゴリー分布と呼ぶことがある。
-<div style="overflow-x: auto;">
-$$
-\mathrm{Cat}(\mathbf{x}|\mathbf{p}) = \prod_{i = 1}^n p_i^{x_i}
-$$
-</div>
-$\mathbf{x}$ は 1 つの要素だけが 1 となり、他の要素がすべて 0 となるようなベクトルである。
-これを 1-hot ベクトルという。
-</div></p>
-<h2 id="補足-3-対角行列">補足 3. 対角行列</h2>
-<p><div>
-$\mathrm{diag}$ はベクトルから対角行列を作る関数で、次のように定義される。
-<div style="overflow-x: auto;">
-$$
-\mathrm{diag} (\mathbf{a}) =
-\left[
-    \begin{array}{rrr}
-        a_1 & & \\
-        & \ddots & \\
-        & & a_n
-    \end{array}
-\right]
-$$
-</div>
-</div></p>
-<p>
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</p>
-
-<h2 id="参考文献">参考文献</h2>
-<ul>
-<li>
-<p>Gabriel Peyré and Marco Cuturi, &ldquo;Computational Optimal Transport&rdquo;, <em>Foundations and Trends in Machine Learning</em>, vol. 11, no. 5&ndash;6, pp. 355&ndash;607, 2019.<br />
-<span style="word-break: break-all;">
-<a href="https://arxiv.org/abs/1803.00567">https://arxiv.org/abs/1803.00567</a>
-</span></p>
-</li>
-<li>
-<p>Wasserstein GAN and the Kantorovich-Rubinstein Duality<br />
-<span style="word-break: break-all;">
-<a href="https://vincentherrmann.github.io/blog/wasserstein/">https://vincentherrmann.github.io/blog/wasserstein/</a>
-</span></p>
-</li>
-<li>
-<p>Martin Arjovsky, Soumith Chintala, and Léon Bottou, &ldquo;Wasserstein Generative Adversarial Networks&rdquo;, in <em>Proc. ICML</em>, 2017, pp. 214&ndash;223.<br />
-<span style="word-break: break-all;">
-<a href="http://proceedings.mlr.press/v70/arjovsky17a.html">http://proceedings.mlr.press/v70/arjovsky17a.html</a>
-</span></p>
-</li>
-</ul>
-</div>
- 
-  <br />
-
-  <footer class="article-footer">
-    
-    
-    
-    <section class="bordered">
-      <header>
-        <div class="panel-title">CATEGORIES</div>
-      </header>
-      <div>
-        <ul class="p-terms">
-          
-          <li><a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/">機械学習</a></li>
-          
-        </ul>
-      </div>
-    </section>
-    
-    
-  </footer>
-
-</article>
-
-
-    
-  </div>
-
-  <div class="col-md-4">
-    
-<aside class="l-sidebar">
-
-  
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">RELATED POSTS</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://yokaze.github.io/2019/09/12/" class="list-group-item">Sliced Wasserstein GMM を実装してみた</a>
-      
-      <a href="https://yokaze.github.io/2019/07/13/" class="list-group-item">Monge-Kantorovich の問題を SciPy で解く</a>
-      
-      <a href="https://yokaze.github.io/2019/08/23/" class="list-group-item">線形位相空間の原点の近傍が併呑集合であることを証明する</a>
-      
-      <a href="https://yokaze.github.io/2017/10/13/" class="list-group-item">機械学習で役立つ数学参考書のリスト</a>
-      
-      <a href="https://yokaze.github.io/2017/10/11/" class="list-group-item">EM アルゴリズム</a>
-      
-      <a href="https://yokaze.github.io/2019/08/30/" class="list-group-item">TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する</a>
-      
-      <a href="https://yokaze.github.io/2019/08/12/" class="list-group-item">TensorFlow 2.0 で非負値行列因子分解 (NMF) を解く</a>
-      
-      <a href="https://yokaze.github.io/2019/08/07/" class="list-group-item">TensorFlow 2.0 で Variable を ndarray に変換する</a>
-      
-      <a href="https://yokaze.github.io/2018/01/13/" class="list-group-item">論文紹介: Feature Learning for Chord Recognition: The Deep Chroma Extractor</a>
-      
-      <a href="https://yokaze.github.io/2018/01/04/" class="list-group-item">論文紹介: Music Emotion Recognition: A State of the Art Review</a>
-      
-    </div>
-  </section>
-  
-
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">CATEGORY</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
-      
-      <a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="list-group-item">機械学習</a>
-      
-      <a href="https://yokaze.github.io/categories/%E5%86%99%E7%9C%9F" class="list-group-item">写真</a>
-      
-    </div>
-  </section>
-  
-
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">AUTHOR</div>
-    </div>
-    <div class="list-group">
-      <a href="https://twitter.com/chrofieyue" class="list-group-item">夜風&ensp;<font color="#00acee" /><i class="fa fa-twitter" aria-hidden="true"></i></font></a>
-    </div>
-  </section>
-
-</aside>
-
-  </div>
-</div>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <article class="single">
+                        <header>
+                            <ul class="p-facts">
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-12T18:00:00JST">Jul 12, 2019</time></li>
+                                <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2019/">2019</a></li>
+                            </ul>
+                            <h1 class="title">Wasserstein 計量が距離関数になることを証明する</h1>
+                        </header>
+                        <div class="article-body">
+                            <p>ここでは Wasserstein 計量を最適輸送コストから計算し、この計量が距離の定義（<a href="#appendix1">補足 1</a>）を満たすことを証明します。 また、Wasserstein 計量が元の空間上の確率分布間の距離とみなせることを示します。</p>
+                            <p>本記事は <a href="https://arxiv.org/abs/1803.00567">Computational Optimal Transport</a> の命題 2.2 の解説です。 簡単のため 1-Wasserstein の場合のみ証明します。</p>
+                            <p><a name="monge-kantorovich"></a></p>
+                            <h2 id="monge-kantorovich-の問題cot-23-節">Monge-Kantorovich の問題（COT 2.3 節）</h2>
+                            <p>
+                            <div> 複数の工場 $A_1 ... A_n$ で生産した量 $a_1 ... a_n$ の物資があり、これを別の場所 $B_1 ... B_m$ で利用することにしたい。 物資は使い切るものとし、$B_j$ には $b_j$ の物資を割り当てる。 したがって、$\sum_i a_i = \sum_j b_j$ が成り立つ。 </div>
+                            </p>
+                            <p>
+                            <div> $A_i$ から $B_j$ へ物資を輸送するにあたって、単位量あたり $C_{ij}$ のコストがかかるものとする。 $A_i$ から $B_j$ へ輸送する物資の量を $P_{ij}$ とすると、輸送にかかるコストは $\langle \mathbf{C}, \mathbf{P} \rangle = \sum_{ij} C_{ij} P_{ij}$ である。 ここで、輸送コストを最小にする輸送方法を最適輸送と呼び、最適な輸送 $\mathbf{P}^* $ を求める問題を最適輸送問題という。 問題設定から、$a_i = \sum_j P_{ij}$, $b_j = \sum_i P_{ij}$ が成り立つ。 </div>
+                            </p>
+                            <p>
+                            <div> 以下では、有効な輸送の全体を $\mathbf{U}(\mathbf{a}, \mathbf{b})$, 最適輸送コストを $L_\mathbf{C}(\mathbf{a}, \mathbf{b})$ であらわす。 <div style="overflow-x: auto;"> $$ \mathbf{U}(\mathbf{a}, \mathbf{b}) = \left\{ \mathbf{P} \in \mathbb{R}_+^{n \times m} \middle| \mathbf{P}\mathbf{1}_m = \mathbf{a}, \mathbf{P}^\mathrm{T}\mathbf{1}_n = \mathbf{b} \right\} $$ $$ L_\mathbf{C}(\mathbf{a}, \mathbf{b}) = \min_{\mathbf{P} \in \mathbf{U}(\mathbf{a}, \mathbf{b})} \langle \mathbf{C}, \mathbf{P} \rangle $$ </div>
+                            </div>
+                            </p>
+                            <p>最適輸送 $\mathbf{P}^* $ は線型計画法で計算できる（<a href="https://arxiv.org/abs/1803.00567">COT 2&ndash;3 章</a>）。</p>
+                            <h2 id="wasserstein-距離cot-24-節">Wasserstein 距離（COT 2.4 節）</h2>
+                            <p>
+                            <div> 次に、物資の生産と消費が同じ場所で行われるケースを考える（$[ A_1 ... A_n ] = [ B_1 ... B_n ]$）。 また、地点間の輸送コストは距離の定義を満たすものとする（<a href="#appendix1">補足 1</a>）。 輸送コスト行列 $\mathbf{D}$ はこの距離関数を行列の形で書き下したものである（$D_{ij} = d(A_i, A_j)$）。 </div>
+                            </p>
+                            <h3 id="命題-22-cot">命題 2.2 (COT)</h3>
+                            <p>
+                            <div> 資源量を正規化し、生産量 $\mathbf{a}$ と消費量 $\mathbf{b}$ を単体 $\Sigma_n$ 上に制限する（$\mathbf{a}, \mathbf{b} \in \Sigma_n$）。 このとき $\Sigma_n$ 上に定義される $p$-Wasserstein 関数 <div style="overflow-x: auto;"> $$ W_p(\mathbf{a}, \mathbf{b}) = \left[ L_{\mathbf{D}^p}(\mathbf{a}, \mathbf{b}) \right]^{\frac{1}{p}} $$ </div> は $\Sigma_n$ 上の距離関数になる（$\Sigma_n$ は要素の和が 1 となるような非負値ベクトル全体の集合である）。 </div>
+                            </p>
+                            <h4 id="諸注意">諸注意</h4>
+                            <p>輸送コストは有限の地点間に定義されるが、$p$-Wasserstein は単体上の距離になる。 $\Sigma_n$ はカテゴリー分布（<a href="#appendix2">補足 2</a>）のパラメータ空間と同等であるため、$p$-Wasserstein 関数は確率分布間の距離とみなすことができる。</p>
+                            <p><a href="http://proceedings.mlr.press/v70/arjovsky17a.html">Wasserstein GAN</a> (Arjovski et al., 2017) で使われているのは 1-Wasserstein である。 この距離関数は Earth Mover&rsquo;s Distance（EM 距離）とも呼ばれている。</p>
+                            <h3 id="証明-p--1-の場合">証明 （p = 1 の場合）</h3>
+                            <ol>
+                                <li>$W(\mathbf{a}, \mathbf{a}) = 0$</li>
+                            </ol>
+                            <p>
+                            <div>
+                                <div style="overflow-x: auto;"> $$ \begin{align*} W(\mathbf{a}, \mathbf{a}) & = \min \langle \mathbf{D}, \mathbf{P} \rangle \\ & \leq \langle \mathbf{D}, \mathrm{diag} (\mathbf{a}) \rangle & (\because \mathrm{diag} (\mathbf{a}) \in \mathbf{U}(\mathbf{a}, \mathbf{a}))\\ & = \sum_i D_{ii} a_i \\ & = 0 \end{align*} $$ </div> Wasserstein 距離は最適な輸送方法を元に計算されるため、$\mathbf{U}(\mathbf{a}, \mathbf{b})$ に含まれる任意の輸送 $\mathbf{P}$ について $W(\mathbf{a}, \mathbf{b}) \leq \langle \mathbf{D}, \mathbf{P} \rangle$ が成り立つことに注意する。
+                            </div>
+                            </p>
+                            <ol start="2">
+                                <li>$W(\mathbf{a}, \mathbf{b}) > 0$　($\mathbf{a} \neq \mathbf{b}$)</li>
+                            </ol>
+                            <p>
+                            <div> $\mathbf{a} \neq \mathbf{b}$ であるため、ある $k$ が存在し $a_k > b_k$ となる。 任意の有効な輸送 $\mathbf{P}$ について $P_{kk} \leq b_k$, $\sum_j P_{kj} = a_k$ だから、 <div style="overflow-x: auto;"> $$ \begin{align*} \sum_{j \neq k} P_{kj} & = a_k - P_{kk} \\ & \geq a_k - b_k \end{align*} $$ </div> が成り立つ。さらに $D^* = \min_{j \neq k}D_{kj}$ とすると、 <div style="overflow-x: auto;"> $$ \begin{align*} \langle \mathbf{D}, \mathbf{P} \rangle & \geq \sum_{j \neq k} D_{kj} P_{kj} \\ & \geq D^* \sum_{j \neq k} P_{kj} \\ & \geq D^* (a_k - b_k) > 0 \end{align*} $$ </div> が成立する。 $D^* (a_k - b_k)$ は $\mathbf{P}$ によらない定数なので、$W(\mathbf{a}, \mathbf{b}) > 0$ が成り立つ。 </div>
+                            </p>
+                            <ol start="3">
+                                <li>$W(\mathbf{a}, \mathbf{b}) = W(\mathbf{b}, \mathbf{a})$</li>
+                            </ol>
+                            <p>
+                            <div> $W(\mathbf{a}, \mathbf{b})$, $W(\mathbf{b}, \mathbf{a})$ をあたえる最適輸送をそれぞれ $\mathbf{P}^* $, $\mathbf{Q}^* $ とする。このとき <div style="overflow-x: auto;"> $$ \begin{align*} W(\mathbf{a}, \mathbf{b}) & = \langle \mathbf{D}, \mathbf{P}^* \rangle \\ & \leq \langle \mathbf{D}, (\mathbf{Q}^* )^\mathrm{T} \rangle & (\because (\mathbf{Q}^* )^\mathrm{T} \in \mathbf{U}(\mathbf{a}, \mathbf{b})) \\ & = \langle \mathbf{D}^\mathrm{T}, \mathbf{Q}^* \rangle \\ & = \langle \mathbf{D}, \mathbf{Q}^* \rangle & (\because \mathbf{D} = \mathbf{D}^\mathrm{T}) \\ & = W(\mathbf{b}, \mathbf{a}) \end{align*} $$ </div> 逆も同等のため、$W(\mathbf{a}, \mathbf{b}) = W(\mathbf{b}, \mathbf{a})$ が成り立つ。 </div>
+                            </p>
+                            <ol start="4">
+                                <li>$W(\mathbf{a}, \mathbf{c}) \leq W(\mathbf{a}, \mathbf{b}) + W(\mathbf{b}, \mathbf{c})$</li>
+                            </ol>
+                            <p>この部分の証明は <a href="https://arxiv.org/abs/1803.00567">Computational Optimal Transport</a> に詳しく書かれているため省きます。</p>
+                            <p><a name="appendix1"></a></p>
+                            <h2 id="補足-1-距離の定義">補足 1. 距離の定義</h2>
+                            <p>距離関数とは、集合 $S$ 上で定義された実数値二値関数 $d$ で、次の条件を満たすものである。</p>
+                            <ol>
+                                <li>
+                                    <p>$d(a, a) = 0$</p>
+                                </li>
+                                <li>
+                                    <p>$d(a, b) &gt; 0$　($a \neq b$)</p>
+                                </li>
+                                <li>
+                                    <p>$d(a, b) = d(b, a)$</p>
+                                </li>
+                                <li>
+                                    <p>$d(a, c) \leq d(a, b) + d(b, c)$</p>
+                                </li>
+                            </ol>
+                            <p><a name="appendix2"></a></p>
+                            <h2 id="補足-2-カテゴリー分布">補足 2. カテゴリー分布</h2>
+                            <p>
+                            <div> 試行回数が 1 の多項分布を特別にカテゴリー分布と呼ぶことがある。 <div style="overflow-x: auto;"> $$ \mathrm{Cat}(\mathbf{x}|\mathbf{p}) = \prod_{i = 1}^n p_i^{x_i} $$ </div> $\mathbf{x}$ は 1 つの要素だけが 1 となり、他の要素がすべて 0 となるようなベクトルである。 これを 1-hot ベクトルという。 </div>
+                            </p>
+                            <h2 id="補足-3-対角行列">補足 3. 対角行列</h2>
+                            <p>
+                            <div> $\mathrm{diag}$ はベクトルから対角行列を作る関数で、次のように定義される。 <div style="overflow-x: auto;"> $$ \mathrm{diag} (\mathbf{a}) = \left[ \begin{array}{rrr} a_1 & & \\ & \ddots & \\ & & a_n \end{array} \right] $$ </div>
+                            </div>
+                            </p>
+                            <p>
+                                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            </p>
+                            <h2 id="参考文献">参考文献</h2>
+                            <ul>
+                                <li>
+                                    <p>Gabriel Peyré and Marco Cuturi, &ldquo;Computational Optimal Transport&rdquo;, <em>Foundations and Trends in Machine Learning</em>, vol. 11, no. 5&ndash;6, pp. 355&ndash;607, 2019.<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://arxiv.org/abs/1803.00567">https://arxiv.org/abs/1803.00567</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>Wasserstein GAN and the Kantorovich-Rubinstein Duality<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://vincentherrmann.github.io/blog/wasserstein/">https://vincentherrmann.github.io/blog/wasserstein/</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>Martin Arjovsky, Soumith Chintala, and Léon Bottou, &ldquo;Wasserstein Generative Adversarial Networks&rdquo;, in <em>Proc. ICML</em>, 2017, pp. 214&ndash;223.<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="http://proceedings.mlr.press/v70/arjovsky17a.html">http://proceedings.mlr.press/v70/arjovsky17a.html</a>
+                                        </span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <br />
+                        <footer class="article-footer">
+                            <section class="bordered">
+                                <header>
+                                    <div class="panel-title">CATEGORIES</div>
+                                </header>
+                                <div>
+                                    <ul class="p-terms">
+                                        <li><a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/">機械学習</a></li>
+                                    </ul>
+                                </div>
+                            </section>
+                        </footer>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <aside class="l-sidebar">
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">RELATED POSTS</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://yokaze.github.io/2019/09/12/" class="list-group-item">Sliced Wasserstein GMM を実装してみた</a>
+                                <a href="https://yokaze.github.io/2019/07/13/" class="list-group-item">Monge-Kantorovich の問題を SciPy で解く</a>
+                                <a href="https://yokaze.github.io/2019/08/23/" class="list-group-item">線形位相空間の原点の近傍が併呑集合であることを証明する</a>
+                                <a href="https://yokaze.github.io/2017/10/13/" class="list-group-item">機械学習で役立つ数学参考書のリスト</a>
+                                <a href="https://yokaze.github.io/2017/10/11/" class="list-group-item">EM アルゴリズム</a>
+                                <a href="https://yokaze.github.io/2019/08/30/" class="list-group-item">TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する</a>
+                                <a href="https://yokaze.github.io/2019/08/12/" class="list-group-item">TensorFlow 2.0 で非負値行列因子分解 (NMF) を解く</a>
+                                <a href="https://yokaze.github.io/2019/08/07/" class="list-group-item">TensorFlow 2.0 で Variable を ndarray に変換する</a>
+                                <a href="https://yokaze.github.io/2018/01/13/" class="list-group-item">論文紹介: Feature Learning for Chord Recognition: The Deep Chroma Extractor</a>
+                                <a href="https://yokaze.github.io/2018/01/04/" class="list-group-item">論文紹介: Music Emotion Recognition: A State of the Art Review</a>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">CATEGORY</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
+                                <a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="list-group-item">機械学習</a>
+                                <a href="https://yokaze.github.io/categories/%E5%86%99%E7%9C%9F" class="list-group-item">写真</a>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">AUTHOR</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://twitter.com/chrofieyue" class="list-group-item">夜風&ensp;
+                                    <font color="#00acee" /><i class="fa fa-twitter" aria-hidden="true"></i></font>
+                                </a>
+                            </div>
+                        </section>
+                    </aside>
+                </div>
+            </div>
+            <script type="text/x-mathjax-config"> MathJax.Hub.Config
   ({
     tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processEscapes: true },
     TeX: { equationNumbers: { autoNumber: "AMS" }}
   });
 </script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_SVG"></script>
-
-
-      </div>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_SVG"></script>
+        </div>
     </main>
-
     <footer class="l-footer">
-      <div class="container">
-        <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
-        <aside>
-          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
-          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
-        </aside>
-      </div>
+        <div class="container">
+            <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
+            <aside>
+                <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+                <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+            </aside>
+        </div>
     </footer>
-
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
-    
-    <script>hljs.initHighlightingOnLoad();</script>
-  </body>
+    <script>
+        hljs.initHighlightingOnLoad();
+
+    </script>
+</body>
+
 </html>

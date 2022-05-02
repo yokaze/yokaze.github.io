@@ -1,207 +1,148 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+
+<head>
     <meta charset="utf-8">
-<meta http-equiv="content-language" content="ja">
-<meta name="pinterest" content="nopin">
-<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.95.0" />
-
-
-
-<link rel="canonical" href="https://yokaze.github.io/2019/07/13/">
-
-
+    <meta http-equiv="content-language" content="ja">
+    <meta name="pinterest" content="nopin">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <meta name="generator" content="Hugo 0.95.0" />
+    <link rel="canonical" href="https://yokaze.github.io/2019/07/13/">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
     <title>Monge-Kantorovich の問題を SciPy で解く - yokaze.github.io</title>
-    
-<meta name="description" content="Wasserstein GAN に出てくる最適輸送問題を SciPy で解いてみます。 問題の説明は前回の記事をご覧ください。 問題設定 2つの生産地 A1, A2 から3つの消費地 B1, B2, B3 へ物資を輸">
+    <meta name="description" content="Wasserstein GAN に出てくる最適輸送問題を SciPy で解いてみます。 問題の説明は前回の記事をご覧ください。 問題設定 2つの生産地 A1, A2 から3つの消費地 B1, B2, B3 へ物資を輸">
+    <meta property="og:title" content="Monge-Kantorovich の問題を SciPy で解く - yokaze.github.io">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yokaze.github.io/2019/07/13/">
+    <meta property="og:image" content="https://yokaze.github.io/images/default.png">
+    <meta property="og:site_name" content="yokaze.github.io">
+    <meta property="og:description" content="Wasserstein GAN に出てくる最適輸送問題を SciPy で解いてみます。 問題の説明は前回の記事をご覧ください。 問題設定 2つの生産地 A1, A2 から3つの消費地 B1, B2, B3 へ物資を輸">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="yokaze.github.io">
+    <meta name="twitter:url" content="https://yokaze.github.io/2019/07/13/">
+    <meta name="twitter:title" content="Monge-Kantorovich の問題を SciPy で解く - yokaze.github.io">
+    <meta name="twitter:description" content="Wasserstein GAN に出てくる最適輸送問題を SciPy で解いてみます。 問題の説明は前回の記事をご覧ください。 問題設定 2つの生産地 A1, A2 から3つの消費地 B1, B2, B3 へ物資を輸">
+    <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https:\/\/yokaze.github.io\/"
+            },
+            "headline": "Monge-Kantorovich の問題を SciPy で解く - yokaze.github.io",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/yokaze.github.io\/images\/default.png",
+                "height": 800,
+                "width": 800
+            },
+            "datePublished": "2019-07-13T18:00:00JST",
+            "dateModified": "2019-07-13T18:00:00JST",
+            "author": {
+                "@type": "Person",
+                "name": "yokaze.github.io"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "yokaze.github.io",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/yokaze.github.io\/images/logo.png",
+                    "width": 600,
+                    "height": 60
+                }
+            },
+            "description": "Wasserstein GAN に出てくる最適輸送問題を SciPy で解いてみます。 問題の説明は前回の記事をご覧ください。 問題設定 2つの生産地 A1, A2 から3つの消費地 B1, B2, B3 へ物資を輸"
+        }
 
-<meta property="og:title" content="Monge-Kantorovich の問題を SciPy で解く - yokaze.github.io">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2019/07/13/">
-<meta property="og:image" content="https://yokaze.github.io/images/default.png">
-<meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="Wasserstein GAN に出てくる最適輸送問題を SciPy で解いてみます。 問題の説明は前回の記事をご覧ください。 問題設定 2つの生産地 A1, A2 から3つの消費地 B1, B2, B3 へ物資を輸">
-<meta property="og:locale" content="ja_JP">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2019/07/13/">
-<meta name="twitter:title" content="Monge-Kantorovich の問題を SciPy で解く - yokaze.github.io">
-<meta name="twitter:description" content="Wasserstein GAN に出てくる最適輸送問題を SciPy で解いてみます。 問題の説明は前回の記事をご覧ください。 問題設定 2つの生産地 A1, A2 から3つの消費地 B1, B2, B3 へ物資を輸">
-<meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
-
-
-<script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "NewsArticle",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id":"https:\/\/yokaze.github.io\/"
-    },
-    "headline": "Monge-Kantorovich の問題を SciPy で解く - yokaze.github.io",
-    "image": {
-      "@type": "ImageObject",
-      "url": "https:\/\/yokaze.github.io\/images\/default.png",
-      "height": 800,
-      "width": 800
-    },
-    "datePublished": "2019-07-13T18:00:00JST",
-    "dateModified": "2019-07-13T18:00:00JST",
-    "author": {
-      "@type": "Person",
-      "name": "yokaze.github.io"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "yokaze.github.io",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https:\/\/yokaze.github.io\/images/logo.png",
-        "width": 600,
-        "height": 60
-      }
-    },
-    "description": "Wasserstein GAN に出てくる最適輸送問題を SciPy で解いてみます。 問題の説明は前回の記事をご覧ください。 問題設定 2つの生産地 A1, A2 から3つの消費地 B1, B2, B3 へ物資を輸"
-  }
-</script>
-
-
+    </script>
     <link href="https://yokaze.github.io/css/styles.css" rel="stylesheet">
-    
+</head>
 
-  </head>
+<body>
+    <script type="application/javascript">
+        var doNotTrack = false;
+        if (!doNotTrack) {
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-83271338-1', 'auto');
+            ga('send', 'pageview');
+        }
 
-  <body>
-    
-    
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-83271338-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-    
-
+    </script>
     <header class="l-header">
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
-          </div>
-
-          
-          <div id="navbar" class="collapse navbar-collapse">
-            
-            <ul class="nav navbar-nav navbar-right">
-              
-              
-              <li><a href="/about/">About</a></li>
-              
-              
-              
-              <li><a href="/software/">Software</a></li>
-              
-              
-            </ul>
-            
-          </div>
-          
-
-        </div>
-      </nav>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/software/">Software</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-
     <main>
-      <div class="container">
-        
-<div class="row">
-  <div class="col-md-8">
-
-    
-
-    <article class="single">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-13T18:00:00JST">Jul 13, 2019</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2019/">2019</a></li>
-      
-      
-    </ul>
-    <h1 class="title">Monge-Kantorovich の問題を SciPy で解く</h1>
-  </header>
-
-  
-
-  <div class="article-body"><p><a href="http://proceedings.mlr.press/v70/arjovsky17a.html">Wasserstein GAN</a> に出てくる最適輸送問題を SciPy で解いてみます。</p>
-<p>問題の説明は<a href="/2019/07/12/#monge-kantorovich">前回の記事</a>をご覧ください。</p>
-<h2 id="問題設定">問題設定</h2>
-<p>2つの生産地 A1, A2 から3つの消費地 B1, B2, B3 へ物資を輸送する問題を考えます。生産量 $\mathbf{a}$, 消費量 $\mathbf{b}$, 単位量あたりの輸送コスト $\mathbf{C}$ を次の値に設定します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> [ <span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.5</span> ]
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <article class="single">
+                        <header>
+                            <ul class="p-facts">
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-13T18:00:00JST">Jul 13, 2019</time></li>
+                                <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2019/">2019</a></li>
+                            </ul>
+                            <h1 class="title">Monge-Kantorovich の問題を SciPy で解く</h1>
+                        </header>
+                        <div class="article-body">
+                            <p><a href="http://proceedings.mlr.press/v70/arjovsky17a.html">Wasserstein GAN</a> に出てくる最適輸送問題を SciPy で解いてみます。</p>
+                            <p>問題の説明は<a href="/2019/07/12/#monge-kantorovich">前回の記事</a>をご覧ください。</p>
+                            <h2 id="問題設定">問題設定</h2>
+                            <p>2つの生産地 A1, A2 から3つの消費地 B1, B2, B3 へ物資を輸送する問題を考えます。生産量 $\mathbf{a}$, 消費量 $\mathbf{b}$, 単位量あたりの輸送コスト $\mathbf{C}$ を次の値に設定します。</p>
+                            <div class="highlight">
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> [ <span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.5</span> ]
 </span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> [ <span style="color:#ae81ff">0.25</span>, <span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.25</span> ]
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>      B1 B2 B3
 </span></span><span style="display:flex;"><span>C <span style="color:#f92672">=</span> [  <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ] A1
 </span></span><span style="display:flex;"><span>    [  <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span> ] A2
-</span></span></code></pre></div><p>最適輸送問題では輸送 $\mathbf{P}$ と輸送コスト $\mathbf{C}$ が行列の形になっていますが、線型計画問題のライブラリを使う際はこれらを一次元に並べなおす必要があります。</p>
-<p><div>
-輸送 $\mathbf{P}$ の制約条件は $\mathbf{P}\mathbf{1}_3 = \mathbf{a}, \mathbf{P}^\mathrm{T}\mathbf{1}_2 = \mathbf{b}$ なので、これを並べると
-<div style="overflow-x: auto;">
-$$
-\left[
-    \begin{array}{rrrrrr}
-        1 & 1 & 1 & 0 & 0 & 0 \\
-        0 & 0 & 0 & 1 & 1 & 1 \\
-        1 & 0 & 0 & 1 & 0 & 0 \\
-        0 & 1 & 0 & 0 & 1 & 0 \\
-        0 & 0 & 1 & 0 & 0 & 1 \\
-    \end{array}
-\right]
-\left[
-\begin{array}{r}
-P_{11} \\
-P_{12} \\
-P_{13} \\
-P_{21} \\
-P_{22} \\
-P_{23}
-\end{array}
-\right] =
-\left[
-\begin{array}{r}
-a_1 \\
-a_2 \\
-b_1 \\
-b_2 \\
-b_3
-\end{array}
-\right]
-$$
-</div>
-と書けます。
-</div></p>
-<h2 id="実装">実装</h2>
-<p><div>
-<code>scipy.optimize.linprog</code> を使うと、$A_{\mathrm{eq}}\mathbf{x} = \mathbf{b}_{\mathrm{eq}}$　の条件を満たしつつ $\langle \mathbf{c}, \mathbf{x} \rangle$ を最小化する解を計算することができます。
-<code>bounds</code> を指定しない場合、$\mathbf{x}$ の各要素は 0 以上と仮定されます。
-</div></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy
+</span></span></code></pre>
+                            </div>
+                            <p>最適輸送問題では輸送 $\mathbf{P}$ と輸送コスト $\mathbf{C}$ が行列の形になっていますが、線型計画問題のライブラリを使う際はこれらを一次元に並べなおす必要があります。</p>
+                            <p>
+                            <div> 輸送 $\mathbf{P}$ の制約条件は $\mathbf{P}\mathbf{1}_3 = \mathbf{a}, \mathbf{P}^\mathrm{T}\mathbf{1}_2 = \mathbf{b}$ なので、これを並べると <div style="overflow-x: auto;"> $$ \left[ \begin{array}{rrrrrr} 1 & 1 & 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 1 & 1 \\ 1 & 0 & 0 & 1 & 0 & 0 \\ 0 & 1 & 0 & 0 & 1 & 0 \\ 0 & 0 & 1 & 0 & 0 & 1 \\ \end{array} \right] \left[ \begin{array}{r} P_{11} \\ P_{12} \\ P_{13} \\ P_{21} \\ P_{22} \\ P_{23} \end{array} \right] = \left[ \begin{array}{r} a_1 \\ a_2 \\ b_1 \\ b_2 \\ b_3 \end{array} \right] $$ </div> と書けます。 </div>
+                            </p>
+                            <h2 id="実装">実装</h2>
+                            <p>
+                            <div>
+                                <code>scipy.optimize.linprog</code> を使うと、$A_{\mathrm{eq}}\mathbf{x} = \mathbf{b}_{\mathrm{eq}}$　の条件を満たしつつ $\langle \mathbf{c}, \mathbf{x} \rangle$ を最小化する解を計算することができます。 <code>bounds</code> を指定しない場合、$\mathbf{x}$ の各要素は 0 以上と仮定されます。
+                            </div>
+                            </p>
+                            <div class="highlight">
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> scipy.optimize
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> numpy<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>])
@@ -215,8 +156,11 @@ $$
 </span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> numpy<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">.5</span>, <span style="color:#ae81ff">.5</span>, <span style="color:#ae81ff">.25</span>, <span style="color:#ae81ff">.5</span>, <span style="color:#ae81ff">.25</span>]) <span style="color:#75715e"># a_1, a_2, b_1, b_2, b_3</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>print(scipy<span style="color:#f92672">.</span>optimize<span style="color:#f92672">.</span>linprog(c, A_eq<span style="color:#f92672">=</span>A, b_eq<span style="color:#f92672">=</span>b))
-</span></span></code></pre></div><p>このプログラムを実行すると次の解が得られます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ python3 sample.py
+</span></span></code></pre>
+                            </div>
+                            <p>このプログラムを実行すると次の解が得られます。</p>
+                            <div class="highlight">
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ python3 sample.py
 </span></span><span style="display:flex;"><span>     fun: 1.5
 </span></span><span style="display:flex;"><span> message: &#39;Optimization terminated successfully.&#39;
 </span></span><span style="display:flex;"><span>     nit: 8
@@ -224,173 +168,141 @@ $$
 </span></span><span style="display:flex;"><span>  status: 0
 </span></span><span style="display:flex;"><span> success: True
 </span></span><span style="display:flex;"><span>       x: array([0.25, 0.25, 0.  , 0.  , 0.25, 0.25])
-</span></span></code></pre></div><p>したがって、最適な輸送 $\mathbf{P}^* $ は</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>      B1    B2    B3
+</span></span></code></pre>
+                            </div>
+                            <p>したがって、最適な輸送 $\mathbf{P}^* $ は</p>
+                            <div class="highlight">
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>      B1    B2    B3
 </span></span><span style="display:flex;"><span>P <span style="color:#f92672">=</span> [ <span style="color:#ae81ff">0.25</span>, <span style="color:#ae81ff">0.25</span>, <span style="color:#ae81ff">0</span>    ] A1
 </span></span><span style="display:flex;"><span>    [ <span style="color:#ae81ff">0</span>   , <span style="color:#ae81ff">0.25</span>, <span style="color:#ae81ff">0.25</span> ] A2
-</span></span></code></pre></div><p>また、この時の輸送コストは <code>1.5</code> となることが分かりました。</p>
-<p>
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</p>
-
-<h2 id="参考資料">参考資料</h2>
-<ul>
-<li>
-<p>Wasserstein 距離について<br />
-<span style="word-break: break-all;">
-<a href="https://yokaze.github.io/2019/07/12/">https://yokaze.github.io/2019/07/12/</a>
-</span></p>
-</li>
-<li>
-<p>scipy.optimize.linprog — SciPy v1.3.0 Reference Guide<br />
-<span style="word-break: break-all;">
-<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html</a>
-</span></p>
-</li>
-<li>
-<p>Wasserstein GAN and the Kantorovich-Rubinstein Duality<br />
-<span style="word-break: break-all;">
-<a href="https://vincentherrmann.github.io/blog/wasserstein/">https://vincentherrmann.github.io/blog/wasserstein/</a>
-</span></p>
-</li>
-<li>
-<p>Gabriel Peyré and Marco Cuturi, &ldquo;Computational Optimal Transport&rdquo;, <em>Foundations and Trends in Machine Learning</em>, vol. 11, no. 5&ndash;6, pp. 355&ndash;607, 2019.<br />
-<span style="word-break: break-all;">
-<a href="https://arxiv.org/abs/1803.00567">https://arxiv.org/abs/1803.00567</a>
-</span></p>
-</li>
-<li>
-<p>Martin Arjovsky, Soumith Chintala, and Léon Bottou, &ldquo;Wasserstein Generative Adversarial Networks&rdquo;, in <em>Proc. ICML</em>, 2017, pp. 214&ndash;223.<br />
-<span style="word-break: break-all;">
-<a href="http://proceedings.mlr.press/v70/arjovsky17a.html">http://proceedings.mlr.press/v70/arjovsky17a.html</a>
-</span></p>
-</li>
-</ul>
-</div>
- 
-  <br />
-
-  <footer class="article-footer">
-    
-    
-    
-    <section class="bordered">
-      <header>
-        <div class="panel-title">CATEGORIES</div>
-      </header>
-      <div>
-        <ul class="p-terms">
-          
-          <li><a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/">機械学習</a></li>
-          
-        </ul>
-      </div>
-    </section>
-    
-    
-  </footer>
-
-</article>
-
-
-    
-  </div>
-
-  <div class="col-md-4">
-    
-<aside class="l-sidebar">
-
-  
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">RELATED POSTS</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://yokaze.github.io/2019/09/12/" class="list-group-item">Sliced Wasserstein GMM を実装してみた</a>
-      
-      <a href="https://yokaze.github.io/2019/07/12/" class="list-group-item">Wasserstein 計量が距離関数になることを証明する</a>
-      
-      <a href="https://yokaze.github.io/2019/08/23/" class="list-group-item">線形位相空間の原点の近傍が併呑集合であることを証明する</a>
-      
-      <a href="https://yokaze.github.io/2017/10/13/" class="list-group-item">機械学習で役立つ数学参考書のリスト</a>
-      
-      <a href="https://yokaze.github.io/2017/10/11/" class="list-group-item">EM アルゴリズム</a>
-      
-      <a href="https://yokaze.github.io/2017/09/27/" class="list-group-item">mac に最新の NumPy (SciPy) をインストールする</a>
-      
-      <a href="https://yokaze.github.io/2017/09/17/" class="list-group-item">mac に SciPy がプリインストールされているか調べる</a>
-      
-      <a href="https://yokaze.github.io/2019/08/30/" class="list-group-item">TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する</a>
-      
-      <a href="https://yokaze.github.io/2019/08/12/" class="list-group-item">TensorFlow 2.0 で非負値行列因子分解 (NMF) を解く</a>
-      
-      <a href="https://yokaze.github.io/2019/08/07/" class="list-group-item">TensorFlow 2.0 で Variable を ndarray に変換する</a>
-      
-    </div>
-  </section>
-  
-
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">CATEGORY</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
-      
-      <a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="list-group-item">機械学習</a>
-      
-      <a href="https://yokaze.github.io/categories/%E5%86%99%E7%9C%9F" class="list-group-item">写真</a>
-      
-    </div>
-  </section>
-  
-
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">AUTHOR</div>
-    </div>
-    <div class="list-group">
-      <a href="https://twitter.com/chrofieyue" class="list-group-item">夜風&ensp;<font color="#00acee" /><i class="fa fa-twitter" aria-hidden="true"></i></font></a>
-    </div>
-  </section>
-
-</aside>
-
-  </div>
-</div>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config
+</span></span></code></pre>
+                            </div>
+                            <p>また、この時の輸送コストは <code>1.5</code> となることが分かりました。</p>
+                            <p>
+                                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            </p>
+                            <h2 id="参考資料">参考資料</h2>
+                            <ul>
+                                <li>
+                                    <p>Wasserstein 距離について<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://yokaze.github.io/2019/07/12/">https://yokaze.github.io/2019/07/12/</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>scipy.optimize.linprog — SciPy v1.3.0 Reference Guide<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>Wasserstein GAN and the Kantorovich-Rubinstein Duality<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://vincentherrmann.github.io/blog/wasserstein/">https://vincentherrmann.github.io/blog/wasserstein/</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>Gabriel Peyré and Marco Cuturi, &ldquo;Computational Optimal Transport&rdquo;, <em>Foundations and Trends in Machine Learning</em>, vol. 11, no. 5&ndash;6, pp. 355&ndash;607, 2019.<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://arxiv.org/abs/1803.00567">https://arxiv.org/abs/1803.00567</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>Martin Arjovsky, Soumith Chintala, and Léon Bottou, &ldquo;Wasserstein Generative Adversarial Networks&rdquo;, in <em>Proc. ICML</em>, 2017, pp. 214&ndash;223.<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="http://proceedings.mlr.press/v70/arjovsky17a.html">http://proceedings.mlr.press/v70/arjovsky17a.html</a>
+                                        </span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <br />
+                        <footer class="article-footer">
+                            <section class="bordered">
+                                <header>
+                                    <div class="panel-title">CATEGORIES</div>
+                                </header>
+                                <div>
+                                    <ul class="p-terms">
+                                        <li><a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/">機械学習</a></li>
+                                    </ul>
+                                </div>
+                            </section>
+                        </footer>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <aside class="l-sidebar">
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">RELATED POSTS</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://yokaze.github.io/2019/09/12/" class="list-group-item">Sliced Wasserstein GMM を実装してみた</a>
+                                <a href="https://yokaze.github.io/2019/07/12/" class="list-group-item">Wasserstein 計量が距離関数になることを証明する</a>
+                                <a href="https://yokaze.github.io/2019/08/23/" class="list-group-item">線形位相空間の原点の近傍が併呑集合であることを証明する</a>
+                                <a href="https://yokaze.github.io/2017/10/13/" class="list-group-item">機械学習で役立つ数学参考書のリスト</a>
+                                <a href="https://yokaze.github.io/2017/10/11/" class="list-group-item">EM アルゴリズム</a>
+                                <a href="https://yokaze.github.io/2017/09/27/" class="list-group-item">mac に最新の NumPy (SciPy) をインストールする</a>
+                                <a href="https://yokaze.github.io/2017/09/17/" class="list-group-item">mac に SciPy がプリインストールされているか調べる</a>
+                                <a href="https://yokaze.github.io/2019/08/30/" class="list-group-item">TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する</a>
+                                <a href="https://yokaze.github.io/2019/08/12/" class="list-group-item">TensorFlow 2.0 で非負値行列因子分解 (NMF) を解く</a>
+                                <a href="https://yokaze.github.io/2019/08/07/" class="list-group-item">TensorFlow 2.0 で Variable を ndarray に変換する</a>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">CATEGORY</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
+                                <a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="list-group-item">機械学習</a>
+                                <a href="https://yokaze.github.io/categories/%E5%86%99%E7%9C%9F" class="list-group-item">写真</a>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">AUTHOR</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://twitter.com/chrofieyue" class="list-group-item">夜風&ensp;
+                                    <font color="#00acee" /><i class="fa fa-twitter" aria-hidden="true"></i></font>
+                                </a>
+                            </div>
+                        </section>
+                    </aside>
+                </div>
+            </div>
+            <script type="text/x-mathjax-config"> MathJax.Hub.Config
   ({
     tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processEscapes: true },
     TeX: { equationNumbers: { autoNumber: "AMS" }}
   });
 </script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_SVG"></script>
-
-
-      </div>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_SVG"></script>
+        </div>
     </main>
-
     <footer class="l-footer">
-      <div class="container">
-        <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
-        <aside>
-          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
-          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
-        </aside>
-      </div>
+        <div class="container">
+            <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
+            <aside>
+                <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+                <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+            </aside>
+        </div>
     </footer>
-
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
-    
-    <script>hljs.initHighlightingOnLoad();</script>
-  </body>
+    <script>
+        hljs.initHighlightingOnLoad();
+
+    </script>
+</body>
+
 </html>

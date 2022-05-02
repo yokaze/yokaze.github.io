@@ -1,426 +1,366 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+
+<head>
     <meta charset="utf-8">
-<meta http-equiv="content-language" content="ja">
-<meta name="pinterest" content="nopin">
-<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.95.0" />
-
-
-
-<link rel="canonical" href="https://yokaze.github.io/2017/10/13/">
-
-
+    <meta http-equiv="content-language" content="ja">
+    <meta name="pinterest" content="nopin">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <meta name="generator" content="Hugo 0.95.0" />
+    <link rel="canonical" href="https://yokaze.github.io/2017/10/13/">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
     <title>機械学習で役立つ数学参考書のリスト - yokaze.github.io</title>
-    
-<meta name="description" content="普段お世話になっている教科書をまとめてみました。 パターン認識と機械学習 誰もが知っている機械学習の総合教科書です。 基本的な事柄が網羅されていて">
+    <meta name="description" content="普段お世話になっている教科書をまとめてみました。 パターン認識と機械学習 誰もが知っている機械学習の総合教科書です。 基本的な事柄が網羅されていて">
+    <meta property="og:title" content="機械学習で役立つ数学参考書のリスト - yokaze.github.io">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yokaze.github.io/2017/10/13/">
+    <meta property="og:image" content="https://yokaze.github.io/images/default.png">
+    <meta property="og:site_name" content="yokaze.github.io">
+    <meta property="og:description" content="普段お世話になっている教科書をまとめてみました。 パターン認識と機械学習 誰もが知っている機械学習の総合教科書です。 基本的な事柄が網羅されていて">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="yokaze.github.io">
+    <meta name="twitter:url" content="https://yokaze.github.io/2017/10/13/">
+    <meta name="twitter:title" content="機械学習で役立つ数学参考書のリスト - yokaze.github.io">
+    <meta name="twitter:description" content="普段お世話になっている教科書をまとめてみました。 パターン認識と機械学習 誰もが知っている機械学習の総合教科書です。 基本的な事柄が網羅されていて">
+    <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https:\/\/yokaze.github.io\/"
+            },
+            "headline": "機械学習で役立つ数学参考書のリスト - yokaze.github.io",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/yokaze.github.io\/images\/default.png",
+                "height": 800,
+                "width": 800
+            },
+            "datePublished": "2017-10-13T19:07:00JST",
+            "dateModified": "2017-10-13T19:07:00JST",
+            "author": {
+                "@type": "Person",
+                "name": "yokaze.github.io"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "yokaze.github.io",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/yokaze.github.io\/images/logo.png",
+                    "width": 600,
+                    "height": 60
+                }
+            },
+            "description": "普段お世話になっている教科書をまとめてみました。 パターン認識と機械学習 誰もが知っている機械学習の総合教科書です。 基本的な事柄が網羅されていて"
+        }
 
-<meta property="og:title" content="機械学習で役立つ数学参考書のリスト - yokaze.github.io">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://yokaze.github.io/2017/10/13/">
-<meta property="og:image" content="https://yokaze.github.io/images/default.png">
-<meta property="og:site_name" content="yokaze.github.io">
-<meta property="og:description" content="普段お世話になっている教科書をまとめてみました。 パターン認識と機械学習 誰もが知っている機械学習の総合教科書です。 基本的な事柄が網羅されていて">
-<meta property="og:locale" content="ja_JP">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="yokaze.github.io">
-<meta name="twitter:url" content="https://yokaze.github.io/2017/10/13/">
-<meta name="twitter:title" content="機械学習で役立つ数学参考書のリスト - yokaze.github.io">
-<meta name="twitter:description" content="普段お世話になっている教科書をまとめてみました。 パターン認識と機械学習 誰もが知っている機械学習の総合教科書です。 基本的な事柄が網羅されていて">
-<meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
-
-
-<script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "NewsArticle",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id":"https:\/\/yokaze.github.io\/"
-    },
-    "headline": "機械学習で役立つ数学参考書のリスト - yokaze.github.io",
-    "image": {
-      "@type": "ImageObject",
-      "url": "https:\/\/yokaze.github.io\/images\/default.png",
-      "height": 800,
-      "width": 800
-    },
-    "datePublished": "2017-10-13T19:07:00JST",
-    "dateModified": "2017-10-13T19:07:00JST",
-    "author": {
-      "@type": "Person",
-      "name": "yokaze.github.io"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "yokaze.github.io",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https:\/\/yokaze.github.io\/images/logo.png",
-        "width": 600,
-        "height": 60
-      }
-    },
-    "description": "普段お世話になっている教科書をまとめてみました。 パターン認識と機械学習 誰もが知っている機械学習の総合教科書です。 基本的な事柄が網羅されていて"
-  }
-</script>
-
-
+    </script>
     <link href="https://yokaze.github.io/css/styles.css" rel="stylesheet">
-    
+</head>
 
-  </head>
+<body>
+    <script type="application/javascript">
+        var doNotTrack = false;
+        if (!doNotTrack) {
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-83271338-1', 'auto');
+            ga('send', 'pageview');
+        }
 
-  <body>
-    
-    
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-83271338-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-    
-
+    </script>
     <header class="l-header">
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
-          </div>
-
-          
-          <div id="navbar" class="collapse navbar-collapse">
-            
-            <ul class="nav navbar-nav navbar-right">
-              
-              
-              <li><a href="/about/">About</a></li>
-              
-              
-              
-              <li><a href="/software/">Software</a></li>
-              
-              
-            </ul>
-            
-          </div>
-          
-
-        </div>
-      </nav>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="https://yokaze.github.io/">yokaze.github.io</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/software/">Software</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-
     <main>
-      <div class="container">
-        
-<div class="row">
-  <div class="col-md-8">
-
-    
-
-    <article class="single">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-10-13T19:07:00JST">Oct 13, 2017</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
-      
-      
-    </ul>
-    <h1 class="title">機械学習で役立つ数学参考書のリスト</h1>
-  </header>
-
-  
-
-  <div class="article-body"><p>普段お世話になっている教科書をまとめてみました。</p>
-<h2 id="パターン認識と機械学習">パターン認識と機械学習</h2>
-<p>誰もが知っている機械学習の総合教科書です。
-基本的な事柄が網羅されていて分かりやすいです。</p>
-<ul>
-<li>C. M. Bishop, <em>Pattern Recognition and Machine Learning</em>, Springer, 2006.<br />
-日本語訳 パターン認識と機械学習（上巻）<br />
-<span style="word-break: break-all;">
-<a href="https://pub.maruzen.co.jp/book_magazine/book_data/search/9784621061220.html">https://pub.maruzen.co.jp/book_magazine/book_data/search/9784621061220.html</a>
-</span><br />
-日本語訳 パターン認識と機械学習（下巻）<br />
-<span style="word-break: break-all;">
-<a href="https://pub.maruzen.co.jp/book_magazine/book_data/search/9784621061244.html">https://pub.maruzen.co.jp/book_magazine/book_data/search/9784621061244.html</a>
-</span></li>
-</ul>
-<h2 id="確率論">確率論</h2>
-<p>確率測度、中心極限定理、ガウス過程 (Gaussian Process)、ポアソン過程 (Poisson Process)、加法過程 (Lévy Process) などが明快かつ厳密に説明されています。</p>
-<ul>
-<li>伊藤 清，<em>確率論</em> ，岩波書店，1991.<br />
-<span style="word-break: break-all;">
-<a href="https://www.iwanami.co.jp/book/b258368.html">https://www.iwanami.co.jp/book/b258368.html</a>
-</span></li>
-</ul>
-<h2 id="lévy-processes-and-infinitely-divisible-distributions">Lévy Processes and Infinitely Divisible Distributions</h2>
-<p>加法過程の性質について非常に詳しく説明されています。
-ガンマ過程 (Gamma Process) の記述もあります。</p>
-<ul>
-<li>Ken-iti Sato, <em>Lévy Processes and Infinitely Divisible Distributions</em>, Cambridge University Press, 1999.<br />
-<span style="word-break: break-all;">
-<a href="http://www.cambridge.org/jp/academic/subjects/statistics-probability/probability-theory-and-stochastic-processes/levy-processes-and-infinitely-divisible-distributions-2nd-edition?format=PB">http://www.cambridge.org/jp/academic/subjects/statistics-probability/probability-theory-and-stochastic-processes/levy-processes-and-infinitely-divisible-distributions-2nd-edition?format=PB</a>
-</span></li>
-</ul>
-<h2 id="集合位相入門">集合・位相入門</h2>
-<p>確率を数学的に取り扱う際、位相空間論とルベーグ積分の知識が必要になります。
-この本は記号の定義が丁寧でとても分かりやすいです。</p>
-<ul>
-<li>松坂 和夫，<em>集合・位相入門</em> ，岩波書店，1968.<br />
-<span style="word-break: break-all;">
-<a href="https://www.iwanami.co.jp/book/b265402.html">https://www.iwanami.co.jp/book/b265402.html</a>
-</span></li>
-</ul>
-<h2 id="ルベーグ積分入門">ルベーグ積分入門</h2>
-<p>日本語で書かれたルベーグ積分の標準的教科書です。
-こちらも丁寧で分かりやすいです。</p>
-<ul>
-<li>伊藤 清三，<em>ルベーグ積分入門</em> ，裳華房，1963.<br />
-<span style="word-break: break-all;">
-<a href="https://www.shokabo.co.jp/mybooks/ISBN978-4-7853-1318-0.htm">https://www.shokabo.co.jp/mybooks/ISBN978-4-7853-1318-0.htm</a>
-</span></li>
-</ul>
-<h2 id="set-theory">Set Theory</h2>
-<p>集合や論理式の取り扱いを原理原則から理解するには、公理的集合論の教科書をチェックするのがおすすめです。
-Kunen の Set Theory は ZFC をはじめとする公理的集合論の標準的教科書です。</p>
-<ul>
-<li>
-<p>K. Kunen, <em>The Foundations of Mathematics</em>, College Publications, 2009.<br />
-<span style="word-break: break-all;">
-<a href="http://www.collegepublications.co.uk/logic/mlf/?00012">http://www.collegepublications.co.uk/logic/mlf/?00012</a>
-</span></p>
-</li>
-<li>
-<p>K. Kunen, <em>Set Theory</em>, College Publications, 2011.<br />
-<span style="word-break: break-all;">
-<a href="http://www.collegepublications.co.uk/logic/mlf/?00016">http://www.collegepublications.co.uk/logic/mlf/?00016</a>
-</span></p>
-</li>
-</ul>
-<h2 id="classical-descriptive-set-theory">Classical Descriptive Set Theory</h2>
-<p>確率論の土台となるポーランド空間について詳細に解説されています。
-厳密かつ明快な記述ですが、説明が簡潔なため集合論、ルベーグ積分、関数解析の教科書を別途準備する必要があります。</p>
-<ul>
-<li>A. S. Kechris, <em>Classical Descriptive Set Theory</em>, Springer-Verlag, 1995.<br />
-<span style="word-break: break-all;">
-<a href="http://www.springer.com/us/book/9780387943749">http://www.springer.com/us/book/9780387943749</a>
-</span></li>
-</ul>
-<p>
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</p>
-
-<h2 id="参考資料">参考資料</h2>
-<ul>
-<li>
-<p>データサイエンティストもしくは機械学習エンジニアを目指すならお薦めの初級者向け6冊＆中級者向け15冊（2017年春版）<br />
-<span style="word-break: break-all;">
-<a href="http://tjo.hatenablog.com/entry/2017/03/22/190000">http://tjo.hatenablog.com/entry/2017/03/22/190000</a>
-</span></p>
-</li>
-<li>
-<p>パターン認識と機械学習の学習 普及版<br />
-<span style="word-break: break-all;">
-<a href="https://herumi.github.io/prml/">https://herumi.github.io/prml/</a>
-</span></p>
-</li>
-<li>
-<p>EM アルゴリズム<br />
-<span style="word-break: break-all;">
-<a href="https://yokaze.github.io/2017/10/11/">https://yokaze.github.io/2017/10/11/</a>
-</span></p>
-</li>
-<li>
-<p>T. Hastie, R. Tibshirani and J. Friedman, <em>The Elements of Statistical Learning</em>, Springer, 2009.<br />
-日本語訳 統計的学習の基礎<br />
-<span style="word-break: break-all;">
-<a href="http://www.kyoritsu-pub.co.jp/bookdetail/9784320123625">http://www.kyoritsu-pub.co.jp/bookdetail/9784320123625</a>
-</span></p>
-</li>
-<li>
-<p>K. P. Murphy, <em>Machine Learning</em>, MIT Press, 2012.<br />
-<span style="word-break: break-all;">
-<a href="https://mitpress.mit.edu/books/machine-learning-0">https://mitpress.mit.edu/books/machine-learning-0</a>
-</span></p>
-</li>
-<li>
-<p>C. E. Rasmussen and C. K. I. Williams, <em>Gaussian Processses for Machine Learning</em>, MIT Press, 2006.<br />
-<span style="word-break: break-all;">
-<a href="http://www.gaussianprocess.org/gpml/">http://www.gaussianprocess.org/gpml/</a>
-</span></p>
-</li>
-<li>
-<p>J. F. C. Kingman, <em>Poisson Processes</em>, Oxford University Press, 1993.<br />
-<span style="word-break: break-all;">
-<a href="https://global.oup.com/academic/product/poisson-processes-9780198536932">https://global.oup.com/academic/product/poisson-processes-9780198536932</a>
-</span></p>
-</li>
-<li>
-<p>I. Goodfellow, Y. Bensio and A. Courville, <em>Deep Learning</em>, MIT Press, 2016.<br />
-<span style="word-break: break-all;">
-<a href="http://www.deeplearningbook.org">http://www.deeplearningbook.org</a>
-</span></p>
-</li>
-<li>
-<p>渡辺 澄夫，<em>ベイズ統計の理論と方法</em> ，コロナ社，2012.<br />
-<span style="word-break: break-all;">
-<a href="http://www.coronasha.co.jp/np/isbn/9784339024623/">http://www.coronasha.co.jp/np/isbn/9784339024623/</a>
-</span></p>
-</li>
-<li>
-<p>杉浦 光夫，<em>解析入門１</em> ，東京大学出版会，1980.<br />
-<span style="word-break: break-all;">
-<a href="http://www.utp.or.jp/book/b302042.html">http://www.utp.or.jp/book/b302042.html</a>
-</span></p>
-</li>
-<li>
-<p>杉浦 光夫，<em>解析入門２</em> ，東京大学出版会，1985.<br />
-<span style="word-break: break-all;">
-<a href="http://www.utp.or.jp/book/b302043.html">http://www.utp.or.jp/book/b302043.html</a>
-</span></p>
-</li>
-<li>
-<p>黒田 成俊，<em>関数解析</em> ，共立出版，1980.<br />
-<span style="word-break: break-all;">
-<a href="http://www.kyoritsu-pub.co.jp/bookdetail/9784320011069">http://www.kyoritsu-pub.co.jp/bookdetail/9784320011069</a>
-</span></p>
-</li>
-</ul>
-</div>
- 
-  <br />
-
-  <footer class="article-footer">
-    
-    
-    
-    <section class="bordered">
-      <header>
-        <div class="panel-title">CATEGORIES</div>
-      </header>
-      <div>
-        <ul class="p-terms">
-          
-          <li><a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/">機械学習</a></li>
-          
-        </ul>
-      </div>
-    </section>
-    
-    
-  </footer>
-
-</article>
-
-
-    
-  </div>
-
-  <div class="col-md-4">
-    
-<aside class="l-sidebar">
-
-  
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">RELATED POSTS</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://yokaze.github.io/2017/10/11/" class="list-group-item">EM アルゴリズム</a>
-      
-      <a href="https://yokaze.github.io/2019/09/12/" class="list-group-item">Sliced Wasserstein GMM を実装してみた</a>
-      
-      <a href="https://yokaze.github.io/2019/08/23/" class="list-group-item">線形位相空間の原点の近傍が併呑集合であることを証明する</a>
-      
-      <a href="https://yokaze.github.io/2019/07/13/" class="list-group-item">Monge-Kantorovich の問題を SciPy で解く</a>
-      
-      <a href="https://yokaze.github.io/2019/07/12/" class="list-group-item">Wasserstein 計量が距離関数になることを証明する</a>
-      
-      <a href="https://yokaze.github.io/2017/09/27/" class="list-group-item">mac に最新の NumPy (SciPy) をインストールする</a>
-      
-      <a href="https://yokaze.github.io/2017/09/17/" class="list-group-item">mac に SciPy がプリインストールされているか調べる</a>
-      
-      <a href="https://yokaze.github.io/2019/08/30/" class="list-group-item">TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する</a>
-      
-      <a href="https://yokaze.github.io/2019/08/12/" class="list-group-item">TensorFlow 2.0 で非負値行列因子分解 (NMF) を解く</a>
-      
-      <a href="https://yokaze.github.io/2019/08/07/" class="list-group-item">TensorFlow 2.0 で Variable を ndarray に変換する</a>
-      
-    </div>
-  </section>
-  
-
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">CATEGORY</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
-      
-      <a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="list-group-item">機械学習</a>
-      
-      <a href="https://yokaze.github.io/categories/%E5%86%99%E7%9C%9F" class="list-group-item">写真</a>
-      
-    </div>
-  </section>
-  
-
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">AUTHOR</div>
-    </div>
-    <div class="list-group">
-      <a href="https://twitter.com/chrofieyue" class="list-group-item">夜風&ensp;<font color="#00acee" /><i class="fa fa-twitter" aria-hidden="true"></i></font></a>
-    </div>
-  </section>
-
-</aside>
-
-  </div>
-</div>
-
-
-      </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <article class="single">
+                        <header>
+                            <ul class="p-facts">
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-10-13T19:07:00JST">Oct 13, 2017</time></li>
+                                <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
+                            </ul>
+                            <h1 class="title">機械学習で役立つ数学参考書のリスト</h1>
+                        </header>
+                        <div class="article-body">
+                            <p>普段お世話になっている教科書をまとめてみました。</p>
+                            <h2 id="パターン認識と機械学習">パターン認識と機械学習</h2>
+                            <p>誰もが知っている機械学習の総合教科書です。 基本的な事柄が網羅されていて分かりやすいです。</p>
+                            <ul>
+                                <li>C. M. Bishop, <em>Pattern Recognition and Machine Learning</em>, Springer, 2006.<br /> 日本語訳 パターン認識と機械学習（上巻）<br />
+                                    <span style="word-break: break-all;">
+                                        <a href="https://pub.maruzen.co.jp/book_magazine/book_data/search/9784621061220.html">https://pub.maruzen.co.jp/book_magazine/book_data/search/9784621061220.html</a>
+                                    </span><br /> 日本語訳 パターン認識と機械学習（下巻）<br />
+                                    <span style="word-break: break-all;">
+                                        <a href="https://pub.maruzen.co.jp/book_magazine/book_data/search/9784621061244.html">https://pub.maruzen.co.jp/book_magazine/book_data/search/9784621061244.html</a>
+                                    </span>
+                                </li>
+                            </ul>
+                            <h2 id="確率論">確率論</h2>
+                            <p>確率測度、中心極限定理、ガウス過程 (Gaussian Process)、ポアソン過程 (Poisson Process)、加法過程 (Lévy Process) などが明快かつ厳密に説明されています。</p>
+                            <ul>
+                                <li>伊藤 清，<em>確率論</em> ，岩波書店，1991.<br />
+                                    <span style="word-break: break-all;">
+                                        <a href="https://www.iwanami.co.jp/book/b258368.html">https://www.iwanami.co.jp/book/b258368.html</a>
+                                    </span>
+                                </li>
+                            </ul>
+                            <h2 id="lévy-processes-and-infinitely-divisible-distributions">Lévy Processes and Infinitely Divisible Distributions</h2>
+                            <p>加法過程の性質について非常に詳しく説明されています。 ガンマ過程 (Gamma Process) の記述もあります。</p>
+                            <ul>
+                                <li>Ken-iti Sato, <em>Lévy Processes and Infinitely Divisible Distributions</em>, Cambridge University Press, 1999.<br />
+                                    <span style="word-break: break-all;">
+                                        <a href="http://www.cambridge.org/jp/academic/subjects/statistics-probability/probability-theory-and-stochastic-processes/levy-processes-and-infinitely-divisible-distributions-2nd-edition?format=PB">http://www.cambridge.org/jp/academic/subjects/statistics-probability/probability-theory-and-stochastic-processes/levy-processes-and-infinitely-divisible-distributions-2nd-edition?format=PB</a>
+                                    </span>
+                                </li>
+                            </ul>
+                            <h2 id="集合位相入門">集合・位相入門</h2>
+                            <p>確率を数学的に取り扱う際、位相空間論とルベーグ積分の知識が必要になります。 この本は記号の定義が丁寧でとても分かりやすいです。</p>
+                            <ul>
+                                <li>松坂 和夫，<em>集合・位相入門</em> ，岩波書店，1968.<br />
+                                    <span style="word-break: break-all;">
+                                        <a href="https://www.iwanami.co.jp/book/b265402.html">https://www.iwanami.co.jp/book/b265402.html</a>
+                                    </span>
+                                </li>
+                            </ul>
+                            <h2 id="ルベーグ積分入門">ルベーグ積分入門</h2>
+                            <p>日本語で書かれたルベーグ積分の標準的教科書です。 こちらも丁寧で分かりやすいです。</p>
+                            <ul>
+                                <li>伊藤 清三，<em>ルベーグ積分入門</em> ，裳華房，1963.<br />
+                                    <span style="word-break: break-all;">
+                                        <a href="https://www.shokabo.co.jp/mybooks/ISBN978-4-7853-1318-0.htm">https://www.shokabo.co.jp/mybooks/ISBN978-4-7853-1318-0.htm</a>
+                                    </span>
+                                </li>
+                            </ul>
+                            <h2 id="set-theory">Set Theory</h2>
+                            <p>集合や論理式の取り扱いを原理原則から理解するには、公理的集合論の教科書をチェックするのがおすすめです。 Kunen の Set Theory は ZFC をはじめとする公理的集合論の標準的教科書です。</p>
+                            <ul>
+                                <li>
+                                    <p>K. Kunen, <em>The Foundations of Mathematics</em>, College Publications, 2009.<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="http://www.collegepublications.co.uk/logic/mlf/?00012">http://www.collegepublications.co.uk/logic/mlf/?00012</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>K. Kunen, <em>Set Theory</em>, College Publications, 2011.<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="http://www.collegepublications.co.uk/logic/mlf/?00016">http://www.collegepublications.co.uk/logic/mlf/?00016</a>
+                                        </span>
+                                    </p>
+                                </li>
+                            </ul>
+                            <h2 id="classical-descriptive-set-theory">Classical Descriptive Set Theory</h2>
+                            <p>確率論の土台となるポーランド空間について詳細に解説されています。 厳密かつ明快な記述ですが、説明が簡潔なため集合論、ルベーグ積分、関数解析の教科書を別途準備する必要があります。</p>
+                            <ul>
+                                <li>A. S. Kechris, <em>Classical Descriptive Set Theory</em>, Springer-Verlag, 1995.<br />
+                                    <span style="word-break: break-all;">
+                                        <a href="http://www.springer.com/us/book/9780387943749">http://www.springer.com/us/book/9780387943749</a>
+                                    </span>
+                                </li>
+                            </ul>
+                            <p>
+                                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            </p>
+                            <h2 id="参考資料">参考資料</h2>
+                            <ul>
+                                <li>
+                                    <p>データサイエンティストもしくは機械学習エンジニアを目指すならお薦めの初級者向け6冊＆中級者向け15冊（2017年春版）<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="http://tjo.hatenablog.com/entry/2017/03/22/190000">http://tjo.hatenablog.com/entry/2017/03/22/190000</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>パターン認識と機械学習の学習 普及版<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://herumi.github.io/prml/">https://herumi.github.io/prml/</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>EM アルゴリズム<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://yokaze.github.io/2017/10/11/">https://yokaze.github.io/2017/10/11/</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>T. Hastie, R. Tibshirani and J. Friedman, <em>The Elements of Statistical Learning</em>, Springer, 2009.<br /> 日本語訳 統計的学習の基礎<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="http://www.kyoritsu-pub.co.jp/bookdetail/9784320123625">http://www.kyoritsu-pub.co.jp/bookdetail/9784320123625</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>K. P. Murphy, <em>Machine Learning</em>, MIT Press, 2012.<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://mitpress.mit.edu/books/machine-learning-0">https://mitpress.mit.edu/books/machine-learning-0</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>C. E. Rasmussen and C. K. I. Williams, <em>Gaussian Processses for Machine Learning</em>, MIT Press, 2006.<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="http://www.gaussianprocess.org/gpml/">http://www.gaussianprocess.org/gpml/</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>J. F. C. Kingman, <em>Poisson Processes</em>, Oxford University Press, 1993.<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://global.oup.com/academic/product/poisson-processes-9780198536932">https://global.oup.com/academic/product/poisson-processes-9780198536932</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>I. Goodfellow, Y. Bensio and A. Courville, <em>Deep Learning</em>, MIT Press, 2016.<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="http://www.deeplearningbook.org">http://www.deeplearningbook.org</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>渡辺 澄夫，<em>ベイズ統計の理論と方法</em> ，コロナ社，2012.<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="http://www.coronasha.co.jp/np/isbn/9784339024623/">http://www.coronasha.co.jp/np/isbn/9784339024623/</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>杉浦 光夫，<em>解析入門１</em> ，東京大学出版会，1980.<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="http://www.utp.or.jp/book/b302042.html">http://www.utp.or.jp/book/b302042.html</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>杉浦 光夫，<em>解析入門２</em> ，東京大学出版会，1985.<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="http://www.utp.or.jp/book/b302043.html">http://www.utp.or.jp/book/b302043.html</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>黒田 成俊，<em>関数解析</em> ，共立出版，1980.<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="http://www.kyoritsu-pub.co.jp/bookdetail/9784320011069">http://www.kyoritsu-pub.co.jp/bookdetail/9784320011069</a>
+                                        </span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <br />
+                        <footer class="article-footer">
+                            <section class="bordered">
+                                <header>
+                                    <div class="panel-title">CATEGORIES</div>
+                                </header>
+                                <div>
+                                    <ul class="p-terms">
+                                        <li><a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/">機械学習</a></li>
+                                    </ul>
+                                </div>
+                            </section>
+                        </footer>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <aside class="l-sidebar">
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">RELATED POSTS</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://yokaze.github.io/2017/10/11/" class="list-group-item">EM アルゴリズム</a>
+                                <a href="https://yokaze.github.io/2019/09/12/" class="list-group-item">Sliced Wasserstein GMM を実装してみた</a>
+                                <a href="https://yokaze.github.io/2019/08/23/" class="list-group-item">線形位相空間の原点の近傍が併呑集合であることを証明する</a>
+                                <a href="https://yokaze.github.io/2019/07/13/" class="list-group-item">Monge-Kantorovich の問題を SciPy で解く</a>
+                                <a href="https://yokaze.github.io/2019/07/12/" class="list-group-item">Wasserstein 計量が距離関数になることを証明する</a>
+                                <a href="https://yokaze.github.io/2017/09/27/" class="list-group-item">mac に最新の NumPy (SciPy) をインストールする</a>
+                                <a href="https://yokaze.github.io/2017/09/17/" class="list-group-item">mac に SciPy がプリインストールされているか調べる</a>
+                                <a href="https://yokaze.github.io/2019/08/30/" class="list-group-item">TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する</a>
+                                <a href="https://yokaze.github.io/2019/08/12/" class="list-group-item">TensorFlow 2.0 で非負値行列因子分解 (NMF) を解く</a>
+                                <a href="https://yokaze.github.io/2019/08/07/" class="list-group-item">TensorFlow 2.0 で Variable を ndarray に変換する</a>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">CATEGORY</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://yokaze.github.io/categories/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" class="list-group-item">プログラミング</a>
+                                <a href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="list-group-item">機械学習</a>
+                                <a href="https://yokaze.github.io/categories/%E5%86%99%E7%9C%9F" class="list-group-item">写真</a>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">AUTHOR</div>
+                            </div>
+                            <div class="list-group">
+                                <a href="https://twitter.com/chrofieyue" class="list-group-item">夜風&ensp;
+                                    <font color="#00acee" /><i class="fa fa-twitter" aria-hidden="true"></i></font>
+                                </a>
+                            </div>
+                        </section>
+                    </aside>
+                </div>
+            </div>
+        </div>
     </main>
-
     <footer class="l-footer">
-      <div class="container">
-        <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
-        <aside>
-          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
-          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
-        </aside>
-      </div>
+        <div class="container">
+            <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
+            <aside>
+                <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+                <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+            </aside>
+        </div>
     </footer>
-
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
-    
-    <script>hljs.initHighlightingOnLoad();</script>
-  </body>
+    <script>
+        hljs.initHighlightingOnLoad();
+
+    </script>
+</body>
+
 </html>
