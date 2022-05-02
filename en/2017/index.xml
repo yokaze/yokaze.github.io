@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2017 on yokaze.github.io</title>
+    <link>https://yokaze.github.io/en/2017/</link>
+    <description>Recent content in 2017 on yokaze.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>&amp;copy; Rue Yokaze</copyright>
+    <lastBuildDate>Thu, 21 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://yokaze.github.io/en/2017/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Warn redefined macros by clang (-Wmacro-redefined)</title>
+      <link>https://yokaze.github.io/en/2017/09/21/</link>
+      <pubDate>Thu, 21 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://yokaze.github.io/en/2017/09/21/</guid>
+      <description>Use -Wmacro-redefined flag to warn redefined macros by clang.
+#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Monterey) + Apple clang 13.1.6 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: &amp;#39;MY_DEFINE&amp;#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default.</description>
+    </item>
+    
+  </channel>
+</rss>

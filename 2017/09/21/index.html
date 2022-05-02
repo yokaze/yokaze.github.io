@@ -51,7 +51,7 @@
       "width": 800
     },
     "datePublished": "2017-09-21T00:00:00JST",
-    "dateModified": "2022-04-10T00:00:00JST",
+    "dateModified": "2022-05-02T00:00:00JST",
     "author": {
       "@type": "Person",
       "name": "yokaze.github.io"
@@ -139,11 +139,13 @@ if (!doNotTrack) {
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2022-04-10T00:00:00JST">Apr 10, 2022</time></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2022-05-02T00:00:00JST">May 2, 2022</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
       
+        <li><i class="fa fa-globe" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/09/21/">JA</a> | <a href="https://yokaze.github.io/en/2017/09/21/">EN</a></li>
+      
+      
     </ul>
-
     <h1 class="title">clang でマクロの再定義を警告する (-Wmacro-redefined)</h1>
   </header>
 
@@ -166,8 +168,7 @@ if (!doNotTrack) {
 </span></span><span style="display:flex;"><span>#define MY_DEFINE   <span style="color:#ae81ff">111</span>
 </span></span><span style="display:flex;"><span>        ^
 </span></span><span style="display:flex;"><span>1 warning generated.
-</span></span></code></pre></div><p><code>-Wmacro-redefined</code> は <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wmacro-redefined">デフォルトで有効になっている</a> ため、警告は自動的に表示されます。<br />
-Xcode などの開発環境の設定によって、<code>-Wmacro-redefined</code> を個別に設定しなければならない場合もあります。</p>
+</span></span></code></pre></div><p><code>-Wmacro-redefined</code> は <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wmacro-redefined">デフォルトで有効になっている</a> ため、警告は自動的に表示されます。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
 </span></span><span style="display:flex;"><span>$ clang sample.cpp
 </span></span><span style="display:flex;"><span>sample.cpp:2:9: warning: &#39;MY_DEFINE&#39; macro redefined [-Wmacro-redefined]
@@ -307,7 +308,7 @@ Xcode などの開発環境の設定によって、<code>-Wmacro-redefined</code
 
     <footer class="l-footer">
       <div class="container">
-        <p>&copy; <a href="https://yokaze.github.io//about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
+        <p>&copy; <a href="https://yokaze.github.io/about/">Rue Yokaze</a> <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<i class="fa fa-github-alt" aria-hidden="true"></i></p>
         <aside>
           <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
           <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
