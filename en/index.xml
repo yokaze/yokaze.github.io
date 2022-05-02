@@ -7,7 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Thu, 21 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://yokaze.github.io/en/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 18 Jan 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://yokaze.github.io/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Warn bit shifting of a negative amount by clang (-Wshift-count-negative)</title>
+      <link>https://yokaze.github.io/en/2018/01/18/</link>
+      <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yokaze.github.io/en/2018/01/18/</guid>
+      <description>Use -Wshift-count-negative flag to warn bit shifting of a negative amount.
+#include &amp;lt;stdio.h&amp;gt; int main() {  int x = 8;  int y = x &amp;lt;&amp;lt; -1;  printf(&amp;#34;%d\n&amp;#34;, y);   return 0; } The result of arithmetics is undefined if we perform bit shifting by a negative amount, which may lead to unexpected behavior.
+$ # M1 Mac (Monterey) + Apple clang 13.1.6 $ clang sample.cpp -o sample -Wshift-count-negative sample.</description>
+    </item>
+    
+    <item>
+      <title>Warn implicit sign conversion by clang (-Wsign-conversion)</title>
+      <link>https://yokaze.github.io/en/2018/01/17/</link>
+      <pubDate>Wed, 17 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yokaze.github.io/en/2018/01/17/</guid>
+      <description>Use -Wsign-conversion flag for clang to warn implicit sign conversion.
+int main() {  unsigned int x = -1;  return 0; } $ # M1 Mac (Monterey) + Apple clang 13.1.6 $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion changes signedness: &amp;#39;int&amp;#39; to &amp;#39;unsigned int&amp;#39; [-Wsign-conversion]  unsigned int x = -1;  ~ ^~ 1 warning generated. Suppress warnings Use -Wno-sign-conversion to suppress warnings. It can be used to cancel -Wsign-conversion if already set.</description>
+    </item>
+    
     <item>
       <title>Warn redefined macros by clang (-Wmacro-redefined)</title>
       <link>https://yokaze.github.io/en/2017/09/21/</link>

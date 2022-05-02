@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Programming on yokaze.github.io</title>
-    <link>https://yokaze.github.io/en/categories/programming/</link>
-    <description>Recent content in Programming on yokaze.github.io</description>
+    <title>2018 on yokaze.github.io</title>
+    <link>https://yokaze.github.io/en/2018/</link>
+    <description>Recent content in 2018 on yokaze.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Thu, 18 Jan 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://yokaze.github.io/en/categories/programming/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 18 Jan 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://yokaze.github.io/en/2018/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Warn bit shifting of a negative amount by clang (-Wshift-count-negative)</title>
       <link>https://yokaze.github.io/en/2018/01/18/</link>
@@ -27,16 +27,6 @@ $ # M1 Mac (Monterey) + Apple clang 13.1.6 $ clang sample.cpp -o sample -Wshift-
       <guid>https://yokaze.github.io/en/2018/01/17/</guid>
       <description>Use -Wsign-conversion flag for clang to warn implicit sign conversion.
 int main() {  unsigned int x = -1;  return 0; } $ # M1 Mac (Monterey) + Apple clang 13.1.6 $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion changes signedness: &amp;#39;int&amp;#39; to &amp;#39;unsigned int&amp;#39; [-Wsign-conversion]  unsigned int x = -1;  ~ ^~ 1 warning generated. Suppress warnings Use -Wno-sign-conversion to suppress warnings. It can be used to cancel -Wsign-conversion if already set.</description>
-    </item>
-    
-    <item>
-      <title>Warn redefined macros by clang (-Wmacro-redefined)</title>
-      <link>https://yokaze.github.io/en/2017/09/21/</link>
-      <pubDate>Thu, 21 Sep 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://yokaze.github.io/en/2017/09/21/</guid>
-      <description>Use -Wmacro-redefined flag to warn redefined macros by clang.
-#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Monterey) + Apple clang 13.1.6 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: &amp;#39;MY_DEFINE&amp;#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default.</description>
     </item>
     
   </channel>

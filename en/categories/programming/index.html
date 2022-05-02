@@ -69,6 +69,38 @@
                             <article class="li">
                                 <header>
                                     <ul class="p-facts">
+                                        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-18T00:00:00JST">Jan 18, 2018</time></li>
+                                        <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/en/2018/">2018</a></li>
+                                        <li><i class="fa fa-globe" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/01/18/">JA</a> | <a href="https://yokaze.github.io/en/2018/01/18/">EN</a></li>
+                                    </ul>
+                                    <h2 class="title"><a href="https://yokaze.github.io/en/2018/01/18/">Warn bit shifting of a negative amount by clang (-Wshift-count-negative)</a></h2>
+                                </header>
+                                <div class="summary">Use -Wshift-count-negative flag to warn bit shifting of a negative amount. #include &lt;stdio.h&gt; int main() { int x = 8; int y = x &lt;&lt; -1; printf(&#34;%d\n&#34;, y); return 0; } The result of arithmetics is undefined if we perform bit shifting by a negative amount, which may lead to unexpected behavior. $ # M1 Mac (Monterey) + Apple clang 13.1.6 $ clang sample.cpp -o sample -Wshift-count-negative sample.</div>
+                                <footer>
+                                    <a href="https://yokaze.github.io/en/2018/01/18/" title="Warn bit shifting of a negative amount by clang (-Wshift-count-negative)">Read More…</a>
+                                </footer>
+                            </article>
+                        </li>
+                        <li>
+                            <article class="li">
+                                <header>
+                                    <ul class="p-facts">
+                                        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-17T00:00:00JST">Jan 17, 2018</time></li>
+                                        <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/en/2018/">2018</a></li>
+                                        <li><i class="fa fa-globe" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/01/17/">JA</a> | <a href="https://yokaze.github.io/en/2018/01/17/">EN</a></li>
+                                    </ul>
+                                    <h2 class="title"><a href="https://yokaze.github.io/en/2018/01/17/">Warn implicit sign conversion by clang (-Wsign-conversion)</a></h2>
+                                </header>
+                                <div class="summary">Use -Wsign-conversion flag for clang to warn implicit sign conversion. int main() { unsigned int x = -1; return 0; } $ # M1 Mac (Monterey) + Apple clang 13.1.6 $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion changes signedness: &#39;int&#39; to &#39;unsigned int&#39; [-Wsign-conversion] unsigned int x = -1; ~ ^~ 1 warning generated. Suppress warnings Use -Wno-sign-conversion to suppress warnings. It can be used to cancel -Wsign-conversion if already set.</div>
+                                <footer>
+                                    <a href="https://yokaze.github.io/en/2018/01/17/" title="Warn implicit sign conversion by clang (-Wsign-conversion)">Read More…</a>
+                                </footer>
+                            </article>
+                        </li>
+                        <li>
+                            <article class="li">
+                                <header>
+                                    <ul class="p-facts">
                                         <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-09-21T00:00:00JST">Sep 21, 2017</time></li>
                                         <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/en/2017/">2017</a></li>
                                         <li><i class="fa fa-globe" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/09/21/">JA</a> | <a href="https://yokaze.github.io/en/2017/09/21/">EN</a></li>
@@ -90,6 +122,8 @@
                                 <div class="panel-title">LATESTS</div>
                             </div>
                             <div class="list-group">
+                                <a href="https://yokaze.github.io/en/2018/01/18/" class="list-group-item">Warn bit shifting of a negative amount by clang (-Wshift-count-negative)</a>
+                                <a href="https://yokaze.github.io/en/2018/01/17/" class="list-group-item">Warn implicit sign conversion by clang (-Wsign-conversion)</a>
                                 <a href="https://yokaze.github.io/en/2017/09/21/" class="list-group-item">Warn redefined macros by clang (-Wmacro-redefined)</a>
                             </div>
                         </section>
