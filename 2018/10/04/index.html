@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 
@@ -151,64 +151,64 @@ if (!doNotTrack) {
 
   <div class="article-body"><p><code>source info</code> コマンドを使うとデバッグ中のプロセスに関するソースコードの情報を取得することができます。
 ここでは、次のソースコードを例として <code>source info</code> コマンドの動作を解説します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
-{
-    printf(<span style="color:#e6db74">&#34;Hello, World!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS High Sierra (10.13)</span>
-$ clang sample.cpp -g -o sample
-$ lldb sample
-(lldb) target create &#34;sample&#34;
-Current executable set to &#39;sample&#39; (x86_64).
-</code></pre></div><p><code>source info</code> コマンドには3つの構文があります。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Hello, World!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS High Sierra (10.13)</span>
+</span></span><span style="display:flex;"><span>$ clang sample.cpp -g -o sample
+</span></span><span style="display:flex;"><span>$ lldb sample
+</span></span><span style="display:flex;"><span>(lldb) target create &#34;sample&#34;
+</span></span><span style="display:flex;"><span>Current executable set to &#39;sample&#39; (x86_64).
+</span></span></code></pre></div><p><code>source info</code> コマンドには3つの構文があります。</p>
 <h3 id="1-ファイルを指定してソースコードの情報を表示する--f--l--e">1. ファイルを指定してソースコードの情報を表示する <code>-f</code> <code>-l</code> <code>-e</code></h3>
 <p><code>source info [-c &lt;count&gt;] [-s &lt;shlib-name&gt;] [-f &lt;filename&gt;] [-l &lt;linenum&gt;] [-e &lt;linenum&gt;]</code></p>
 <p><code>-f</code> オプションに続けてソースファイルの名前を指定します。
 <code>-l</code>, <code>-e</code> オプションで表示する範囲を指定できます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">(lldb) source info -f sample.cpp
-Lines found for file sample.cpp in compilation unit sample.cpp in `sample
-[0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
-[0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
-[0x0000000100000f6f-0x0000000100000f7a): /path/to/directory/sample.cpp:6:5
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">(lldb) source info -f sample.cpp -l 5 -e 5
-Lines found for file sample.cpp in compilation unit sample.cpp in `sample
-[0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
-</code></pre></div><p>また、<code>-c</code> オプションを使い、表示するエントリの数を制限することができます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">(lldb) source info -f sample.cpp -c 2
-Lines found for file sample.cpp in compilation unit sample.cpp in `sample
-[0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
-[0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
-</code></pre></div><h3 id="2-シンボル名を指定してソースコードの情報を表示する--n">2. シンボル名を指定してソースコードの情報を表示する <code>-n</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>(lldb) source info -f sample.cpp
+</span></span><span style="display:flex;"><span>Lines found for file sample.cpp in compilation unit sample.cpp in `sample
+</span></span><span style="display:flex;"><span>[0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
+</span></span><span style="display:flex;"><span>[0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
+</span></span><span style="display:flex;"><span>[0x0000000100000f6f-0x0000000100000f7a): /path/to/directory/sample.cpp:6:5
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>(lldb) source info -f sample.cpp -l 5 -e 5
+</span></span><span style="display:flex;"><span>Lines found for file sample.cpp in compilation unit sample.cpp in `sample
+</span></span><span style="display:flex;"><span>[0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
+</span></span></code></pre></div><p>また、<code>-c</code> オプションを使い、表示するエントリの数を制限することができます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>(lldb) source info -f sample.cpp -c 2
+</span></span><span style="display:flex;"><span>Lines found for file sample.cpp in compilation unit sample.cpp in `sample
+</span></span><span style="display:flex;"><span>[0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
+</span></span><span style="display:flex;"><span>[0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
+</span></span></code></pre></div><h3 id="2-シンボル名を指定してソースコードの情報を表示する--n">2. シンボル名を指定してソースコードの情報を表示する <code>-n</code></h3>
 <p><code>source info [-c &lt;count&gt;] [-s &lt;shlib-name&gt;] [-n &lt;symbol&gt;]</code></p>
 <p><code>-n</code> オプションに続けて関数の名前を指定します。
 <code>-s</code> オプションで探索するモジュールを限定することができます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">(lldb) source info -n main
-Lines found in module `sample
-[0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
-[0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
-[0x0000000100000f6f-0x0000000100000f7a): /path/to/directory/sample.cpp:6:5
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">(lldb) source info -s sample -n main
-Lines found in module `sample
-[0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
-[0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
-[0x0000000100000f6f-0x0000000100000f7a): /path/to/directory/sample.cpp:6:5
-</code></pre></div><p>モジュールの一覧は <code>target modules list</code> コマンドで表示できます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">(lldb) target modules list
-[  0] CE5B2F68-A0F6-3747-8CC0-BEA6BF888731 0x0000000100000000 /path/to/directory/sample
-      /path/to/directory/sample.dSYM/Contents/Resources/DWARF/sample
-      ...
-</code></pre></div><h3 id="3-関数のアドレスを指定してソースコードの情報を表示する--a">3. 関数のアドレスを指定してソースコードの情報を表示する <code>-a</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>(lldb) source info -n main
+</span></span><span style="display:flex;"><span>Lines found in module `sample
+</span></span><span style="display:flex;"><span>[0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
+</span></span><span style="display:flex;"><span>[0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
+</span></span><span style="display:flex;"><span>[0x0000000100000f6f-0x0000000100000f7a): /path/to/directory/sample.cpp:6:5
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>(lldb) source info -s sample -n main
+</span></span><span style="display:flex;"><span>Lines found in module `sample
+</span></span><span style="display:flex;"><span>[0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
+</span></span><span style="display:flex;"><span>[0x0000000100000f66-0x0000000100000f6f): /path/to/directory/sample.cpp:5:5
+</span></span><span style="display:flex;"><span>[0x0000000100000f6f-0x0000000100000f7a): /path/to/directory/sample.cpp:6:5
+</span></span></code></pre></div><p>モジュールの一覧は <code>target modules list</code> コマンドで表示できます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>(lldb) target modules list
+</span></span><span style="display:flex;"><span>[  0] CE5B2F68-A0F6-3747-8CC0-BEA6BF888731 0x0000000100000000 /path/to/directory/sample
+</span></span><span style="display:flex;"><span>      /path/to/directory/sample.dSYM/Contents/Resources/DWARF/sample
+</span></span><span style="display:flex;"><span>      ...
+</span></span></code></pre></div><h3 id="3-関数のアドレスを指定してソースコードの情報を表示する--a">3. 関数のアドレスを指定してソースコードの情報を表示する <code>-a</code></h3>
 <p><code>source info [-c &lt;count&gt;] [-a &lt;address-expression&gt;]</code></p>
 <p><code>-a</code> オプションに続けて関数のアドレスを指定します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">(lldb) p main
-sou(int (*)()) $0 = 0x0000000100000f50
-(lldb) source info -a 0x100000f50
-Lines found in module `sample
-[0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
-</code></pre></div><h2 id="追加情報">追加情報</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>(lldb) p main
+</span></span><span style="display:flex;"><span>sou(int (*)()) $0 = 0x0000000100000f50
+</span></span><span style="display:flex;"><span>(lldb) source info -a 0x100000f50
+</span></span><span style="display:flex;"><span>Lines found in module `sample
+</span></span><span style="display:flex;"><span>[0x0000000100000f50-0x0000000100000f66): /path/to/directory/sample.cpp:4
+</span></span></code></pre></div><h2 id="追加情報">追加情報</h2>
 <p><code>source info</code> コマンドの構文とオプション一覧は <code>help source info</code> コマンドで確認できます。</p>
 <h2 id="参考資料">参考資料</h2>
 <ul>

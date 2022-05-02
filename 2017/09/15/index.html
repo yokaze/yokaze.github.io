@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 
@@ -149,90 +149,90 @@ if (!doNotTrack) {
 
   
 
-  <div class="article-body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ brew install boost-python --with-python3
-</code></pre></div><p>なのだが、すこしハマりどころがある。</p>
+  <div class="article-body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ brew install boost-python --with-python3
+</span></span></code></pre></div><p>なのだが、すこしハマりどころがある。</p>
 <h2 id="brew-install-boost-python-のオプション">brew install boost-python のオプション</h2>
 <p><code>brew install</code> にはオプションを指定できる場合がある。<br />
 boost-python の場合は <code>--with-python3</code> オプションが使える。</p>
 <p><code>brew options</code> で使用可能なオプションをすべて表示することができる。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ brew options boost-python
---c++11
-	Build using C++11 mode
---with-python3
-	Build with python3 support
---without-python
-	Build without python 2 support
---HEAD
-	Install HEAD version
-</code></pre></div><p><code>--with-python3</code> を指定した場合、<code>boost-python</code> はソースコードからビルドされる。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ brew options boost-python
+</span></span><span style="display:flex;"><span>--c++11
+</span></span><span style="display:flex;"><span>	Build using C++11 mode
+</span></span><span style="display:flex;"><span>--with-python3
+</span></span><span style="display:flex;"><span>	Build with python3 support
+</span></span><span style="display:flex;"><span>--without-python
+</span></span><span style="display:flex;"><span>	Build without python 2 support
+</span></span><span style="display:flex;"><span>--HEAD
+</span></span><span style="display:flex;"><span>	Install HEAD version
+</span></span></code></pre></div><p><code>--with-python3</code> を指定した場合、<code>boost-python</code> はソースコードからビルドされる。</p>
 <h2 id="インストール手順">インストール手順</h2>
 <p>Homebrew の formula はオプションのあり・なしに関わらず重複インストールできないので、
 すでにインストールしている場合ははじめにアンインストールする。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Sierra (10.12) + Homebrew</span>
-$ <span style="color:#75715e"># おこられる</span>
-$ brew install boost-python --with-python3
-Warning: boost-python 1.65.1 is already installed
-$
-$ <span style="color:#75715e"># はじめにアンインストール</span>
-$ brew uninstall boost-python
-Uninstalling /usr/local/Cellar/boost-python/1.65.1... (457 files, 16MB)
-$
-$ <span style="color:#75715e"># ---------------------------------------------------------------------------</span>
-$ <span style="color:#75715e"># * この処理は実際は不要です</span>
-$ <span style="color:#75715e"># オプションなしインストール（参考）。ビルド済みバイナリがインストールされる。</span>
-$ brew install boost-python
-==&gt; Downloading https://homebrew.bintray.com/bottles/boost-python-1.65.1.sierra.bottle.tar.gz
-==&gt; Pouring boost-python-1.65.1.sierra.bottle.tar.gz
-🍺  /usr/local/Cellar/boost-python/1.65.1: 457 files, 16MB
-$
-$ <span style="color:#75715e"># ふたたびアンインストール</span>
-$ brew uninstall boost-python
-Uninstalling /usr/local/Cellar/boost-python/1.65.1... (457 files, 16MB)
-$ <span style="color:#75715e"># ---------------------------------------------------------------------------</span>
-$
-$ <span style="color:#75715e"># python3 版をビルドしてインストールする</span>
-$ brew install boost-python --with-python3
-==&gt; Downloading https://dl.bintray.com/boostorg/release/1.65.1/source/boost_1_65_1.tar.bz2
-==&gt; ./bootstrap.sh --prefix=/usr/local/Cellar/boost-python/1.65.1 --libdir=/usr/local/Cellar/boost-python/1.65.1/lib --with-libraries=python --with-python=python --with-python-root=/System/Library/Frameworks/Python.framework/Versions/2.7
-==&gt; ./b2 --build-dir=build-python --stagedir=stage-python python=2.7 --prefix=/usr/local/Cellar/boost-python/1.65.1 --libdir=/usr/local/Cellar/boost-python/1.65.1/lib -d2 -j4 --layout=tagged --user-config=user-config.jam threading=multi,single link=shared,static
-==&gt; ./bootstrap.sh --prefix=/usr/local/Cellar/boost-python/1.65.1 --libdir=/usr/local/Cellar/boost-python/1.65.1/lib --with-libraries=python --with-python=python3 --with-python-root=/usr/local/Cellar/python3/3.6.2/Frameworks/Python.framework/Versions/3.6
-==&gt; ./b2 --build-dir=build-python3 --stagedir=stage-python3 python=3.6 --prefix=/usr/local/Cellar/boost-python/1.65.1 --libdir=/usr/local/Cellar/boost-python/1.65.1/lib -d2 -j4 --layout=tagged --user-config=user-config.jam threading=multi,single link=shared,static
-🍺  /usr/local/Cellar/boost-python/1.65.1: 465 files, 28.4MB, built in 7 minutes 21 seconds
-</code></pre></div><p>Python 2 用と Python 3 用のバイナリが両方ビルドされています。バッチリです。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12) + Homebrew</span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># おこられる</span>
+</span></span><span style="display:flex;"><span>$ brew install boost-python --with-python3
+</span></span><span style="display:flex;"><span>Warning: boost-python 1.65.1 is already installed
+</span></span><span style="display:flex;"><span>$
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># はじめにアンインストール</span>
+</span></span><span style="display:flex;"><span>$ brew uninstall boost-python
+</span></span><span style="display:flex;"><span>Uninstalling /usr/local/Cellar/boost-python/1.65.1... (457 files, 16MB)
+</span></span><span style="display:flex;"><span>$
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># ---------------------------------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># * この処理は実際は不要です</span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># オプションなしインストール（参考）。ビルド済みバイナリがインストールされる。</span>
+</span></span><span style="display:flex;"><span>$ brew install boost-python
+</span></span><span style="display:flex;"><span>==&gt; Downloading https://homebrew.bintray.com/bottles/boost-python-1.65.1.sierra.bottle.tar.gz
+</span></span><span style="display:flex;"><span>==&gt; Pouring boost-python-1.65.1.sierra.bottle.tar.gz
+</span></span><span style="display:flex;"><span>🍺  /usr/local/Cellar/boost-python/1.65.1: 457 files, 16MB
+</span></span><span style="display:flex;"><span>$
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># ふたたびアンインストール</span>
+</span></span><span style="display:flex;"><span>$ brew uninstall boost-python
+</span></span><span style="display:flex;"><span>Uninstalling /usr/local/Cellar/boost-python/1.65.1... (457 files, 16MB)
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># ---------------------------------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>$
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># python3 版をビルドしてインストールする</span>
+</span></span><span style="display:flex;"><span>$ brew install boost-python --with-python3
+</span></span><span style="display:flex;"><span>==&gt; Downloading https://dl.bintray.com/boostorg/release/1.65.1/source/boost_1_65_1.tar.bz2
+</span></span><span style="display:flex;"><span>==&gt; ./bootstrap.sh --prefix=/usr/local/Cellar/boost-python/1.65.1 --libdir=/usr/local/Cellar/boost-python/1.65.1/lib --with-libraries=python --with-python=python --with-python-root=/System/Library/Frameworks/Python.framework/Versions/2.7
+</span></span><span style="display:flex;"><span>==&gt; ./b2 --build-dir=build-python --stagedir=stage-python python=2.7 --prefix=/usr/local/Cellar/boost-python/1.65.1 --libdir=/usr/local/Cellar/boost-python/1.65.1/lib -d2 -j4 --layout=tagged --user-config=user-config.jam threading=multi,single link=shared,static
+</span></span><span style="display:flex;"><span>==&gt; ./bootstrap.sh --prefix=/usr/local/Cellar/boost-python/1.65.1 --libdir=/usr/local/Cellar/boost-python/1.65.1/lib --with-libraries=python --with-python=python3 --with-python-root=/usr/local/Cellar/python3/3.6.2/Frameworks/Python.framework/Versions/3.6
+</span></span><span style="display:flex;"><span>==&gt; ./b2 --build-dir=build-python3 --stagedir=stage-python3 python=3.6 --prefix=/usr/local/Cellar/boost-python/1.65.1 --libdir=/usr/local/Cellar/boost-python/1.65.1/lib -d2 -j4 --layout=tagged --user-config=user-config.jam threading=multi,single link=shared,static
+</span></span><span style="display:flex;"><span>🍺  /usr/local/Cellar/boost-python/1.65.1: 465 files, 28.4MB, built in 7 minutes 21 seconds
+</span></span></code></pre></div><p>Python 2 用と Python 3 用のバイナリが両方ビルドされています。バッチリです。</p>
 <h2 id="python-3-用のライブラリにリンクする重要">Python 3 用のライブラリにリンクする（重要）</h2>
 <ul>
 <li>Python 2 用の場合は <code>-lboost_python</code>, <code>-lboost_numpy</code> を指定する。</li>
 <li>Python 3 用の場合は <code>-lboost_python3</code>, <code>-lboost_numpy3</code> を指定する。</li>
 </ul>
 <p>Python 2 用と Python 3 用のライブラリは名前がことなるため注意が必要です。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ ls /usr/local/lib | grep libboost_python
-libboost_python-mt.a
-libboost_python-mt.dylib
-libboost_python.a
-libboost_python.dylib
-libboost_python3-mt.a
-libboost_python3-mt.dylib
-libboost_python3.a
-libboost_python3.dylib
-</code></pre></div><p>テストとして python-multi-array ライブラリをビルドします。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ ls /usr/local/lib | grep libboost_python
+</span></span><span style="display:flex;"><span>libboost_python-mt.a
+</span></span><span style="display:flex;"><span>libboost_python-mt.dylib
+</span></span><span style="display:flex;"><span>libboost_python.a
+</span></span><span style="display:flex;"><span>libboost_python.dylib
+</span></span><span style="display:flex;"><span>libboost_python3-mt.a
+</span></span><span style="display:flex;"><span>libboost_python3-mt.dylib
+</span></span><span style="display:flex;"><span>libboost_python3.a
+</span></span><span style="display:flex;"><span>libboost_python3.dylib
+</span></span></code></pre></div><p>テストとして python-multi-array ライブラリをビルドします。
 ビルドスクリプトは setup.py です。<br />
 <a href="https://github.com/yokaze/python-multi-array">https://github.com/yokaze/python-multi-array</a></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># -lboost_python3, -lboost_numpy3 だとちゃんと動く</span>
-$ python3
-&gt;&gt;&gt; import multi_array
-&gt;&gt;&gt;
-</code></pre></div><p>ここを間違えると結局 Python 2 用のライブラリにリンクされてしまい、拡張モジュールがうまく動きません。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># -lboost_python, -lboost_numpy</span>
-$ python3
-&gt;&gt;&gt; import multi_array
-Traceback (most recent call last):
-  File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt;
-ImportError: dlopen(multi_array.cpython-36m-darwin.so, 2): Symbol not found: _PyClass_Type
-  Referenced from: /usr/local/opt/boost-python/lib/libboost_python.dylib
-  Expected in: flat namespace
- in /usr/local/opt/boost-python/lib/libboost_python.dylib
-&gt;&gt;&gt;
-</code></pre></div><p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># -lboost_python3, -lboost_numpy3 だとちゃんと動く</span>
+</span></span><span style="display:flex;"><span>$ python3
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt; import multi_array
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt;
+</span></span></code></pre></div><p>ここを間違えると結局 Python 2 用のライブラリにリンクされてしまい、拡張モジュールがうまく動きません。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># -lboost_python, -lboost_numpy</span>
+</span></span><span style="display:flex;"><span>$ python3
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt; import multi_array
+</span></span><span style="display:flex;"><span>Traceback (most recent call last):
+</span></span><span style="display:flex;"><span>  File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt;
+</span></span><span style="display:flex;"><span>ImportError: dlopen(multi_array.cpython-36m-darwin.so, 2): Symbol not found: _PyClass_Type
+</span></span><span style="display:flex;"><span>  Referenced from: /usr/local/opt/boost-python/lib/libboost_python.dylib
+</span></span><span style="display:flex;"><span>  Expected in: flat namespace
+</span></span><span style="display:flex;"><span> in /usr/local/opt/boost-python/lib/libboost_python.dylib
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt;
+</span></span></code></pre></div><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>

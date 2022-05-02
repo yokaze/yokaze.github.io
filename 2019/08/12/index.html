@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 
@@ -166,94 +166,94 @@ $$
 </p>
 <p>$W$ と $H$ の推定値がマイナスになると厄介なので、今回は $\ln W$ と $\ln H$ を推定します。</p>
 <h2 id="ソースコード">ソースコード</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> librosa
-<span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
-<span style="color:#f92672">import</span> tensorflow <span style="color:#66d9ef">as</span> tf
-<span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> pyplot <span style="color:#66d9ef">as</span> pl
-<span style="color:#f92672">from</span> matplotlib.gridspec <span style="color:#f92672">import</span> GridSpec
-
-<span style="color:#75715e"># librosa を使い、wav ファイルを読み込みます。</span>
-<span style="color:#75715e"># 今回はサンプルなので、読み込み時のオプションはあまり設定しないことにします。</span>
-<span style="color:#75715e"># 信号のサンプリングレートはデフォルトで 22.5kHz に変換されます。</span>
-<span style="color:#75715e">#</span>
-<span style="color:#75715e"># 楽曲全体を NMF にかけるとかなりの時間がかかるので、先頭 30 秒だけを分析します。</span>
-<span style="color:#75715e"># 信号は絶対値の平均値が 1 となるよう正規化しておきます。</span>
-nsecond <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span>
-sig, fs <span style="color:#f92672">=</span> librosa<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#39;sample.wav&#39;</span>, mono<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
-sig <span style="color:#f92672">=</span> sig[:fs <span style="color:#f92672">*</span> nsecond]
-sig_stft <span style="color:#f92672">=</span> abs(librosa<span style="color:#f92672">.</span>stft(sig)<span style="color:#f92672">.</span>T)
-sig_stft <span style="color:#f92672">/=</span> sig_stft<span style="color:#f92672">.</span>mean()
-
-<span style="color:#75715e"># T: nframe, F: nbin, K: 20 に設定します。</span>
-nbasis <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>
-nframe, nbin <span style="color:#f92672">=</span> sig_stft<span style="color:#f92672">.</span>shape
-
-<span style="color:#75715e"># TensorFlow の定数と変数を定義します。対数を計算する際のゼロ除算を避けるため、</span>
-<span style="color:#75715e"># あらかじめ微小量 (1e-10) を加えておきます。</span>
-<span style="color:#75715e">#</span>
-<span style="color:#75715e"># lw (ln W), lh (ln H) は Adam で更新するため、tf.Variable で宣言します。</span>
-<span style="color:#75715e"># 初期値には特にこだわりがないのですが、ここでは正規分布で初期化します。</span>
-x <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(sig_stft <span style="color:#f92672">+</span> <span style="color:#ae81ff">1e-10</span>)
-lx <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>log(x))
-lw <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(tf<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal([nframe, nbasis]))
-lh <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(tf<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal([nbasis, nbin]))
-
-<span style="color:#75715e"># グラフを準備します。乖離度 (loss), W, H, WH のための subplot を作ります。</span>
-fig <span style="color:#f92672">=</span> pl<span style="color:#f92672">.</span>figure(constrained_layout<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
-gs <span style="color:#f92672">=</span> GridSpec(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>, figure<span style="color:#f92672">=</span>fig)
-axl <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(gs[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>])
-axw <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(gs[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>:])
-axh <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(gs[<span style="color:#ae81ff">1</span>:, <span style="color:#ae81ff">0</span>])
-axs <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(gs[<span style="color:#ae81ff">1</span>:, <span style="color:#ae81ff">1</span>:])
-
-<span style="color:#75715e"># オプティマイザを作成します。Adam のデフォルトの学習率は 0.001 ですが、</span>
-<span style="color:#75715e"># NMF は 0.1 でも動作しました。逆に、これ位にしないと学習時間がかかりすぎるようです。</span>
-<span style="color:#75715e"># ニューラルネットに比べて loss の複雑度が低いのかもしれません。</span>
-opt <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>Adam(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">.1</span>)
-
-history <span style="color:#f92672">=</span> []
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10000</span>):
-    <span style="color:#75715e"># loss を定義します。この関数は引数なしとする必要があります。</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">loss_euc</span>():
-        wh <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>matmul(tf<span style="color:#f92672">.</span>exp(lw), tf<span style="color:#f92672">.</span>exp(lh))
-        <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>reduce_sum((x <span style="color:#f92672">-</span> wh) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>)
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">loss_idiv</span>():
-        lwh <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>reduce_logsumexp(lw[:, :, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">+</span> lh[<span style="color:#66d9ef">None</span>, :, :], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
-        <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>reduce_sum(x <span style="color:#f92672">*</span> (lx <span style="color:#f92672">-</span> lwh <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> tf<span style="color:#f92672">.</span>exp(lwh))
-
-    <span style="color:#75715e"># Adam で変数の値を更新します。</span>
-    <span style="color:#75715e"># var_list に更新したい変数 (tf.Variable) を指定します。</span>
-    opt<span style="color:#f92672">.</span>minimize(loss_idiv, var_list<span style="color:#f92672">=</span>[lw, lh])
-
-    <span style="color:#75715e"># 現在の loss の値を計算します。</span>
-    history<span style="color:#f92672">.</span>append(np<span style="color:#f92672">.</span>log(loss_idiv()<span style="color:#f92672">.</span>numpy()))
-
-    <span style="color:#75715e"># イテレーション毎にグラフを表示します。</span>
-    axl<span style="color:#f92672">.</span>clear()
-    axw<span style="color:#f92672">.</span>clear()
-    axh<span style="color:#f92672">.</span>clear()
-    axs<span style="color:#f92672">.</span>clear()
-    axl<span style="color:#f92672">.</span>set_xticks([<span style="color:#ae81ff">0</span>, i])
-    axl<span style="color:#f92672">.</span>set_yticks([np<span style="color:#f92672">.</span>array(history)<span style="color:#f92672">.</span>min(), np<span style="color:#f92672">.</span>array(history)<span style="color:#f92672">.</span>max()])
-    axw<span style="color:#f92672">.</span>set_xticks([<span style="color:#ae81ff">0</span>, nframe <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])
-    axw<span style="color:#f92672">.</span>set_yticks([<span style="color:#ae81ff">0</span>, nbasis <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])
-    axh<span style="color:#f92672">.</span>set_xticks([<span style="color:#ae81ff">0</span>, nbasis <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])
-    axh<span style="color:#f92672">.</span>set_yticks([<span style="color:#ae81ff">0</span>, nbin <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])
-    axs<span style="color:#f92672">.</span>set_xticks([<span style="color:#ae81ff">0</span>, nframe <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])
-    axs<span style="color:#f92672">.</span>set_yticks([<span style="color:#ae81ff">0</span>, nbin <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])
-
-    <span style="color:#75715e"># グラフのカラースケールを固定するため、1e-3 (-60dB) で足切りします。</span>
-    wh <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>matmul(tf<span style="color:#f92672">.</span>exp(lw), tf<span style="color:#f92672">.</span>exp(lh))<span style="color:#f92672">.</span>numpy()
-    lw_display <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>maximum(lw, tf<span style="color:#f92672">.</span>reduce_max(lw) <span style="color:#f92672">+</span> np<span style="color:#f92672">.</span>log(<span style="color:#ae81ff">1e-3</span>))<span style="color:#f92672">.</span>numpy()
-    lh_display <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>maximum(lh, tf<span style="color:#f92672">.</span>reduce_max(lh) <span style="color:#f92672">+</span> np<span style="color:#f92672">.</span>log(<span style="color:#ae81ff">1e-3</span>))<span style="color:#f92672">.</span>numpy()
-    lwh_display <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>log(np<span style="color:#f92672">.</span>maximum(wh, wh<span style="color:#f92672">.</span>max() <span style="color:#f92672">*</span> <span style="color:#ae81ff">1e-3</span>))
-
-    axl<span style="color:#f92672">.</span>plot(history)
-    axw<span style="color:#f92672">.</span>imshow(lw_display<span style="color:#f92672">.</span>T, aspect<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;auto&#39;</span>)
-    axh<span style="color:#f92672">.</span>imshow(lh_display<span style="color:#f92672">.</span>T, aspect<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;auto&#39;</span>, origin<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;lower&#39;</span>)
-    axs<span style="color:#f92672">.</span>imshow(lwh_display<span style="color:#f92672">.</span>T, aspect<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;auto&#39;</span>, origin<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;lower&#39;</span>)
-    pl<span style="color:#f92672">.</span>pause(<span style="color:#ae81ff">.1</span>)
-</code></pre></div><h2 id="実行結果">実行結果</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> librosa
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> tensorflow <span style="color:#66d9ef">as</span> tf
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> pyplot <span style="color:#66d9ef">as</span> pl
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> matplotlib.gridspec <span style="color:#f92672">import</span> GridSpec
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># librosa を使い、wav ファイルを読み込みます。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 今回はサンプルなので、読み込み時のオプションはあまり設定しないことにします。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 信号のサンプリングレートはデフォルトで 22.5kHz に変換されます。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 楽曲全体を NMF にかけるとかなりの時間がかかるので、先頭 30 秒だけを分析します。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 信号は絶対値の平均値が 1 となるよう正規化しておきます。</span>
+</span></span><span style="display:flex;"><span>nsecond <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>sig, fs <span style="color:#f92672">=</span> librosa<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#39;sample.wav&#39;</span>, mono<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>sig <span style="color:#f92672">=</span> sig[:fs <span style="color:#f92672">*</span> nsecond]
+</span></span><span style="display:flex;"><span>sig_stft <span style="color:#f92672">=</span> abs(librosa<span style="color:#f92672">.</span>stft(sig)<span style="color:#f92672">.</span>T)
+</span></span><span style="display:flex;"><span>sig_stft <span style="color:#f92672">/=</span> sig_stft<span style="color:#f92672">.</span>mean()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># T: nframe, F: nbin, K: 20 に設定します。</span>
+</span></span><span style="display:flex;"><span>nbasis <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>nframe, nbin <span style="color:#f92672">=</span> sig_stft<span style="color:#f92672">.</span>shape
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># TensorFlow の定数と変数を定義します。対数を計算する際のゼロ除算を避けるため、</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># あらかじめ微小量 (1e-10) を加えておきます。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># lw (ln W), lh (ln H) は Adam で更新するため、tf.Variable で宣言します。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 初期値には特にこだわりがないのですが、ここでは正規分布で初期化します。</span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(sig_stft <span style="color:#f92672">+</span> <span style="color:#ae81ff">1e-10</span>)
+</span></span><span style="display:flex;"><span>lx <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>log(x))
+</span></span><span style="display:flex;"><span>lw <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(tf<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal([nframe, nbasis]))
+</span></span><span style="display:flex;"><span>lh <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(tf<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal([nbasis, nbin]))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># グラフを準備します。乖離度 (loss), W, H, WH のための subplot を作ります。</span>
+</span></span><span style="display:flex;"><span>fig <span style="color:#f92672">=</span> pl<span style="color:#f92672">.</span>figure(constrained_layout<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>gs <span style="color:#f92672">=</span> GridSpec(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>, figure<span style="color:#f92672">=</span>fig)
+</span></span><span style="display:flex;"><span>axl <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(gs[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>axw <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(gs[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>:])
+</span></span><span style="display:flex;"><span>axh <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(gs[<span style="color:#ae81ff">1</span>:, <span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>axs <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(gs[<span style="color:#ae81ff">1</span>:, <span style="color:#ae81ff">1</span>:])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># オプティマイザを作成します。Adam のデフォルトの学習率は 0.001 ですが、</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># NMF は 0.1 でも動作しました。逆に、これ位にしないと学習時間がかかりすぎるようです。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ニューラルネットに比べて loss の複雑度が低いのかもしれません。</span>
+</span></span><span style="display:flex;"><span>opt <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>Adam(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">.1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>history <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10000</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># loss を定義します。この関数は引数なしとする必要があります。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">loss_euc</span>():
+</span></span><span style="display:flex;"><span>        wh <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>matmul(tf<span style="color:#f92672">.</span>exp(lw), tf<span style="color:#f92672">.</span>exp(lh))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>reduce_sum((x <span style="color:#f92672">-</span> wh) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">loss_idiv</span>():
+</span></span><span style="display:flex;"><span>        lwh <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>reduce_logsumexp(lw[:, :, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">+</span> lh[<span style="color:#66d9ef">None</span>, :, :], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>reduce_sum(x <span style="color:#f92672">*</span> (lx <span style="color:#f92672">-</span> lwh <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> tf<span style="color:#f92672">.</span>exp(lwh))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Adam で変数の値を更新します。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># var_list に更新したい変数 (tf.Variable) を指定します。</span>
+</span></span><span style="display:flex;"><span>    opt<span style="color:#f92672">.</span>minimize(loss_idiv, var_list<span style="color:#f92672">=</span>[lw, lh])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 現在の loss の値を計算します。</span>
+</span></span><span style="display:flex;"><span>    history<span style="color:#f92672">.</span>append(np<span style="color:#f92672">.</span>log(loss_idiv()<span style="color:#f92672">.</span>numpy()))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># イテレーション毎にグラフを表示します。</span>
+</span></span><span style="display:flex;"><span>    axl<span style="color:#f92672">.</span>clear()
+</span></span><span style="display:flex;"><span>    axw<span style="color:#f92672">.</span>clear()
+</span></span><span style="display:flex;"><span>    axh<span style="color:#f92672">.</span>clear()
+</span></span><span style="display:flex;"><span>    axs<span style="color:#f92672">.</span>clear()
+</span></span><span style="display:flex;"><span>    axl<span style="color:#f92672">.</span>set_xticks([<span style="color:#ae81ff">0</span>, i])
+</span></span><span style="display:flex;"><span>    axl<span style="color:#f92672">.</span>set_yticks([np<span style="color:#f92672">.</span>array(history)<span style="color:#f92672">.</span>min(), np<span style="color:#f92672">.</span>array(history)<span style="color:#f92672">.</span>max()])
+</span></span><span style="display:flex;"><span>    axw<span style="color:#f92672">.</span>set_xticks([<span style="color:#ae81ff">0</span>, nframe <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>    axw<span style="color:#f92672">.</span>set_yticks([<span style="color:#ae81ff">0</span>, nbasis <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>    axh<span style="color:#f92672">.</span>set_xticks([<span style="color:#ae81ff">0</span>, nbasis <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>    axh<span style="color:#f92672">.</span>set_yticks([<span style="color:#ae81ff">0</span>, nbin <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>    axs<span style="color:#f92672">.</span>set_xticks([<span style="color:#ae81ff">0</span>, nframe <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>    axs<span style="color:#f92672">.</span>set_yticks([<span style="color:#ae81ff">0</span>, nbin <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># グラフのカラースケールを固定するため、1e-3 (-60dB) で足切りします。</span>
+</span></span><span style="display:flex;"><span>    wh <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>matmul(tf<span style="color:#f92672">.</span>exp(lw), tf<span style="color:#f92672">.</span>exp(lh))<span style="color:#f92672">.</span>numpy()
+</span></span><span style="display:flex;"><span>    lw_display <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>maximum(lw, tf<span style="color:#f92672">.</span>reduce_max(lw) <span style="color:#f92672">+</span> np<span style="color:#f92672">.</span>log(<span style="color:#ae81ff">1e-3</span>))<span style="color:#f92672">.</span>numpy()
+</span></span><span style="display:flex;"><span>    lh_display <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>maximum(lh, tf<span style="color:#f92672">.</span>reduce_max(lh) <span style="color:#f92672">+</span> np<span style="color:#f92672">.</span>log(<span style="color:#ae81ff">1e-3</span>))<span style="color:#f92672">.</span>numpy()
+</span></span><span style="display:flex;"><span>    lwh_display <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>log(np<span style="color:#f92672">.</span>maximum(wh, wh<span style="color:#f92672">.</span>max() <span style="color:#f92672">*</span> <span style="color:#ae81ff">1e-3</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    axl<span style="color:#f92672">.</span>plot(history)
+</span></span><span style="display:flex;"><span>    axw<span style="color:#f92672">.</span>imshow(lw_display<span style="color:#f92672">.</span>T, aspect<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;auto&#39;</span>)
+</span></span><span style="display:flex;"><span>    axh<span style="color:#f92672">.</span>imshow(lh_display<span style="color:#f92672">.</span>T, aspect<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;auto&#39;</span>, origin<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;lower&#39;</span>)
+</span></span><span style="display:flex;"><span>    axs<span style="color:#f92672">.</span>imshow(lwh_display<span style="color:#f92672">.</span>T, aspect<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;auto&#39;</span>, origin<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;lower&#39;</span>)
+</span></span><span style="display:flex;"><span>    pl<span style="color:#f92672">.</span>pause(<span style="color:#ae81ff">.1</span>)
+</span></span></code></pre></div><h2 id="実行結果">実行結果</h2>
 <p>上のスクリプトの実行結果です。
 $W$ （右上）と $H$ （左下）が推定できています。
 右下に表示しているのは NMF による再構築結果 $WH$ です。</p>

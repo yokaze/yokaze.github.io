@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 
@@ -152,65 +152,65 @@ if (!doNotTrack) {
   <div class="article-body"><p>clang で range-based for の暗黙コピーを警告するには、<code>-Wrange-loop-analysis</code> オプションを指定します。</p>
 <p>次の例では <code>const pair&lt;const int, int&gt;&amp;</code> で値を受け取るべきところを <code>const pair&lt;int, int&gt;&amp;</code> で受けてしまっているため、余分なコピーが発生します。</p>
 <p><code>sample1.cpp</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;map&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-    std<span style="color:#f92672">::</span>map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> m <span style="color:#f92672">=</span> {
-        {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>},
-        {<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>},
-        {<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">9</span>},
-        {<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">16</span>},
-    };
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> kv : m)
-    {
-        printf(<span style="color:#e6db74">&#34;%d x %d = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, kv.first, kv.first, kv.second);
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
-$ clang sample1.cpp -std<span style="color:#f92672">=</span>c++17 -lc++ -o sample -Wrange-loop-analysis
-sample1.cpp:11:37: warning: loop variable &#39;kv&#39; of type &#39;const std::pair&lt;int, int&gt; &amp;&#39; binds to a temporary constructed from type &#39;std::__map_iterator&lt;std::__tree_iterator&lt;std::__value_type&lt;int, int&gt;, std::__tree_node&lt;std::__value_type&lt;int, int&gt;, void *&gt; *, long&gt;&gt;::reference&#39; (aka &#39;pair&lt;const int, int&gt; &amp;&#39;) [-Wrange-loop-construct]
-    for (const std::pair&lt;int, int&gt;&amp; kv : m)
-                                    ^
-sample1.cpp:11:10: note: use non-reference type &#39;std::pair&lt;int, int&gt;&#39; to make construction explicit or type &#39;const std::__map_iterator&lt;std::__tree_iterator&lt;std::__value_type&lt;int, int&gt;, std::__tree_node&lt;std::__value_type&lt;int, int&gt;, void *&gt; *, long&gt;&gt;::value_type &amp;&#39; (aka &#39;const pair&lt;const int, int&gt; &amp;&#39;) to prevent copying
-    for (const std::pair&lt;int, int&gt;&amp; kv : m)
-         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-1 warning generated.
-<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>$ ./sample
-1 x 1 = 1
-2 x 2 = 4
-3 x 3 = 9
-4 x 4 = 16
-</code></pre></div><p>プログラムを次のように修正し、<code>const pair&lt;const int, int&gt;&amp;</code> で受けるようにすれば警告は発生しません。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;map&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> m <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">9</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">16</span>},
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> kv : m)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;%d x %d = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, kv.first, kv.first, kv.second);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+</span></span><span style="display:flex;"><span>$ clang sample1.cpp -std<span style="color:#f92672">=</span>c++17 -lc++ -o sample -Wrange-loop-analysis
+</span></span><span style="display:flex;"><span>sample1.cpp:11:37: warning: loop variable &#39;kv&#39; of type &#39;const std::pair&lt;int, int&gt; &amp;&#39; binds to a temporary constructed from type &#39;std::__map_iterator&lt;std::__tree_iterator&lt;std::__value_type&lt;int, int&gt;, std::__tree_node&lt;std::__value_type&lt;int, int&gt;, void *&gt; *, long&gt;&gt;::reference&#39; (aka &#39;pair&lt;const int, int&gt; &amp;&#39;) [-Wrange-loop-construct]
+</span></span><span style="display:flex;"><span>    for (const std::pair&lt;int, int&gt;&amp; kv : m)
+</span></span><span style="display:flex;"><span>                                    ^
+</span></span><span style="display:flex;"><span>sample1.cpp:11:10: note: use non-reference type &#39;std::pair&lt;int, int&gt;&#39; to make construction explicit or type &#39;const std::__map_iterator&lt;std::__tree_iterator&lt;std::__value_type&lt;int, int&gt;, std::__tree_node&lt;std::__value_type&lt;int, int&gt;, void *&gt; *, long&gt;&gt;::value_type &amp;&#39; (aka &#39;const pair&lt;const int, int&gt; &amp;&#39;) to prevent copying
+</span></span><span style="display:flex;"><span>    for (const std::pair&lt;int, int&gt;&amp; kv : m)
+</span></span><span style="display:flex;"><span>         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</span></span><span style="display:flex;"><span>1 warning generated.
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>$ ./sample
+</span></span><span style="display:flex;"><span>1 x 1 = 1
+</span></span><span style="display:flex;"><span>2 x 2 = 4
+</span></span><span style="display:flex;"><span>3 x 3 = 9
+</span></span><span style="display:flex;"><span>4 x 4 = 16
+</span></span></code></pre></div><p>プログラムを次のように修正し、<code>const pair&lt;const int, int&gt;&amp;</code> で受けるようにすれば警告は発生しません。</p>
 <p><code>sample2.cpp</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;map&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-    std<span style="color:#f92672">::</span>map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> m <span style="color:#f92672">=</span> {
-        {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>},
-        {<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>},
-        {<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">9</span>},
-        {<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">16</span>},
-    };
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> kv : m)
-    {
-        printf(<span style="color:#e6db74">&#34;%d x %d = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, kv.first, kv.first, kv.second);
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
-$ clang sample2.cpp -std<span style="color:#f92672">=</span>c++17 -lc++ -o sample -Wrange-loop-analysis
-$
-</code></pre></div><h2 id="警告を抑制する">警告を抑制する</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;map&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> m <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">9</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">16</span>},
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> kv : m)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;%d x %d = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, kv.first, kv.first, kv.second);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+</span></span><span style="display:flex;"><span>$ clang sample2.cpp -std<span style="color:#f92672">=</span>c++17 -lc++ -o sample -Wrange-loop-analysis
+</span></span><span style="display:flex;"><span>$
+</span></span></code></pre></div><h2 id="警告を抑制する">警告を抑制する</h2>
 <p>逆に、警告を抑制したい場合は <code>-Wno-range-loop-analysis</code> オプションを指定します。
 このオプションを指定することで、既に指定されたオプションを打ち消すことができます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
-$ clang sample1.cpp -std<span style="color:#f92672">=</span>c++17 -lc++ -o sample -Wno-range-loop-analysis
-$
-</code></pre></div><h2 id="xcode-での取り扱い">Xcode での取り扱い</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+</span></span><span style="display:flex;"><span>$ clang sample1.cpp -std<span style="color:#f92672">=</span>c++17 -lc++ -o sample -Wno-range-loop-analysis
+</span></span><span style="display:flex;"><span>$
+</span></span></code></pre></div><h2 id="xcode-での取り扱い">Xcode での取り扱い</h2>
 <p>この警告は、Xcode 上で &ldquo;Range-based For Loops&rdquo; (<code>CLANG_WARN_RANGE_LOOP_ANALYSIS</code>) という名前で表示されます。</p>
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>

@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 
@@ -153,56 +153,56 @@ if (!doNotTrack) {
 <h2 id="homebrew-でインストール">Homebrew でインストール</h2>
 <p>Homebrew は mac 環境の汎用パッケージマネージャーです。
 Homebrew を使って pybind11 をインストールするには、<code>brew install pybind11</code> と入力します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
-$ brew install pybind11
-==&gt; Downloading https://homebrew.bintray.com/bottles/pybind11-2.2.1_1.sierra.bottle.tar.gz
-==&gt; Pouring pybind11-2.2.1_1.sierra.bottle.tar.gz
-🍺  /usr/local/Cellar/pybind11/2.2.1_1: 33 files, 540.4KB
-</code></pre></div><p>pybind11 は <code>/usr/local/include/pybind11</code> にインストールされます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
+</span></span><span style="display:flex;"><span>$ brew install pybind11
+</span></span><span style="display:flex;"><span>==&gt; Downloading https://homebrew.bintray.com/bottles/pybind11-2.2.1_1.sierra.bottle.tar.gz
+</span></span><span style="display:flex;"><span>==&gt; Pouring pybind11-2.2.1_1.sierra.bottle.tar.gz
+</span></span><span style="display:flex;"><span>🍺  /usr/local/Cellar/pybind11/2.2.1_1: 33 files, 540.4KB
+</span></span></code></pre></div><p>pybind11 は <code>/usr/local/include/pybind11</code> にインストールされます。</p>
 <h2 id="pip-でインストール">pip でインストール</h2>
 <p>pip は python の汎用パッケージマネージャーですが、pybind11 をインストールする際は注意が必要です。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
-$ sudo -H pip install pybind11
-Collecting pybind11
-  Downloading pybind11-2.2.1-py2.py3-none-any.whl (143kB)
-    100% |████████████████████████████████| 153kB 1.2MB/s
-Installing collected packages: pybind11
-Exception:
-Traceback (most recent call last):
-  File &#34;/Library/Python/2.7/site-packages/pip/basecommand.py&#34;, line 215, in main
-    status = self.run(options, args)
-  ...
-  File &#34;/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/os.py&#34;, line 157, in makedirs
-    mkdir(name, mode)
-OSError: [Errno 1] Operation not permitted: &#39;/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pybind11&#39;
-</code></pre></div><p><span style="word-break: break-all;"><code>/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7</code></span> は SIP (System Integrity Protection) の対象ディレクトリであり、管理者権限でもファイルを書き込むことができません。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
+</span></span><span style="display:flex;"><span>$ sudo -H pip install pybind11
+</span></span><span style="display:flex;"><span>Collecting pybind11
+</span></span><span style="display:flex;"><span>  Downloading pybind11-2.2.1-py2.py3-none-any.whl (143kB)
+</span></span><span style="display:flex;"><span>    100% |████████████████████████████████| 153kB 1.2MB/s
+</span></span><span style="display:flex;"><span>Installing collected packages: pybind11
+</span></span><span style="display:flex;"><span>Exception:
+</span></span><span style="display:flex;"><span>Traceback (most recent call last):
+</span></span><span style="display:flex;"><span>  File &#34;/Library/Python/2.7/site-packages/pip/basecommand.py&#34;, line 215, in main
+</span></span><span style="display:flex;"><span>    status = self.run(options, args)
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>  File &#34;/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/os.py&#34;, line 157, in makedirs
+</span></span><span style="display:flex;"><span>    mkdir(name, mode)
+</span></span><span style="display:flex;"><span>OSError: [Errno 1] Operation not permitted: &#39;/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/pybind11&#39;
+</span></span></code></pre></div><p><span style="word-break: break-all;"><code>/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7</code></span> は SIP (System Integrity Protection) の対象ディレクトリであり、管理者権限でもファイルを書き込むことができません。</p>
 <p>こうなってしまった場合は、一旦不完全なファイルをアンインストールします。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
-$ sudo -H pip uninstall pybind11
-Uninstalling pybind11-2.2.1:
-  /Library/Python/2.7/site-packages/pybind11-2.2.1.dist-info/DESCRIPTION.rst
-  /Library/Python/2.7/site-packages/pybind11-2.2.1.dist-info/METADATA
-  /Library/Python/2.7/site-packages/pybind11-2.2.1.dist-info/RECORD
-  /Library/Python/2.7/site-packages/pybind11-2.2.1.dist-info/WHEEL
-  /Library/Python/2.7/site-packages/pybind11-2.2.1.dist-info/metadata.json
-  /Library/Python/2.7/site-packages/pybind11-2.2.1.dist-info/top_level.txt
-  /Library/Python/2.7/site-packages/pybind11/__init__.py
-  /Library/Python/2.7/site-packages/pybind11/__init__.pyc
-  /Library/Python/2.7/site-packages/pybind11/__main__.py
-  /Library/Python/2.7/site-packages/pybind11/__main__.pyc
-  /Library/Python/2.7/site-packages/pybind11/_version.py
-  /Library/Python/2.7/site-packages/pybind11/_version.pyc
-Proceed (y/n)? y
-  Successfully uninstalled pybind11-2.2.1
-</code></pre></div><h2 id="pip3-でインストール">pip3 でインストール</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
+</span></span><span style="display:flex;"><span>$ sudo -H pip uninstall pybind11
+</span></span><span style="display:flex;"><span>Uninstalling pybind11-2.2.1:
+</span></span><span style="display:flex;"><span>  /Library/Python/2.7/site-packages/pybind11-2.2.1.dist-info/DESCRIPTION.rst
+</span></span><span style="display:flex;"><span>  /Library/Python/2.7/site-packages/pybind11-2.2.1.dist-info/METADATA
+</span></span><span style="display:flex;"><span>  /Library/Python/2.7/site-packages/pybind11-2.2.1.dist-info/RECORD
+</span></span><span style="display:flex;"><span>  /Library/Python/2.7/site-packages/pybind11-2.2.1.dist-info/WHEEL
+</span></span><span style="display:flex;"><span>  /Library/Python/2.7/site-packages/pybind11-2.2.1.dist-info/metadata.json
+</span></span><span style="display:flex;"><span>  /Library/Python/2.7/site-packages/pybind11-2.2.1.dist-info/top_level.txt
+</span></span><span style="display:flex;"><span>  /Library/Python/2.7/site-packages/pybind11/__init__.py
+</span></span><span style="display:flex;"><span>  /Library/Python/2.7/site-packages/pybind11/__init__.pyc
+</span></span><span style="display:flex;"><span>  /Library/Python/2.7/site-packages/pybind11/__main__.py
+</span></span><span style="display:flex;"><span>  /Library/Python/2.7/site-packages/pybind11/__main__.pyc
+</span></span><span style="display:flex;"><span>  /Library/Python/2.7/site-packages/pybind11/_version.py
+</span></span><span style="display:flex;"><span>  /Library/Python/2.7/site-packages/pybind11/_version.pyc
+</span></span><span style="display:flex;"><span>Proceed (y/n)? y
+</span></span><span style="display:flex;"><span>  Successfully uninstalled pybind11-2.2.1
+</span></span></code></pre></div><h2 id="pip3-でインストール">pip3 でインストール</h2>
 <p>Homebrew から python3 をインストールした場合は <code>pip3</code> を使って pybind11 をインストールすることができます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
-$ pip3 install pybind11
-Collecting pybind11
-  Using cached pybind11-2.2.1-py2.py3-none-any.whl
-Installing collected packages: pybind11
-Successfully installed pybind11-2.2.1
-</code></pre></div><p>pybind11 は <code>/usr/local/include/python3.6m/pybind11/</code> にインストールされます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
+</span></span><span style="display:flex;"><span>$ pip3 install pybind11
+</span></span><span style="display:flex;"><span>Collecting pybind11
+</span></span><span style="display:flex;"><span>  Using cached pybind11-2.2.1-py2.py3-none-any.whl
+</span></span><span style="display:flex;"><span>Installing collected packages: pybind11
+</span></span><span style="display:flex;"><span>Successfully installed pybind11-2.2.1
+</span></span></code></pre></div><p>pybind11 は <code>/usr/local/include/python3.6m/pybind11/</code> にインストールされます。</p>
 <h2 id="anaconda-でインストール">Anaconda でインストール</h2>
 <p>Anaconda を使う場合は、<code>conda install -c conda-forge pybind11</code> でインストールすることができます。</p>
 <p>参考: <span style="word-break: break-all;"><a href="https://anaconda.org/conda-forge/pybind11">https://anaconda.org/conda-forge/pybind11</a></span></p>

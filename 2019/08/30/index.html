@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 
@@ -184,134 +184,134 @@ $\pi$ の各成分を自由に更新すると混合率の総和が 1 から外�
 混合率と精度の対数 $\ln \pi_k, \ln \Lambda_k$ を変数とすることで、これらの変数が負の値にならないことを保証しています。
 </div></p>
 <h2 id="ソースコード">ソースコード</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
-<span style="color:#f92672">import</span> scipy <span style="color:#66d9ef">as</span> sp
-<span style="color:#f92672">import</span> subprocess
-<span style="color:#f92672">import</span> tensorflow <span style="color:#66d9ef">as</span> tf
-<span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> pyplot <span style="color:#66d9ef">as</span> pl
-
-<span style="color:#75715e"># PRML の Old Faithful 間欠泉データを取得します。</span>
-<span style="color:#75715e"># このデータはやや取得が難しく、今回は R にビルトインされているデータを使います。</span>
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_faithful_data</span>():
-    text <span style="color:#f92672">=</span> subprocess<span style="color:#f92672">.</span>check_output([<span style="color:#e6db74">&#39;r&#39;</span>, <span style="color:#e6db74">&#39;-q&#39;</span>, <span style="color:#e6db74">&#39;-e&#39;</span>, <span style="color:#e6db74">&#39;faithful&#39;</span>])
-    text <span style="color:#f92672">=</span> text<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;ascii&#39;</span>)
-    text <span style="color:#f92672">=</span> text<span style="color:#f92672">.</span>splitlines()
-    ret <span style="color:#f92672">=</span> []
-    <span style="color:#66d9ef">for</span> line <span style="color:#f92672">in</span> text:
-        values <span style="color:#f92672">=</span> line<span style="color:#f92672">.</span>split()
-        <span style="color:#66d9ef">if</span> (len(values) <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>):
-            x <span style="color:#f92672">=</span> float(values[<span style="color:#ae81ff">1</span>])
-            y <span style="color:#f92672">=</span> float(values[<span style="color:#ae81ff">2</span>])
-            ret<span style="color:#f92672">.</span>append([x, y])
-    <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>array(ret, dtype <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>float64)
-
-faithful <span style="color:#f92672">=</span> get_faithful_data()
-
-<span style="color:#75715e"># 二次元の散布図とガウス分布をレンタリングするためのコードです。</span>
-<span style="color:#75715e"># ガウス分布の等高線を陰関数として描画します。</span>
-<span style="color:#75715e"># mu は平均ベクトル、dev は x, y 軸それぞれの標準偏差です。</span>
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">draw_ring</span>(mu, dev):
-    angles <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">100</span>)
-    x <span style="color:#f92672">=</span> mu[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> dev[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>cos(angles)
-    y <span style="color:#f92672">=</span> mu[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> dev[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>sin(angles)
-    pl<span style="color:#f92672">.</span>plot(x, y, <span style="color:#e6db74">&#39;b-&#39;</span>)
-
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">draw</span>(mu, prec):
-    pl<span style="color:#f92672">.</span>clf()
-    pl<span style="color:#f92672">.</span>plot(faithful[:, <span style="color:#ae81ff">0</span>], faithful[:, <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;b+&#39;</span>)
-    pl<span style="color:#f92672">.</span>plot(mu[:, <span style="color:#ae81ff">0</span>], mu[:, <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;go&#39;</span>)
-    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(mu)):
-        draw_ring(mu[i], np<span style="color:#f92672">.</span>sqrt(<span style="color:#ae81ff">1.</span> <span style="color:#f92672">/</span> prec[i]))
-    pl<span style="color:#f92672">.</span>xlim(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>)
-    pl<span style="color:#f92672">.</span>ylim(<span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">100</span>)
-    pl<span style="color:#f92672">.</span>pause(<span style="color:#ae81ff">.1</span>)
-
-<span style="color:#75715e"># 比較用の EM (Expectation-Maximization) アルゴリズムの実装です。</span>
-<span style="color:#75715e"># pi は混合率、mu は平均ベクトル、prec は分布の精度（分散の逆数）です。</span>
-<span style="color:#75715e"># z は負担率に対応しています。</span>
-<span style="color:#75715e">#</span>
-<span style="color:#75715e"># 今回は簡単のため、精度行列を対角行列に制限して推定を行います。</span>
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">calc_estep</span>(pi, mu, prec):
-    lpi <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>log(pi)
-    lprec <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>log(prec)
-
-    <span style="color:#75715e"># アンダーフローを避けるため、対数領域で計算します。</span>
-    lz <span style="color:#f92672">=</span> lpi[<span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">+</span> <span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> lprec<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">1</span>)[<span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">-</span> <span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> (prec[<span style="color:#66d9ef">None</span>, :, :] <span style="color:#f92672">*</span>
-         (faithful[:, <span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">-</span> mu[<span style="color:#66d9ef">None</span>, :, :]) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">2</span>)
-    lz <span style="color:#f92672">-=</span> sp<span style="color:#f92672">.</span>special<span style="color:#f92672">.</span>logsumexp(lz, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)[:, <span style="color:#66d9ef">None</span>]
-    <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>exp(lz)
-
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">calc_mstep</span>(z):
-    pi <span style="color:#f92672">=</span> z<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">/</span> z<span style="color:#f92672">.</span>sum()
-    mu <span style="color:#f92672">=</span> (z[:, :, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">*</span> faithful[:, <span style="color:#66d9ef">None</span>, :])<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">/</span> z<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>)[:, <span style="color:#66d9ef">None</span>]
-    prec <span style="color:#f92672">=</span> z<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>)[:, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">/</span> (z[:, :, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">*</span> ((faithful[:, <span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">-</span>
-           mu[<span style="color:#66d9ef">None</span>, :, :]) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>))<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>)
-    <span style="color:#66d9ef">return</span> pi, mu, prec
-
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">process_em</span>(z, nstep):
-    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(nstep):
-        pi, mu, prec <span style="color:#f92672">=</span> calc_mstep(z)
-        z <span style="color:#f92672">=</span> calc_estep(pi, mu, prec)
-        draw(mu, prec)
-
-<span style="color:#75715e"># 最急降下法を使ったパラメータ推定アルゴリズムです。</span>
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">process_sgd</span>(z, nstep, use_adam<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>):
-    <span style="color:#75715e"># TensorFlow の定数と変数を定義します。</span>
-    <span style="color:#75715e"># EM アルゴリズム版と同等の初期値を作るため、一様乱数を使って M-Step を一度だけ回します。</span>
-    pi, mu, prec <span style="color:#f92672">=</span> calc_mstep(z)
-    lpi <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(np<span style="color:#f92672">.</span>log(pi))
-    mu <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(mu)
-    lprec <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(np<span style="color:#f92672">.</span>log(prec))
-    faith <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(faithful)
-
-    <span style="color:#75715e"># オプティマイザを作成します。ここでは Adam と RMSprop の特徴が見やすくなるように</span>
-    <span style="color:#75715e"># 学習率を調整しました。</span>
-    <span style="color:#66d9ef">if</span> use_adam:
-        opt <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>Adam(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">.1</span>)
-    <span style="color:#66d9ef">else</span>:
-        opt <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>RMSprop(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">.03</span>)
-
-    history <span style="color:#f92672">=</span> []
-    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(nstep):
-        <span style="color:#75715e"># GMM と観測データの KL ダイバージェンスを計算します。</span>
-        <span style="color:#75715e"># オプティマイザで自由に更新すると混合率 (pi) の総和が 1 にならないため、</span>
-        <span style="color:#75715e"># コストの計算時に pi_normal として正規化します。</span>
-        <span style="color:#75715e">#</span>
-        <span style="color:#75715e"># pi のスケールが大きく変動して予想外の動作になることを避けるため、</span>
-        <span style="color:#75715e"># ラグランジュ緩和を参考にして pi の総和が 1 に近くなるようペナルティを与えます。</span>
-        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">kl_loss</span>():
-            penalty <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>abs((tf<span style="color:#f92672">.</span>reduce_sum(tf<span style="color:#f92672">.</span>exp(lpi)) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>))
-            lpi_normal <span style="color:#f92672">=</span> lpi <span style="color:#f92672">-</span> tf<span style="color:#f92672">.</span>reduce_logsumexp(lpi)
-            likelihood <span style="color:#f92672">=</span> (lpi_normal <span style="color:#f92672">+</span> <span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> tf<span style="color:#f92672">.</span>reduce_sum(lprec, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>))[<span style="color:#66d9ef">None</span>, :]
-            likelihood <span style="color:#f92672">-=</span> <span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> tf<span style="color:#f92672">.</span>reduce_sum(tf<span style="color:#f92672">.</span>exp(lprec)[<span style="color:#66d9ef">None</span>, :, :] <span style="color:#f92672">*</span>
-                          ((faith[:, <span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">-</span> mu[<span style="color:#66d9ef">None</span>, :, :]) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>), axis<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
-            <span style="color:#66d9ef">return</span> penalty <span style="color:#f92672">-</span> tf<span style="color:#f92672">.</span>reduce_sum(tf<span style="color:#f92672">.</span>reduce_logsumexp(likelihood, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>))
-
-        <span style="color:#75715e"># var_list に更新したい変数 (tf.Variable) を指定し、パラメータを更新します。</span>
-        opt<span style="color:#f92672">.</span>minimize(kl_loss, var_list<span style="color:#f92672">=</span>[lpi, mu, lprec])
-
-        <span style="color:#75715e"># 現在の loss の値を計算します。</span>
-        history<span style="color:#f92672">.</span>append(kl_loss()<span style="color:#f92672">.</span>numpy())
-
-        <span style="color:#75715e"># イテレーション毎にグラフを表示します。</span>
-        draw(mu<span style="color:#f92672">.</span>numpy(), tf<span style="color:#f92672">.</span>exp(lprec)<span style="color:#f92672">.</span>numpy())
-
-<span style="color:#75715e"># 負担率を一様乱数で初期化し、初期値とします。</span>
-<span style="color:#75715e"># この設定では学習に多くのイテレーションが必要となり、学習アルゴリズムの特徴を調べやすくなります。</span>
-nsample <span style="color:#f92672">=</span> len(faithful)
-nclass <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
-nstep <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000</span>
-z <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>dirichlet(np<span style="color:#f92672">.</span>ones(nclass), nsample)
-
-<span style="color:#75715e"># EM, Adam, RMSprop それぞれで推論を実行します。</span>
-use_em <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
-use_adam <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
-
-<span style="color:#66d9ef">if</span> use_em:
-    process_em(z, nstep)
-<span style="color:#66d9ef">else</span>:
-    process_sgd(z, nstep, use_adam)
-</code></pre></div><p><a name="result"></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> scipy <span style="color:#66d9ef">as</span> sp
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> subprocess
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> tensorflow <span style="color:#66d9ef">as</span> tf
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> pyplot <span style="color:#66d9ef">as</span> pl
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># PRML の Old Faithful 間欠泉データを取得します。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># このデータはやや取得が難しく、今回は R にビルトインされているデータを使います。</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_faithful_data</span>():
+</span></span><span style="display:flex;"><span>    text <span style="color:#f92672">=</span> subprocess<span style="color:#f92672">.</span>check_output([<span style="color:#e6db74">&#39;r&#39;</span>, <span style="color:#e6db74">&#39;-q&#39;</span>, <span style="color:#e6db74">&#39;-e&#39;</span>, <span style="color:#e6db74">&#39;faithful&#39;</span>])
+</span></span><span style="display:flex;"><span>    text <span style="color:#f92672">=</span> text<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;ascii&#39;</span>)
+</span></span><span style="display:flex;"><span>    text <span style="color:#f92672">=</span> text<span style="color:#f92672">.</span>splitlines()
+</span></span><span style="display:flex;"><span>    ret <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> line <span style="color:#f92672">in</span> text:
+</span></span><span style="display:flex;"><span>        values <span style="color:#f92672">=</span> line<span style="color:#f92672">.</span>split()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (len(values) <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>):
+</span></span><span style="display:flex;"><span>            x <span style="color:#f92672">=</span> float(values[<span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>            y <span style="color:#f92672">=</span> float(values[<span style="color:#ae81ff">2</span>])
+</span></span><span style="display:flex;"><span>            ret<span style="color:#f92672">.</span>append([x, y])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>array(ret, dtype <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>float64)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>faithful <span style="color:#f92672">=</span> get_faithful_data()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 二次元の散布図とガウス分布をレンタリングするためのコードです。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ガウス分布の等高線を陰関数として描画します。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># mu は平均ベクトル、dev は x, y 軸それぞれの標準偏差です。</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">draw_ring</span>(mu, dev):
+</span></span><span style="display:flex;"><span>    angles <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> mu[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> dev[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>cos(angles)
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> mu[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> dev[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>sin(angles)
+</span></span><span style="display:flex;"><span>    pl<span style="color:#f92672">.</span>plot(x, y, <span style="color:#e6db74">&#39;b-&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">draw</span>(mu, prec):
+</span></span><span style="display:flex;"><span>    pl<span style="color:#f92672">.</span>clf()
+</span></span><span style="display:flex;"><span>    pl<span style="color:#f92672">.</span>plot(faithful[:, <span style="color:#ae81ff">0</span>], faithful[:, <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;b+&#39;</span>)
+</span></span><span style="display:flex;"><span>    pl<span style="color:#f92672">.</span>plot(mu[:, <span style="color:#ae81ff">0</span>], mu[:, <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;go&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(mu)):
+</span></span><span style="display:flex;"><span>        draw_ring(mu[i], np<span style="color:#f92672">.</span>sqrt(<span style="color:#ae81ff">1.</span> <span style="color:#f92672">/</span> prec[i]))
+</span></span><span style="display:flex;"><span>    pl<span style="color:#f92672">.</span>xlim(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>)
+</span></span><span style="display:flex;"><span>    pl<span style="color:#f92672">.</span>ylim(<span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>    pl<span style="color:#f92672">.</span>pause(<span style="color:#ae81ff">.1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 比較用の EM (Expectation-Maximization) アルゴリズムの実装です。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># pi は混合率、mu は平均ベクトル、prec は分布の精度（分散の逆数）です。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># z は負担率に対応しています。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 今回は簡単のため、精度行列を対角行列に制限して推定を行います。</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">calc_estep</span>(pi, mu, prec):
+</span></span><span style="display:flex;"><span>    lpi <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>log(pi)
+</span></span><span style="display:flex;"><span>    lprec <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>log(prec)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># アンダーフローを避けるため、対数領域で計算します。</span>
+</span></span><span style="display:flex;"><span>    lz <span style="color:#f92672">=</span> lpi[<span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">+</span> <span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> lprec<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">1</span>)[<span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">-</span> <span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> (prec[<span style="color:#66d9ef">None</span>, :, :] <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>         (faithful[:, <span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">-</span> mu[<span style="color:#66d9ef">None</span>, :, :]) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>    lz <span style="color:#f92672">-=</span> sp<span style="color:#f92672">.</span>special<span style="color:#f92672">.</span>logsumexp(lz, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)[:, <span style="color:#66d9ef">None</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>exp(lz)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">calc_mstep</span>(z):
+</span></span><span style="display:flex;"><span>    pi <span style="color:#f92672">=</span> z<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">/</span> z<span style="color:#f92672">.</span>sum()
+</span></span><span style="display:flex;"><span>    mu <span style="color:#f92672">=</span> (z[:, :, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">*</span> faithful[:, <span style="color:#66d9ef">None</span>, :])<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">/</span> z<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>)[:, <span style="color:#66d9ef">None</span>]
+</span></span><span style="display:flex;"><span>    prec <span style="color:#f92672">=</span> z<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>)[:, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">/</span> (z[:, :, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">*</span> ((faithful[:, <span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">-</span>
+</span></span><span style="display:flex;"><span>           mu[<span style="color:#66d9ef">None</span>, :, :]) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>))<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> pi, mu, prec
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">process_em</span>(z, nstep):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(nstep):
+</span></span><span style="display:flex;"><span>        pi, mu, prec <span style="color:#f92672">=</span> calc_mstep(z)
+</span></span><span style="display:flex;"><span>        z <span style="color:#f92672">=</span> calc_estep(pi, mu, prec)
+</span></span><span style="display:flex;"><span>        draw(mu, prec)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 最急降下法を使ったパラメータ推定アルゴリズムです。</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">process_sgd</span>(z, nstep, use_adam<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># TensorFlow の定数と変数を定義します。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># EM アルゴリズム版と同等の初期値を作るため、一様乱数を使って M-Step を一度だけ回します。</span>
+</span></span><span style="display:flex;"><span>    pi, mu, prec <span style="color:#f92672">=</span> calc_mstep(z)
+</span></span><span style="display:flex;"><span>    lpi <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(np<span style="color:#f92672">.</span>log(pi))
+</span></span><span style="display:flex;"><span>    mu <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(mu)
+</span></span><span style="display:flex;"><span>    lprec <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(np<span style="color:#f92672">.</span>log(prec))
+</span></span><span style="display:flex;"><span>    faith <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(faithful)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># オプティマイザを作成します。ここでは Adam と RMSprop の特徴が見やすくなるように</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 学習率を調整しました。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> use_adam:
+</span></span><span style="display:flex;"><span>        opt <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>Adam(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">.1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        opt <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>RMSprop(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">.03</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    history <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(nstep):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># GMM と観測データの KL ダイバージェンスを計算します。</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># オプティマイザで自由に更新すると混合率 (pi) の総和が 1 にならないため、</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># コストの計算時に pi_normal として正規化します。</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># pi のスケールが大きく変動して予想外の動作になることを避けるため、</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ラグランジュ緩和を参考にして pi の総和が 1 に近くなるようペナルティを与えます。</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">kl_loss</span>():
+</span></span><span style="display:flex;"><span>            penalty <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>abs((tf<span style="color:#f92672">.</span>reduce_sum(tf<span style="color:#f92672">.</span>exp(lpi)) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>            lpi_normal <span style="color:#f92672">=</span> lpi <span style="color:#f92672">-</span> tf<span style="color:#f92672">.</span>reduce_logsumexp(lpi)
+</span></span><span style="display:flex;"><span>            likelihood <span style="color:#f92672">=</span> (lpi_normal <span style="color:#f92672">+</span> <span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> tf<span style="color:#f92672">.</span>reduce_sum(lprec, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>))[<span style="color:#66d9ef">None</span>, :]
+</span></span><span style="display:flex;"><span>            likelihood <span style="color:#f92672">-=</span> <span style="color:#ae81ff">.5</span> <span style="color:#f92672">*</span> tf<span style="color:#f92672">.</span>reduce_sum(tf<span style="color:#f92672">.</span>exp(lprec)[<span style="color:#66d9ef">None</span>, :, :] <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>                          ((faith[:, <span style="color:#66d9ef">None</span>, :] <span style="color:#f92672">-</span> mu[<span style="color:#66d9ef">None</span>, :, :]) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>), axis<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> penalty <span style="color:#f92672">-</span> tf<span style="color:#f92672">.</span>reduce_sum(tf<span style="color:#f92672">.</span>reduce_logsumexp(likelihood, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># var_list に更新したい変数 (tf.Variable) を指定し、パラメータを更新します。</span>
+</span></span><span style="display:flex;"><span>        opt<span style="color:#f92672">.</span>minimize(kl_loss, var_list<span style="color:#f92672">=</span>[lpi, mu, lprec])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 現在の loss の値を計算します。</span>
+</span></span><span style="display:flex;"><span>        history<span style="color:#f92672">.</span>append(kl_loss()<span style="color:#f92672">.</span>numpy())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># イテレーション毎にグラフを表示します。</span>
+</span></span><span style="display:flex;"><span>        draw(mu<span style="color:#f92672">.</span>numpy(), tf<span style="color:#f92672">.</span>exp(lprec)<span style="color:#f92672">.</span>numpy())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 負担率を一様乱数で初期化し、初期値とします。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># この設定では学習に多くのイテレーションが必要となり、学習アルゴリズムの特徴を調べやすくなります。</span>
+</span></span><span style="display:flex;"><span>nsample <span style="color:#f92672">=</span> len(faithful)
+</span></span><span style="display:flex;"><span>nclass <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>nstep <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000</span>
+</span></span><span style="display:flex;"><span>z <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>dirichlet(np<span style="color:#f92672">.</span>ones(nclass), nsample)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># EM, Adam, RMSprop それぞれで推論を実行します。</span>
+</span></span><span style="display:flex;"><span>use_em <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>use_adam <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> use_em:
+</span></span><span style="display:flex;"><span>    process_em(z, nstep)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    process_sgd(z, nstep, use_adam)
+</span></span></code></pre></div><p><a name="result"></a></p>
 <h2 id="実行結果">実行結果</h2>
 <p>スクリプトの実行結果です。
 動作環境は macOS Mojave (10.14) + TensorFlow 2.0.0rc0 です。</p>
@@ -333,8 +333,8 @@ use_adam <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</
 </p>
 <h3 id="追記centered-rmsprop">追記：Centered RMSprop</h3>
 <p>Centered RMSprop を使うと収束が改善します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">opt <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>RMSprop(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">.03</span>, centered<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
-</code></pre></div><p>RMSprop, Centered RMSprop とも中央のコンポーネントが左右どちらに振れるかは試行によってまちまちなのですが、
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>opt <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>RMSprop(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">.03</span>, centered<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span></code></pre></div><p>RMSprop, Centered RMSprop とも中央のコンポーネントが左右どちらに振れるかは試行によってまちまちなのですが、
 左のコンポーネントが収束する速さはほぼこのアニメーション通りになります。
 <figure class="center"><img src="/2019/08/30/centered_rmsprop.png"/>
 </figure>

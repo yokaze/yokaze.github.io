@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 
@@ -151,28 +151,28 @@ if (!doNotTrack) {
 
   <div class="article-body"><p>clang でループ式が実行されない場合に警告を出すには、<code>-Wunreachable-code-loop-increment</code> オプションを指定します。</p>
 <p><code>sample.cpp</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
-{
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>; <span style="color:#f92672">++</span>i)
-    {
-        <span style="color:#66d9ef">break</span>;
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><p>この例では初回のループが終了する前に <code>break</code> 文が実行されるため、警告が表示されます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
-$ clang -Wunreachable-code-loop-increment sample.cpp
-sample.cpp:3:29: warning: loop will run at most once (loop increment never executed) [-Wunreachable-code-loop-increment]
-    for (int i = 0; i &lt; 10; ++i)
-                            ^~~
-1 warning generated.
-</code></pre></div><h2 id="警告を抑制する">警告を抑制する</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>; <span style="color:#f92672">++</span>i)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>この例では初回のループが終了する前に <code>break</code> 文が実行されるため、警告が表示されます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+</span></span><span style="display:flex;"><span>$ clang -Wunreachable-code-loop-increment sample.cpp
+</span></span><span style="display:flex;"><span>sample.cpp:3:29: warning: loop will run at most once (loop increment never executed) [-Wunreachable-code-loop-increment]
+</span></span><span style="display:flex;"><span>    for (int i = 0; i &lt; 10; ++i)
+</span></span><span style="display:flex;"><span>                            ^~~
+</span></span><span style="display:flex;"><span>1 warning generated.
+</span></span></code></pre></div><h2 id="警告を抑制する">警告を抑制する</h2>
 <p>逆に、警告を抑制したい場合は <code>-Wno-unreachable-code-loop-increment</code> オプションを指定します。
 このオプションを指定することで、既に指定されたオプションを打ち消すことができます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
-$ clang -Wunreachable-code-loop-increment -Wno-unreachable-code-loop-increment sample.cpp
-$
-</code></pre></div><p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+</span></span><span style="display:flex;"><span>$ clang -Wunreachable-code-loop-increment -Wno-unreachable-code-loop-increment sample.cpp
+</span></span><span style="display:flex;"><span>$
+</span></span></code></pre></div><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>

@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 
@@ -151,36 +151,36 @@ if (!doNotTrack) {
 
   <div class="article-body"><p>pybind11 で main モジュール上に関数を定義するには、<code>pybind11::module::def</code> 関数を使います。
 次の例では、C++ で定義した <code>hello</code> 関数を Python スクリプトから呼び出しています。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">namespace</span> py <span style="color:#f92672">=</span> pybind11;
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">hello</span>()
-{
-    printf(<span style="color:#e6db74">&#34;Hello, world!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-}
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-    <span style="color:#75715e">// python インタプリタを起動する
-</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>scoped_interpreter interpreter;
-
-    <span style="color:#75715e">// main モジュール上に hello 関数を定義する
-</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>module main_module <span style="color:#f92672">=</span> py<span style="color:#f92672">::</span>module<span style="color:#f92672">::</span>import(<span style="color:#e6db74">&#34;__main__&#34;</span>);
-    main_module.def(<span style="color:#e6db74">&#34;hello&#34;</span>, <span style="color:#f92672">&amp;</span>hello);
-
-    <span style="color:#75715e">// python スクリプトから hello 関数を呼び出す
-</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>object scope <span style="color:#f92672">=</span> main_module.attr(<span style="color:#e6db74">&#34;__dict__&#34;</span>);
-    py<span style="color:#f92672">::</span>exec(<span style="color:#e6db74">&#34;hello()&#34;</span>, scope);
-
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
-$ clang sample.cpp -std<span style="color:#f92672">=</span>c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
-$ ./sample
-Hello, world!
-</code></pre></div><p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> py <span style="color:#f92672">=</span> pybind11;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">hello</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Hello, world!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// python インタプリタを起動する
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>scoped_interpreter interpreter;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// main モジュール上に hello 関数を定義する
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>module main_module <span style="color:#f92672">=</span> py<span style="color:#f92672">::</span>module<span style="color:#f92672">::</span>import(<span style="color:#e6db74">&#34;__main__&#34;</span>);
+</span></span><span style="display:flex;"><span>    main_module.def(<span style="color:#e6db74">&#34;hello&#34;</span>, <span style="color:#f92672">&amp;</span>hello);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// python スクリプトから hello 関数を呼び出す
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>object scope <span style="color:#f92672">=</span> main_module.attr(<span style="color:#e6db74">&#34;__dict__&#34;</span>);
+</span></span><span style="display:flex;"><span>    py<span style="color:#f92672">::</span>exec(<span style="color:#e6db74">&#34;hello()&#34;</span>, scope);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
+</span></span><span style="display:flex;"><span>$ clang sample.cpp -std<span style="color:#f92672">=</span>c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
+</span></span><span style="display:flex;"><span>$ ./sample
+</span></span><span style="display:flex;"><span>Hello, world!
+</span></span></code></pre></div><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>

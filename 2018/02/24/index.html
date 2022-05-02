@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 
@@ -152,16 +152,16 @@ if (!doNotTrack) {
   <div class="article-body"><p>macOS 上で <a href="https://matplotlib.org/">matplotlib</a> を立ち上げると、<code>Python is not installed as a framework</code> というエラーが出ることがあります。</p>
 <p>この問題は（環境によるのかもしれませんが）以下の方法で再現することができます。
 まず、最もシンプルに Homebrew と pip を使って Python 3 と matplotlib をインストールします。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
-$ brew install python3
-$ pip3 install matplotlib
-</code></pre></div><p>matplotlib を読み込み、グラフをプロットします。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ python3
-&gt;&gt;&gt; from matplotlib import pyplot as pl
-&gt;&gt;&gt; pl.plot<span style="color:#f92672">([</span>1, 2, 3, 4<span style="color:#f92672">]</span>, <span style="color:#e6db74">&#39;bo-&#39;</span><span style="color:#f92672">)</span>
-[&lt;matplotlib.lines.Line2D object at 0x10f7916d8&gt;]
-&gt;&gt;&gt; pl.show<span style="color:#f92672">()</span>
-</code></pre></div><p>この手順ではプロットが正しく表示されます。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
+</span></span><span style="display:flex;"><span>$ brew install python3
+</span></span><span style="display:flex;"><span>$ pip3 install matplotlib
+</span></span></code></pre></div><p>matplotlib を読み込み、グラフをプロットします。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ python3
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt; from matplotlib import pyplot as pl
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt; pl.plot<span style="color:#f92672">([</span>1, 2, 3, 4<span style="color:#f92672">]</span>, <span style="color:#e6db74">&#39;bo-&#39;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>[&lt;matplotlib.lines.Line2D object at 0x10f7916d8&gt;]
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt; pl.show<span style="color:#f92672">()</span>
+</span></span></code></pre></div><p>この手順ではプロットが正しく表示されます。
 matplotlib のバックエンドは <code>macosx</code> です。</p>
 <figure class="center"><img src="/2018/02/24/macosx.png" width="100%"/>
 </figure>
@@ -169,53 +169,53 @@ matplotlib のバックエンドは <code>macosx</code> です。</p>
 <h2 id="pybind11-から-matplotlib-を使う">pybind11 から matplotlib を使う</h2>
 <p><a href="https://github.com/pybind/pybind11">pybind11</a> は C++ と Python の相互運用を実現するライブラリです。
 ここでは <code>pybind11::scoped_interpreter</code> を使って Python 環境を C++ に埋め込み、matplotlib を立ち上げてみます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/stl.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">namespace</span> py <span style="color:#f92672">=</span> pybind11;
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-    py<span style="color:#f92672">::</span>scoped_interpreter interpreter;
-    py<span style="color:#f92672">::</span>module pyplot <span style="color:#f92672">=</span> py<span style="color:#f92672">::</span>module<span style="color:#f92672">::</span>import(<span style="color:#e6db74">&#34;matplotlib.pyplot&#34;</span>);
-    py<span style="color:#f92672">::</span>object plot <span style="color:#f92672">=</span> pyplot.attr(<span style="color:#e6db74">&#34;plot&#34;</span>);
-    py<span style="color:#f92672">::</span>object show <span style="color:#f92672">=</span> pyplot.attr(<span style="color:#e6db74">&#34;show&#34;</span>);
-    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span> v;
-    v.push_back(<span style="color:#ae81ff">1</span>);
-    v.push_back(<span style="color:#ae81ff">2</span>);
-    v.push_back(<span style="color:#ae81ff">3</span>);
-    v.push_back(<span style="color:#ae81ff">4</span>);
-    plot(v, <span style="color:#e6db74">&#34;o-&#34;</span>);
-    show();
-
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><p>Python 3.6 にリンクし、clang でコンパイルします。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
-$ clang sample.cpp -std<span style="color:#f92672">=</span>c++14 -lc++ -lpython3.6m -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -o sample
-</code></pre></div><p>このプログラムを起動すると、以下のエラーが表示され終了してしまいます。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/stl.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> py <span style="color:#f92672">=</span> pybind11;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    py<span style="color:#f92672">::</span>scoped_interpreter interpreter;
+</span></span><span style="display:flex;"><span>    py<span style="color:#f92672">::</span>module pyplot <span style="color:#f92672">=</span> py<span style="color:#f92672">::</span>module<span style="color:#f92672">::</span>import(<span style="color:#e6db74">&#34;matplotlib.pyplot&#34;</span>);
+</span></span><span style="display:flex;"><span>    py<span style="color:#f92672">::</span>object plot <span style="color:#f92672">=</span> pyplot.attr(<span style="color:#e6db74">&#34;plot&#34;</span>);
+</span></span><span style="display:flex;"><span>    py<span style="color:#f92672">::</span>object show <span style="color:#f92672">=</span> pyplot.attr(<span style="color:#e6db74">&#34;show&#34;</span>);
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span> v;
+</span></span><span style="display:flex;"><span>    v.push_back(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    v.push_back(<span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>    v.push_back(<span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>    v.push_back(<span style="color:#ae81ff">4</span>);
+</span></span><span style="display:flex;"><span>    plot(v, <span style="color:#e6db74">&#34;o-&#34;</span>);
+</span></span><span style="display:flex;"><span>    show();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Python 3.6 にリンクし、clang でコンパイルします。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
+</span></span><span style="display:flex;"><span>$ clang sample.cpp -std<span style="color:#f92672">=</span>c++14 -lc++ -lpython3.6m -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -o sample
+</span></span></code></pre></div><p>このプログラムを起動すると、以下のエラーが表示され終了してしまいます。
 エラーは <code>matplotlib.pyplot</code> モジュールを読み込んだ瞬間に発生します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ ./sample
-libc++abi.dylib: terminating with uncaught exception of type pybind11::error_already_set: RuntimeError: Python is not installed as a framework. The Mac OS X backend will not be able to function correctly if Python is not installed as a framework. See the Python documentation for more information on installing Python as a framework on Mac OS X. Please either reinstall Python as a framework, or try one of the other backends. If you are using (Ana)Conda please install python.app and replace the use of &#39;python&#39; with &#39;pythonw&#39;. See &#39;Working with Matplotlib on OSX&#39; in the Matplotlib FAQ for more information.
-<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>At:
-  /usr/local/opt/python3/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/matplotlib/backends/backend_macosx.py(17): &lt;module&gt;
-  &lt;frozen importlib._bootstrap&gt;(219): _call_with_frames_removed
-  &lt;frozen importlib._bootstrap_external&gt;(678): exec_module
-  &lt;frozen importlib._bootstrap&gt;(665): _load_unlocked
-  &lt;frozen importlib._bootstrap&gt;(955): _find_and_load_unlocked
-  &lt;frozen importlib._bootstrap&gt;(971): _find_and_load
-  /usr/local/opt/python3/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/matplotlib/backends/__init__.py(60): pylab_setup
-  /usr/local/opt/python3/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/matplotlib/pyplot.py(116): &lt;module&gt;
-  &lt;frozen importlib._bootstrap&gt;(219): _call_with_frames_removed
-  &lt;frozen importlib._bootstrap_external&gt;(678): exec_module
-  &lt;frozen importlib._bootstrap&gt;(665): _load_unlocked
-  &lt;frozen importlib._bootstrap&gt;(955): _find_and_load_unlocked
-  &lt;frozen importlib._bootstrap&gt;(971): _find_and_load
-<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>Abort trap: 6
-</code></pre></div><p>エラーの内容は次の通りです。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ ./sample
+</span></span><span style="display:flex;"><span>libc++abi.dylib: terminating with uncaught exception of type pybind11::error_already_set: RuntimeError: Python is not installed as a framework. The Mac OS X backend will not be able to function correctly if Python is not installed as a framework. See the Python documentation for more information on installing Python as a framework on Mac OS X. Please either reinstall Python as a framework, or try one of the other backends. If you are using (Ana)Conda please install python.app and replace the use of &#39;python&#39; with &#39;pythonw&#39;. See &#39;Working with Matplotlib on OSX&#39; in the Matplotlib FAQ for more information.
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>At:
+</span></span><span style="display:flex;"><span>  /usr/local/opt/python3/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/matplotlib/backends/backend_macosx.py(17): &lt;module&gt;
+</span></span><span style="display:flex;"><span>  &lt;frozen importlib._bootstrap&gt;(219): _call_with_frames_removed
+</span></span><span style="display:flex;"><span>  &lt;frozen importlib._bootstrap_external&gt;(678): exec_module
+</span></span><span style="display:flex;"><span>  &lt;frozen importlib._bootstrap&gt;(665): _load_unlocked
+</span></span><span style="display:flex;"><span>  &lt;frozen importlib._bootstrap&gt;(955): _find_and_load_unlocked
+</span></span><span style="display:flex;"><span>  &lt;frozen importlib._bootstrap&gt;(971): _find_and_load
+</span></span><span style="display:flex;"><span>  /usr/local/opt/python3/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/matplotlib/backends/__init__.py(60): pylab_setup
+</span></span><span style="display:flex;"><span>  /usr/local/opt/python3/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/matplotlib/pyplot.py(116): &lt;module&gt;
+</span></span><span style="display:flex;"><span>  &lt;frozen importlib._bootstrap&gt;(219): _call_with_frames_removed
+</span></span><span style="display:flex;"><span>  &lt;frozen importlib._bootstrap_external&gt;(678): exec_module
+</span></span><span style="display:flex;"><span>  &lt;frozen importlib._bootstrap&gt;(665): _load_unlocked
+</span></span><span style="display:flex;"><span>  &lt;frozen importlib._bootstrap&gt;(955): _find_and_load_unlocked
+</span></span><span style="display:flex;"><span>  &lt;frozen importlib._bootstrap&gt;(971): _find_and_load
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>Abort trap: 6
+</span></span></code></pre></div><p>エラーの内容は次の通りです。</p>
 <blockquote>
 <p>libc++abi.dylib:
 例外が捕捉されなかったため、プログラムを終了しました。
@@ -227,8 +227,8 @@ Python を Framework として再インストールするか、他のバック�
 Matplotlib FAQ の &lsquo;Working with Matplotlib on OSX&rsquo; で追加の情報を入手することができます。</p>
 </blockquote>
 <p>この場合は <code>~/.matplotlib/matplotlibrc</code> に</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext">backend: TkAgg
-</code></pre></div><p>と書くと正しく表示できます。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>backend: TkAgg
+</span></span></code></pre></div><p>と書くと正しく表示できます。
 しかし TkAgg と macosx では微妙に挙動が異なるため、macosx バックエンドを使う方法を調べてみました。</p>
 <h2 id="python-の-framework-ビルドについて">Python の Framework ビルドについて</h2>
 <p>Python の Framework ビルドとは <code>Python.framework</code> のことです。
@@ -249,27 +249,27 @@ If this argument is specified the build will create a Python.framework rather th
 <p>さらに、上の pybind11 の例では <code style="word-break: break-all;">/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib/libpython3.6m.dylib</code> にリンクしています。それではこのエラーは何なのでしょうか？</p>
 <h2 id="このエラーは誰が出力しているのか">このエラーは誰が出力しているのか</h2>
 <p>Framework ビルドかどうかのチェックは <code>_macosx.m</code> の <code>verify_framework</code> 関数で行われます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#if __MAC_OS_X_VERSION_MIN_REQUIRED &gt;= 1060
-</span><span style="color:#75715e">#define COMPILING_FOR_10_6
-</span><span style="color:#75715e">#endif
-</span></code></pre></div><p>なので、通常は <code>COMPILING_FOR_10_6</code> が定義されているはずです。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#if __MAC_OS_X_VERSION_MIN_REQUIRED &gt;= 1060
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define COMPILING_FOR_10_6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span></code></pre></div><p>なので、通常は <code>COMPILING_FOR_10_6</code> が定義されているはずです。
 この場合、<code>verify_framework</code> は</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objc" data-lang="objc"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">verify_framework</span>(<span style="color:#66d9ef">void</span>)
-{
-    NSAutoreleasePool<span style="color:#f92672">*</span> pool <span style="color:#f92672">=</span> [[NSAutoreleasePool alloc] init];
-    NSRunningApplication<span style="color:#f92672">*</span> app <span style="color:#f92672">=</span> [NSRunningApplication currentApplication];
-    NSApplicationActivationPolicy activationPolicy <span style="color:#f92672">=</span> [app activationPolicy];
-    [pool <span style="color:#66d9ef">release</span>];
-    <span style="color:#66d9ef">switch</span> (activationPolicy) {
-        <span style="color:#66d9ef">case</span> NSApplicationActivationPolicyRegular:
-        <span style="color:#66d9ef">case</span> NSApplicationActivationPolicyAccessory:
-            <span style="color:#66d9ef">return</span> true;
-        <span style="color:#66d9ef">case</span> NSApplicationActivationPolicyProhibited:
-            <span style="color:#66d9ef">break</span>;
-    }
-    <span style="color:#66d9ef">return</span> false;
-}
-</code></pre></div><p>というような処理を実行します。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-objc" data-lang="objc"><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">verify_framework</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    NSAutoreleasePool<span style="color:#f92672">*</span> pool <span style="color:#f92672">=</span> [[NSAutoreleasePool alloc] init];
+</span></span><span style="display:flex;"><span>    NSRunningApplication<span style="color:#f92672">*</span> app <span style="color:#f92672">=</span> [NSRunningApplication currentApplication];
+</span></span><span style="display:flex;"><span>    NSApplicationActivationPolicy activationPolicy <span style="color:#f92672">=</span> [app activationPolicy];
+</span></span><span style="display:flex;"><span>    [pool <span style="color:#66d9ef">release</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">switch</span> (activationPolicy) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> NSApplicationActivationPolicyRegular:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> NSApplicationActivationPolicyAccessory:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> true;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> NSApplicationActivationPolicyProhibited:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>というような処理を実行します。
 ここで確認しているのはアプリケーションのプロパティなので、
 エラーメッセージが言っているのは「Python を組み込みモードで使う場合は、ホストアプリケーションをバンドル形式で作成せよ」ということです。</p>
 <p>参考: <span style="word-break: break-all;"><a href="https://github.com/matplotlib/matplotlib/blob/v2.1.2/src/_macosx.m">https://github.com/matplotlib/matplotlib/blob/v2.1.2/src/_macosx.m</a></span></p>
@@ -305,35 +305,35 @@ If this argument is specified the build will create a Python.framework rather th
 </ol>
 <p>ここでは、activationPolicy を上書きする方法を紹介します。
 ソースコードは次の通り修正します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#import &lt;pybind11/embed.h&gt;
-</span><span style="color:#75715e">#import &lt;pybind11/pybind11.h&gt;
-</span><span style="color:#75715e">#import &lt;pybind11/stl.h&gt;
-</span><span style="color:#75715e">#import &lt;Cocoa/Cocoa.h&gt;
-</span><span style="color:#75715e">#import &lt;Foundation/Foundation.h&gt;
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">namespace</span> py <span style="color:#f92672">=</span> pybind11;
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-    [NSApplication sharedApplication].activationPolicy <span style="color:#f92672">=</span> NSApplicationActivationPolicyRegular;
-
-    py<span style="color:#f92672">::</span>scoped_interpreter interpreter;
-    py<span style="color:#f92672">::</span>module pyplot <span style="color:#f92672">=</span> py<span style="color:#f92672">::</span>module<span style="color:#f92672">::</span>import(<span style="color:#e6db74">&#34;matplotlib.pyplot&#34;</span>);
-    py<span style="color:#f92672">::</span>object plot <span style="color:#f92672">=</span> pyplot.attr(<span style="color:#e6db74">&#34;plot&#34;</span>);
-    py<span style="color:#f92672">::</span>object show <span style="color:#f92672">=</span> pyplot.attr(<span style="color:#e6db74">&#34;show&#34;</span>);
-    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span> v;
-    v.push_back(<span style="color:#ae81ff">1</span>);
-    v.push_back(<span style="color:#ae81ff">2</span>);
-    v.push_back(<span style="color:#ae81ff">3</span>);
-    v.push_back(<span style="color:#ae81ff">4</span>);
-    plot(v, <span style="color:#e6db74">&#34;o-&#34;</span>);
-    show();
-
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><p>次のオプションを使ってコンパイルします。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ clang sample.mm -std<span style="color:#f92672">=</span>c++14 -lc++ -lpython3.6m -framework AppKit -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -o sample
-</code></pre></div><p>これで macosx バックエンドを使うことができます。めでたし。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#import &lt;pybind11/embed.h&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#import &lt;pybind11/pybind11.h&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#import &lt;pybind11/stl.h&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#import &lt;Cocoa/Cocoa.h&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#import &lt;Foundation/Foundation.h&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> py <span style="color:#f92672">=</span> pybind11;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    [NSApplication sharedApplication].activationPolicy <span style="color:#f92672">=</span> NSApplicationActivationPolicyRegular;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    py<span style="color:#f92672">::</span>scoped_interpreter interpreter;
+</span></span><span style="display:flex;"><span>    py<span style="color:#f92672">::</span>module pyplot <span style="color:#f92672">=</span> py<span style="color:#f92672">::</span>module<span style="color:#f92672">::</span>import(<span style="color:#e6db74">&#34;matplotlib.pyplot&#34;</span>);
+</span></span><span style="display:flex;"><span>    py<span style="color:#f92672">::</span>object plot <span style="color:#f92672">=</span> pyplot.attr(<span style="color:#e6db74">&#34;plot&#34;</span>);
+</span></span><span style="display:flex;"><span>    py<span style="color:#f92672">::</span>object show <span style="color:#f92672">=</span> pyplot.attr(<span style="color:#e6db74">&#34;show&#34;</span>);
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span> v;
+</span></span><span style="display:flex;"><span>    v.push_back(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    v.push_back(<span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>    v.push_back(<span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>    v.push_back(<span style="color:#ae81ff">4</span>);
+</span></span><span style="display:flex;"><span>    plot(v, <span style="color:#e6db74">&#34;o-&#34;</span>);
+</span></span><span style="display:flex;"><span>    show();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>次のオプションを使ってコンパイルします。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ clang sample.mm -std<span style="color:#f92672">=</span>c++14 -lc++ -lpython3.6m -framework AppKit -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -o sample
+</span></span></code></pre></div><p>これで macosx バックエンドを使うことができます。めでたし。</p>
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 
@@ -150,80 +150,80 @@ if (!doNotTrack) {
   
 
   <div class="article-body"><p>pybind11 でキーワード引数 (kwargs) を指定するには、<code>pybind11::arg</code> を使います。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">namespace</span> py <span style="color:#f92672">=</span> pybind11;
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-    <span style="color:#75715e">// python インタプリタを起動する
-</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>scoped_interpreter interpreter;
-
-    <span style="color:#75715e">// numpy の各種オブジェクトを取得する
-</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>module numpy <span style="color:#f92672">=</span> pybind11<span style="color:#f92672">::</span>module<span style="color:#f92672">::</span>import(<span style="color:#e6db74">&#34;numpy&#34;</span>);
-    py<span style="color:#f92672">::</span>object zeros <span style="color:#f92672">=</span> numpy.attr(<span style="color:#e6db74">&#34;zeros&#34;</span>);
-    py<span style="color:#f92672">::</span>object float32 <span style="color:#f92672">=</span> numpy.attr(<span style="color:#e6db74">&#34;float32&#34;</span>);
-    py<span style="color:#f92672">::</span>object int32 <span style="color:#f92672">=</span> numpy.attr(<span style="color:#e6db74">&#34;int32&#34;</span>);
-
-    <span style="color:#75715e">// numpy.ndarray を作る
-</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>object f32_array <span style="color:#f92672">=</span> zeros(<span style="color:#ae81ff">10</span>, py<span style="color:#f92672">::</span>arg(<span style="color:#e6db74">&#34;dtype&#34;</span>) <span style="color:#f92672">=</span> float32);
-    py<span style="color:#f92672">::</span>object i32_array <span style="color:#f92672">=</span> zeros(<span style="color:#ae81ff">10</span>, py<span style="color:#f92672">::</span>arg(<span style="color:#e6db74">&#34;dtype&#34;</span>) <span style="color:#f92672">=</span> int32);
-
-    <span style="color:#75715e">// 配列の文字列表現を標準出力に書き出す
-</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>print(py<span style="color:#f92672">::</span>repr(f32_array));
-    py<span style="color:#f92672">::</span>print(py<span style="color:#f92672">::</span>repr(i32_array));
-
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
-$ clang sample.cpp -std<span style="color:#f92672">=</span>c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
-$ ./sample
-array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0.], dtype=float32)
-array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0], dtype=int32)
-</code></pre></div><p>また、可変長引数とキーワード引数を受け取る場合は <code>pybind11::args</code> と <code>pybind11::kwargs</code> を使います。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;utility&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">namespace</span> py <span style="color:#f92672">=</span> pybind11;
-<span style="color:#66d9ef">using</span> std<span style="color:#f92672">::</span>pair;
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">hello</span>(py<span style="color:#f92672">::</span>args args, py<span style="color:#f92672">::</span>kwargs kwargs)
-{
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> py<span style="color:#f92672">::</span>handle<span style="color:#f92672">&amp;</span> arg : args)
-    {
-        py<span style="color:#f92672">::</span>print(py<span style="color:#f92672">::</span>str(arg));
-    }
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> pair<span style="color:#f92672">&lt;</span>py<span style="color:#f92672">::</span>handle, py<span style="color:#f92672">::</span>handle<span style="color:#f92672">&gt;&amp;</span> kv : kwargs)
-    {
-        py<span style="color:#f92672">::</span>print(py<span style="color:#f92672">::</span>str(kv.first), <span style="color:#e6db74">&#34;=&#34;</span>, py<span style="color:#f92672">::</span>str(kv.second));
-    }
-}
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-    <span style="color:#75715e">// python インタプリタを起動する
-</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>scoped_interpreter interpreter;
-
-    <span style="color:#75715e">// main モジュール上に hello 関数を定義する
-</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>module main_module <span style="color:#f92672">=</span> py<span style="color:#f92672">::</span>module<span style="color:#f92672">::</span>import(<span style="color:#e6db74">&#34;__main__&#34;</span>);
-    main_module.def(<span style="color:#e6db74">&#34;hello&#34;</span>, <span style="color:#f92672">&amp;</span>hello);
-
-    <span style="color:#75715e">// python スクリプトから hello 関数を呼び出す
-</span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>object scope <span style="color:#f92672">=</span> main_module.attr(<span style="color:#e6db74">&#34;__dict__&#34;</span>);
-    py<span style="color:#f92672">::</span>exec(<span style="color:#e6db74">&#34;hello(&#39;hello&#39;, a = 1, b = 2, abc = 123)&#34;</span>, scope);
-
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
-$ clang sample.cpp -std<span style="color:#f92672">=</span>c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
-$ ./sample
-hello
-a = 1
-b = 2
-abc = 123
-</code></pre></div><p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> py <span style="color:#f92672">=</span> pybind11;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// python インタプリタを起動する
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>scoped_interpreter interpreter;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// numpy の各種オブジェクトを取得する
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>module numpy <span style="color:#f92672">=</span> pybind11<span style="color:#f92672">::</span>module<span style="color:#f92672">::</span>import(<span style="color:#e6db74">&#34;numpy&#34;</span>);
+</span></span><span style="display:flex;"><span>    py<span style="color:#f92672">::</span>object zeros <span style="color:#f92672">=</span> numpy.attr(<span style="color:#e6db74">&#34;zeros&#34;</span>);
+</span></span><span style="display:flex;"><span>    py<span style="color:#f92672">::</span>object float32 <span style="color:#f92672">=</span> numpy.attr(<span style="color:#e6db74">&#34;float32&#34;</span>);
+</span></span><span style="display:flex;"><span>    py<span style="color:#f92672">::</span>object int32 <span style="color:#f92672">=</span> numpy.attr(<span style="color:#e6db74">&#34;int32&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// numpy.ndarray を作る
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>object f32_array <span style="color:#f92672">=</span> zeros(<span style="color:#ae81ff">10</span>, py<span style="color:#f92672">::</span>arg(<span style="color:#e6db74">&#34;dtype&#34;</span>) <span style="color:#f92672">=</span> float32);
+</span></span><span style="display:flex;"><span>    py<span style="color:#f92672">::</span>object i32_array <span style="color:#f92672">=</span> zeros(<span style="color:#ae81ff">10</span>, py<span style="color:#f92672">::</span>arg(<span style="color:#e6db74">&#34;dtype&#34;</span>) <span style="color:#f92672">=</span> int32);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 配列の文字列表現を標準出力に書き出す
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>print(py<span style="color:#f92672">::</span>repr(f32_array));
+</span></span><span style="display:flex;"><span>    py<span style="color:#f92672">::</span>print(py<span style="color:#f92672">::</span>repr(i32_array));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
+</span></span><span style="display:flex;"><span>$ clang sample.cpp -std<span style="color:#f92672">=</span>c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
+</span></span><span style="display:flex;"><span>$ ./sample
+</span></span><span style="display:flex;"><span>array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0.], dtype=float32)
+</span></span><span style="display:flex;"><span>array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0], dtype=int32)
+</span></span></code></pre></div><p>また、可変長引数とキーワード引数を受け取る場合は <code>pybind11::args</code> と <code>pybind11::kwargs</code> を使います。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;utility&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> py <span style="color:#f92672">=</span> pybind11;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> std<span style="color:#f92672">::</span>pair;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">hello</span>(py<span style="color:#f92672">::</span>args args, py<span style="color:#f92672">::</span>kwargs kwargs)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> py<span style="color:#f92672">::</span>handle<span style="color:#f92672">&amp;</span> arg : args)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        py<span style="color:#f92672">::</span>print(py<span style="color:#f92672">::</span>str(arg));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> pair<span style="color:#f92672">&lt;</span>py<span style="color:#f92672">::</span>handle, py<span style="color:#f92672">::</span>handle<span style="color:#f92672">&gt;&amp;</span> kv : kwargs)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        py<span style="color:#f92672">::</span>print(py<span style="color:#f92672">::</span>str(kv.first), <span style="color:#e6db74">&#34;=&#34;</span>, py<span style="color:#f92672">::</span>str(kv.second));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// python インタプリタを起動する
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>scoped_interpreter interpreter;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// main モジュール上に hello 関数を定義する
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>module main_module <span style="color:#f92672">=</span> py<span style="color:#f92672">::</span>module<span style="color:#f92672">::</span>import(<span style="color:#e6db74">&#34;__main__&#34;</span>);
+</span></span><span style="display:flex;"><span>    main_module.def(<span style="color:#e6db74">&#34;hello&#34;</span>, <span style="color:#f92672">&amp;</span>hello);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// python スクリプトから hello 関数を呼び出す
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    py<span style="color:#f92672">::</span>object scope <span style="color:#f92672">=</span> main_module.attr(<span style="color:#e6db74">&#34;__dict__&#34;</span>);
+</span></span><span style="display:flex;"><span>    py<span style="color:#f92672">::</span>exec(<span style="color:#e6db74">&#34;hello(&#39;hello&#39;, a = 1, b = 2, abc = 123)&#34;</span>, scope);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
+</span></span><span style="display:flex;"><span>$ clang sample.cpp -std<span style="color:#f92672">=</span>c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
+</span></span><span style="display:flex;"><span>$ ./sample
+</span></span><span style="display:flex;"><span>hello
+</span></span><span style="display:flex;"><span>a = 1
+</span></span><span style="display:flex;"><span>b = 2
+</span></span><span style="display:flex;"><span>abc = 123
+</span></span></code></pre></div><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>

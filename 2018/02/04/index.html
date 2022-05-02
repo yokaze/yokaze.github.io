@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 
@@ -151,34 +151,34 @@ if (!doNotTrack) {
 
   <div class="article-body"><p>ディストリビューション（パッケージ）がインストールしたファイルの一覧は、インストール時に作成される <code>RECORD</code> ファイルに記録されています。</p>
 <p>はじめに、<code>pip show</code> コマンドでディストリビューションの位置を確認します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
-$ pip show Pillow
-Name: Pillow
-Version: 4.2.1
-Summary: Python Imaging Library (Fork)
-Home-page: https://python-pillow.org
-Author: Alex Clark (Fork Author)
-Author-email: aclark@aclark.net
-License: Standard PIL License
-Location: /Library/Python/2.7/site-packages
-Requires: olefile
-</code></pre></div><p><code>RECORD</code> ファイルはディストリビューションの <code>dist-info</code> フォルダにあります。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
-$ pwd
-/Library/Python/2.7/site-packages/Pillow-4.2.1.dist-info
-$ ls
-DESCRIPTION.rst	INSTALLER	METADATA	RECORD		WHEEL		metadata.json	top_level.txt	zip-safe
-</code></pre></div><p><code>RECORD</code> ファイルには、インストールディレクトリからの相対パス、sha256 ハッシュ、ファイルサイズが記録されています。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
+</span></span><span style="display:flex;"><span>$ pip show Pillow
+</span></span><span style="display:flex;"><span>Name: Pillow
+</span></span><span style="display:flex;"><span>Version: 4.2.1
+</span></span><span style="display:flex;"><span>Summary: Python Imaging Library (Fork)
+</span></span><span style="display:flex;"><span>Home-page: https://python-pillow.org
+</span></span><span style="display:flex;"><span>Author: Alex Clark (Fork Author)
+</span></span><span style="display:flex;"><span>Author-email: aclark@aclark.net
+</span></span><span style="display:flex;"><span>License: Standard PIL License
+</span></span><span style="display:flex;"><span>Location: /Library/Python/2.7/site-packages
+</span></span><span style="display:flex;"><span>Requires: olefile
+</span></span></code></pre></div><p><code>RECORD</code> ファイルはディストリビューションの <code>dist-info</code> フォルダにあります。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
+</span></span><span style="display:flex;"><span>$ pwd
+</span></span><span style="display:flex;"><span>/Library/Python/2.7/site-packages/Pillow-4.2.1.dist-info
+</span></span><span style="display:flex;"><span>$ ls
+</span></span><span style="display:flex;"><span>DESCRIPTION.rst	INSTALLER	METADATA	RECORD		WHEEL		metadata.json	top_level.txt	zip-safe
+</span></span></code></pre></div><p><code>RECORD</code> ファイルには、インストールディレクトリからの相対パス、sha256 ハッシュ、ファイルサイズが記録されています。
 各ファイルのハッシュ値を計算することで、ファイルが変更されていないか確認することができます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
-$ <span style="color:#75715e"># Pillow ディストリビューションがインストールしたファイルの一覧を表示</span>
-$
-$ cat RECORD
-PIL/__init__.py,sha256=t6lt8swQiV7BhuYXk_sOrl34QijmWJpPUbmYHVpVjZ8,1671
-PIL/_binary.py,sha256=d4Fm598vk15H9L6eYybEJ9nwXFMpq7bIOO5-6u4-IPA,1797
-  ...
-PIL/TiffTags.pyc,,
-</code></pre></div><p><code>RECORD</code> ファイル本体、<code>pyc</code> ファイルなどのハッシュ値、ファイルサイズは記録されません。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># Pillow ディストリビューションがインストールしたファイルの一覧を表示</span>
+</span></span><span style="display:flex;"><span>$
+</span></span><span style="display:flex;"><span>$ cat RECORD
+</span></span><span style="display:flex;"><span>PIL/__init__.py,sha256=t6lt8swQiV7BhuYXk_sOrl34QijmWJpPUbmYHVpVjZ8,1671
+</span></span><span style="display:flex;"><span>PIL/_binary.py,sha256=d4Fm598vk15H9L6eYybEJ9nwXFMpq7bIOO5-6u4-IPA,1797
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>PIL/TiffTags.pyc,,
+</span></span></code></pre></div><p><code>RECORD</code> ファイル本体、<code>pyc</code> ファイルなどのハッシュ値、ファイルサイズは記録されません。</p>
 <p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

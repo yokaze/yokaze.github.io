@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 
@@ -151,45 +151,45 @@ if (!doNotTrack) {
 
   <div class="article-body"><p>Python でインストール済みモジュールの動作を調べたい時は、<code>-m pdb</code> オプションに続けて <code>-m &lt;Module Name&gt;</code> を指定します。</p>
 <p>この機能は <a href="https://docs.python.org/3/library/pdb.html">Python 3.7 以降</a> で使えます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># Intel Mac + macOS Big Sur (11.2) + Python 3.8.2</span>
-$ python3 -m pdb -m pip list
-&gt; /Users/username/Library/Python/3.8/lib/python/site-packages/pip/__main__.py<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>&lt;module&gt;<span style="color:#f92672">()</span>
--&gt; import os
-</code></pre></div><h2 id="-m-オプションの意味">-m オプションの意味</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># Intel Mac + macOS Big Sur (11.2) + Python 3.8.2</span>
+</span></span><span style="display:flex;"><span>$ python3 -m pdb -m pip list
+</span></span><span style="display:flex;"><span>&gt; /Users/username/Library/Python/3.8/lib/python/site-packages/pip/__main__.py<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>&lt;module&gt;<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>-&gt; import os
+</span></span></code></pre></div><h2 id="-m-オプションの意味">-m オプションの意味</h2>
 <p><code>python -m</code> は、該当のモジュールを <code>sys.path</code> から探し、見つかったファイルをスクリプトとして直接実行するコマンドです。<br />
 <span style="word-break: break-all;">
 <a href="https://docs.python.jp/3/using/cmdline.html#cmdoption-m">https://docs.python.jp/3/using/cmdline.html#cmdoption-m</a>
 </span></p>
 <p>したがって、次のコードはどちらも同じ動作になります。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ python3 -m pip list
-$ python3 /Users/username/Library/Python/3.8/lib/python/site-packages/pip/__main__.py list
-</code></pre></div><h2 id="モジュールの探し方">モジュールの探し方</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ python3 -m pip list
+</span></span><span style="display:flex;"><span>$ python3 /Users/username/Library/Python/3.8/lib/python/site-packages/pip/__main__.py list
+</span></span></code></pre></div><h2 id="モジュールの探し方">モジュールの探し方</h2>
 <p><code>pip</code> などでインストールしたモジュールであれば <code>pip show</code> が使えます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ python3 -m pip show pip
-Name: pip
-Version: 21.0.1
-Summary: The PyPA recommended tool for installing Python packages.
-Home-page: https://pip.pypa.io/
-Author: The pip developers
-Author-email: distutils-sig@python.org
-License: MIT
-Location: /Users/username/Library/Python/3.8/lib/python/site-packages
-Requires:
-Required-by:
-</code></pre></div><p>また、モジュールの <code>__file__</code> 属性を調べることもできます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ python3
-&gt;&gt;&gt; import pip
-&gt;&gt;&gt; pip.__file__
-&#39;/Users/username/Library/Python/3.8/lib/python/site-packages/pip/__init__.py&#39;
-</code></pre></div><h2 id="pudb-を使う">PuDB を使う</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ python3 -m pip show pip
+</span></span><span style="display:flex;"><span>Name: pip
+</span></span><span style="display:flex;"><span>Version: 21.0.1
+</span></span><span style="display:flex;"><span>Summary: The PyPA recommended tool for installing Python packages.
+</span></span><span style="display:flex;"><span>Home-page: https://pip.pypa.io/
+</span></span><span style="display:flex;"><span>Author: The pip developers
+</span></span><span style="display:flex;"><span>Author-email: distutils-sig@python.org
+</span></span><span style="display:flex;"><span>License: MIT
+</span></span><span style="display:flex;"><span>Location: /Users/username/Library/Python/3.8/lib/python/site-packages
+</span></span><span style="display:flex;"><span>Requires:
+</span></span><span style="display:flex;"><span>Required-by:
+</span></span></code></pre></div><p>また、モジュールの <code>__file__</code> 属性を調べることもできます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ python3
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt; import pip
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt; pip.__file__
+</span></span><span style="display:flex;"><span>&#39;/Users/username/Library/Python/3.8/lib/python/site-packages/pip/__init__.py&#39;
+</span></span></code></pre></div><h2 id="pudb-を使う">PuDB を使う</h2>
 <p><a href="https://github.com/inducer/pudb">PuDB</a> を使うとインタラクティブな CUI デバッガを起動することができます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># Intel Mac + macOS Big Sur (11.2) + Python 3.8.2 + PuDB 2020.1</span>
-$ <span style="color:#75715e"># pudb をインストール</span>
-$ python3 -m pip install pudb
-<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>$ <span style="color:#75715e"># pdb のかわりに pudb を使う</span>
-$ python3 -m pudb -m pip list
-</code></pre></div><p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># Intel Mac + macOS Big Sur (11.2) + Python 3.8.2 + PuDB 2020.1</span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#75715e"># pudb をインストール</span>
+</span></span><span style="display:flex;"><span>$ python3 -m pip install pudb
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>$ <span style="color:#75715e"># pdb のかわりに pudb を使う</span>
+</span></span><span style="display:flex;"><span>$ python3 -m pudb -m pip list
+</span></span></code></pre></div><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>

@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 
@@ -150,25 +150,25 @@ if (!doNotTrack) {
   
 
   <div class="article-body"><p>TensorFlow 2.0 の <code>Variable</code> を <code>ndarray</code> に変換するには <code>tensorflow.Variable.numpy()</code> を使います。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> tensorflow
-
-x <span style="color:#f92672">=</span> tensorflow<span style="color:#f92672">.</span>Variable(tensorflow<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>uniform([<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">4</span>]))
-print(x)
-
-y <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>numpy()
-print(y)
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># macOS Mojave (10.14) + TensorFlow 2.0.0b1</span>
-$ python3 sample.py
-&lt;tf.Variable &#39;Variable:0&#39; shape=(4, 4) dtype=float32, numpy=
-array([[0.4963708 , 0.5265337 , 0.645676  , 0.36317182],
-       [0.88785803, 0.6770747 , 0.34829807, 0.7676312 ],
-       [0.64356697, 0.1472162 , 0.6687521 , 0.6949041 ],
-       [0.9588698 , 0.0772624 , 0.69979465, 0.9192028 ]], dtype=float32)&gt;
-[[0.4963708  0.5265337  0.645676   0.36317182]
- [0.88785803 0.6770747  0.34829807 0.7676312 ]
- [0.64356697 0.1472162  0.6687521  0.6949041 ]
- [0.9588698  0.0772624  0.69979465 0.9192028 ]]
-</code></pre></div><p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> tensorflow
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> tensorflow<span style="color:#f92672">.</span>Variable(tensorflow<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>uniform([<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">4</span>]))
+</span></span><span style="display:flex;"><span>print(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>numpy()
+</span></span><span style="display:flex;"><span>print(y)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Mojave (10.14) + TensorFlow 2.0.0b1</span>
+</span></span><span style="display:flex;"><span>$ python3 sample.py
+</span></span><span style="display:flex;"><span>&lt;tf.Variable &#39;Variable:0&#39; shape=(4, 4) dtype=float32, numpy=
+</span></span><span style="display:flex;"><span>array([[0.4963708 , 0.5265337 , 0.645676  , 0.36317182],
+</span></span><span style="display:flex;"><span>       [0.88785803, 0.6770747 , 0.34829807, 0.7676312 ],
+</span></span><span style="display:flex;"><span>       [0.64356697, 0.1472162 , 0.6687521 , 0.6949041 ],
+</span></span><span style="display:flex;"><span>       [0.9588698 , 0.0772624 , 0.69979465, 0.9192028 ]], dtype=float32)&gt;
+</span></span><span style="display:flex;"><span>[[0.4963708  0.5265337  0.645676   0.36317182]
+</span></span><span style="display:flex;"><span> [0.88785803 0.6770747  0.34829807 0.7676312 ]
+</span></span><span style="display:flex;"><span> [0.64356697 0.1472162  0.6687521  0.6949041 ]
+</span></span><span style="display:flex;"><span> [0.9588698  0.0772624  0.69979465 0.9192028 ]]
+</span></span></code></pre></div><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>

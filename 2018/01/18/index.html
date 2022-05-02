@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 
@@ -150,40 +150,40 @@ if (!doNotTrack) {
   
 
   <div class="article-body"><p>clang で負のビットシフトを警告するには、<code>-Wshift-count-negative</code> オプションを指定します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-    <span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>;
-    <span style="color:#66d9ef">int</span> y <span style="color:#f92672">=</span> x <span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, y);
-
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><p>負の値を指定してビットシフトを行った場合の動作は未定義です。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> y <span style="color:#f92672">=</span> x <span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, y);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>負の値を指定してビットシフトを行った場合の動作は未定義です。
 したがって、意図しない演算結果となることがあります。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
-$ clang sample.cpp -o sample -Wshift-count-negative
-sample.cpp:6:15: warning: shift count is negative [-Wshift-count-negative]
-    int y = x &lt;&lt; -1;
-              ^  ~~
-1 warning generated.
-<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>$ ./sample
-8
-</code></pre></div><p><code>-Wshift-count-negative</code> は <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wshift-count-negative">デフォルトで有効になっている</a> ため、警告は自動的に表示されます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
-$ clang sample.cpp
-sample.cpp:6:15: warning: shift count is negative [-Wshift-count-negative]
-    int y = x &lt;&lt; -1;
-              ^  ~~
-1 warning generated.
-</code></pre></div><h2 id="警告を抑制する">警告を抑制する</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+</span></span><span style="display:flex;"><span>$ clang sample.cpp -o sample -Wshift-count-negative
+</span></span><span style="display:flex;"><span>sample.cpp:6:15: warning: shift count is negative [-Wshift-count-negative]
+</span></span><span style="display:flex;"><span>    int y = x &lt;&lt; -1;
+</span></span><span style="display:flex;"><span>              ^  ~~
+</span></span><span style="display:flex;"><span>1 warning generated.
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>$ ./sample
+</span></span><span style="display:flex;"><span>8
+</span></span></code></pre></div><p><code>-Wshift-count-negative</code> は <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wshift-count-negative">デフォルトで有効になっている</a> ため、警告は自動的に表示されます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+</span></span><span style="display:flex;"><span>$ clang sample.cpp
+</span></span><span style="display:flex;"><span>sample.cpp:6:15: warning: shift count is negative [-Wshift-count-negative]
+</span></span><span style="display:flex;"><span>    int y = x &lt;&lt; -1;
+</span></span><span style="display:flex;"><span>              ^  ~~
+</span></span><span style="display:flex;"><span>1 warning generated.
+</span></span></code></pre></div><h2 id="警告を抑制する">警告を抑制する</h2>
 <p>逆に、警告を抑制したい場合は <code>-Wno-shift-count-negative</code> を指定します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
-$ clang sample.cpp -Wno-shift-count-negative
-$
-</code></pre></div><p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+</span></span><span style="display:flex;"><span>$ clang sample.cpp -Wno-shift-count-negative
+</span></span><span style="display:flex;"><span>$
+</span></span></code></pre></div><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>

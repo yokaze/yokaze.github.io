@@ -5,7 +5,7 @@
 <meta http-equiv="content-language" content="ja">
 <meta name="pinterest" content="nopin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.95.0" />
 
 
 
@@ -150,49 +150,49 @@ if (!doNotTrack) {
   
 
   <div class="article-body"><p>clang でマクロの再定義を警告するには、<code>-Wmacro-redefined</code> オプションを指定します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#define MY_DEFINE   111
-</span><span style="color:#75715e">#define MY_DEFINE   222
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
-{
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
-$ clang sample.cpp -Wmacro-redefined
-sample.cpp:2:9: warning: &#39;MY_DEFINE&#39; macro redefined [-Wmacro-redefined]
-#define MY_DEFINE   <span style="color:#ae81ff">222</span>
-        ^
-sample.cpp:1:9: note: previous definition is here
-#define MY_DEFINE   <span style="color:#ae81ff">111</span>
-        ^
-1 warning generated.
-</code></pre></div><p><code>-Wmacro-redefined</code> は <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wmacro-redefined">デフォルトで有効になっている</a> ため、警告は自動的に表示されます。<br />
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#define MY_DEFINE   111
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define MY_DEFINE   222
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+</span></span><span style="display:flex;"><span>$ clang sample.cpp -Wmacro-redefined
+</span></span><span style="display:flex;"><span>sample.cpp:2:9: warning: &#39;MY_DEFINE&#39; macro redefined [-Wmacro-redefined]
+</span></span><span style="display:flex;"><span>#define MY_DEFINE   <span style="color:#ae81ff">222</span>
+</span></span><span style="display:flex;"><span>        ^
+</span></span><span style="display:flex;"><span>sample.cpp:1:9: note: previous definition is here
+</span></span><span style="display:flex;"><span>#define MY_DEFINE   <span style="color:#ae81ff">111</span>
+</span></span><span style="display:flex;"><span>        ^
+</span></span><span style="display:flex;"><span>1 warning generated.
+</span></span></code></pre></div><p><code>-Wmacro-redefined</code> は <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wmacro-redefined">デフォルトで有効になっている</a> ため、警告は自動的に表示されます。<br />
 Xcode などの開発環境の設定によって、<code>-Wmacro-redefined</code> を個別に設定しなければならない場合もあります。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
-$ clang sample.cpp
-sample.cpp:2:9: warning: &#39;MY_DEFINE&#39; macro redefined [-Wmacro-redefined]
-#define MY_DEFINE   <span style="color:#ae81ff">222</span>
-        ^
-sample.cpp:1:9: note: previous definition is here
-#define MY_DEFINE   <span style="color:#ae81ff">111</span>
-        ^
-1 warning generated.
-</code></pre></div><h2 id="警告を抑制する">警告を抑制する</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+</span></span><span style="display:flex;"><span>$ clang sample.cpp
+</span></span><span style="display:flex;"><span>sample.cpp:2:9: warning: &#39;MY_DEFINE&#39; macro redefined [-Wmacro-redefined]
+</span></span><span style="display:flex;"><span>#define MY_DEFINE   <span style="color:#ae81ff">222</span>
+</span></span><span style="display:flex;"><span>        ^
+</span></span><span style="display:flex;"><span>sample.cpp:1:9: note: previous definition is here
+</span></span><span style="display:flex;"><span>#define MY_DEFINE   <span style="color:#ae81ff">111</span>
+</span></span><span style="display:flex;"><span>        ^
+</span></span><span style="display:flex;"><span>1 warning generated.
+</span></span></code></pre></div><h2 id="警告を抑制する">警告を抑制する</h2>
 <p>逆に、警告を抑制したい場合は <code>-Wno-macro-redefined</code> を指定します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
-$ clang sample.cpp -Wno-macro-redefined
-$
-</code></pre></div><h2 id="gcc-のオプション">gcc のオプション</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+</span></span><span style="display:flex;"><span>$ clang sample.cpp -Wno-macro-redefined
+</span></span><span style="display:flex;"><span>$
+</span></span></code></pre></div><h2 id="gcc-のオプション">gcc のオプション</h2>
 <p><code>-Wmacro-redefined</code> は gcc でも使うことができます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ <span style="color:#75715e"># M1 Mac (Monterey) + gcc 11.2.0</span>
-$ gcc-11 sample.cpp
-$sample.cpp:2: warning: <span style="color:#e6db74">&#34;MY_DEFINE&#34;</span> redefined
-    2 | #define MY_DEFINE   222
-      | 
-sample.cpp:1: note: this is the location of the previous definition
-    1 | #define MY_DEFINE   111
-      |
-</code></pre></div><p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + gcc 11.2.0</span>
+</span></span><span style="display:flex;"><span>$ gcc-11 sample.cpp
+</span></span><span style="display:flex;"><span>$sample.cpp:2: warning: <span style="color:#e6db74">&#34;MY_DEFINE&#34;</span> redefined
+</span></span><span style="display:flex;"><span>    2 | #define MY_DEFINE   222
+</span></span><span style="display:flex;"><span>      | 
+</span></span><span style="display:flex;"><span>sample.cpp:1: note: this is the location of the previous definition
+</span></span><span style="display:flex;"><span>    1 | #define MY_DEFINE   111
+</span></span><span style="display:flex;"><span>      |
+</span></span></code></pre></div><p>
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
