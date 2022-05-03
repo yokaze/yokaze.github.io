@@ -167,7 +167,7 @@
       <pubDate>Mon, 05 Feb 2018 22:36:44 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2018/02/05/</guid>
-      <description>pybind11 は Homebrew, pip3, Anaconda のいずれかの方法でインストールできます。 Homebrew でインストール Homebrew は mac 環境の汎用パッケージマネージャーです。 Homebrew を使って pybind11 をインストールする</description>
+      <description>pybind11 は Homebrew や pip などの方法でインストールできます。 Homebrew でインストール Homebrew は mac 環境の汎用パッケージマネージャーです。 Homebrew を使って pybind11 をインストールするには、</description>
     </item>
     
     <item>
