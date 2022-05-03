@@ -311,7 +311,7 @@
       <pubDate>Sat, 23 Sep 2017 10:00:00 +0900</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/23/</guid>
-      <description>Ubuntu 環境にはデフォルトで入っている PIL (Pillow) ですが、mac にはプリインストールされていないため別途インストールが必要です。 $ # Intel Mac + macOS Big Sur (11.2) + Python 3.8.2 +</description>
+      <description>Ubuntu 環境にはデフォルトで入っている PIL (Pillow) ですが、mac にはプリインストールされていないため別途インストールが必要です。 $ # M1 Mac (Monterey) + Python 3.8.9 + pip 22.0.4 $ python3</description>
     </item>
     
     <item>
