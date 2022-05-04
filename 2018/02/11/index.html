@@ -12,19 +12,19 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
     <title>pybind11 で C&#43;&#43; から Python インタプリタを実行する - yokaze.github.io</title>
-    <meta name="description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;#34;Hello, world!&amp;#34;); return 0; } コンパイルには Python.h が必要です。 端末上に複数">
+    <meta name="description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動できます。 sample.cpp #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;#34;Hello, world!&amp;#34;); return 0; } pybind11 を使ったプログラムをコンパイルするには、pyb">
     <meta property="og:title" content="pybind11 で C&#43;&#43; から Python インタプリタを実行する - yokaze.github.io">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://yokaze.github.io/2018/02/11/">
     <meta property="og:image" content="https://yokaze.github.io/images/default.png">
     <meta property="og:site_name" content="yokaze.github.io">
-    <meta property="og:description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;#34;Hello, world!&amp;#34;); return 0; } コンパイルには Python.h が必要です。 端末上に複数">
+    <meta property="og:description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動できます。 sample.cpp #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;#34;Hello, world!&amp;#34;); return 0; } pybind11 を使ったプログラムをコンパイルするには、pyb">
     <meta property="og:locale" content="ja_JP">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="yokaze.github.io">
     <meta name="twitter:url" content="https://yokaze.github.io/2018/02/11/">
     <meta name="twitter:title" content="pybind11 で C&#43;&#43; から Python インタプリタを実行する - yokaze.github.io">
-    <meta name="twitter:description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;#34;Hello, world!&amp;#34;); return 0; } コンパイルには Python.h が必要です。 端末上に複数">
+    <meta name="twitter:description" content="pybind11 の pybind11::scoped_interpreter を使うと、C&#43;&#43; から Python インタプリタを起動できます。 sample.cpp #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;#34;Hello, world!&amp;#34;); return 0; } pybind11 を使ったプログラムをコンパイルするには、pyb">
     <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
     <script type="application/ld+json">
         {
@@ -42,7 +42,7 @@
                 "width": 800
             },
             "datePublished": "2018-02-11T00:00:00JST",
-            "dateModified": "2019-07-13T00:00:00JST",
+            "dateModified": "2022-05-04T00:00:00JST",
             "author": {
                 "@type": "Person",
                 "name": "yokaze.github.io"
@@ -57,7 +57,7 @@
                     "height": 60
                 }
             },
-            "description": "pybind11 の pybind11::scoped_interpreter を使うと、C\u002b\u002b から Python インタプリタを起動することができます。 #include \u0026lt;pybind11\/embed.h\u0026gt;#include \u0026lt;pybind11\/pybind11.h\u0026gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(\u0026#34;Hello, world!\u0026#34;); return 0; } コンパイルには Python.h が必要です。 端末上に複数"
+            "description": "pybind11 の pybind11::scoped_interpreter を使うと、C\u002b\u002b から Python インタプリタを起動できます。 sample.cpp #include \u0026lt;pybind11\/embed.h\u0026gt;#include \u0026lt;pybind11\/pybind11.h\u0026gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(\u0026#34;Hello, world!\u0026#34;); return 0; } pybind11 を使ったプログラムをコンパイルするには、pyb"
         }
 
     </script>
@@ -112,13 +112,14 @@
                     <article class="single">
                         <header>
                             <ul class="p-facts">
-                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-07-13T00:00:00JST">Jul 13, 2019</time></li>
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2022-05-04T00:00:00JST">May 4, 2022</time></li>
                                 <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
                             </ul>
                             <h1 class="title">pybind11 で C&#43;&#43; から Python インタプリタを実行する</h1>
                         </header>
                         <div class="article-body">
-                            <p>pybind11 の <code>pybind11::scoped_interpreter</code> を使うと、C++ から Python インタプリタを起動することができます。</p>
+                            <p>pybind11 の <code>pybind11::scoped_interpreter</code> を使うと、C++ から Python インタプリタを起動できます。</p>
+                            <p><code>sample.cpp</code></p>
                             <div class="highlight">
                                 <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
@@ -134,15 +135,20 @@
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre>
                             </div>
-                            <p>コンパイルには <code>Python.h</code> が必要です。 端末上に複数の Python 環境がある場合は、リンクする Python のバージョンに合ったヘッダファイルを使う必要があります。 次の例では、Homebrew でインストールした Python 3.6 にリンクしています。</p>
+                            <p>pybind11 を使ったプログラムをコンパイルするには、pybind11 が提供するヘッダファイルの他に <code>Python.h</code> が必要です。 <code>Python.h</code> はリンクする Python のバージョンに合わせる必要があります。</p>
+                            <p>次の例では、Mac にプリインストールされている Python にリンクしています。</p>
                             <div class="highlight">
-                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Mojave (10.14) + Homebrew</span>
-</span></span><span style="display:flex;"><span>$ clang sample.cpp -std<span style="color:#f92672">=</span>c++11 -I/usr/local/Cellar/python/3.7.4/Frameworks/Python.framework/Versions/3.7/include/python3.7m -L/usr/local/Cellar/python/3.7.4/Frameworks/Python.framework/Versions/3.7/lib -lc++ -lpython3.7m -o sample
-</span></span><span style="display:flex;"><span>$ ./sample
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Python 3.8.9 + pybind11 2.9.2 (Homebrew)</span>
+</span></span><span style="display:flex;"><span>$ clang sample.cpp -std<span style="color:#f92672">=</span>c++20 -lc++ -lpython3.8 -rpath /Library/Developer/CommandLineTools/Library/Frameworks -I/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/Headers -I/opt/homebrew/Cellar/pybind11/2.9.2/include -L/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib -o sample
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>$ ./sample
 </span></span><span style="display:flex;"><span>Hello, world!
 </span></span></code></pre>
                             </div>
-                            <p>pybind11 の動作に影響するため、<code>Py_Initialize</code> と <code>Py_Finalize</code> を直接使うことはできません。</p>
+                            <p><code>Python.h</code> の場所は OS やインストール方法によって異なります。</p>
+                            <p>また、pybind11 の場所もインストール方法に依存します。 詳細は <a href="/2018/02/05">mac に pybind11 をインストールする</a> を参照してください。</p>
+                            <h2 id="注意点">注意点</h2>
+                            <p>pybind11 の動作に影響するため、<code>Py_Initialize</code> と <code>Py_Finalize</code> を直接使うことはできません。 pybind11 が提供する <code>scoped_interpreter</code> を使う必要があります。</p>
                             <blockquote>
                                 <p>Do not use the raw CPython API functions Py_Initialize and Py_Finalize as these do not properly handle the lifetime of pybind11’s internal data.</p>
                                 <br /> 引用: Embedding the interpreter &mdash; pybind11 documentation<br />
@@ -165,6 +171,13 @@
                                     <p>Embedding the interpreter — pybind11 documentation<br />
                                         <span style="word-break: break-all;">
                                             <a href="https://pybind11.readthedocs.io/en/stable/advanced/embedding.html">https://pybind11.readthedocs.io/en/stable/advanced/embedding.html</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>mac に pybind11 をインストールする<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="http://yokaze.github.io/2018/02/05/">http://yokaze.github.io/2018/02/05/</a>
                                         </span>
                                     </p>
                                 </li>
@@ -192,7 +205,7 @@
                                 <div class="panel-title">RELATED POSTS</div>
                             </div>
                             <div class="list-group">
-                                <a href="https://yokaze.github.io/2018/09/18/" class="list-group-item">pybind11 で print 文を使う</a>
+                                <a href="https://yokaze.github.io/2018/09/18/" class="list-group-item">pybind11 で Python の print 文を使う</a>
                                 <a href="https://yokaze.github.io/2018/03/08/" class="list-group-item">pybind11 でキーワード引数 (kwargs) を使う</a>
                                 <a href="https://yokaze.github.io/2018/03/05/" class="list-group-item">pybind11 で main モジュール上に関数を定義する</a>
                                 <a href="https://yokaze.github.io/2018/02/24/" class="list-group-item">pybind11 上の matplotlib で macosx バックエンドを使う</a>

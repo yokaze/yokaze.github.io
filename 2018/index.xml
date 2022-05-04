@@ -81,12 +81,12 @@
     </item>
     
     <item>
-      <title>pybind11 で print 文を使う</title>
+      <title>pybind11 で Python の print 文を使う</title>
       <link>https://yokaze.github.io/2018/09/18/</link>
       <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/09/18/</guid>
-      <description>pybind11 でオブジェクトの値を表示するには、pybind11::print を使います。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&amp;#34;sys&amp;#34;); py::print(sys_module); return 0; } $ # macOS High Sierra (10.13) $ clang sample.cpp -std=c++11 -lc++</description>
+      <description>pybind11 の pybind11::print 文を使うと、C++ のプログラム上で Python のオブジェクトの値を表示できます。 sample.cpp #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&amp;#34;sys&amp;#34;); py::print(sys_module); return 0; } $ # M1 Mac (Monterey) + Python 3.8.9 + pybind11 2.9.2</description>
     </item>
     
     <item>
@@ -158,7 +158,7 @@
       <pubDate>Sun, 11 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/02/11/</guid>
-      <description>pybind11 の pybind11::scoped_interpreter を使うと、C++ から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;#34;Hello, world!&amp;#34;); return 0; } コンパイルには Python.h が必要です。 端末上に複数</description>
+      <description>pybind11 の pybind11::scoped_interpreter を使うと、C++ から Python インタプリタを起動できます。 sample.cpp #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;#34;Hello, world!&amp;#34;); return 0; } pybind11 を使ったプログラムをコンパイルするには、pyb</description>
     </item>
     
     <item>

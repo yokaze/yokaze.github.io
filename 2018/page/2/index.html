@@ -164,7 +164,7 @@
                                     </ul>
                                     <h2 class="title"><a href="https://yokaze.github.io/2018/02/11/">pybind11 で C&#43;&#43; から Python インタプリタを実行する</a></h2>
                                 </header>
-                                <div class="summary">pybind11 の pybind11::scoped_interpreter を使うと、C++ から Python インタプリタを起動することができます。 #include &lt;pybind11/embed.h&gt;#include &lt;pybind11/pybind11.h&gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&#34;Hello, world!&#34;); return 0; } コンパイルには Python.h が必要です。 端末上に複数</div>
+                                <div class="summary">pybind11 の pybind11::scoped_interpreter を使うと、C++ から Python インタプリタを起動できます。 sample.cpp #include &lt;pybind11/embed.h&gt;#include &lt;pybind11/pybind11.h&gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&#34;Hello, world!&#34;); return 0; } pybind11 を使ったプログラムをコンパイルするには、pyb</div>
                                 <footer>
                                     <a href="https://yokaze.github.io/2018/02/11/" title="pybind11 で C&#43;&#43; から Python インタプリタを実行する">Read More…</a>
                                 </footer>

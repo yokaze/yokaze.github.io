@@ -84,11 +84,11 @@
                                         <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-09-18T00:00:00JST">Sep 18, 2018</time></li>
                                         <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
                                     </ul>
-                                    <h2 class="title"><a href="https://yokaze.github.io/2018/09/18/">pybind11 で print 文を使う</a></h2>
+                                    <h2 class="title"><a href="https://yokaze.github.io/2018/09/18/">pybind11 で Python の print 文を使う</a></h2>
                                 </header>
-                                <div class="summary">pybind11 でオブジェクトの値を表示するには、pybind11::print を使います。 #include &lt;pybind11/embed.h&gt;#include &lt;pybind11/pybind11.h&gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&#34;sys&#34;); py::print(sys_module); return 0; } $ # macOS High Sierra (10.13) $ clang sample.cpp -std=c++11 -lc++</div>
+                                <div class="summary">pybind11 の pybind11::print 文を使うと、C++ のプログラム上で Python のオブジェクトの値を表示できます。 sample.cpp #include &lt;pybind11/embed.h&gt;#include &lt;pybind11/pybind11.h&gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&#34;sys&#34;); py::print(sys_module); return 0; } $ # M1 Mac (Monterey) + Python 3.8.9 + pybind11 2.9.2</div>
                                 <footer>
-                                    <a href="https://yokaze.github.io/2018/09/18/" title="pybind11 で print 文を使う">Read More…</a>
+                                    <a href="https://yokaze.github.io/2018/09/18/" title="pybind11 で Python の print 文を使う">Read More…</a>
                                 </footer>
                             </article>
                         </li>
@@ -206,7 +206,7 @@
                                     </ul>
                                     <h2 class="title"><a href="https://yokaze.github.io/2018/02/11/">pybind11 で C&#43;&#43; から Python インタプリタを実行する</a></h2>
                                 </header>
-                                <div class="summary">pybind11 の pybind11::scoped_interpreter を使うと、C++ から Python インタプリタを起動することができます。 #include &lt;pybind11/embed.h&gt;#include &lt;pybind11/pybind11.h&gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&#34;Hello, world!&#34;); return 0; } コンパイルには Python.h が必要です。 端末上に複数</div>
+                                <div class="summary">pybind11 の pybind11::scoped_interpreter を使うと、C++ から Python インタプリタを起動できます。 sample.cpp #include &lt;pybind11/embed.h&gt;#include &lt;pybind11/pybind11.h&gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&#34;Hello, world!&#34;); return 0; } pybind11 を使ったプログラムをコンパイルするには、pyb</div>
                                 <footer>
                                     <a href="https://yokaze.github.io/2018/02/11/" title="pybind11 で C&#43;&#43; から Python インタプリタを実行する">Read More…</a>
                                 </footer>

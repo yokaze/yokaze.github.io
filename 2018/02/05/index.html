@@ -132,7 +132,10 @@
 </span></span><span style="display:flex;"><span>🍺  /opt/homebrew/Cellar/pybind11/2.9.2: 192 files, 3.0MB
 </span></span></code></pre>
                             </div>
-                            <p>pybind11 は <code>/opt/homebrew/Cellar/pybind11</code> にインストールされます。</p>
+                            <p>pybind11 は <code>/opt/homebrew/Cellar/pybind11</code> にインストールされます。 インストール済みのバージョンは</p>
+                            <pre tabindex="0"><code>$ brew info pybind11 --json | jq -r &#39;.[0].installed[0].version&#39;
+</code></pre>
+                            <p>で確認できます。</p>
                             <h2 id="pip-でインストール">pip でインストール</h2>
                             <p>pybind11 は Python のディストリビューション（パッケージ）としてもインストールできます。</p>
                             <div class="highlight">
@@ -147,7 +150,7 @@
 </span></span><span style="display:flex;"><span>Successfully installed pybind11-2.9.2
 </span></span></code></pre>
                             </div>
-                            <p>pybind11 は <code>/Users/username/Library/Python/3.8/lib/python/site-packages/pybind11</code> にインストールされます。</p>
+                            <p>pybind11 は <code>/Users/username/Library/Python/3.8/lib/python/site-packages/pybind11</code> にインストールされます。 インストール済みのバージョンは <code>python3 -m pip show pybind11</code> で確認できます。</p>
                             <h2 id="その他の方法">その他の方法</h2>
                             <p>pybind11 は他にもいくつかの方法でインストールできます。 詳細は <a href="https://pybind11.readthedocs.io/en/latest/installing.html">公式マニュアル</a> を確認してください。</p>
                             <p>
@@ -167,6 +170,13 @@
                                     <p>Installing the library — pybind11 documentation<br />
                                         <span style="word-break: break-all;">
                                             <a href="https://pybind11.readthedocs.io/en/latest/installing.html">https://pybind11.readthedocs.io/en/latest/installing.html</a>
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>jq Manual<br />
+                                        <span style="word-break: break-all;">
+                                            <a href="https://stedolan.github.io/jq/manual/">https://stedolan.github.io/jq/manual/</a>
                                         </span>
                                     </p>
                                 </li>
@@ -194,7 +204,7 @@
                                 <div class="panel-title">RELATED POSTS</div>
                             </div>
                             <div class="list-group">
-                                <a href="https://yokaze.github.io/2018/09/18/" class="list-group-item">pybind11 で print 文を使う</a>
+                                <a href="https://yokaze.github.io/2018/09/18/" class="list-group-item">pybind11 で Python の print 文を使う</a>
                                 <a href="https://yokaze.github.io/2018/03/08/" class="list-group-item">pybind11 でキーワード引数 (kwargs) を使う</a>
                                 <a href="https://yokaze.github.io/2018/03/05/" class="list-group-item">pybind11 で main モジュール上に関数を定義する</a>
                                 <a href="https://yokaze.github.io/2018/02/24/" class="list-group-item">pybind11 上の matplotlib で macosx バックエンドを使う</a>

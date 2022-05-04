@@ -11,20 +11,20 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
-    <title>pybind11 で print 文を使う - yokaze.github.io</title>
-    <meta name="description" content="pybind11 でオブジェクトの値を表示するには、pybind11::print を使います。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&amp;#34;sys&amp;#34;); py::print(sys_module); return 0; } $ # macOS High Sierra (10.13) $ clang sample.cpp -std=c&#43;&#43;11 -lc&#43;&#43;">
-    <meta property="og:title" content="pybind11 で print 文を使う - yokaze.github.io">
+    <title>pybind11 で Python の print 文を使う - yokaze.github.io</title>
+    <meta name="description" content="pybind11 の pybind11::print 文を使うと、C&#43;&#43; のプログラム上で Python のオブジェクトの値を表示できます。 sample.cpp #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&amp;#34;sys&amp;#34;); py::print(sys_module); return 0; } $ # M1 Mac (Monterey) &#43; Python 3.8.9 &#43; pybind11 2.9.2">
+    <meta property="og:title" content="pybind11 で Python の print 文を使う - yokaze.github.io">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://yokaze.github.io/2018/09/18/">
     <meta property="og:image" content="https://yokaze.github.io/images/default.png">
     <meta property="og:site_name" content="yokaze.github.io">
-    <meta property="og:description" content="pybind11 でオブジェクトの値を表示するには、pybind11::print を使います。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&amp;#34;sys&amp;#34;); py::print(sys_module); return 0; } $ # macOS High Sierra (10.13) $ clang sample.cpp -std=c&#43;&#43;11 -lc&#43;&#43;">
+    <meta property="og:description" content="pybind11 の pybind11::print 文を使うと、C&#43;&#43; のプログラム上で Python のオブジェクトの値を表示できます。 sample.cpp #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&amp;#34;sys&amp;#34;); py::print(sys_module); return 0; } $ # M1 Mac (Monterey) &#43; Python 3.8.9 &#43; pybind11 2.9.2">
     <meta property="og:locale" content="ja_JP">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="yokaze.github.io">
     <meta name="twitter:url" content="https://yokaze.github.io/2018/09/18/">
-    <meta name="twitter:title" content="pybind11 で print 文を使う - yokaze.github.io">
-    <meta name="twitter:description" content="pybind11 でオブジェクトの値を表示するには、pybind11::print を使います。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&amp;#34;sys&amp;#34;); py::print(sys_module); return 0; } $ # macOS High Sierra (10.13) $ clang sample.cpp -std=c&#43;&#43;11 -lc&#43;&#43;">
+    <meta name="twitter:title" content="pybind11 で Python の print 文を使う - yokaze.github.io">
+    <meta name="twitter:description" content="pybind11 の pybind11::print 文を使うと、C&#43;&#43; のプログラム上で Python のオブジェクトの値を表示できます。 sample.cpp #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&amp;#34;sys&amp;#34;); py::print(sys_module); return 0; } $ # M1 Mac (Monterey) &#43; Python 3.8.9 &#43; pybind11 2.9.2">
     <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
     <script type="application/ld+json">
         {
@@ -34,7 +34,7 @@
                 "@type": "WebPage",
                 "@id": "https:\/\/yokaze.github.io\/"
             },
-            "headline": "pybind11 で print 文を使う - yokaze.github.io",
+            "headline": "pybind11 で Python の print 文を使う - yokaze.github.io",
             "image": {
                 "@type": "ImageObject",
                 "url": "https:\/\/yokaze.github.io\/images\/default.png",
@@ -42,7 +42,7 @@
                 "width": 800
             },
             "datePublished": "2018-09-18T00:00:00JST",
-            "dateModified": "2018-09-18T00:00:00JST",
+            "dateModified": "2022-05-04T00:00:00JST",
             "author": {
                 "@type": "Person",
                 "name": "yokaze.github.io"
@@ -57,7 +57,7 @@
                     "height": 60
                 }
             },
-            "description": "pybind11 でオブジェクトの値を表示するには、pybind11::print を使います。 #include \u0026lt;pybind11\/embed.h\u0026gt;#include \u0026lt;pybind11\/pybind11.h\u0026gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(\u0026#34;sys\u0026#34;); py::print(sys_module); return 0; } $ # macOS High Sierra (10.13) $ clang sample.cpp -std=c\u002b\u002b11 -lc\u002b\u002b"
+            "description": "pybind11 の pybind11::print 文を使うと、C\u002b\u002b のプログラム上で Python のオブジェクトの値を表示できます。 sample.cpp #include \u0026lt;pybind11\/embed.h\u0026gt;#include \u0026lt;pybind11\/pybind11.h\u0026gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(\u0026#34;sys\u0026#34;); py::print(sys_module); return 0; } $ # M1 Mac (Monterey) \u002b Python 3.8.9 \u002b pybind11 2.9.2"
         }
 
     </script>
@@ -112,13 +112,14 @@
                     <article class="single">
                         <header>
                             <ul class="p-facts">
-                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-09-18T00:00:00JST">Sep 18, 2018</time></li>
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2022-05-04T00:00:00JST">May 4, 2022</time></li>
                                 <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
                             </ul>
-                            <h1 class="title">pybind11 で print 文を使う</h1>
+                            <h1 class="title">pybind11 で Python の print 文を使う</h1>
                         </header>
                         <div class="article-body">
-                            <p>pybind11 でオブジェクトの値を表示するには、<code>pybind11::print</code> を使います。</p>
+                            <p>pybind11 の <code>pybind11::print</code> 文を使うと、C++ のプログラム上で Python のオブジェクトの値を表示できます。</p>
+                            <p><code>sample.cpp</code></p>
                             <div class="highlight">
                                 <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
@@ -135,12 +136,14 @@
 </span></span></code></pre>
                             </div>
                             <div class="highlight">
-                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS High Sierra (10.13)</span>
-</span></span><span style="display:flex;"><span>$ clang sample.cpp -std<span style="color:#f92672">=</span>c++11 -lc++ -lpython3.7m -I/usr/local/Cellar/python3/3.7.0/Frameworks/Python.framework/Versions/3.7/include/python3.7m -L/usr/local/Cellar/python3/3.7.0/Frameworks/Python.framework/Versions/3.7/lib -o sample
-</span></span><span style="display:flex;"><span>$ ./sample
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Python 3.8.9 + pybind11 2.9.2 (Homebrew)</span>
+</span></span><span style="display:flex;"><span>$ clang sample.cpp -std<span style="color:#f92672">=</span>c++20 -lc++ -lpython3.8 -rpath /Library/Developer/CommandLineTools/Library/Frameworks -I/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/Headers -I/opt/homebrew/Cellar/pybind11/2.9.2/include -L/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib -o sample
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>$ ./sample
 </span></span><span style="display:flex;"><span>&lt;module &#39;sys&#39; (built-in)&gt;
 </span></span></code></pre>
                             </div>
+                            <p><code>scoped_interpreter</code> の使い方と、必要なヘッダファイルの詳細は <a href="/2018/02/11">pybind11 で C++ から Python インタプリタを実行する</a> を参照してください。</p>
                             <p>
                                 <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
                                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -162,7 +165,7 @@
                                     </p>
                                 </li>
                                 <li>
-                                    <p>Using Python’s print function in C++ — pybind11 2.2.1 documentation<br />
+                                    <p>Using Python’s print function in C++ — pybind11 documentation<br />
                                         <span style="word-break: break-all;">
                                             <a href="https://pybind11.readthedocs.io/en/stable/advanced/pycpp/utilities.html">https://pybind11.readthedocs.io/en/stable/advanced/pycpp/utilities.html</a>
                                         </span>
