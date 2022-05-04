@@ -42,7 +42,7 @@
                 "width": 800
             },
             "datePublished": "2018-03-05T00:00:00JST",
-            "dateModified": "2018-03-05T00:00:00JST",
+            "dateModified": "2022-05-05T00:00:00JST",
             "author": {
                 "@type": "Person",
                 "name": "yokaze.github.io"
@@ -112,13 +112,14 @@
                     <article class="single">
                         <header>
                             <ul class="p-facts">
-                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-03-05T00:00:00JST">Mar 5, 2018</time></li>
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2022-05-05T00:00:00JST">May 5, 2022</time></li>
                                 <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
                             </ul>
                             <h1 class="title">pybind11 で main モジュール上に関数を定義する</h1>
                         </header>
                         <div class="article-body">
                             <p>pybind11 で main モジュール上に関数を定義するには、<code>pybind11::module::def</code> 関数を使います。 次の例では、C++ で定義した <code>hello</code> 関数を Python スクリプトから呼び出しています。</p>
+                            <p><code>sample.cpp</code></p>
                             <div class="highlight">
                                 <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/embed.h&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pybind11/pybind11.h&gt;</span><span style="color:#75715e">
@@ -148,12 +149,14 @@
 </span></span></code></pre>
                             </div>
                             <div class="highlight">
-                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># macOS Sierra (10.12)</span>
-</span></span><span style="display:flex;"><span>$ clang sample.cpp -std<span style="color:#f92672">=</span>c++11 -I/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/include/python3.6m -L/usr/local/Cellar/python3/3.6.4_2/Frameworks/Python.framework/Versions/3.6/lib -lc++ -lpython3.6m -o sample
-</span></span><span style="display:flex;"><span>$ ./sample
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Python 3.8.9 + pybind11 2.9.2 (Homebrew)</span>
+</span></span><span style="display:flex;"><span>$ clang sample.cpp -std<span style="color:#f92672">=</span>c++20 -lc++ -lpython3.8 -rpath /Library/Developer/CommandLineTools/Library/Frameworks -I/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/Headers -I/opt/homebrew/Cellar/pybind11/2.9.2/include -L/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib -o sample
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>$ ./sample
 </span></span><span style="display:flex;"><span>Hello, world!
 </span></span></code></pre>
                             </div>
+                            <p><code>scoped_interpreter</code> の使い方と、必要なヘッダファイルの詳細は <a href="/2018/02/11">pybind11 で C++ から Python インタプリタを実行する</a> を参照してください。</p>
                             <p>
                                 <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-lang="ja" data-show-count="false">Tweet</a>
                                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -168,7 +171,7 @@
                                     </p>
                                 </li>
                                 <li>
-                                    <p>Functions — pybind11 2.2.1 documentation<br />
+                                    <p>Functions — pybind11 documentation<br />
                                         <span style="word-break: break-all;">
                                             <a href="http://pybind11.readthedocs.io/en/stable/advanced/functions.html">http://pybind11.readthedocs.io/en/stable/advanced/functions.html</a>
                                         </span>
