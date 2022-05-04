@@ -38,7 +38,7 @@
     <item>
       <title>lldb で関数の呼び出し履歴を表示する</title>
       <link>https://yokaze.github.io/2019/07/05/</link>
-      <pubDate>Fri, 05 Jul 2019 18:00:00 +0900</pubDate>
+      <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2019/07/05/</guid>
       <description>lldb で関数の呼び出し履歴（バックトレース）を表示するには、bt コマンドを使います。 #include &amp;lt;stdio.h&amp;gt; void sample1() { printf(&amp;#34;sample 1\n&amp;#34;); } void sample2() { sample1(); } void sample3() { sample2(); } int main(void) { sample3(); return 0; } $ # Intel Mac +</description>
@@ -47,7 +47,7 @@
     <item>
       <title>clang でソースコードが依存するヘッダー一覧を表示する</title>
       <link>https://yokaze.github.io/2019/07/04/</link>
-      <pubDate>Thu, 04 Jul 2019 21:00:00 +0900</pubDate>
+      <pubDate>Thu, 04 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2019/07/04/</guid>
       <description>ソースコードが依存するヘッダー一覧を表示するには、-MD オプションを使います。 sample.h #pragma once #include &amp;lt;algorithm&amp;gt;sample.cpp #include &amp;#34;sample.h&amp;#34; int main(void) { printf(&amp;#34;%d\n&amp;#34;, std::min&amp;lt;int&amp;gt;(1, 2)); return 0; } -MF オプションで出力先を指定でき</description>
@@ -65,7 +65,7 @@
     <item>
       <title>CMake &#43; Visual Studio でモジュール定義ファイル (.def) を使う</title>
       <link>https://yokaze.github.io/2018/10/13/</link>
-      <pubDate>Sat, 13 Oct 2018 12:00:00 +0900</pubDate>
+      <pubDate>Sat, 13 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/10/13/</guid>
       <description>CMake でモジュール定義ファイルを使う場合は、.def ファイルをソースコードと同時に指定します。 #include &amp;lt;stdio.h&amp;gt; extern &amp;#34;C&amp;#34; void hello() { printf(&amp;#34;Hello\n&amp;#34;); } エクスポートの設定がない場合、関</description>
@@ -74,7 +74,7 @@
     <item>
       <title>CMake &#43; Visual Studio で特定の警告を無視する</title>
       <link>https://yokaze.github.io/2018/10/11/</link>
-      <pubDate>Thu, 11 Oct 2018 18:00:00 +0900</pubDate>
+      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/10/11/</guid>
       <description>CMake と Visual Studio を併用する際、特定の警告を無視するには /wd オプションを指定します。 次の例では、通常 x の初期化に関する警告が出力されます。 #include &amp;lt;stdio.h&amp;gt; int main(void) { int x;</description>
@@ -83,7 +83,7 @@
     <item>
       <title>lldb の source info コマンドの使い方</title>
       <link>https://yokaze.github.io/2018/10/04/</link>
-      <pubDate>Thu, 04 Oct 2018 15:00:00 +0900</pubDate>
+      <pubDate>Thu, 04 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/10/04/</guid>
       <description>source info コマンドを使うとデバッグ中のプロセスに関するソースコードの情報を取得することができます。 ここでは、次のソースコードを例として source info コマンド</description>
@@ -92,7 +92,7 @@
     <item>
       <title>clang で初期化されていない変数を使った場合に警告を出す (-Wuninitialized)</title>
       <link>https://yokaze.github.io/2018/09/26/</link>
-      <pubDate>Wed, 26 Sep 2018 18:00:00 +0900</pubDate>
+      <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/09/26/</guid>
       <description>clang で初期化されていない変数を使った場合に警告を出すには、-Wuninitialized オプションを指定します。 // Program 1 #include &amp;lt;stdio.h&amp;gt; int main(void) { int x; printf(&amp;#34;%d\n&amp;#34;, x); return 0; }</description>
@@ -101,7 +101,7 @@
     <item>
       <title>lldb のコマンドのオプションを読み解く</title>
       <link>https://yokaze.github.io/2018/09/25/</link>
-      <pubDate>Tue, 25 Sep 2018 21:00:00 +0900</pubDate>
+      <pubDate>Tue, 25 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/09/25/</guid>
       <description>lldb のコマンドのヘルプを確認すると、複数の構文が表示されることがあります。 次の例では、ソースコードの情報を取得する source info コマンドについて3つの構</description>
@@ -110,7 +110,7 @@
     <item>
       <title>pybind11 で print 文を使う</title>
       <link>https://yokaze.github.io/2018/09/18/</link>
-      <pubDate>Tue, 18 Sep 2018 18:00:00 +0900</pubDate>
+      <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/09/18/</guid>
       <description>pybind11 でオブジェクトの値を表示するには、pybind11::print を使います。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&amp;#34;sys&amp;#34;); py::print(sys_module); return 0; } $ # macOS High Sierra (10.13) $ clang sample.cpp -std=c++11 -lc++</description>
@@ -128,7 +128,7 @@
     <item>
       <title>pyscience11 で C&#43;&#43; から SciPy と Matplotlib を使う</title>
       <link>https://yokaze.github.io/2018/04/12/</link>
-      <pubDate>Thu, 12 Apr 2018 18:00:00 +0900</pubDate>
+      <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/04/12/</guid>
       <description>私事ですが、GitHub で pyscience11 というライブラリを公開しています。 このライブラリは Header-Only で、C++ から NumPy, SciPy, Matplotlib を手軽に使うことができます。 動作には pybind11 が</description>
@@ -137,7 +137,7 @@
     <item>
       <title>pybind11 でキーワード引数 (kwargs) を使う</title>
       <link>https://yokaze.github.io/2018/03/08/</link>
-      <pubDate>Thu, 08 Mar 2018 21:00:00 +0900</pubDate>
+      <pubDate>Thu, 08 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/03/08/</guid>
       <description>pybind11 でキーワード引数 (kwargs) を指定するには、pybind11::arg を使います。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { // python インタプリタを起動する py::scoped_interpreter interpreter; // numpy の各種オブジ</description>
@@ -146,7 +146,7 @@
     <item>
       <title>pybind11 で main モジュール上に関数を定義する</title>
       <link>https://yokaze.github.io/2018/03/05/</link>
-      <pubDate>Mon, 05 Mar 2018 21:00:00 +0900</pubDate>
+      <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/03/05/</guid>
       <description>pybind11 で main モジュール上に関数を定義するには、pybind11::module::def 関数を使います。 次の例では、C++ で定義した hello 関数を Python スク</description>
@@ -155,7 +155,7 @@
     <item>
       <title>二重ポインタの const 早見表</title>
       <link>https://yokaze.github.io/2018/02/28/</link>
-      <pubDate>Wed, 28 Feb 2018 20:00:00 +0900</pubDate>
+      <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/02/28/</guid>
       <description>多重ポインタの const の付け方をまとめました。 まずは普通のポインタから。 int main() { const int* x = new int(0); // ポインタの指す内容を書き換えることができない int* const y = new</description>
@@ -164,7 +164,7 @@
     <item>
       <title>pybind11 上の matplotlib で macosx バックエンドを使う</title>
       <link>https://yokaze.github.io/2018/02/24/</link>
-      <pubDate>Sat, 24 Feb 2018 12:00:00 +0900</pubDate>
+      <pubDate>Sat, 24 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/02/24/</guid>
       <description>macOS 上で matplotlib を立ち上げると、Python is not installed as a framework というエラーが出ることがあります。 この問題は（環境によるのかもしれませんが）以下の方法で再現</description>
@@ -173,7 +173,7 @@
     <item>
       <title>mac に xtensor をインストールする</title>
       <link>https://yokaze.github.io/2018/02/12/</link>
-      <pubDate>Mon, 12 Feb 2018 20:30:00 +0900</pubDate>
+      <pubDate>Mon, 12 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/02/12/</guid>
       <description>xtensor は C++ で多次元配列を扱うためのライブラリです。 このライブラリは Homebrew または Anaconda を使ってインストールすることができます。 Homebrew でインストール Homebrew は mac 環境の</description>
@@ -182,7 +182,7 @@
     <item>
       <title>pybind11 で C&#43;&#43; から Python インタプリタを実行する</title>
       <link>https://yokaze.github.io/2018/02/11/</link>
-      <pubDate>Sun, 11 Feb 2018 11:30:00 +0900</pubDate>
+      <pubDate>Sun, 11 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/02/11/</guid>
       <description>pybind11 の pybind11::scoped_interpreter を使うと、C++ から Python インタプリタを起動することができます。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&amp;#34;Hello, world!&amp;#34;); return 0; } コンパイルには Python.h が必要です。 端末上に複数</description>
@@ -191,7 +191,7 @@
     <item>
       <title>mac に pybind11 をインストールする</title>
       <link>https://yokaze.github.io/2018/02/05/</link>
-      <pubDate>Mon, 05 Feb 2018 22:36:44 +0900</pubDate>
+      <pubDate>Mon, 05 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/02/05/</guid>
       <description>pybind11 は Homebrew や pip などの方法でインストールできます。 Homebrew でインストール Homebrew は mac 環境の汎用パッケージマネージャーです。 Homebrew を使って pybind11 をインストールするには、</description>
@@ -200,7 +200,7 @@
     <item>
       <title>pip のディストリビューションがインストールしたファイルの一覧を表示する</title>
       <link>https://yokaze.github.io/2018/02/04/</link>
-      <pubDate>Sun, 04 Feb 2018 21:39:56 +0900</pubDate>
+      <pubDate>Sun, 04 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/02/04/</guid>
       <description>ディストリビューション（パッケージ）がインストールしたファイルの一覧は、インストール時に作成される RECORD ファイルに記録されています。 はじめに、p</description>
@@ -263,7 +263,7 @@
     <item>
       <title>lldb で使えるコマンド一覧</title>
       <link>https://yokaze.github.io/2018/01/06/</link>
-      <pubDate>Sat, 06 Jan 2018 14:01:24 +0900</pubDate>
+      <pubDate>Sat, 06 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/01/06/</guid>
       <description>lldb で入力できるコマンドをまとめました。 lldb のコマンド一覧（英語）は help コマンドで表示できます。 日本語訳は新規に書き起こしました。 $ # macOS Sierra (10.12) + Homebrew $</description>
@@ -272,7 +272,7 @@
     <item>
       <title>carthage 本体を更新する</title>
       <link>https://yokaze.github.io/2017/10/23/</link>
-      <pubDate>Mon, 23 Oct 2017 19:43:11 +0900</pubDate>
+      <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/10/23/</guid>
       <description>はじめに、Homebrew をアップデートします。 $ # macOS Sierra (10.12) + Homebrew $ brew update carthage の更新があるかどうかを確認します。 brew outdated で表示される場合、パッケージが更</description>
@@ -290,7 +290,7 @@
     <item>
       <title>flake8 で hacking の警告を一時的に無効にする</title>
       <link>https://yokaze.github.io/2017/10/04/</link>
-      <pubDate>Wed, 04 Oct 2017 18:17:33 +0900</pubDate>
+      <pubDate>Wed, 04 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/10/04/</guid>
       <description>Python 向け Lint ツール flake8 のプラグインとして使える hacking ですが、警告がかなり厳しいため一時的に無効にしたいことがあります。 $ # flake8, hacking をインストール $ pip install flake8 $</description>
@@ -299,7 +299,7 @@
     <item>
       <title>pipdeptree を Python 2 と Python 3 に同時にインストールする</title>
       <link>https://yokaze.github.io/2017/10/02/</link>
-      <pubDate>Mon, 02 Oct 2017 21:09:47 +0900</pubDate>
+      <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/10/02/</guid>
       <description>pipdeptree を使うと、pip でインストールしたパッケージの依存関係を調べることができます。 $ # macOS Sierra (10.12) + Homebrew $ $ # Python2 用のソフトウェアをインストール $ pip install pipdeptree</description>
@@ -308,7 +308,7 @@
     <item>
       <title>mac で PIL (Python Imaging Library) を使う</title>
       <link>https://yokaze.github.io/2017/09/23/</link>
-      <pubDate>Sat, 23 Sep 2017 10:00:00 +0900</pubDate>
+      <pubDate>Sat, 23 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/23/</guid>
       <description>Ubuntu 環境にはデフォルトで入っている PIL (Pillow) ですが、mac にはプリインストールされていないため別途インストールが必要です。 $ # M1 Mac (Monterey) + Python 3.8.9 + pip 22.0.4 $ python3</description>
@@ -326,7 +326,7 @@
     <item>
       <title>Python でインストール済みモジュールをデバッグする</title>
       <link>https://yokaze.github.io/2017/09/19/</link>
-      <pubDate>Tue, 19 Sep 2017 21:30:00 +0900</pubDate>
+      <pubDate>Tue, 19 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/19/</guid>
       <description>Python でインストール済みモジュールの動作を調べたい時は、-m pdb オプションに続けて -m &amp;lt;Module Name&amp;gt; を指定します。 この機能は Python 3.7 以降 で使えます。 $ # Intel Mac + macOS Big</description>
@@ -335,7 +335,7 @@
     <item>
       <title>Homebrew で python3 用の Boost.Python をインストールする</title>
       <link>https://yokaze.github.io/2017/09/15/</link>
-      <pubDate>Fri, 15 Sep 2017 18:34:38 +0900</pubDate>
+      <pubDate>Fri, 15 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/15/</guid>
       <description>$ brew install boost-python --with-python3 なのだが、すこしハマりどころがある。 brew install boost-python のオプション brew install にはオプションを指定できる場合がある。 boost-python の場合は --with-python3 オプションが使える。 brew</description>
@@ -344,7 +344,7 @@
     <item>
       <title>boost::indices の解説</title>
       <link>https://yokaze.github.io/2017/09/13/</link>
-      <pubDate>Wed, 13 Sep 2017 23:00:13 +0900</pubDate>
+      <pubDate>Wed, 13 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/13/</guid>
       <description>前回 の続きです。 boost::indices は、boost::multi_array の部分ビューを作るためのオブジェクトです。 部分ビューでは、元の配列の一部を仮想的な</description>
@@ -353,7 +353,7 @@
     <item>
       <title>boost::extents の解説</title>
       <link>https://yokaze.github.io/2017/09/11/</link>
-      <pubDate>Mon, 11 Sep 2017 21:57:00 +0900</pubDate>
+      <pubDate>Mon, 11 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/11/</guid>
       <description>boost::extents は、boost::multi_array の各次元の有効なインデックス範囲を指定するためのオブジェクトです。 #include &amp;lt;boost/multi_array.hpp&amp;gt; int main() { boost::multi_array&amp;lt;float, 2&amp;gt; arr(boost::extents[10][20]); return 0; } また、ex</description>
@@ -362,7 +362,7 @@
     <item>
       <title>pycodestyle (pep8) で E501 line too long を無視する方法</title>
       <link>https://yokaze.github.io/2017/09/08/</link>
-      <pubDate>Fri, 08 Sep 2017 20:07:56 +0900</pubDate>
+      <pubDate>Fri, 08 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/08/</guid>
       <description>Python の標準コーディング規約 &amp;ldquo;PEP 8&amp;rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pycodesty</description>
@@ -371,7 +371,7 @@
     <item>
       <title>ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法</title>
       <link>https://yokaze.github.io/2017/09/07/</link>
-      <pubDate>Thu, 07 Sep 2017 18:27:23 +0900</pubDate>
+      <pubDate>Thu, 07 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/07/</guid>
       <description>bind, baseURL オプションを指定して hugo server を起動する。 $ # Intel Mac + macOS Big Sur (11.2) + Hugo 0.81.0 $ hugo server --bind=&amp;#34;0.0.0.0&amp;#34; --baseURL=&amp;#34;http://[HOSTNAME]/&amp;#34; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドする</description>
@@ -380,7 +380,7 @@
     <item>
       <title>Boost.MultiArray の添字演算子について</title>
       <link>https://yokaze.github.io/2017/08/18/</link>
-      <pubDate>Fri, 18 Aug 2017 18:30:00 +0900</pubDate>
+      <pubDate>Fri, 18 Aug 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/08/18/</guid>
       <description>Boost.MultiArray が添え字の境界チェックをしているのかよく分からなかったので、調べてみた。 リファレンスには次のように書かれている。 By default, the array access methods operator() and operator[] perform range checking. If</description>

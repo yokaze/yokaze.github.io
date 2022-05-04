@@ -7,11 +7,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Thu, 12 Sep 2019 21:00:00 +0900</lastBuildDate><atom:link href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Sep 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://yokaze.github.io/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Sliced Wasserstein GMM を実装してみた</title>
       <link>https://yokaze.github.io/2019/09/12/</link>
-      <pubDate>Thu, 12 Sep 2019 21:00:00 +0900</pubDate>
+      <pubDate>Thu, 12 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2019/09/12/</guid>
       <description>最近話題の Sliced Wasserstein Distance (SWD) [Deshpande 2018, Deshpande 2019] を理解するため、 Kolouri らの Sliced Wasserstein Distance for Learning Gaussian Mixture Models (SWGMM) を実装しました。 以前の記事で Wasserstein 距離の解説 を書いたので、こちらも是非ご参照く</description>
@@ -20,7 +20,7 @@
     <item>
       <title>TensorFlow 2.0 で混合ガウス分布 (GMM) を推定する</title>
       <link>https://yokaze.github.io/2019/08/30/</link>
-      <pubDate>Fri, 30 Aug 2019 21:00:00 +0900</pubDate>
+      <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2019/08/30/</guid>
       <description>TensorFlow 2.0 の練習を兼ねて、混合ガウス分布 (GMM) を実装しました。 ページの末尾 に EM, Adam, RMSprop の比較アニメーションを載せています。 問題設定 GMM は実数値の観測データ $X</description>
@@ -29,7 +29,7 @@
     <item>
       <title>線形位相空間の原点の近傍が併呑集合であることを証明する</title>
       <link>https://yokaze.github.io/2019/08/23/</link>
-      <pubDate>Fri, 23 Aug 2019 21:00:00 +0900</pubDate>
+      <pubDate>Fri, 23 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2019/08/23/</guid>
       <description>基本的な事柄ですが、証明が見つからなかったので勉強を兼ねて証明してみます。 補題 線形位相空間 (topological vector space, tvs) $X$ において、実数 $a$ と $X$ の任意の元 $x$ の積 $ax$ は</description>
@@ -38,7 +38,7 @@
     <item>
       <title>TensorFlow 2.0 で非負値行列因子分解 (NMF) を解く</title>
       <link>https://yokaze.github.io/2019/08/12/</link>
-      <pubDate>Mon, 12 Aug 2019 15:00:00 +0900</pubDate>
+      <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2019/08/12/</guid>
       <description>TensorFlow 2.0 の練習を兼ねて、非負値行列因子分解 (NMF) を実装しました。 問題設定 NMF は非負値行列 $X \in \mathbb{R}^{T \times F}$ を二つの低ランク行列の積 $WH$ で近似するアルゴリズムで、</description>
@@ -47,7 +47,7 @@
     <item>
       <title>TensorFlow 2.0 で Variable を ndarray に変換する</title>
       <link>https://yokaze.github.io/2019/08/07/</link>
-      <pubDate>Wed, 07 Aug 2019 18:00:00 +0900</pubDate>
+      <pubDate>Wed, 07 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2019/08/07/</guid>
       <description>TensorFlow 2.0 の Variable を ndarray に変換するには tensorflow.Variable.numpy() を使います。 import tensorflow x = tensorflow.Variable(tensorflow.random.uniform([4, 4])) print(x) y = x.numpy() print(y) $ # macOS Mojave (10.14) + TensorFlow 2.0.0b1 $ python3 sample.py &amp;lt;tf.Variable &amp;#39;Variable:0&amp;#39; shape=(4, 4) dtype=float32, numpy= array([[0.4963708 , 0.5265337 , 0.645676 , 0.36317182], [0.88785803, 0.6770747 , 0.34829807, 0.7676312 ], [0.64356697, 0.1472162 , 0.6687521 , 0.6949041 ], [0.9588698 ,</description>
@@ -56,7 +56,7 @@
     <item>
       <title>Monge-Kantorovich の問題を SciPy で解く</title>
       <link>https://yokaze.github.io/2019/07/13/</link>
-      <pubDate>Sat, 13 Jul 2019 18:00:00 +0900</pubDate>
+      <pubDate>Sat, 13 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2019/07/13/</guid>
       <description>Wasserstein GAN に出てくる最適輸送問題を SciPy で解いてみます。 問題の説明は前回の記事をご覧ください。 問題設定 2つの生産地 A1, A2 から3つの消費地 B1, B2, B3 へ物資を輸</description>
@@ -65,7 +65,7 @@
     <item>
       <title>Wasserstein 計量が距離関数になることを証明する</title>
       <link>https://yokaze.github.io/2019/07/12/</link>
-      <pubDate>Fri, 12 Jul 2019 18:00:00 +0900</pubDate>
+      <pubDate>Fri, 12 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2019/07/12/</guid>
       <description>ここでは Wasserstein 計量を最適輸送コストから計算し、この計量が距離の定義（補足 1）を満たすことを証明します。 また、Wasserstein 計量が元の空間</description>
@@ -74,7 +74,7 @@
     <item>
       <title>論文紹介: Feature Learning for Chord Recognition: The Deep Chroma Extractor</title>
       <link>https://yokaze.github.io/2018/01/13/</link>
-      <pubDate>Sat, 13 Jan 2018 20:14:37 +0900</pubDate>
+      <pubDate>Sat, 13 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/01/13/</guid>
       <description>ISMIR 2016 で発表された、Deep Learning による和音認識の研究論文を読みました。 論文のモチベーション 著者らはまず、和音認識のレビュー論文 [M. McVicar et. al., 2014] を紹介し</description>
@@ -83,7 +83,7 @@
     <item>
       <title>論文紹介: Music Emotion Recognition: A State of the Art Review</title>
       <link>https://yokaze.github.io/2018/01/04/</link>
-      <pubDate>Thu, 04 Jan 2018 22:14:22 +0900</pubDate>
+      <pubDate>Thu, 04 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/01/04/</guid>
       <description>表題のとおり、音楽感情認識のレビュー論文を読みました。 日本語の資料が少ないので、分かったことを簡単にまとめたいと思います。 章立て この論文は次</description>
@@ -92,7 +92,7 @@
     <item>
       <title>機械学習で役立つ数学参考書のリスト</title>
       <link>https://yokaze.github.io/2017/10/13/</link>
-      <pubDate>Fri, 13 Oct 2017 19:07:00 +0900</pubDate>
+      <pubDate>Fri, 13 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/10/13/</guid>
       <description>普段お世話になっている教科書をまとめてみました。 パターン認識と機械学習 誰もが知っている機械学習の総合教科書です。 基本的な事柄が網羅されていて</description>
@@ -101,7 +101,7 @@
     <item>
       <title>EM アルゴリズム</title>
       <link>https://yokaze.github.io/2017/10/11/</link>
-      <pubDate>Wed, 11 Oct 2017 21:32:04 +0900</pubDate>
+      <pubDate>Wed, 11 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/10/11/</guid>
       <description>混合ガウス分布の Expectation-Maximization (EM) アルゴリズムとは、尤度 $$ p(X|\pi, \mu, \lambda) = \prod_{n = 1}^N \sum_{k = 1}^K \pi_k \mathcal{N}(x_n | \mu_k, \lambda_k^{-1}) $$ をなるべく大きくするようなパラメータの組 $(\pi, \mu, \lambda)$ を計算するアルゴリ</description>
@@ -110,7 +110,7 @@
     <item>
       <title>mac に最新の NumPy (SciPy) をインストールする</title>
       <link>https://yokaze.github.io/2017/09/27/</link>
-      <pubDate>Wed, 27 Sep 2017 19:27:42 +0900</pubDate>
+      <pubDate>Wed, 27 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/27/</guid>
       <description>かつて macOS 付属の Python 2 には NumPy, SciPy, matplotlib がプリインストールされていたのですが、Python 3 にはインストールされていないため使う場合はインストールが必要</description>
@@ -119,7 +119,7 @@
     <item>
       <title>mac に SciPy がプリインストールされているか調べる</title>
       <link>https://yokaze.github.io/2017/09/17/</link>
-      <pubDate>Sun, 17 Sep 2017 10:32:57 +0900</pubDate>
+      <pubDate>Sun, 17 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/17/</guid>
       <description>手元の環境 (macOS 10.12 Sierra) に入っている SciPy がプリインストールされたものか、自分でインストールしたものか分からなくなったので調査しました。 まずは sys.path から。 ス</description>

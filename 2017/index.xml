@@ -7,11 +7,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Mon, 18 Dec 2017 22:52:15 +0900</lastBuildDate><atom:link href="https://yokaze.github.io/2017/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Dec 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://yokaze.github.io/2017/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>神代植物公園</title>
       <link>https://yokaze.github.io/2017/12/18/</link>
-      <pubDate>Mon, 18 Dec 2017 22:52:15 +0900</pubDate>
+      <pubDate>Mon, 18 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/12/18/</guid>
       <description>週末は蝋梅の一番花を撮りに出かけました。 FUJIFILM X-T2, XF55-200mm F3.5-4.8 R LM OIS, 1/480, F4.8, ISO200 @ 神代植物公園 まだ本当に咲き始めという感じで、三輪ほど咲いているかどうかというと</description>
@@ -20,7 +20,7 @@
     <item>
       <title>carthage 本体を更新する</title>
       <link>https://yokaze.github.io/2017/10/23/</link>
-      <pubDate>Mon, 23 Oct 2017 19:43:11 +0900</pubDate>
+      <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/10/23/</guid>
       <description>はじめに、Homebrew をアップデートします。 $ # macOS Sierra (10.12) + Homebrew $ brew update carthage の更新があるかどうかを確認します。 brew outdated で表示される場合、パッケージが更</description>
@@ -29,7 +29,7 @@
     <item>
       <title>機械学習で役立つ数学参考書のリスト</title>
       <link>https://yokaze.github.io/2017/10/13/</link>
-      <pubDate>Fri, 13 Oct 2017 19:07:00 +0900</pubDate>
+      <pubDate>Fri, 13 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/10/13/</guid>
       <description>普段お世話になっている教科書をまとめてみました。 パターン認識と機械学習 誰もが知っている機械学習の総合教科書です。 基本的な事柄が網羅されていて</description>
@@ -38,7 +38,7 @@
     <item>
       <title>EM アルゴリズム</title>
       <link>https://yokaze.github.io/2017/10/11/</link>
-      <pubDate>Wed, 11 Oct 2017 21:32:04 +0900</pubDate>
+      <pubDate>Wed, 11 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/10/11/</guid>
       <description>混合ガウス分布の Expectation-Maximization (EM) アルゴリズムとは、尤度 $$ p(X|\pi, \mu, \lambda) = \prod_{n = 1}^N \sum_{k = 1}^K \pi_k \mathcal{N}(x_n | \mu_k, \lambda_k^{-1}) $$ をなるべく大きくするようなパラメータの組 $(\pi, \mu, \lambda)$ を計算するアルゴリ</description>
@@ -47,7 +47,7 @@
     <item>
       <title>X-T2 を買いました</title>
       <link>https://yokaze.github.io/2017/10/08/</link>
-      <pubDate>Sun, 08 Oct 2017 22:42:53 +0900</pubDate>
+      <pubDate>Sun, 08 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/10/08/</guid>
       <description>半年ぐらい悩んでいたんですが、ついに買っちゃいました。 FUJIFILM X-T2, XF55-200mm F3.5-4.8 R LM OIS, 1/1700, F3.5, ISO200 @ 神代植物公園 フジのカメラは RAW よりカメラ内現像の jpg が綺麗なことで有</description>
@@ -65,7 +65,7 @@
     <item>
       <title>flake8 で hacking の警告を一時的に無効にする</title>
       <link>https://yokaze.github.io/2017/10/04/</link>
-      <pubDate>Wed, 04 Oct 2017 18:17:33 +0900</pubDate>
+      <pubDate>Wed, 04 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/10/04/</guid>
       <description>Python 向け Lint ツール flake8 のプラグインとして使える hacking ですが、警告がかなり厳しいため一時的に無効にしたいことがあります。 $ # flake8, hacking をインストール $ pip install flake8 $</description>
@@ -74,7 +74,7 @@
     <item>
       <title>pipdeptree を Python 2 と Python 3 に同時にインストールする</title>
       <link>https://yokaze.github.io/2017/10/02/</link>
-      <pubDate>Mon, 02 Oct 2017 21:09:47 +0900</pubDate>
+      <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/10/02/</guid>
       <description>pipdeptree を使うと、pip でインストールしたパッケージの依存関係を調べることができます。 $ # macOS Sierra (10.12) + Homebrew $ $ # Python2 用のソフトウェアをインストール $ pip install pipdeptree</description>
@@ -83,7 +83,7 @@
     <item>
       <title>mac に最新の NumPy (SciPy) をインストールする</title>
       <link>https://yokaze.github.io/2017/09/27/</link>
-      <pubDate>Wed, 27 Sep 2017 19:27:42 +0900</pubDate>
+      <pubDate>Wed, 27 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/27/</guid>
       <description>かつて macOS 付属の Python 2 には NumPy, SciPy, matplotlib がプリインストールされていたのですが、Python 3 にはインストールされていないため使う場合はインストールが必要</description>
@@ -92,7 +92,7 @@
     <item>
       <title>mac で PIL (Python Imaging Library) を使う</title>
       <link>https://yokaze.github.io/2017/09/23/</link>
-      <pubDate>Sat, 23 Sep 2017 10:00:00 +0900</pubDate>
+      <pubDate>Sat, 23 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/23/</guid>
       <description>Ubuntu 環境にはデフォルトで入っている PIL (Pillow) ですが、mac にはプリインストールされていないため別途インストールが必要です。 $ # M1 Mac (Monterey) + Python 3.8.9 + pip 22.0.4 $ python3</description>
@@ -110,7 +110,7 @@
     <item>
       <title>Python でインストール済みモジュールをデバッグする</title>
       <link>https://yokaze.github.io/2017/09/19/</link>
-      <pubDate>Tue, 19 Sep 2017 21:30:00 +0900</pubDate>
+      <pubDate>Tue, 19 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/19/</guid>
       <description>Python でインストール済みモジュールの動作を調べたい時は、-m pdb オプションに続けて -m &amp;lt;Module Name&amp;gt; を指定します。 この機能は Python 3.7 以降 で使えます。 $ # Intel Mac + macOS Big</description>
@@ -119,7 +119,7 @@
     <item>
       <title>mac に SciPy がプリインストールされているか調べる</title>
       <link>https://yokaze.github.io/2017/09/17/</link>
-      <pubDate>Sun, 17 Sep 2017 10:32:57 +0900</pubDate>
+      <pubDate>Sun, 17 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/17/</guid>
       <description>手元の環境 (macOS 10.12 Sierra) に入っている SciPy がプリインストールされたものか、自分でインストールしたものか分からなくなったので調査しました。 まずは sys.path から。 ス</description>
@@ -128,7 +128,7 @@
     <item>
       <title>Homebrew で python3 用の Boost.Python をインストールする</title>
       <link>https://yokaze.github.io/2017/09/15/</link>
-      <pubDate>Fri, 15 Sep 2017 18:34:38 +0900</pubDate>
+      <pubDate>Fri, 15 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/15/</guid>
       <description>$ brew install boost-python --with-python3 なのだが、すこしハマりどころがある。 brew install boost-python のオプション brew install にはオプションを指定できる場合がある。 boost-python の場合は --with-python3 オプションが使える。 brew</description>
@@ -137,7 +137,7 @@
     <item>
       <title>boost::indices の解説</title>
       <link>https://yokaze.github.io/2017/09/13/</link>
-      <pubDate>Wed, 13 Sep 2017 23:00:13 +0900</pubDate>
+      <pubDate>Wed, 13 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/13/</guid>
       <description>前回 の続きです。 boost::indices は、boost::multi_array の部分ビューを作るためのオブジェクトです。 部分ビューでは、元の配列の一部を仮想的な</description>
@@ -146,7 +146,7 @@
     <item>
       <title>boost::extents の解説</title>
       <link>https://yokaze.github.io/2017/09/11/</link>
-      <pubDate>Mon, 11 Sep 2017 21:57:00 +0900</pubDate>
+      <pubDate>Mon, 11 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/11/</guid>
       <description>boost::extents は、boost::multi_array の各次元の有効なインデックス範囲を指定するためのオブジェクトです。 #include &amp;lt;boost/multi_array.hpp&amp;gt; int main() { boost::multi_array&amp;lt;float, 2&amp;gt; arr(boost::extents[10][20]); return 0; } また、ex</description>
@@ -155,7 +155,7 @@
     <item>
       <title>pycodestyle (pep8) で E501 line too long を無視する方法</title>
       <link>https://yokaze.github.io/2017/09/08/</link>
-      <pubDate>Fri, 08 Sep 2017 20:07:56 +0900</pubDate>
+      <pubDate>Fri, 08 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/08/</guid>
       <description>Python の標準コーディング規約 &amp;ldquo;PEP 8&amp;rdquo; には一行あたりの文字数制限があります。 一行最大79文字と、ちょっと厳しい。 これを無視するには、pycodesty</description>
@@ -164,7 +164,7 @@
     <item>
       <title>ローカルの Hugo サーバーに携帯端末 (iOS, Android) からアクセスする方法</title>
       <link>https://yokaze.github.io/2017/09/07/</link>
-      <pubDate>Thu, 07 Sep 2017 18:27:23 +0900</pubDate>
+      <pubDate>Thu, 07 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/09/07/</guid>
       <description>bind, baseURL オプションを指定して hugo server を起動する。 $ # Intel Mac + macOS Big Sur (11.2) + Hugo 0.81.0 $ hugo server --bind=&amp;#34;0.0.0.0&amp;#34; --baseURL=&amp;#34;http://[HOSTNAME]/&amp;#34; HOSTNAME には自分のマシンの名前を入れてください。 config.toml は Web サイトをビルドする</description>
@@ -173,7 +173,7 @@
     <item>
       <title>Boost.MultiArray の添字演算子について</title>
       <link>https://yokaze.github.io/2017/08/18/</link>
-      <pubDate>Fri, 18 Aug 2017 18:30:00 +0900</pubDate>
+      <pubDate>Fri, 18 Aug 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2017/08/18/</guid>
       <description>Boost.MultiArray が添え字の境界チェックをしているのかよく分からなかったので、調べてみた。 リファレンスには次のように書かれている。 By default, the array access methods operator() and operator[] perform range checking. If</description>
