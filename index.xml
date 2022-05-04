@@ -230,7 +230,7 @@
       <pubDate>Thu, 08 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/03/08/</guid>
-      <description>pybind11 でキーワード引数 (kwargs) を指定するには、pybind11::arg を使います。 #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { // python インタプリタを起動する py::scoped_interpreter interpreter; // numpy の各種オブジ</description>
+      <description>pybind11 でキーワード引数 (kwargs) を指定するには、pybind11::arg を使います。 sample.cpp #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main() { // python インタプリタを起動する py::scoped_interpreter interpreter; // numpy の各種オブ</description>
     </item>
     
     <item>
