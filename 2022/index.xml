@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2022 on yokaze.github.io</title>
+    <link>https://yokaze.github.io/2022/</link>
+    <description>Recent content in 2022 on yokaze.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>&amp;copy; Rue Yokaze</copyright>
+    <lastBuildDate>Sun, 11 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://yokaze.github.io/2022/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>k8s のための jq &amp; yq テクニック reduce/entry 編</title>
+      <link>https://yokaze.github.io/2022/12/11/</link>
+      <pubDate>Sun, 11 Dec 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://yokaze.github.io/2022/12/11/</guid>
+      <description>Kubernetes で高度な開発を進めていると、以下のようなシナリオに遭遇することがあります。 特定の Namespace 内にある全てのリソースを表示したい クラスタ内の Pod にどうい</description>
+    </item>
+    
+  </channel>
+</rss>

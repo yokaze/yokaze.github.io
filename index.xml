@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; Rue Yokaze</copyright>
-    <lastBuildDate>Sat, 17 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://yokaze.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>k8s のための jq &amp; yq テクニック reduce/entry 編</title>
+      <link>https://yokaze.github.io/2022/12/11/</link>
+      <pubDate>Sun, 11 Dec 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://yokaze.github.io/2022/12/11/</guid>
+      <description>Kubernetes で高度な開発を進めていると、以下のようなシナリオに遭遇することがあります。 特定の Namespace 内にある全てのリソースを表示したい クラスタ内の Pod にどうい</description>
+    </item>
+    
     <item>
       <title>yq コマンドで Kubernetes の YAML を操作する</title>
       <link>https://yokaze.github.io/2021/04/17/</link>

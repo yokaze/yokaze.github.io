@@ -66,6 +66,21 @@
                             <article class="li">
                                 <header>
                                     <ul class="p-facts">
+                                        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-02-11T00:00:00JST">Feb 11, 2018</time></li>
+                                        <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
+                                    </ul>
+                                    <h2 class="title"><a href="https://yokaze.github.io/2018/02/11/">pybind11 で C&#43;&#43; から Python インタプリタを実行する</a></h2>
+                                </header>
+                                <div class="summary">pybind11 の pybind11::scoped_interpreter を使うと、C++ から Python インタプリタを起動できます。 sample.cpp #include &lt;pybind11/embed.h&gt;#include &lt;pybind11/pybind11.h&gt; namespace py = pybind11; int main() { py::scoped_interpreter interpreter; py::print(&#34;Hello, world!&#34;); return 0; } pybind11 を使ったプログラムをコンパイルするには、pyb</div>
+                                <footer>
+                                    <a href="https://yokaze.github.io/2018/02/11/" title="pybind11 で C&#43;&#43; から Python インタプリタを実行する">Read More…</a>
+                                </footer>
+                            </article>
+                        </li>
+                        <li>
+                            <article class="li">
+                                <header>
+                                    <ul class="p-facts">
                                         <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-02-05T00:00:00JST">Feb 5, 2018</time></li>
                                         <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
                                     </ul>
@@ -199,21 +214,6 @@
                                 </footer>
                             </article>
                         </li>
-                        <li>
-                            <article class="li">
-                                <header>
-                                    <ul class="p-facts">
-                                        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-06T00:00:00JST">Jan 6, 2018</time></li>
-                                        <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
-                                    </ul>
-                                    <h2 class="title"><a href="https://yokaze.github.io/2018/01/06/">lldb で使えるコマンド一覧</a></h2>
-                                </header>
-                                <div class="summary">lldb で入力できるコマンドをまとめました。 lldb のコマンド一覧（英語）は help コマンドで表示できます。 日本語訳は新規に書き起こしました。 $ # macOS Sierra (10.12) + Homebrew $</div>
-                                <footer>
-                                    <a href="https://yokaze.github.io/2018/01/06/" title="lldb で使えるコマンド一覧">Read More…</a>
-                                </footer>
-                            </article>
-                        </li>
                     </ul>
                     <nav>
                         <ul class="pager">
@@ -229,6 +229,7 @@
                                 <div class="panel-title">LATESTS</div>
                             </div>
                             <div class="list-group">
+                                <a href="https://yokaze.github.io/2022/12/11/" class="list-group-item">k8s のための jq &amp; yq テクニック reduce/entry 編</a>
                                 <a href="https://yokaze.github.io/2021/04/17/" class="list-group-item">yq コマンドで Kubernetes の YAML を操作する</a>
                                 <a href="https://yokaze.github.io/2021/03/08/" class="list-group-item">kind 環境に Grafana をデプロイする</a>
                                 <a href="https://yokaze.github.io/2021/03/07/" class="list-group-item">kind 環境に Prometheus をデプロイする</a>
@@ -238,7 +239,6 @@
                                 <a href="https://yokaze.github.io/2019/08/12/" class="list-group-item">TensorFlow 2.0 で非負値行列因子分解 (NMF) を解く</a>
                                 <a href="https://yokaze.github.io/2019/08/07/" class="list-group-item">TensorFlow 2.0 で Variable を ndarray に変換する</a>
                                 <a href="https://yokaze.github.io/2019/07/13/" class="list-group-item">Monge-Kantorovich の問題を SciPy で解く</a>
-                                <a href="https://yokaze.github.io/2019/07/12/" class="list-group-item">Wasserstein 計量が距離関数になることを証明する</a>
                             </div>
                         </section>
                         <section class="panel panel-default">
