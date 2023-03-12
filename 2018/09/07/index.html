@@ -42,7 +42,7 @@
                 "width": 800
             },
             "datePublished": "2018-09-07T00:00:00JST",
-            "dateModified": "2022-04-11T00:00:00JST",
+            "dateModified": "2023-03-13T00:00:00JST",
             "author": {
                 "@type": "Person",
                 "name": "yokaze.github.io"
@@ -112,7 +112,7 @@
                     <article class="single">
                         <header>
                             <ul class="p-facts">
-                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2022-04-11T00:00:00JST">Apr 11, 2022</time></li>
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2023-03-13T00:00:00JST">Mar 13, 2023</time></li>
                                 <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
                             </ul>
                             <h1 class="title">clang でループ式が実行されない場合に警告を出す (-Wunreachable-code-loop-increment)</h1>
@@ -133,7 +133,7 @@
                             </div>
                             <p>この例では初回のループが終了する前に <code>break</code> 文が実行されるため、警告が表示されます。</p>
                             <div class="highlight">
-                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Ventura) + Apple clang 14.0.0</span>
 </span></span><span style="display:flex;"><span>$ clang -Wunreachable-code-loop-increment sample.cpp
 </span></span><span style="display:flex;"><span>sample.cpp:3:29: warning: loop will run at most once (loop increment never executed) [-Wunreachable-code-loop-increment]
 </span></span><span style="display:flex;"><span>    for (int i = 0; i &lt; 10; ++i)
@@ -144,7 +144,7 @@
                             <h2 id="警告を抑制する">警告を抑制する</h2>
                             <p>逆に、警告を抑制したい場合は <code>-Wno-unreachable-code-loop-increment</code> オプションを指定します。 このオプションを指定することで、既に指定されたオプションを打ち消すことができます。</p>
                             <div class="highlight">
-                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Ventura) + Apple clang 14.0.0</span>
 </span></span><span style="display:flex;"><span>$ clang -Wunreachable-code-loop-increment -Wno-unreachable-code-loop-increment sample.cpp
 </span></span><span style="display:flex;"><span>$
 </span></span></code></pre>

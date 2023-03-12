@@ -91,7 +91,7 @@
                                     </ul>
                                     <h2 class="title"><a href="https://yokaze.github.io/en/2018/01/17/">Warn implicit sign conversion by clang (-Wsign-conversion)</a></h2>
                                 </header>
-                                <div class="summary">Use -Wsign-conversion flag for clang to warn implicit sign conversion. int main() { unsigned int x = -1; return 0; } $ # M1 Mac (Monterey) + Apple clang 13.1.6 $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion changes signedness: &#39;int&#39; to &#39;unsigned int&#39; [-Wsign-conversion] unsigned int x = -1; ~ ^~ 1 warning generated. Suppress warnings Use -Wno-sign-conversion to suppress warnings. It can be used to cancel -Wsign-conversion if already set.</div>
+                                <div class="summary">Use -Wsign-conversion flag for clang to warn implicit sign conversion. int main() { unsigned int x = -1; return 0; } $ # M1 Mac (Ventura) + Apple clang 14.0.0 $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion changes signedness: &#39;int&#39; to &#39;unsigned int&#39; [-Wsign-conversion] unsigned int x = -1; ~ ^~ 1 warning generated. Suppress warnings Use -Wno-sign-conversion to suppress warnings. It can be used to cancel -Wsign-conversion if already set.</div>
                                 <footer>
                                     <a href="https://yokaze.github.io/en/2018/01/17/" title="Warn implicit sign conversion by clang (-Wsign-conversion)">Read More…</a>
                                 </footer>

@@ -26,7 +26,7 @@ $ # M1 Mac (Monterey) + Apple clang 13.1.6 $ clang sample.cpp -o sample -Wshift-
       
       <guid>https://yokaze.github.io/en/2018/01/17/</guid>
       <description>Use -Wsign-conversion flag for clang to warn implicit sign conversion.
-int main() {  unsigned int x = -1;  return 0; } $ # M1 Mac (Monterey) + Apple clang 13.1.6 $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion changes signedness: &amp;#39;int&amp;#39; to &amp;#39;unsigned int&amp;#39; [-Wsign-conversion]  unsigned int x = -1;  ~ ^~ 1 warning generated. Suppress warnings Use -Wno-sign-conversion to suppress warnings. It can be used to cancel -Wsign-conversion if already set.</description>
+int main() {  unsigned int x = -1;  return 0; } $ # M1 Mac (Ventura) + Apple clang 14.0.0 $ clang sample.cpp -Wsign-conversion sample.cpp:3:22: warning: implicit conversion changes signedness: &amp;#39;int&amp;#39; to &amp;#39;unsigned int&amp;#39; [-Wsign-conversion]  unsigned int x = -1;  ~ ^~ 1 warning generated. Suppress warnings Use -Wno-sign-conversion to suppress warnings. It can be used to cancel -Wsign-conversion if already set.</description>
     </item>
     
   </channel>

@@ -12,19 +12,19 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
     <title>clang で未使用のマクロを警告する (-Wunused-macros) - yokaze.github.io</title>
-    <meta name="description" content="clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # M1 Mac (Monterey) &#43; Apple clang 13.1.6 $ clang sample.cpp -Wunused-macros sample.cpp:1:9: warning: macro is not">
+    <meta name="description" content="clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # M1 Mac (Ventura) &#43; Apple clang 14.0.0 $ clang sample.cpp -Wunused-macros sample.cpp:1:9: warning: macro is not">
     <meta property="og:title" content="clang で未使用のマクロを警告する (-Wunused-macros) - yokaze.github.io">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://yokaze.github.io/2017/10/06/">
     <meta property="og:image" content="https://yokaze.github.io/images/default.png">
     <meta property="og:site_name" content="yokaze.github.io">
-    <meta property="og:description" content="clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # M1 Mac (Monterey) &#43; Apple clang 13.1.6 $ clang sample.cpp -Wunused-macros sample.cpp:1:9: warning: macro is not">
+    <meta property="og:description" content="clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # M1 Mac (Ventura) &#43; Apple clang 14.0.0 $ clang sample.cpp -Wunused-macros sample.cpp:1:9: warning: macro is not">
     <meta property="og:locale" content="ja_JP">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="yokaze.github.io">
     <meta name="twitter:url" content="https://yokaze.github.io/2017/10/06/">
     <meta name="twitter:title" content="clang で未使用のマクロを警告する (-Wunused-macros) - yokaze.github.io">
-    <meta name="twitter:description" content="clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # M1 Mac (Monterey) &#43; Apple clang 13.1.6 $ clang sample.cpp -Wunused-macros sample.cpp:1:9: warning: macro is not">
+    <meta name="twitter:description" content="clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # M1 Mac (Ventura) &#43; Apple clang 14.0.0 $ clang sample.cpp -Wunused-macros sample.cpp:1:9: warning: macro is not">
     <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
     <script type="application/ld+json">
         {
@@ -42,7 +42,7 @@
                 "width": 800
             },
             "datePublished": "2017-10-06T00:00:00JST",
-            "dateModified": "2022-04-10T00:00:00JST",
+            "dateModified": "2023-03-13T00:00:00JST",
             "author": {
                 "@type": "Person",
                 "name": "yokaze.github.io"
@@ -57,7 +57,7 @@
                     "height": 60
                 }
             },
-            "description": "clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # M1 Mac (Monterey) \u002b Apple clang 13.1.6 $ clang sample.cpp -Wunused-macros sample.cpp:1:9: warning: macro is not"
+            "description": "clang で未使用のマクロを警告するには、-Wunused-macros オプションを指定します。 #define MY_UNUSED_MACRO int main(void) { return 0; } $ # M1 Mac (Ventura) \u002b Apple clang 14.0.0 $ clang sample.cpp -Wunused-macros sample.cpp:1:9: warning: macro is not"
         }
 
     </script>
@@ -112,7 +112,7 @@
                     <article class="single">
                         <header>
                             <ul class="p-facts">
-                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2022-04-10T00:00:00JST">Apr 10, 2022</time></li>
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2023-03-13T00:00:00JST">Mar 13, 2023</time></li>
                                 <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/">2017</a></li>
                             </ul>
                             <h1 class="title">clang で未使用のマクロを警告する (-Wunused-macros)</h1>
@@ -129,7 +129,7 @@
 </span></span></code></pre>
                             </div>
                             <div class="highlight">
-                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Ventura) + Apple clang 14.0.0</span>
 </span></span><span style="display:flex;"><span>$ clang sample.cpp -Wunused-macros
 </span></span><span style="display:flex;"><span>sample.cpp:1:9: warning: macro is not used [-Wunused-macros]
 </span></span><span style="display:flex;"><span>#define MY_UNUSED_MACRO
@@ -141,7 +141,7 @@
                             <p>警告を抑制したい場合は <code>-Wno-unused-macros</code> を指定します。<br />
                                 <code>-Wunused-macros</code> はデフォルトで無効になっていますが、ビルドツール等がこのオプションを指定している場合は後付けで打ち消すことができます。
                             </p>
-                            <pre tabindex="0"><code>$ # M1 Mac (Monterey) + Apple clang 13.1.6
+                            <pre tabindex="0"><code>$ # M1 Mac (Ventura) + Apple clang 14.0.0
 $ # -Wno-unused-macros が後ろにある場合、警告は表示されません。
 $ clang sample.cpp -Wunused-macros -Wno-unused-macros
 $ 
