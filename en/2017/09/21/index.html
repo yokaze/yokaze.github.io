@@ -12,19 +12,19 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css">
     <title>Warn redefined macros by clang (-Wmacro-redefined) - yokaze.github.io</title>
-    <meta name="description" content="Use -Wmacro-redefined flag to warn redefined macros by clang.#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Monterey) &#43; Apple clang 13.1.6 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: &amp;#39;MY_DEFINE&amp;#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default.">
+    <meta name="description" content="Use -Wmacro-redefined flag to warn redefined macros by clang.#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Ventura) &#43; Apple clang 14.0.0 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: &amp;#39;MY_DEFINE&amp;#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default.">
     <meta property="og:title" content="Warn redefined macros by clang (-Wmacro-redefined) - yokaze.github.io">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://yokaze.github.io/en/2017/09/21/">
     <meta property="og:image" content="https://yokaze.github.io/images/default.png">
     <meta property="og:site_name" content="yokaze.github.io">
-    <meta property="og:description" content="Use -Wmacro-redefined flag to warn redefined macros by clang.#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Monterey) &#43; Apple clang 13.1.6 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: &amp;#39;MY_DEFINE&amp;#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default.">
+    <meta property="og:description" content="Use -Wmacro-redefined flag to warn redefined macros by clang.#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Ventura) &#43; Apple clang 14.0.0 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: &amp;#39;MY_DEFINE&amp;#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default.">
     <meta property="og:locale" content="ja_JP">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="yokaze.github.io">
     <meta name="twitter:url" content="https://yokaze.github.io/en/2017/09/21/">
     <meta name="twitter:title" content="Warn redefined macros by clang (-Wmacro-redefined) - yokaze.github.io">
-    <meta name="twitter:description" content="Use -Wmacro-redefined flag to warn redefined macros by clang.#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Monterey) &#43; Apple clang 13.1.6 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: &amp;#39;MY_DEFINE&amp;#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default.">
+    <meta name="twitter:description" content="Use -Wmacro-redefined flag to warn redefined macros by clang.#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Ventura) &#43; Apple clang 14.0.0 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: &amp;#39;MY_DEFINE&amp;#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default.">
     <meta name="twitter:image" content="https://yokaze.github.io/images/default.png">
     <script type="application/ld+json">
         {
@@ -42,7 +42,7 @@
                 "width": 800
             },
             "datePublished": "2017-09-21T00:00:00JST",
-            "dateModified": "2022-05-03T00:00:00JST",
+            "dateModified": "2023-03-13T00:00:00JST",
             "author": {
                 "@type": "Person",
                 "name": "yokaze.github.io"
@@ -57,7 +57,7 @@
                     "height": 60
                 }
             },
-            "description": "Use -Wmacro-redefined flag to warn redefined macros by clang.\n#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Monterey) \u002b Apple clang 13.1.6 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: \u0026#39;MY_DEFINE\u0026#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default."
+            "description": "Use -Wmacro-redefined flag to warn redefined macros by clang.\n#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Ventura) \u002b Apple clang 14.0.0 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: \u0026#39;MY_DEFINE\u0026#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default."
         }
 
     </script>
@@ -112,7 +112,7 @@
                     <article class="single">
                         <header>
                             <ul class="p-facts">
-                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2022-05-03T00:00:00JST">May 3, 2022</time></li>
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2023-03-13T00:00:00JST">Mar 13, 2023</time></li>
                                 <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/en/2017/">2017</a></li>
                                 <li><i class="fa fa-globe" aria-hidden="true"></i><a href="https://yokaze.github.io/2017/09/21/">JA</a> | <a href="https://yokaze.github.io/en/2017/09/21/">EN</a></li>
                             </ul>
@@ -131,7 +131,7 @@
 </span></span></code></pre>
                             </div>
                             <div class="highlight">
-                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Ventura) + Apple clang 14.0.0</span>
 </span></span><span style="display:flex;"><span>$ clang sample.cpp -Wmacro-redefined
 </span></span><span style="display:flex;"><span>sample.cpp:2:9: warning: &#39;MY_DEFINE&#39; macro redefined [-Wmacro-redefined]
 </span></span><span style="display:flex;"><span>#define MY_DEFINE   <span style="color:#ae81ff">222</span>
@@ -144,7 +144,7 @@
                             </div>
                             <p>The warnings are displayed automatically: clang enables <code>-Wmacro-redefined</code> <a href="https://clang.llvm.org/docs/DiagnosticsReference.html#wmacro-redefined">by default</a>.</p>
                             <div class="highlight">
-                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Ventura) + Apple clang 14.0.0</span>
 </span></span><span style="display:flex;"><span>$ clang sample.cpp
 </span></span><span style="display:flex;"><span>sample.cpp:2:9: warning: &#39;MY_DEFINE&#39; macro redefined [-Wmacro-redefined]
 </span></span><span style="display:flex;"><span>#define MY_DEFINE   <span style="color:#ae81ff">222</span>
@@ -158,16 +158,16 @@
                             <h2 id="suppress-warnings">Suppress warnings</h2>
                             <p>Use <code>-Wno-macro-redefined</code> to suppress warnings.</p>
                             <div class="highlight">
-                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Apple clang 13.1.6</span>
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Ventura) + Apple clang 14.0.0</span>
 </span></span><span style="display:flex;"><span>$ clang sample.cpp -Wno-macro-redefined
 </span></span><span style="display:flex;"><span>$
 </span></span></code></pre>
                             </div>
                             <h2 id="gcc">GCC</h2>
-                            <p>GCC also accepts <code>-Wmacro-redefined</code>.</p>
+                            <p>GCC also accepts <code>-Wmacro-redefined</code>. On macOS, <code>gcc</code> is an alias of clang: we need to use <code>gcc-N</code> (N: the version of gcc) instead.</p>
                             <div class="highlight">
-                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + gcc 11.2.0</span>
-</span></span><span style="display:flex;"><span>$ gcc-11 sample.cpp
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Ventura) + gcc 12.2.0</span>
+</span></span><span style="display:flex;"><span>$ gcc-12 sample.cpp
 </span></span><span style="display:flex;"><span>$sample.cpp:2: warning: <span style="color:#e6db74">&#34;MY_DEFINE&#34;</span> redefined
 </span></span><span style="display:flex;"><span>    2 | #define MY_DEFINE   222
 </span></span><span style="display:flex;"><span>      | 

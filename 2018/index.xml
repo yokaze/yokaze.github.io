@@ -86,7 +86,7 @@
       <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yokaze.github.io/2018/09/18/</guid>
-      <description>pybind11 の pybind11::print 文を使うと、C++ のプログラム上で Python のオブジェクトの値を表示できます。 sample.cpp #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&amp;#34;sys&amp;#34;); py::print(sys_module); return 0; } $ # M1 Mac (Monterey) + Python 3.8.9 + pybind11 2.9.2</description>
+      <description>pybind11 の pybind11::print 文を使うと、C++ のプログラム上で Python のオブジェクトの値を表示できます。 sample.cpp #include &amp;lt;pybind11/embed.h&amp;gt;#include &amp;lt;pybind11/pybind11.h&amp;gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&amp;#34;sys&amp;#34;); py::print(sys_module); return 0; } $ # M1 Mac (Ventura) + Python 3.9.6 + pybind11 2.10.3</description>
     </item>
     
     <item>

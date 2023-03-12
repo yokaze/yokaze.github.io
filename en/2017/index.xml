@@ -15,7 +15,7 @@
       
       <guid>https://yokaze.github.io/en/2017/09/21/</guid>
       <description>Use -Wmacro-redefined flag to warn redefined macros by clang.
-#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Monterey) + Apple clang 13.1.6 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: &amp;#39;MY_DEFINE&amp;#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default.</description>
+#define MY_DEFINE 111 #define MY_DEFINE 222  int main(void) {  return 0; } $ # M1 Mac (Ventura) + Apple clang 14.0.0 $ clang sample.cpp -Wmacro-redefined sample.cpp:2:9: warning: &amp;#39;MY_DEFINE&amp;#39; macro redefined [-Wmacro-redefined] #define MY_DEFINE 222  ^ sample.cpp:1:9: note: previous definition is here #define MY_DEFINE 111  ^ 1 warning generated. The warnings are displayed automatically: clang enables -Wmacro-redefined by default.</description>
     </item>
     
   </channel>

@@ -101,7 +101,7 @@
                                     </ul>
                                     <h2 class="title"><a href="https://yokaze.github.io/2018/09/18/">pybind11 で Python の print 文を使う</a></h2>
                                 </header>
-                                <div class="summary">pybind11 の pybind11::print 文を使うと、C++ のプログラム上で Python のオブジェクトの値を表示できます。 sample.cpp #include &lt;pybind11/embed.h&gt;#include &lt;pybind11/pybind11.h&gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&#34;sys&#34;); py::print(sys_module); return 0; } $ # M1 Mac (Monterey) + Python 3.8.9 + pybind11 2.9.2</div>
+                                <div class="summary">pybind11 の pybind11::print 文を使うと、C++ のプログラム上で Python のオブジェクトの値を表示できます。 sample.cpp #include &lt;pybind11/embed.h&gt;#include &lt;pybind11/pybind11.h&gt; namespace py = pybind11; int main(void) { py::scoped_interpreter interpreter; py::module sys_module = py::module::import(&#34;sys&#34;); py::print(sys_module); return 0; } $ # M1 Mac (Ventura) + Python 3.9.6 + pybind11 2.10.3</div>
                                 <footer>
                                     <a href="https://yokaze.github.io/2018/09/18/" title="pybind11 で Python の print 文を使う">Read More…</a>
                                 </footer>

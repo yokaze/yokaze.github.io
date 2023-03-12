@@ -42,7 +42,7 @@
                 "width": 800
             },
             "datePublished": "2018-03-05T00:00:00JST",
-            "dateModified": "2022-05-05T00:00:00JST",
+            "dateModified": "2023-03-13T00:00:00JST",
             "author": {
                 "@type": "Person",
                 "name": "yokaze.github.io"
@@ -112,7 +112,7 @@
                     <article class="single">
                         <header>
                             <ul class="p-facts">
-                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2022-05-05T00:00:00JST">May 5, 2022</time></li>
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2023-03-13T00:00:00JST">Mar 13, 2023</time></li>
                                 <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yokaze.github.io/2018/">2018</a></li>
                             </ul>
                             <h1 class="title">pybind11 で main モジュール上に関数を定義する</h1>
@@ -149,8 +149,8 @@
 </span></span></code></pre>
                             </div>
                             <div class="highlight">
-                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Monterey) + Python 3.8.9 + pybind11 2.9.2 (Homebrew)</span>
-</span></span><span style="display:flex;"><span>$ clang sample.cpp -std<span style="color:#f92672">=</span>c++20 -lc++ -lpython3.8 -rpath /Library/Developer/CommandLineTools/Library/Frameworks -I/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/Headers -I/opt/homebrew/Cellar/pybind11/2.9.2/include -L/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib -o sample
+                                <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ <span style="color:#75715e"># M1 Mac (Ventura) + Python 3.9.6 + pybind11 2.10.3 (Homebrew)</span>
+</span></span><span style="display:flex;"><span>$ clang sample.cpp -std<span style="color:#f92672">=</span>c++20 -lc++ -lpython3.9 -rpath /Library/Developer/CommandLineTools/Library/Frameworks -I/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Headers -I/opt/homebrew/Cellar/pybind11/2.10.3/include -L/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib -o sample
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>$ ./sample
 </span></span><span style="display:flex;"><span>Hello, world!
